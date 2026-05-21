@@ -14,7 +14,7 @@ export const themeCommand = new Command('theme')
     const config = loadConfig(cwd)
 
     if (!config) {
-      console.log(pc.red('\n  snuxt-ui.json not found. Run `npx snuxt-ui init` first.\n'))
+      console.log(pc.red('\n  mcp-elements.json not found. Run `npx mcp-elements init` first.\n'))
       return
     }
 

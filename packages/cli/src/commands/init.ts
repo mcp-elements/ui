@@ -7,18 +7,18 @@ import path from 'node:path'
 import fs from 'node:fs'
 
 export const initCommand = new Command('init')
-  .description('Initialize snuxt-ui in your project')
+  .description('Initialize mcp-elements in your project')
   .action(async () => {
-    console.log(pc.bold('\n  snuxt-ui init\n'))
+    console.log(pc.bold('\n  mcp-elements init\n'))
 
     const cwd = process.cwd()
 
     // Check if already initialized
-    if (await fileExists(path.join(cwd, 'snuxt-ui.json'))) {
+    if (await fileExists(path.join(cwd, 'mcp-elements.json'))) {
       const { overwrite } = await prompts({
         type: 'confirm',
         name: 'overwrite',
-        message: 'snuxt-ui.json already exists. Overwrite?',
+        message: 'mcp-elements.json already exists. Overwrite?',
         initial: false,
       })
       if (!overwrite) {
@@ -78,7 +78,7 @@ export const initCommand = new Command('init')
 
     // Create config
     const config = {
-      $schema: 'https://snuxt-ui.dev/schema.json',
+      $schema: 'https://mcp-elements.dev/schema.json',
       framework,
       typescript,
       tailwind: {
@@ -93,10 +93,10 @@ export const initCommand = new Command('init')
 
     // Write config file
     await writeFile(
-      path.join(cwd, 'snuxt-ui.json'),
+      path.join(cwd, 'mcp-elements.json'),
       JSON.stringify(config, null, 2)
     )
-    console.log(pc.green('  Created snuxt-ui.json'))
+    console.log(pc.green('  Created mcp-elements.json'))
 
     // Ensure component directory exists
     await ensureDir(path.join(cwd, componentDir))
@@ -115,7 +115,7 @@ export const initCommand = new Command('init')
     console.log(pc.green(`  Created ${utilsDir}/cn${ext}`))
 
     // Copy base CSS tokens
-    const baseCssContent = `/* snuxt-ui design tokens */
+    const baseCssContent = `/* mcp-elements design tokens */
 @import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -174,7 +174,7 @@ export const initCommand = new Command('init')
     const cssFullPath = path.join(cwd, cssPath)
     if (await fileExists(cssFullPath)) {
       const existing = fs.readFileSync(cssFullPath, 'utf-8')
-      if (!existing.includes('snuxt-ui design tokens')) {
+      if (!existing.includes('mcp-elements design tokens')) {
         fs.writeFileSync(cssFullPath, baseCssContent + '\n' + existing)
         console.log(pc.green(`  Added design tokens to ${cssPath}`))
       } else {
@@ -185,6 +185,6 @@ export const initCommand = new Command('init')
       console.log(pc.green(`  Created ${cssPath} with design tokens`))
     }
 
-    console.log(pc.bold(pc.green('\n  snuxt-ui initialized successfully!\n')))
-    console.log(`  Run ${pc.cyan('npx snuxt-ui add button')} to add your first component.\n`)
+    console.log(pc.bold(pc.green('\n  mcp-elements initialized successfully!\n')))
+    console.log(`  Run ${pc.cyan('npx mcp-elements add button')} to add your first component.\n`)
   })

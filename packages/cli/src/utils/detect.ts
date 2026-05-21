@@ -37,7 +37,7 @@ export function detectFramework(cwd: string): string | null {
 }
 
 export function loadConfig(cwd: string): SnxConfig | null {
-  const configPath = path.join(cwd, 'snuxt-ui.json')
+  const configPath = path.join(cwd, 'mcp-elements.json')
 
   if (!fs.existsSync(configPath)) return null
 

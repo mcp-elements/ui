@@ -1,6 +1,6 @@
 {
   "meta": {
-    "baseUrl": "https://raw.githubusercontent.com/thepsygeek/snuxt-ui/main/packages",
+    "baseUrl": "https://raw.githubusercontent.com/mcp-elements/mcp-elements/main/packages",
     "sharedCoreDeps": ["core/src/utils/cn.ts"]
   },
   "components": {

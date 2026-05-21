@@ -1,7 +1,7 @@
 import path from 'node:path'
 import fs from 'node:fs'
 
-const BASE_URL = 'https://raw.githubusercontent.com/thepsygeek/snuxt-ui/main/packages'
+const BASE_URL = 'https://raw.githubusercontent.com/mcp-elements/mcp-elements/main/packages'
 
 export async function fetchFile(relativePath: string, local = false): Promise<string> {
   if (local) {

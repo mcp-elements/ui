@@ -20,7 +20,7 @@ export const addCommand = new Command('add')
     const config = loadConfig(cwd)
 
     if (!config) {
-      console.log(pc.red('\n  snuxt-ui.json not found. Run `npx snuxt-ui init` first.\n'))
+      console.log(pc.red('\n  mcp-elements.json not found. Run `npx mcp-elements init` first.\n'))
       return
     }
 
@@ -53,7 +53,7 @@ export const addCommand = new Command('add')
     const invalid = componentNames.filter(name => !registry.components[name])
     if (invalid.length > 0) {
       console.log(pc.red(`\n  Unknown components: ${invalid.join(', ')}`))
-      console.log(`  Run ${pc.cyan('npx snuxt-ui list')} to see available components.\n`)
+      console.log(`  Run ${pc.cyan('npx mcp-elements list')} to see available components.\n`)
       return
     }
 

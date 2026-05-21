@@ -1,10 +1,10 @@
 {
-  "name": "snuxt-ui",
+  "name": "mcp-elements",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "bin": {
-    "snuxt-ui": "./dist/index.js"
+    "mcp-elements": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup",

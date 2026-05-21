@@ -6,7 +6,7 @@ import { themeCommand } from './commands/theme.js'
 const program = new Command()
 
 program
-  .name('snuxt-ui')
+  .name('mcp-elements')
   .description('Framework-agnostic UI components with shadcn-style CLI')
   .version('0.1.0')
 
