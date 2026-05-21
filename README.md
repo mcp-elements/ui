@@ -1,15 +1,15 @@
 <p align="center">
-  <h1 align="center">snuxt-ui</h1>
+  <h1 align="center">mcp-elements</h1>
 </p>
 
 <p align="center">
-  Beautifully designed, accessible components that you copy into your project. Framework-agnostic. Open Source. Open Code.
+  MCP-native UI components that copy into your project. Multi-framework. Open Source. Open Code.
 </p>
 
 <p align="center">
-  <a href="https://snuxt-ui.dev/docs"><strong>Documentation</strong></a> ·
-  <a href="https://snuxt-ui.dev/docs/components"><strong>Components</strong></a> ·
-  <a href="https://snuxt-ui.dev/docs/themes"><strong>Themes</strong></a>
+  <a href="https://mcp-elements.dev/docs"><strong>Documentation</strong></a> ·
+  <a href="https://mcp-elements.dev/docs/components"><strong>Components</strong></a> ·
+  <a href="https://mcp-elements.dev/docs/themes"><strong>Themes</strong></a>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 ## About
 
-snuxt-ui is a component library that works differently. Instead of installing a package you depend on forever, our CLI copies production-ready source code directly into your project. You own it. You modify it. No lock-in.
+mcp-elements is a component library that works differently. Instead of installing a package you depend on forever, our CLI copies production-ready source code directly into your project. You own it. You modify it. No lock-in.
 
 The same component logic powers both React and Angular through a layered architecture — CSS and core behavior are shared, framework adapters are thin wrappers on top.
 
@@ -35,12 +35,12 @@ The same component logic powers both React and Angular through a layered archite
 ### 1. Initialize
 
 ```bash
-npx snuxt-ui init
+npx mcp-elements init
 ```
 
 This will:
 - Detect your framework (React or Angular)
-- Create `snuxt-ui.json` configuration
+- Create `mcp-elements.json` configuration
 - Set up component and utils directories
 - Generate the `cn()` class utility
 - Inject OKLCH design tokens into your CSS
@@ -48,13 +48,13 @@ This will:
 ### 2. Add Components
 
 ```bash
-npx snuxt-ui add button dialog tabs
+npx mcp-elements add button dialog tabs
 ```
 
 Or run without arguments for an interactive picker:
 
 ```bash
-npx snuxt-ui add
+npx mcp-elements add
 ```
 
 ### 3. Import Base Styles
@@ -63,7 +63,7 @@ Add the base styles alongside Tailwind in your CSS:
 
 ```css
 @import "tailwindcss";
-@import "@snuxt-ui/css/base";
+@import "@mcp-elements/css/base";
 ```
 
 ---
@@ -93,7 +93,7 @@ Simple, styled components with no JavaScript logic required.
 
 ### Interactive (10)
 
-Components with keyboard navigation, ARIA attributes, focus management, and state logic powered by `@snuxt-ui/core`.
+Components with keyboard navigation, ARIA attributes, focus management, and state logic powered by `@mcp-elements/core`.
 
 | Component | Description | Core Deps |
 |-----------|-------------|-----------|
@@ -126,31 +126,31 @@ Purpose-built components for AI-powered applications and chat interfaces.
 
 ## CLI Reference
 
-### `npx snuxt-ui init`
+### `npx mcp-elements init`
 
-Initialize snuxt-ui in your project.
+Initialize mcp-elements in your project.
 
 - Detects framework from `package.json` (React or Angular)
-- Creates `snuxt-ui.json` with component paths, utils path, and CSS config
+- Creates `mcp-elements.json` with component paths, utils path, and CSS config
 - Generates `cn()` utility for class merging
 - Injects OKLCH design tokens and dark theme into your CSS file
 
-### `npx snuxt-ui add [components...]`
+### `npx mcp-elements add [components...]`
 
 Add one or more components to your project.
 
 ```bash
 # Add specific components
-npx snuxt-ui add button dialog select
+npx mcp-elements add button dialog select
 
 # Interactive multi-select picker
-npx snuxt-ui add
+npx mcp-elements add
 
 # Overwrite existing files
-npx snuxt-ui add dialog --overwrite
+npx mcp-elements add dialog --overwrite
 
 # Dev mode (read from local monorepo)
-npx snuxt-ui add button --local
+npx mcp-elements add button --local
 ```
 
 **Options:**
@@ -168,29 +168,29 @@ npx snuxt-ui add button --local
 - Internal component dependencies (e.g., Dialog pulls in Button)
 
 **Import transforms:**
-All `@snuxt-ui/core` imports are automatically rewritten to local paths. For example:
+All `@mcp-elements/core` imports are automatically rewritten to local paths. For example:
 ```typescript
 // Before (source)
-import { cn, trapFocus, lockScroll } from '@snuxt-ui/core'
+import { cn, trapFocus, lockScroll } from '@mcp-elements/core'
 
 // After (in your project)
 import { cn } from './utils/cn'
 import { trapFocus, lockScroll } from './utils/dom'
 ```
 
-### `npx snuxt-ui theme <theme>`
+### `npx mcp-elements theme <theme>`
 
 Add a theme to your project.
 
 ```bash
 # Dark theme (instructions only — tokens are already in base CSS)
-npx snuxt-ui theme dark
+npx mcp-elements theme dark
 
 # Glass theme (copies glass.css + shows instructions)
-npx snuxt-ui theme glass
+npx mcp-elements theme glass
 ```
 
-### `npx snuxt-ui list`
+### `npx mcp-elements list`
 
 List all 31 available components with their types.
 
@@ -200,7 +200,7 @@ List all 31 available components with their types.
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Layer 3: CLI       npx snuxt-ui add button   │
+│  Layer 3: CLI       npx mcp-elements add button   │
 │  Copies code into your project              │
 ├─────────────────────────────────────────────┤
 │  Layer 2: Framework Adapters                │
@@ -222,7 +222,7 @@ Each layer is independent. Use the CSS on its own, wire up core logic with any f
 ### Project Structure
 
 ```
-snuxt-ui/
+mcp-elements/
 ├── packages/
 │   ├── css/                  # Layer 0 — Tailwind v4 styles
 │   │   ├── base.css          # Design tokens (OKLCH), dark theme
@@ -288,7 +288,7 @@ document.documentElement.setAttribute('data-theme', 'dark')
 ### Glass Theme (Glassmorphism)
 
 ```bash
-npx snuxt-ui theme glass
+npx mcp-elements theme glass
 ```
 
 Then import in your CSS:
@@ -361,8 +361,8 @@ Additional tokens: `--color-secondary`, `--color-accent`, `--color-muted`, `--co
 ### Setup
 
 ```bash
-git clone https://github.com/snxstudio/snuxt-ui.git
-cd snuxt-ui
+git clone https://github.com/snxstudio/mcp-elements.git
+cd mcp-elements
 pnpm install
 ```
 
@@ -382,11 +382,11 @@ pnpm install
 
 | Package | Size | Format |
 |---------|------|--------|
-| `@snuxt-ui/core` | ~16 KB | ESM + DTS |
-| `@snuxt-ui/react` | ~47 KB | ESM + DTS |
-| `snuxt-ui` (CLI) | ~20 KB | ESM (with `#!/usr/bin/env node` banner) |
-| `@snuxt-ui/angular` | Source-distributed via CLI | — |
-| `@snuxt-ui/css` | Pure CSS | — |
+| `@mcp-elements/core` | ~16 KB | ESM + DTS |
+| `@mcp-elements/react` | ~47 KB | ESM + DTS |
+| `mcp-elements` (CLI) | ~20 KB | ESM (with `#!/usr/bin/env node` banner) |
+| `@mcp-elements/angular` | Source-distributed via CLI | — |
+| `@mcp-elements/css` | Pure CSS | — |
 
 ### Documentation Site
 

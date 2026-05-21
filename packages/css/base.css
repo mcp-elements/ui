@@ -1,4 +1,4 @@
-/* Design tokens for snuxt-ui. Import tailwindcss separately in your project. */
+/* Design tokens for mcp-elements. Import tailwindcss separately in your project. */
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 

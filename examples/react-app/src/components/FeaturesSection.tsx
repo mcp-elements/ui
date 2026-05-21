@@ -151,7 +151,7 @@ export function FeaturesSection() {
     <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          title="Why snuxt-ui?"
+          title="Why mcp-elements?"
           subtitle="Everything you need to build modern interfaces, nothing you don't."
         />
 

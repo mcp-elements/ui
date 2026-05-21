@@ -1,10 +1,10 @@
-# snuxt-ui Angular Example
+# mcp-elements Angular Example
 
-This directory contains example Angular component usage for snuxt-ui.
+This directory contains example Angular component usage for mcp-elements.
 
 ## Setup
 
-To use snuxt-ui in an Angular project:
+To use mcp-elements in an Angular project:
 
 1. Create a new Angular project:
    ```bash
@@ -12,14 +12,14 @@ To use snuxt-ui in an Angular project:
    cd my-app
    ```
 
-2. Initialize snuxt-ui:
+2. Initialize mcp-elements:
    ```bash
-   npx snuxt-ui init
+   npx mcp-elements init
    ```
 
 3. Add components:
    ```bash
-   npx snuxt-ui add button card dialog
+   npx mcp-elements add button card dialog
    ```
 
 ## Example Usage
@@ -67,7 +67,7 @@ import {
     <mcpe-card>
       <mcpe-card-header>
         <mcpe-card-title>Welcome</mcpe-card-title>
-        <mcpe-card-description>Get started with snuxt-ui</mcpe-card-description>
+        <mcpe-card-description>Get started with mcp-elements</mcpe-card-description>
       </mcpe-card-header>
       <mcpe-card-content>
         <p>Your content here</p>

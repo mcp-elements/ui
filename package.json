@@ -1,8 +1,8 @@
 {
-  "name": "snuxt-ui",
+  "name": "mcp-elements",
   "private": true,
   "version": "0.1.0",
-  "description": "Framework-agnostic UI library with shadcn-style CLI",
+  "description": "MCP UI for any framework. Beautifully designed components that copy into your project.",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

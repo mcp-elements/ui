@@ -1,8 +1,8 @@
 {
-  "name": "snuxt-ui-angular-example",
+  "name": "mcp-elements-angular-example",
   "private": true,
   "version": "0.0.0",
-  "description": "Angular demo for snuxt-ui components",
+  "description": "Angular demo for mcp-elements components",
   "scripts": {
     "build": "echo 'Angular example - see README for setup'",
     "test": "echo 'Angular example - see README for setup'"

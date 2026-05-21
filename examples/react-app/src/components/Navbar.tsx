@@ -27,7 +27,7 @@ export function Navbar({ theme, onThemeChange }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <a href="#" className="text-lg font-bold font-mono gradient-text">
-          snuxt-ui
+          mcp-elements
         </a>
 
         {/* Center nav links */}

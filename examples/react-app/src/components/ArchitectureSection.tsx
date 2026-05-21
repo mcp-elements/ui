@@ -49,7 +49,7 @@ const layers: LayerInfo[] = [
   },
   {
     number: 3,
-    name: 'snuxt-ui',
+    name: 'mcp-elements',
     description: 'Copies code into your project',
     color: 'oklch(0.65 0.2 340)',
     icon: (

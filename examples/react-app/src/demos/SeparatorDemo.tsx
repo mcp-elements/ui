@@ -4,7 +4,7 @@ export function SeparatorDemo() {
   return (
     <div className="w-full max-w-sm">
       <div className="space-y-1">
-        <h4 className="text-sm font-medium leading-none">snuxt-ui</h4>
+        <h4 className="text-sm font-medium leading-none">mcp-elements</h4>
         <p className="text-xs text-muted-foreground">
           A framework-agnostic component library.
         </p>

@@ -10,9 +10,9 @@ interface TerminalLine {
 }
 
 const initialLines: TerminalLine[] = [
-  { command: 'npx snuxt-ui init', response: ' \u2713 Detected: React + Tailwind v4', visible: false },
-  { command: 'npx snuxt-ui add button dialog tabs', response: ' \u2713 3 components added to ./src/components', visible: false },
-  { command: 'npx snuxt-ui theme glass', response: ' \u2713 Glass theme applied', visible: false },
+  { command: 'npx mcp-elements init', response: ' \u2713 Detected: React + Tailwind v4', visible: false },
+  { command: 'npx mcp-elements add button dialog tabs', response: ' \u2713 3 components added to ./src/components', visible: false },
+  { command: 'npx mcp-elements theme glass', response: ' \u2713 Glass theme applied', visible: false },
 ]
 
 const features = [
