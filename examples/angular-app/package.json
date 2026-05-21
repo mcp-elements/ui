@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@mcp-elements/core": "workspace:*",
-    "@snuxt-ui/angular": "workspace:*"
+    "@mcp-elements/angular": "workspace:*"
   }
 }

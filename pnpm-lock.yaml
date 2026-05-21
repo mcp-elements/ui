@@ -20,12 +20,12 @@ importers:
 
   examples/angular-app:
     dependencies:
+      '@mcp-elements/angular':
+        specifier: workspace:*
+        version: link:../../packages/angular
       '@mcp-elements/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@snuxt-ui/angular':
-        specifier: workspace:*
-        version: link:../../packages/angular
 
   examples/docs:
     dependencies:
