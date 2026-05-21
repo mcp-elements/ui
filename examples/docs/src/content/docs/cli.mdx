@@ -1,37 +1,37 @@
 ---
 title: CLI
-description: Reference for the snuxt command-line interface.
+description: Reference for the mcp-elements command-line interface.
 ---
 
 ## Commands
 
 ### `init`
 
-Initialize snuxt in your project.
+Initialize mcp-elements in your project.
 
 ```bash
-npx snuxt init
+npx mcp-elements init
 ```
 
-Creates a `snuxt.json` configuration file and sets up the output directory structure.
+Creates a `mcp-elements.json` configuration file and sets up the output directory structure.
 
 ### `add`
 
 Add one or more components to your project.
 
 ```bash
-npx snuxt add <component...>
+npx mcp-elements add <component...>
 ```
 
 Examples:
 
 ```bash
-npx snuxt add button
-npx snuxt add card input textarea
-npx snuxt add dialog --framework react
+npx mcp-elements add button
+npx mcp-elements add card input textarea
+npx mcp-elements add dialog --framework react
 ```
 
-The CLI automatically resolves internal dependencies. For example, `npx snuxt add dialog` also copies `button` since Dialog depends on it.
+The CLI automatically resolves internal dependencies. For example, `npx mcp-elements add dialog` also copies `button` since Dialog depends on it.
 
 ## Component Registry
 

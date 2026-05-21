@@ -6,9 +6,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'snuxt',
+      title: 'mcp-elements',
       social: {
-        github: 'https://github.com/thepsygeek/snuxt-ui',
+        github: 'https://github.com/thepsygeek/mcp-elements',
       },
       customCss: ['./src/styles/global.css'],
       components: {

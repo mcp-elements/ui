@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Get up and running with snuxt in minutes.
+description: Get up and running with mcp-elements in minutes.
 ---
 
 ## Prerequisites
@@ -11,19 +11,19 @@ description: Get up and running with snuxt in minutes.
 
 ## Quick Start
 
-### 1. Initialize snuxt in your project
+### 1. Initialize mcp-elements in your project
 
 ```bash
-npx snuxt init
+npx mcp-elements init
 ```
 
-This creates a `snuxt.json` config file and sets up the required directory structure.
+This creates a `mcp-elements.json` config file and sets up the required directory structure.
 
 ### 2. Add components
 
 ```bash
-npx snuxt add button
-npx snuxt add card input dialog
+npx mcp-elements add button
+npx mcp-elements add card input dialog
 ```
 
 Components are copied directly into your project — you own the source code.
@@ -34,15 +34,15 @@ In your main CSS file, import the base tokens and component styles:
 
 ```css
 @import 'tailwindcss';
-@import './snuxt/css/base.css';
-@import './snuxt/css/components/button.css';
-@import './snuxt/css/components/card.css';
+@import './mcp-elements/css/base.css';
+@import './mcp-elements/css/components/button.css';
+@import './mcp-elements/css/components/card.css';
 ```
 
 ### 4. Use in your code
 
 ```tsx
-import { Button } from './snuxt/react/button'
+import { Button } from './mcp-elements/react/button'
 
 function App() {
   return <Button variant="primary">Click me</Button>
@@ -51,7 +51,7 @@ function App() {
 
 ## What gets copied?
 
-When you run `npx snuxt add button`, the CLI copies:
+When you run `npx mcp-elements add button`, the CLI copies:
 
 | File | Purpose |
 |------|---------|

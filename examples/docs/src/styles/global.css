@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
-/* snuxt-ui design tokens */
+/* mcp-elements design tokens */
 @import '../../../../packages/css/base.css';
 
-/* snuxt-ui component styles */
+/* mcp-elements component styles */
 @import '../../../../packages/css/components/button.css';
 @import '../../../../packages/css/components/badge.css';
 @import '../../../../packages/css/components/card.css';
@@ -39,7 +39,7 @@
 @import '../../../../packages/css/themes/glass.css';
 
 /* ============================================================
-   Theme — map Starlight variables to snuxt-ui OKLCH tokens
+   Theme — map Starlight variables to mcp-elements OKLCH tokens
    ============================================================ */
 
 /* Dark (default) */

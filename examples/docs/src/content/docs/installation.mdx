@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Framework-specific installation guides for snuxt.
+description: Framework-specific installation guides for mcp-elements.
 ---
 
 ## React
@@ -21,16 +21,16 @@ export default {
 }
 ```
 
-### 2. Initialize snuxt
+### 2. Initialize mcp-elements
 
 ```bash
-npx snuxt init
+npx mcp-elements init
 ```
 
 ### 3. Add components
 
 ```bash
-npx snuxt add button card dialog
+npx mcp-elements add button card dialog
 ```
 
 ### 4. Import CSS
@@ -39,17 +39,17 @@ In your main CSS file:
 
 ```css
 @import 'tailwindcss';
-@import './snuxt/css/base.css';
-@import './snuxt/css/components/button.css';
-@import './snuxt/css/components/card.css';
-@import './snuxt/css/components/dialog.css';
+@import './mcp-elements/css/base.css';
+@import './mcp-elements/css/components/button.css';
+@import './mcp-elements/css/components/card.css';
+@import './mcp-elements/css/components/dialog.css';
 ```
 
 ### 5. Use components
 
 ```tsx
-import { Button } from './snuxt/react/button'
-import { Dialog, DialogHeader, DialogTitle } from './snuxt/react/dialog'
+import { Button } from './mcp-elements/react/button'
+import { Dialog, DialogHeader, DialogTitle } from './mcp-elements/react/dialog'
 ```
 
 ## Angular
@@ -69,14 +69,14 @@ Add to your `angular.json` styles array:
 ### 2. Initialize and add components
 
 ```bash
-npx snuxt init --framework angular
-npx snuxt add button card
+npx mcp-elements init --framework angular
+npx mcp-elements add button card
 ```
 
 ### 3. Use standalone components
 
 ```typescript
-import { ButtonComponent } from './snuxt/angular/button.component'
+import { ButtonComponent } from './mcp-elements/angular/button.component'
 
 @Component({
   standalone: true,
@@ -88,7 +88,7 @@ export class AppComponent {}
 
 ## Manual Installation
 
-If you prefer not to use the CLI, you can copy files directly from the [snuxt repository](https://github.com/thepsygeek/snuxt):
+If you prefer not to use the CLI, you can copy files directly from the [mcp-elements repository](https://github.com/thepsygeek/mcp-elements):
 
 1. Copy `packages/css/base.css` to your project
 2. Copy the component CSS from `packages/css/components/`
