@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Counter } from '@snuxt-ui/react';
+import { Counter } from '@mcp-elements/react';
 
 export function CounterDemo() {
   const [count, setCount] = useState(3);

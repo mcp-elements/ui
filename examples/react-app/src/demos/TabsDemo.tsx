@@ -1,4 +1,4 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@snuxt-ui/react'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@mcp-elements/react'
 
 const tabItems = [
   { value: 'account' },

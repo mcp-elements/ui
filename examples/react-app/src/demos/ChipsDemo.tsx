@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Chips, Chip } from '@snuxt-ui/react';
+import { Chips, Chip } from '@mcp-elements/react';
 
 const initial = [
   { id: 1, label: 'React', variant: 'default' as const },

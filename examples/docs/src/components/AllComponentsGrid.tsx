@@ -40,7 +40,7 @@ import {
   StreamingTextLine,
   Feedback,
   FeedbackButton,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 /* ── Category definitions ─────────────────────────── */
 

@@ -1,4 +1,4 @@
-import { Skeleton } from '@snuxt-ui/react'
+import { Skeleton } from '@mcp-elements/react'
 
 export function SkeletonDemo() {
   return (

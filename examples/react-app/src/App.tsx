@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Toaster } from '@snuxt-ui/react'
+import { Toaster } from '@mcp-elements/react'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { FeaturesSection } from './components/FeaturesSection'

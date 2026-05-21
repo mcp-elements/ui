@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, CardContent } from '@snuxt-ui/react'
+import { Card, CardContent } from '@mcp-elements/react'
 import { SectionHeader } from './SectionHeader'
 import { useInView } from '../hooks/useInView'
 

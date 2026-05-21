@@ -1,4 +1,4 @@
-import { AiBadge } from '@snuxt-ui/react'
+import { AiBadge } from '@mcp-elements/react'
 
 export function AiBadgeDemo() {
   return (

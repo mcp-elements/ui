@@ -1,4 +1,4 @@
-import { Button, useToast } from '@snuxt-ui/react';
+import { Button, useToast } from '@mcp-elements/react';
 
 export function ToastDemo() {
   const { toast } = useToast();

@@ -8,7 +8,7 @@ import {
   PromptInputAttachments,
   PromptInputAttachment,
   Button,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function PromptInputDemo() {
   const [value, setValue] = useState('')

@@ -37,7 +37,7 @@ import {
   StreamingTextLine,
   Tooltip,
   Separator,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 function BentoCard({
   label,

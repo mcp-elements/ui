@@ -1,4 +1,4 @@
-import { DropdownMenu, Button } from '@snuxt-ui/react';
+import { DropdownMenu, Button } from '@mcp-elements/react';
 
 export function DropdownMenuDemo() {
   return (

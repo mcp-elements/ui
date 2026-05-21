@@ -1,4 +1,4 @@
-import { Badge } from '@snuxt-ui/react'
+import { Badge } from '@mcp-elements/react'
 
 export function BadgeDemo() {
   return (

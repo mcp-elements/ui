@@ -7,7 +7,7 @@ import {
   CardFooter,
   Input,
   Button,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function CardDemo() {
   return (

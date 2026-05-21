@@ -3,7 +3,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 const items = [
   { value: 'item-1' },

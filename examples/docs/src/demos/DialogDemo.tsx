@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogFooter,
   Button,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function DialogDemo() {
   const [open, setOpen] = useState(false)

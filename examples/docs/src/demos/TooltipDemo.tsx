@@ -1,4 +1,4 @@
-import { Tooltip, Button } from '@snuxt-ui/react';
+import { Tooltip, Button } from '@mcp-elements/react';
 
 export function TooltipDemo() {
   return (

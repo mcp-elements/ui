@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent, Badge } from '@snuxt-ui/react'
+import { Card, CardHeader, CardTitle, CardContent, Badge } from '@mcp-elements/react'
 
 interface ComponentCardProps {
   name: string

@@ -1,4 +1,4 @@
-import { Popover, Button, Input } from '@snuxt-ui/react';
+import { Popover, Button, Input } from '@mcp-elements/react';
 
 export function PopoverDemo() {
   return (

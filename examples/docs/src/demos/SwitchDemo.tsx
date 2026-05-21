@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Switch } from '@snuxt-ui/react';
+import { Switch } from '@mcp-elements/react';
 
 export function SwitchDemo() {
   const [on, setOn] = useState(false);

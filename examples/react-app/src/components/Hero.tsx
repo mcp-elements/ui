@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardContent, Switch } from '@snuxt-ui/react'
+import { Badge, Button, Card, CardContent, Switch } from '@mcp-elements/react'
 import { useState } from 'react'
 
 export function Hero() {

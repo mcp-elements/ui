@@ -1,4 +1,4 @@
-import { Input } from '@snuxt-ui/react'
+import { Input } from '@mcp-elements/react'
 
 export function InputDemo() {
   return (

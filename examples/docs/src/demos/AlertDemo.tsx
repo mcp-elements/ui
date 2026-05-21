@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, AlertDescription } from '@snuxt-ui/react';
+import { Alert, AlertTitle, AlertDescription } from '@mcp-elements/react';
 
 export function AlertDemo() {
   return (

@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@snuxt-ui/react'
+import { Card, CardContent } from '@mcp-elements/react'
 import { SectionHeader } from './SectionHeader'
 import { useInView } from '../hooks/useInView'
 
@@ -38,7 +38,7 @@ const layers: LayerInfo[] = [
   },
   {
     number: 2,
-    name: '@snuxt-ui/react',
+    name: '@mcp-elements/react',
     description: 'Hooks, components',
     color: 'oklch(0.65 0.2 150)',
     icon: (

@@ -1,4 +1,4 @@
-import { SuggestionChips, SuggestionChip } from '@snuxt-ui/react'
+import { SuggestionChips, SuggestionChip } from '@mcp-elements/react'
 
 export function SuggestionChipsDemo() {
   return (

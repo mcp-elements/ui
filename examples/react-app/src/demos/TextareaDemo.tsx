@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Textarea } from '@snuxt-ui/react'
+import { Textarea } from '@mcp-elements/react'
 
 export function TextareaDemo() {
   const [value, setValue] = useState('')

@@ -8,7 +8,7 @@ import {
   DrawerFooter,
   Button,
   Input,
-} from '@snuxt-ui/react';
+} from '@mcp-elements/react';
 
 export function DrawerDemo() {
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { Avatar } from '@snuxt-ui/react'
+import { Avatar } from '@mcp-elements/react'
 
 export function AvatarDemo() {
   return (

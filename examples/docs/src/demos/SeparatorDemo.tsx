@@ -1,4 +1,4 @@
-import { Separator } from '@snuxt-ui/react'
+import { Separator } from '@mcp-elements/react'
 
 export function SeparatorDemo() {
   return (

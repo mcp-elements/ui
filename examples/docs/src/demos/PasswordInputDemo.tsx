@@ -1,4 +1,4 @@
-import { PasswordInput } from '@snuxt-ui/react';
+import { PasswordInput } from '@mcp-elements/react';
 
 export function PasswordInputDemo() {
   return (

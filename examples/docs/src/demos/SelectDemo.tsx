@@ -1,4 +1,4 @@
-import { Select } from '@snuxt-ui/react'
+import { Select } from '@mcp-elements/react'
 
 const options = [
   { value: 'react', label: 'React' },

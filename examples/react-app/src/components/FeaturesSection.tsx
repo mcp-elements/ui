@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent } from '@snuxt-ui/react'
+import { Card, CardHeader, CardTitle, CardContent } from '@mcp-elements/react'
 import { SectionHeader } from './SectionHeader'
 import { useInView } from '../hooks/useInView'
 

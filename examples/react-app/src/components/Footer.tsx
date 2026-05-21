@@ -1,4 +1,4 @@
-import { Badge, Separator } from '@snuxt-ui/react'
+import { Badge, Separator } from '@mcp-elements/react'
 
 const links = [
   { label: 'GitHub', href: 'https://github.com', external: true },

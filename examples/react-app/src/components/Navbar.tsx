@@ -1,4 +1,4 @@
-import { Button } from '@snuxt-ui/react'
+import { Button } from '@mcp-elements/react'
 import { useScrolled } from '../hooks/useScrolled'
 
 interface NavbarProps {

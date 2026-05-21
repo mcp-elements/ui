@@ -38,7 +38,7 @@ importers:
       '@mcp-elements/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@snuxt-ui/react':
+      '@mcp-elements/react':
         specifier: workspace:*
         version: link:../../packages/react
       '@tailwindcss/vite':
@@ -72,7 +72,7 @@ importers:
       '@mcp-elements/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@snuxt-ui/react':
+      '@mcp-elements/react':
         specifier: workspace:*
         version: link:../../packages/react
       react:

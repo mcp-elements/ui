@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Progress, Button } from '@snuxt-ui/react';
+import { Progress, Button } from '@mcp-elements/react';
 
 export function ProgressDemo() {
   const [progress, setProgress] = useState(30);

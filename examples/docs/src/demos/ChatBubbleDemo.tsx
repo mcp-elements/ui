@@ -4,7 +4,7 @@ import {
   ChatBubbleContent,
   ChatBubbleTimestamp,
   ChatBubbleTyping,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function ChatBubbleDemo() {
   return (

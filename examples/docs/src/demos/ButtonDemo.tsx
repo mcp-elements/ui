@@ -1,4 +1,4 @@
-import { Button } from '@snuxt-ui/react'
+import { Button } from '@mcp-elements/react'
 
 export function ButtonDemo() {
   return (

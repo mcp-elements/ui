@@ -6,7 +6,7 @@ import {
   FeedbackForm,
   FeedbackInput,
   FeedbackSubmit,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function FeedbackDemo() {
   const [selected, setSelected] = useState<'up' | 'down' | null>(null)

@@ -3,7 +3,7 @@ import {
   StreamingTextLine,
   StreamingTextSkeleton,
   StreamingTextSkeletonLine,
-} from '@snuxt-ui/react'
+} from '@mcp-elements/react'
 
 export function StreamingTextDemo() {
   return (

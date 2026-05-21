@@ -1,4 +1,4 @@
-import { SourceCards, SourceCard } from '@snuxt-ui/react'
+import { SourceCards, SourceCard } from '@mcp-elements/react'
 
 export function SourceCardDemo() {
   return (

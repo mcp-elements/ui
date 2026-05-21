@@ -1,4 +1,4 @@
-import { Loader } from '@snuxt-ui/react';
+import { Loader } from '@mcp-elements/react';
 
 export function LoaderDemo() {
   return (
