@@ -13,7 +13,7 @@ interface LayerInfo {
 const layers: LayerInfo[] = [
   {
     number: 0,
-    name: '@snuxt-ui/css',
+    name: '@mcp-elements/css',
     description: 'Tokens, styles, themes',
     color: 'oklch(0.65 0.2 280)',
     icon: (
