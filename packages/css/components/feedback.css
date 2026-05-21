@@ -1,32 +1,32 @@
 @layer components {
-  .snx-feedback {
+  .mcpe-feedback {
     @apply inline-flex items-center gap-0.5;
   }
-  .snx-feedback-btn {
+  .mcpe-feedback-btn {
     @apply inline-flex items-center justify-center h-8 w-8 rounded-md transition-colors
            hover:bg-accent cursor-pointer border-0 bg-transparent text-muted-foreground
            [&_svg]:size-4 [&_svg]:shrink-0;
   }
-  .snx-feedback-btn-selected {
+  .mcpe-feedback-btn-selected {
     @apply ring-1 ring-ring;
   }
-  .snx-feedback-btn-up.snx-feedback-btn-selected {
+  .mcpe-feedback-btn-up.mcpe-feedback-btn-selected {
     @apply text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/15;
   }
-  .snx-feedback-btn-down.snx-feedback-btn-selected {
+  .mcpe-feedback-btn-down.mcpe-feedback-btn-selected {
     @apply text-destructive bg-destructive/10 hover:bg-destructive/15;
   }
-  .snx-feedback-separator {
+  .mcpe-feedback-separator {
     @apply inline-block w-px h-4 bg-border mx-1;
   }
-  .snx-feedback-form {
+  .mcpe-feedback-form {
     @apply flex gap-2 items-center mt-2;
   }
-  .snx-feedback-input {
+  .mcpe-feedback-input {
     @apply flex-1 rounded-md border border-input bg-background px-3 py-1.5 text-sm
            placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
   }
-  .snx-feedback-submit {
+  .mcpe-feedback-submit {
     @apply rounded-md bg-primary text-primary-foreground px-3 py-1.5 text-sm font-medium
            cursor-pointer hover:bg-primary/90 transition-colors;
   }

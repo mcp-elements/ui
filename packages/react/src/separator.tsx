@@ -11,7 +11,7 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
       ref={ref}
       role="separator"
       aria-orientation={orientation}
-      className={cn('snx-separator', `snx-separator-${orientation}`, className)}
+      className={cn('mcpe-separator', `mcpe-separator-${orientation}`, className)}
       {...props}
     />
   )

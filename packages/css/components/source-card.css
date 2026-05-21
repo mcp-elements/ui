@@ -1,27 +1,27 @@
 @layer components {
-  .snx-source-cards {
+  .mcpe-source-cards {
     @apply grid grid-cols-2 gap-2;
   }
-  .snx-source-card {
+  .mcpe-source-card {
     @apply flex gap-3 items-start p-3 rounded-lg border bg-card
            hover:bg-accent/50 transition-colors no-underline;
   }
-  .snx-source-card-favicon {
+  .mcpe-source-card-favicon {
     @apply h-4 w-4 rounded shrink-0 mt-0.5;
   }
-  .snx-source-card-body {
+  .mcpe-source-card-body {
     @apply flex-1 min-w-0;
   }
-  .snx-source-card-title {
+  .mcpe-source-card-title {
     @apply text-sm font-medium truncate text-foreground transition-colors;
   }
-  .snx-source-card:hover .snx-source-card-title {
+  .mcpe-source-card:hover .mcpe-source-card-title {
     @apply text-primary;
   }
-  .snx-source-card-domain {
+  .mcpe-source-card-domain {
     @apply text-xs text-muted-foreground truncate;
   }
-  .snx-source-card-index {
+  .mcpe-source-card-index {
     @apply text-xs font-medium text-muted-foreground bg-muted rounded-full
            w-5 h-5 flex items-center justify-center shrink-0;
   }

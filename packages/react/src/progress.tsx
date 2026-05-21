@@ -16,11 +16,11 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
-        className={cn('snx-progress', className)}
+        className={cn('mcpe-progress', className)}
         {...props}
       >
         <div
-          className="snx-progress-indicator"
+          className="mcpe-progress-indicator"
           style={{ transform: `translateX(-${100 - percentage}%)` }}
         />
       </div>

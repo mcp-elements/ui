@@ -97,46 +97,46 @@ A tabbed interface for switching between content panels, with keyboard navigatio
         SnxTabsTriggerComponent, SnxTabsContentComponent,
       ],
       template: `
-        <snx-tabs #tabs [items]="items" defaultValue="account">
-          <snx-tabs-list>
-            <snx-tabs-trigger
+        <mcpe-tabs #tabs [items]="items" defaultValue="account">
+          <mcpe-tabs-list>
+            <mcpe-tabs-trigger
               [isActive]="tabs.isActive('account')"
               (onClick)="tabs.select('account')">
               Account
-            </snx-tabs-trigger>
-            <snx-tabs-trigger
+            </mcpe-tabs-trigger>
+            <mcpe-tabs-trigger
               [isActive]="tabs.isActive('password')"
               (onClick)="tabs.select('password')">
               Password
-            </snx-tabs-trigger>
-            <snx-tabs-trigger
+            </mcpe-tabs-trigger>
+            <mcpe-tabs-trigger
               [isActive]="tabs.isActive('settings')"
               (onClick)="tabs.select('settings')">
               Settings
-            </snx-tabs-trigger>
-          </snx-tabs-list>
+            </mcpe-tabs-trigger>
+          </mcpe-tabs-list>
           @if (tabs.isActive('account')) {
-            <snx-tabs-content [isActive]="true">
+            <mcpe-tabs-content [isActive]="true">
               <p class="text-sm text-muted-foreground">
                 Manage your account settings and preferences.
               </p>
-            </snx-tabs-content>
+            </mcpe-tabs-content>
           }
           @if (tabs.isActive('password')) {
-            <snx-tabs-content [isActive]="true">
+            <mcpe-tabs-content [isActive]="true">
               <p class="text-sm text-muted-foreground">
                 Change your password and security options.
               </p>
-            </snx-tabs-content>
+            </mcpe-tabs-content>
           }
           @if (tabs.isActive('settings')) {
-            <snx-tabs-content [isActive]="true">
+            <mcpe-tabs-content [isActive]="true">
               <p class="text-sm text-muted-foreground">
                 Configure notifications and display preferences.
               </p>
-            </snx-tabs-content>
+            </mcpe-tabs-content>
           }
-        </snx-tabs>
+        </mcpe-tabs>
       `,
     })
     export class TabsDemoComponent {

@@ -2,7 +2,7 @@ import { Component, input, computed, output, forwardRef } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 @Component({
-  selector: 'snx-input',
+  selector: 'mcpe-input',
   standalone: true,
   template: `
     <input
@@ -30,7 +30,7 @@ export class SnxInputComponent implements ControlValueAccessor {
   value = input('')
   class = input('')
 
-  classes = computed(() => ['snx-input', this.class()].filter(Boolean).join(' '))
+  classes = computed(() => ['mcpe-input', this.class()].filter(Boolean).join(' '))
 
   private onChange: (value: string) => void = () => {}
   onTouched: () => void = () => {}

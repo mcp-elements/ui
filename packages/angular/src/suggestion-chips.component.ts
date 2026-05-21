@@ -3,14 +3,14 @@ import { Component, input, computed } from '@angular/core'
 type SuggestionChipVariant = 'default' | 'primary' | 'outline'
 
 @Component({
-  selector: 'snx-suggestion-chips',
+  selector: 'mcpe-suggestion-chips',
   standalone: true,
-  template: `<div class="snx-suggestion-chips"><ng-content /></div>`,
+  template: `<div class="mcpe-suggestion-chips"><ng-content /></div>`,
 })
 export class SnxSuggestionChipsComponent {}
 
 @Component({
-  selector: 'snx-suggestion-chip',
+  selector: 'mcpe-suggestion-chip',
   standalone: true,
   template: `<button [class]="classes()" type="button"><ng-content /></button>`,
 })
@@ -18,6 +18,6 @@ export class SnxSuggestionChipComponent {
   variant = input<SuggestionChipVariant>('default')
   class = input('')
   classes = computed(() =>
-    ['snx-suggestion-chip', `snx-suggestion-chip-${this.variant()}`, this.class()].filter(Boolean).join(' ')
+    ['mcpe-suggestion-chip', `mcpe-suggestion-chip-${this.variant()}`, this.class()].filter(Boolean).join(' ')
   )
 }

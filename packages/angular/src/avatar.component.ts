@@ -1,14 +1,14 @@
 import { Component, input, computed, signal } from '@angular/core'
 
 @Component({
-  selector: 'snx-avatar',
+  selector: 'mcpe-avatar',
   standalone: true,
   template: `
     <div [class]="classes()">
       @if (src() && !hasError()) {
-        <img [src]="src()" [alt]="alt()" class="snx-avatar-image" (error)="hasError.set(true)" />
+        <img [src]="src()" [alt]="alt()" class="mcpe-avatar-image" (error)="hasError.set(true)" />
       } @else {
-        <span class="snx-avatar-fallback">{{ fallback() }}</span>
+        <span class="mcpe-avatar-fallback">{{ fallback() }}</span>
       }
     </div>
   `,
@@ -20,5 +20,5 @@ export class SnxAvatarComponent {
   class = input('')
   hasError = signal(false)
 
-  classes = computed(() => ['snx-avatar', this.class()].filter(Boolean).join(' '))
+  classes = computed(() => ['mcpe-avatar', this.class()].filter(Boolean).join(' '))
 }

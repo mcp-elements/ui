@@ -62,16 +62,16 @@ A non-intrusive toast notification that appears at the edge of the screen and au
       imports: [SnxToasterComponent, SnxButtonComponent],
       template: `
         <div class="flex items-center gap-3">
-          <snx-button variant="outline"
+          <mcpe-button variant="outline"
             (click)="showDefault()">
             Show Toast
-          </snx-button>
-          <snx-button variant="outline"
+          </mcpe-button>
+          <mcpe-button variant="outline"
             (click)="showSuccess()">
             Success Toast
-          </snx-button>
+          </mcpe-button>
         </div>
-        <snx-toaster />
+        <mcpe-toaster />
       `,
     })
     export class ToastDemoComponent {

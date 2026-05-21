@@ -2,12 +2,12 @@ import { Component, input, output, signal, computed, ElementRef, viewChild, Host
 import { createSelect, type SelectOption } from '@mcp-elements/core'
 
 @Component({
-  selector: 'snx-select',
+  selector: 'mcpe-select',
   standalone: true,
   template: `
     <div class="relative" #container>
       <button
-        class="snx-select-trigger"
+        class="mcpe-select-trigger"
         [attr.aria-expanded]="isOpen()"
         aria-haspopup="listbox"
         (click)="toggle()"
@@ -19,8 +19,8 @@ import { createSelect, type SelectOption } from '@mcp-elements/core'
         </svg>
       </button>
       @if (isOpen()) {
-        <div class="snx-select-content absolute top-full mt-1 w-full">
-          <div class="snx-select-viewport" role="listbox">
+        <div class="mcpe-select-content absolute top-full mt-1 w-full">
+          <div class="mcpe-select-viewport" role="listbox">
             @for (option of options(); track option.value; let i = $index) {
               <div
                 role="option"
@@ -69,9 +69,9 @@ export class SnxSelectComponent {
 
   getItemClasses(option: SelectOption, index: number): string {
     return [
-      'snx-select-item',
-      index === this.highlightedIndex() ? 'snx-select-item-active' : '',
-      option.value === this.selectedValue() ? 'snx-select-item-selected' : '',
+      'mcpe-select-item',
+      index === this.highlightedIndex() ? 'mcpe-select-item-active' : '',
+      option.value === this.selectedValue() ? 'mcpe-select-item-selected' : '',
     ].filter(Boolean).join(' ')
   }
 

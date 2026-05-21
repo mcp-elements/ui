@@ -42,11 +42,11 @@ export function Dialog({ open: controlledOpen, onOpenChange, modal = true, child
 
   return (
     <DialogIdContext.Provider value={dialogId}>
-      <div className="snx-dialog-overlay" onClick={() => setOpen(false)} />
-      <div ref={contentRef} className="snx-dialog-content" role="dialog" aria-modal={modal} aria-labelledby={`${dialogId}-title`} aria-describedby={`${dialogId}-description`}>
+      <div className="mcpe-dialog-overlay" onClick={() => setOpen(false)} />
+      <div ref={contentRef} className="mcpe-dialog-content" role="dialog" aria-modal={modal} aria-labelledby={`${dialogId}-title`} aria-describedby={`${dialogId}-description`}>
         {children}
         <button
-          className="snx-dialog-close"
+          className="mcpe-dialog-close"
           aria-label="Close"
           onClick={() => setOpen(false)}
           type="button"
@@ -62,21 +62,21 @@ export function Dialog({ open: controlledOpen, onOpenChange, modal = true, child
 }
 
 export function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-dialog-header', className)} {...props} />
+  return <div className={cn('mcpe-dialog-header', className)} {...props} />
 }
 
 export function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-dialog-footer', className)} {...props} />
+  return <div className={cn('mcpe-dialog-footer', className)} {...props} />
 }
 
 export function DialogTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   const dialogId = useContext(DialogIdContext)
-  return <h2 id={`${dialogId}-title`} className={cn('snx-dialog-title', className)} {...props} />
+  return <h2 id={`${dialogId}-title`} className={cn('mcpe-dialog-title', className)} {...props} />
 }
 
 export function DialogDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   const dialogId = useContext(DialogIdContext)
-  return <p id={`${dialogId}-description`} className={cn('snx-dialog-description', className)} {...props} />
+  return <p id={`${dialogId}-description`} className={cn('mcpe-dialog-description', className)} {...props} />
 }
 
 export { useDialog } from './hooks/use-dialog'

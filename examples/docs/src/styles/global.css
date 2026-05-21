@@ -327,7 +327,7 @@ nav.sidebar-content a[aria-current='page'] {
 /* ============================================================
    Component preview — shadcn-style bordered container
    ============================================================ */
-.snx-preview {
+.mcpe-preview {
   color: var(--color-foreground);
   font-family: system-ui, sans-serif;
 }

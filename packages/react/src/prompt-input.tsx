@@ -3,7 +3,7 @@ import { cn } from '@mcp-elements/core'
 
 export const PromptInput = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-prompt-input', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-prompt-input', className)} {...props} />
   )
 )
 PromptInput.displayName = 'PromptInput'
@@ -12,21 +12,21 @@ export interface PromptInputTextareaProps extends React.TextareaHTMLAttributes<H
 
 export const PromptInputTextarea = forwardRef<HTMLTextAreaElement, PromptInputTextareaProps>(
   ({ className, ...props }, ref) => (
-    <textarea ref={ref} className={cn('snx-prompt-input-textarea', className)} rows={3} {...props} />
+    <textarea ref={ref} className={cn('mcpe-prompt-input-textarea', className)} rows={3} {...props} />
   )
 )
 PromptInputTextarea.displayName = 'PromptInputTextarea'
 
 export const PromptInputFooter = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-prompt-input-footer', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-prompt-input-footer', className)} {...props} />
   )
 )
 PromptInputFooter.displayName = 'PromptInputFooter'
 
 export const PromptInputActions = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-prompt-input-actions', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-prompt-input-actions', className)} {...props} />
   )
 )
 PromptInputActions.displayName = 'PromptInputActions'
@@ -39,7 +39,7 @@ export interface PromptInputCharCountProps {
 
 export function PromptInputCharCount({ count, max, className }: PromptInputCharCountProps) {
   return (
-    <span className={cn('snx-prompt-input-char-count', className)}>
+    <span className={cn('mcpe-prompt-input-char-count', className)}>
       {count}{max != null && `/${max}`}
     </span>
   )
@@ -47,7 +47,7 @@ export function PromptInputCharCount({ count, max, className }: PromptInputCharC
 
 export const PromptInputAttachments = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-prompt-input-attachments', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-prompt-input-attachments', className)} {...props} />
   )
 )
 PromptInputAttachments.displayName = 'PromptInputAttachments'
@@ -58,12 +58,12 @@ export interface PromptInputAttachmentProps extends React.HTMLAttributes<HTMLSpa
 
 export function PromptInputAttachment({ onRemove, className, children, ...props }: PromptInputAttachmentProps) {
   return (
-    <span className={cn('snx-prompt-input-attachment', className)} {...props}>
+    <span className={cn('mcpe-prompt-input-attachment', className)} {...props}>
       {children}
       {onRemove && (
         <button
           type="button"
-          className="snx-prompt-input-attachment-remove"
+          className="mcpe-prompt-input-attachment-remove"
           onClick={(e) => { e.stopPropagation(); onRemove() }}
           aria-label="Remove"
         >

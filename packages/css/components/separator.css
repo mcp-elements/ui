@@ -1,11 +1,11 @@
 @layer components {
-  .snx-separator {
+  .mcpe-separator {
     @apply shrink-0 bg-border;
   }
-  .snx-separator-horizontal {
+  .mcpe-separator-horizontal {
     @apply h-px w-full;
   }
-  .snx-separator-vertical {
+  .mcpe-separator-vertical {
     @apply h-full w-px;
   }
 }

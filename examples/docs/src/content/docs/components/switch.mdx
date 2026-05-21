@@ -46,7 +46,7 @@ A toggle switch component for boolean on/off states, with keyboard and ARIA supp
       imports: [SnxSwitchComponent],
       template: `
         <div class="flex items-center gap-3">
-          <snx-switch
+          <mcpe-switch
             (checkedChange)="onCheckedChange($event)" />
           <span class="text-sm">{{ on ? 'On' : 'Off' }}</span>
         </div>

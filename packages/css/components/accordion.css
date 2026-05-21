@@ -1,24 +1,24 @@
 @layer components {
-  .snx-accordion-item {
+  .mcpe-accordion-item {
     @apply border-b;
   }
-  .snx-accordion-trigger {
+  .mcpe-accordion-trigger {
     @apply flex w-full flex-1 items-center justify-between py-4 text-sm font-medium
            text-left transition-all cursor-pointer hover:underline active:bg-muted/50;
   }
-  .snx-accordion-trigger[aria-expanded='true'] .snx-accordion-chevron {
+  .mcpe-accordion-trigger[aria-expanded='true'] .mcpe-accordion-chevron {
     @apply rotate-180;
   }
-  .snx-accordion-chevron {
+  .mcpe-accordion-chevron {
     @apply h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200;
   }
-  .snx-accordion-content {
+  .mcpe-accordion-content {
     @apply overflow-hidden text-sm;
   }
-  .snx-accordion-content[hidden] {
+  .mcpe-accordion-content[hidden] {
     display: none;
   }
-  .snx-accordion-content:not([hidden]) {
+  .mcpe-accordion-content:not([hidden]) {
     @apply pb-4 pt-0;
   }
 }

@@ -54,19 +54,19 @@ Compact citation cards for displaying AI response sources. Renders in a 2-column
       standalone: true,
       imports: [SnxSourceCardsComponent, SnxSourceCardComponent],
       template: `
-        <snx-source-cards>
-          <snx-source-card
+        <mcpe-source-cards>
+          <mcpe-source-card
             href="https://developer.mozilla.org"
             favicon="https://developer.mozilla.org/favicon-48x48.png"
             title="CSS Cascade Layers - MDN"
             domain="developer.mozilla.org"
             [index]="1" />
-          <snx-source-card
+          <mcpe-source-card
             href="https://web.dev"
             title="Learn CSS Layers"
             domain="web.dev"
             [index]="2" />
-        </snx-source-cards>
+        </mcpe-source-cards>
       `,
     })
     export class SourceDemoComponent {}

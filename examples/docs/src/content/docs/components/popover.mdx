@@ -56,17 +56,17 @@ A floating content panel that opens on click, anchored to a trigger element. Clo
         SnxInputComponent,
       ],
       template: `
-        <snx-popover>
-          <snx-button trigger variant="outline">
+        <mcpe-popover>
+          <mcpe-button trigger variant="outline">
             Open Popover
-          </snx-button>
+          </mcpe-button>
           <div class="flex flex-col gap-2 p-1">
             <p class="text-sm font-medium">Settings</p>
-            <snx-input placeholder="Width" />
-            <snx-input placeholder="Height" />
-            <snx-button size="sm">Apply</snx-button>
+            <mcpe-input placeholder="Width" />
+            <mcpe-input placeholder="Height" />
+            <mcpe-button size="sm">Apply</mcpe-button>
           </div>
-        </snx-popover>
+        </mcpe-popover>
       `,
     })
     export class PopoverDemoComponent {}

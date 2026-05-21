@@ -69,15 +69,15 @@ A composable prompt input for AI chat interfaces. Includes a resizable textarea,
         SnxPromptInputCharCountComponent,
       ],
       template: `
-        <snx-prompt-input>
-          <snx-prompt-input-textarea placeholder="Ask me anything..." />
-          <snx-prompt-input-footer>
-            <snx-prompt-input-actions>
-              <button class="snx-btn snx-btn-primary snx-btn-icon">Send</button>
-            </snx-prompt-input-actions>
-            <snx-prompt-input-char-count [count]="0" [max]="1000" />
-          </snx-prompt-input-footer>
-        </snx-prompt-input>
+        <mcpe-prompt-input>
+          <mcpe-prompt-input-textarea placeholder="Ask me anything..." />
+          <mcpe-prompt-input-footer>
+            <mcpe-prompt-input-actions>
+              <button class="mcpe-btn mcpe-btn-primary mcpe-btn-icon">Send</button>
+            </mcpe-prompt-input-actions>
+            <mcpe-prompt-input-char-count [count]="0" [max]="1000" />
+          </mcpe-prompt-input-footer>
+        </mcpe-prompt-input>
       `,
     })
     export class PromptDemoComponent {}

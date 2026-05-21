@@ -2,7 +2,7 @@ import { Component, input, signal, computed } from '@angular/core'
 import { createAccordion, type AccordionItemConfig } from '@mcp-elements/core'
 
 @Component({
-  selector: 'snx-accordion',
+  selector: 'mcpe-accordion',
   standalone: true,
   template: `<div><ng-content /></div>`,
 })
@@ -31,24 +31,24 @@ export class SnxAccordionComponent {
 }
 
 @Component({
-  selector: 'snx-accordion-item',
+  selector: 'mcpe-accordion-item',
   standalone: true,
-  template: `<div class="snx-accordion-item"><ng-content /></div>`,
+  template: `<div class="mcpe-accordion-item"><ng-content /></div>`,
 })
 export class SnxAccordionItemComponent {}
 
 @Component({
-  selector: 'snx-accordion-trigger',
+  selector: 'mcpe-accordion-trigger',
   standalone: true,
   template: `
     <h3>
       <button
-        [class]="'snx-accordion-trigger'"
+        [class]="'mcpe-accordion-trigger'"
         [attr.aria-expanded]="isExpanded()"
         (click)="onClick.emit()"
       >
         <ng-content />
-        <svg class="snx-accordion-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="mcpe-accordion-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
@@ -61,11 +61,11 @@ export class SnxAccordionTriggerComponent {
 }
 
 @Component({
-  selector: 'snx-accordion-content',
+  selector: 'mcpe-accordion-content',
   standalone: true,
   template: `
     @if (isExpanded()) {
-      <div role="region" class="snx-accordion-content"><ng-content /></div>
+      <div role="region" class="mcpe-accordion-content"><ng-content /></div>
     }
   `,
 })

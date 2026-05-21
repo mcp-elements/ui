@@ -33,7 +33,7 @@ export function DropdownMenu({ trigger, items, className, align = 'end' }: Dropd
       {menu.isOpen && (
         <div
           className={cn(
-            'snx-dropdown-menu-content absolute top-full mt-1',
+            'mcpe-dropdown-menu-content absolute top-full mt-1',
             align === 'end' ? 'right-0' : 'left-0',
             className
           )}
@@ -41,10 +41,10 @@ export function DropdownMenu({ trigger, items, className, align = 'end' }: Dropd
         >
           {items.map((item) => {
             if (item.type === 'separator') {
-              return <div key={item.id} className="snx-dropdown-menu-separator" role="separator" />
+              return <div key={item.id} className="mcpe-dropdown-menu-separator" role="separator" />
             }
             if (item.type === 'label') {
-              return <div key={item.id} className="snx-dropdown-menu-label">{item.label}</div>
+              return <div key={item.id} className="mcpe-dropdown-menu-label">{item.label}</div>
             }
             const actionIndex = actionItems.findIndex(ai => ai.id === item.id)
             return (
@@ -53,8 +53,8 @@ export function DropdownMenu({ trigger, items, className, align = 'end' }: Dropd
                 role="menuitem"
                 aria-disabled={item.disabled || undefined}
                 className={cn(
-                  'snx-dropdown-menu-item',
-                  actionIndex === menu.highlightedIndex && !item.disabled && 'snx-dropdown-menu-item-active',
+                  'mcpe-dropdown-menu-item',
+                  actionIndex === menu.highlightedIndex && !item.disabled && 'mcpe-dropdown-menu-item-active',
                   item.disabled && 'opacity-50 pointer-events-none'
                 )}
                 onClick={() => {
@@ -69,7 +69,7 @@ export function DropdownMenu({ trigger, items, className, align = 'end' }: Dropd
               >
                 <span className="flex-1">{item.label}</span>
                 {item.shortcut && (
-                  <span className="snx-dropdown-menu-shortcut">{item.shortcut}</span>
+                  <span className="mcpe-dropdown-menu-shortcut">{item.shortcut}</span>
                 )}
               </div>
             )

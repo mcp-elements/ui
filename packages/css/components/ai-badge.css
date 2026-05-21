@@ -1,17 +1,17 @@
 @layer components {
-  .snx-ai-badge {
+  .mcpe-ai-badge {
     @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium
            [&_svg]:size-3 [&_svg]:shrink-0;
   }
-  .snx-ai-badge-default {
+  .mcpe-ai-badge-default {
     background: linear-gradient(135deg, oklch(0.541 0.281 293.009 / 0.15), oklch(0.627 0.265 303.9 / 0.15));
     @apply text-[oklch(0.641_0.181_293.009)] border border-[oklch(0.541_0.281_293.009_/_0.2)];
   }
-  .snx-ai-badge-prominent {
+  .mcpe-ai-badge-prominent {
     background: linear-gradient(135deg, oklch(0.541 0.281 293.009), oklch(0.627 0.265 303.9));
     @apply text-white shadow-sm;
   }
-  .snx-ai-badge-subtle {
+  .mcpe-ai-badge-subtle {
     @apply border border-[oklch(0.541_0.281_293.009_/_0.3)] text-[oklch(0.641_0.181_293.009)] bg-transparent;
   }
 }

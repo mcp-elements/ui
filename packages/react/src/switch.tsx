@@ -20,7 +20,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       aria-checked={checked}
       aria-disabled={disabled || undefined}
       disabled={disabled}
-      className={cn('snx-switch', className)}
+      className={cn('mcpe-switch', className)}
       onClick={() => onCheckedChange?.(!checked)}
       onKeyDown={(e) => {
         if (e.key === ' ' || e.key === 'Enter') {
@@ -29,7 +29,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         }
       }}
     >
-      <span className="snx-switch-thumb" />
+      <span className="mcpe-switch-thumb" />
       {name && <input type="hidden" name={name} value={checked ? 'on' : 'off'} />}
     </button>
   )

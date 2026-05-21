@@ -69,17 +69,17 @@ Chat message bubbles with user/AI variants. User messages align right with prima
         SnxChatBubbleTypingComponent,
       ],
       template: `
-        <snx-chat-bubble variant="user">
-          <snx-chat-bubble-avatar src="/user.png" alt="User" />
+        <mcpe-chat-bubble variant="user">
+          <mcpe-chat-bubble-avatar src="/user.png" alt="User" />
           <div>
-            <snx-chat-bubble-content>Hello!</snx-chat-bubble-content>
-            <snx-chat-bubble-timestamp>2:30 PM</snx-chat-bubble-timestamp>
+            <mcpe-chat-bubble-content>Hello!</mcpe-chat-bubble-content>
+            <mcpe-chat-bubble-timestamp>2:30 PM</mcpe-chat-bubble-timestamp>
           </div>
-        </snx-chat-bubble>
-        <snx-chat-bubble variant="ai">
-          <snx-chat-bubble-avatar src="/bot.png" alt="AI" />
-          <snx-chat-bubble-typing />
-        </snx-chat-bubble>
+        </mcpe-chat-bubble>
+        <mcpe-chat-bubble variant="ai">
+          <mcpe-chat-bubble-avatar src="/bot.png" alt="AI" />
+          <mcpe-chat-bubble-typing />
+        </mcpe-chat-bubble>
       `,
     })
     export class ChatDemoComponent {}

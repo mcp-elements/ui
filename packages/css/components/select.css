@@ -1,5 +1,5 @@
 @layer components {
-  .snx-select-trigger {
+  .mcpe-select-trigger {
     @apply flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md
            border border-input bg-transparent px-3 py-2 text-sm shadow-sm
            ring-offset-background
@@ -8,24 +8,24 @@
            disabled:cursor-not-allowed disabled:opacity-50
            [&>span]:line-clamp-1;
   }
-  .snx-select-content {
+  .mcpe-select-content {
     @apply relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border
            bg-popover text-popover-foreground shadow-md;
   }
-  .snx-select-viewport {
+  .mcpe-select-viewport {
     @apply p-1;
   }
-  .snx-select-item {
+  .mcpe-select-item {
     @apply relative flex w-full cursor-default select-none items-center rounded-sm
            py-1.5 pl-2 pr-8 text-sm outline-none transition-colors;
   }
-  .snx-select-item-active {
+  .mcpe-select-item-active {
     @apply bg-accent text-accent-foreground;
   }
-  .snx-select-item-selected {
+  .mcpe-select-item-selected {
     @apply font-medium;
   }
-  .snx-select-item[aria-disabled='true'] {
+  .mcpe-select-item[aria-disabled='true'] {
     @apply pointer-events-none opacity-50;
   }
 }

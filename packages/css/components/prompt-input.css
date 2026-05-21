@@ -1,29 +1,29 @@
 @layer components {
-  .snx-prompt-input {
+  .mcpe-prompt-input {
     @apply relative flex flex-col rounded-xl border bg-background shadow-sm
            focus-within:ring-1 focus-within:ring-ring transition-shadow;
   }
-  .snx-prompt-input-textarea {
+  .mcpe-prompt-input-textarea {
     @apply w-full resize-none border-0 bg-transparent px-4 pt-3 pb-2 text-sm
            placeholder:text-muted-foreground focus-visible:outline-none;
   }
-  .snx-prompt-input-footer {
+  .mcpe-prompt-input-footer {
     @apply flex items-center justify-between px-3 pb-2;
   }
-  .snx-prompt-input-actions {
+  .mcpe-prompt-input-actions {
     @apply flex items-center gap-1;
   }
-  .snx-prompt-input-char-count {
+  .mcpe-prompt-input-char-count {
     @apply text-xs text-muted-foreground tabular-nums;
   }
-  .snx-prompt-input-attachments {
+  .mcpe-prompt-input-attachments {
     @apply flex flex-wrap gap-1.5 px-3 pb-2;
   }
-  .snx-prompt-input-attachment {
+  .mcpe-prompt-input-attachment {
     @apply inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs
            font-medium text-secondary-foreground;
   }
-  .snx-prompt-input-attachment-remove {
+  .mcpe-prompt-input-attachment-remove {
     @apply ml-0.5 inline-flex h-3.5 w-3.5 items-center justify-center rounded-full
            opacity-60 hover:opacity-100 transition-opacity cursor-pointer;
   }

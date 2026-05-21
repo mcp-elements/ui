@@ -10,7 +10,7 @@ export function Loader({ size = 'md', variant = 'primary', className, ...props }
     <div
       role="status"
       aria-label="Loading"
-      className={cn('snx-loader', `snx-loader-${size}`, `snx-loader-${variant}`, className)}
+      className={cn('mcpe-loader', `mcpe-loader-${size}`, `mcpe-loader-${variant}`, className)}
       {...props}
     >
       <span className="sr-only">Loading...</span>

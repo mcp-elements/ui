@@ -1,28 +1,28 @@
 @layer components {
-  .snx-dropdown-menu-content {
+  .mcpe-dropdown-menu-content {
     @apply z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1
            text-popover-foreground shadow-md;
   }
-  .snx-dropdown-menu-item {
+  .mcpe-dropdown-menu-item {
     @apply relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5
            text-sm outline-none transition-colors;
   }
-  .snx-dropdown-menu-item-active {
+  .mcpe-dropdown-menu-item-active {
     @apply bg-accent text-accent-foreground;
   }
-  .snx-dropdown-menu-item[aria-disabled='true'] {
+  .mcpe-dropdown-menu-item[aria-disabled='true'] {
     @apply pointer-events-none opacity-50;
   }
-  .snx-dropdown-menu-separator {
+  .mcpe-dropdown-menu-separator {
     @apply -mx-1 my-1 h-px bg-muted;
   }
-  .snx-dropdown-menu-label {
+  .mcpe-dropdown-menu-label {
     @apply px-2 py-1.5 text-sm font-semibold;
   }
-  .snx-dropdown-menu-shortcut {
+  .mcpe-dropdown-menu-shortcut {
     @apply ml-auto text-xs tracking-widest opacity-60;
   }
-  .snx-dropdown-menu-item-icon {
+  .mcpe-dropdown-menu-item-icon {
     @apply mr-2 h-4 w-4;
   }
 }

@@ -1,5 +1,5 @@
 @layer components {
-  .snx-skeleton {
+  .mcpe-skeleton {
     @apply animate-pulse rounded-md bg-primary/10;
   }
 }

@@ -2,7 +2,7 @@ import { Component, input, output, signal, computed, contentChildren, ElementRef
 import { createTabs, type TabItem } from '@mcp-elements/core'
 
 @Component({
-  selector: 'snx-tabs',
+  selector: 'mcpe-tabs',
   standalone: true,
   template: `<div><ng-content /></div>`,
 })
@@ -48,14 +48,14 @@ export class SnxTabsComponent {
 }
 
 @Component({
-  selector: 'snx-tabs-list',
+  selector: 'mcpe-tabs-list',
   standalone: true,
-  template: `<div role="tablist" class="snx-tabs-list"><ng-content /></div>`,
+  template: `<div role="tablist" class="mcpe-tabs-list"><ng-content /></div>`,
 })
 export class SnxTabsListComponent {}
 
 @Component({
-  selector: 'snx-tabs-trigger',
+  selector: 'mcpe-tabs-trigger',
   standalone: true,
   template: `
     <button
@@ -75,18 +75,18 @@ export class SnxTabsTriggerComponent {
   class = input('')
 
   classes = computed(() =>
-    ['snx-tabs-trigger', this.isActive() ? 'snx-tabs-trigger-active' : '', this.class()]
+    ['mcpe-tabs-trigger', this.isActive() ? 'mcpe-tabs-trigger-active' : '', this.class()]
       .filter(Boolean)
       .join(' ')
   )
 }
 
 @Component({
-  selector: 'snx-tabs-content',
+  selector: 'mcpe-tabs-content',
   standalone: true,
   template: `
     @if (isActive()) {
-      <div role="tabpanel" class="snx-tabs-content"><ng-content /></div>
+      <div role="tabpanel" class="mcpe-tabs-content"><ng-content /></div>
     }
   `,
 })

@@ -1,5 +1,5 @@
 @layer components {
-  .snx-textarea {
+  .mcpe-textarea {
     @apply flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2
            text-base shadow-sm
            placeholder:text-muted-foreground

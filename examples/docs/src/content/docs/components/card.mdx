@@ -65,21 +65,21 @@ A composable card component with header, title, description, content, and footer
         SnxInputComponent, SnxButtonComponent,
       ],
       template: `
-        <snx-card class="w-full max-w-sm">
-          <snx-card-header>
-            <snx-card-title>Create project</snx-card-title>
-            <snx-card-description>
+        <mcpe-card class="w-full max-w-sm">
+          <mcpe-card-header>
+            <mcpe-card-title>Create project</mcpe-card-title>
+            <mcpe-card-description>
               Deploy your new project in one click.
-            </snx-card-description>
-          </snx-card-header>
-          <snx-card-content>
-            <snx-input placeholder="Project name" />
-          </snx-card-content>
-          <snx-card-footer class="flex justify-between">
-            <snx-button variant="outline">Cancel</snx-button>
-            <snx-button>Deploy</snx-button>
-          </snx-card-footer>
-        </snx-card>
+            </mcpe-card-description>
+          </mcpe-card-header>
+          <mcpe-card-content>
+            <mcpe-input placeholder="Project name" />
+          </mcpe-card-content>
+          <mcpe-card-footer class="flex justify-between">
+            <mcpe-button variant="outline">Cancel</mcpe-button>
+            <mcpe-button>Deploy</mcpe-button>
+          </mcpe-card-footer>
+        </mcpe-card>
       `,
     })
     export class CardDemoComponent {}

@@ -36,15 +36,15 @@ export function Drawer({ open: controlledOpen, onOpenChange, side = 'right', chi
 
   return (
     <>
-      <div className="snx-drawer-overlay" onClick={() => setOpen(false)} />
+      <div className="mcpe-drawer-overlay" onClick={() => setOpen(false)} />
       <div
         ref={contentRef}
-        className={cn('snx-drawer-content', `snx-drawer-content-${side}`)}
+        className={cn('mcpe-drawer-content', `mcpe-drawer-content-${side}`)}
         role="dialog"
         aria-modal={true}
       >
         {children}
-        <button className="snx-drawer-close" aria-label="Close" onClick={() => setOpen(false)} type="button">
+        <button className="mcpe-drawer-close" aria-label="Close" onClick={() => setOpen(false)} type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M18 6 6 18" /><path d="m6 6 12 12" />
           </svg>
@@ -55,19 +55,19 @@ export function Drawer({ open: controlledOpen, onOpenChange, side = 'right', chi
 }
 
 export function DrawerHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-drawer-header', className)} {...props} />
+  return <div className={cn('mcpe-drawer-header', className)} {...props} />
 }
 export function DrawerFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-drawer-footer', className)} {...props} />
+  return <div className={cn('mcpe-drawer-footer', className)} {...props} />
 }
 export function DrawerTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return <h2 className={cn('snx-drawer-title', className)} {...props} />
+  return <h2 className={cn('mcpe-drawer-title', className)} {...props} />
 }
 export function DrawerDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn('snx-drawer-description', className)} {...props} />
+  return <p className={cn('mcpe-drawer-description', className)} {...props} />
 }
 export function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-drawer-body', className)} {...props} />
+  return <div className={cn('mcpe-drawer-body', className)} {...props} />
 }
 
 export { useDrawer } from './hooks/use-drawer'

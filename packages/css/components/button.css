@@ -1,5 +1,5 @@
 @layer components {
-  .snx-btn {
+  .mcpe-btn {
     @apply inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium
            whitespace-nowrap transition-all cursor-pointer active:scale-[0.98]
            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
@@ -7,15 +7,15 @@
            [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0;
   }
   /* Variants */
-  .snx-btn-primary   { @apply bg-primary text-primary-foreground shadow hover:bg-primary/90; }
-  .snx-btn-secondary { @apply bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80; }
-  .snx-btn-outline   { @apply border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground; }
-  .snx-btn-ghost     { @apply hover:bg-accent hover:text-accent-foreground; }
-  .snx-btn-destructive { @apply bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90; }
-  .snx-btn-link      { @apply text-primary underline-offset-4 hover:underline; }
+  .mcpe-btn-primary   { @apply bg-primary text-primary-foreground shadow hover:bg-primary/90; }
+  .mcpe-btn-secondary { @apply bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80; }
+  .mcpe-btn-outline   { @apply border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground; }
+  .mcpe-btn-ghost     { @apply hover:bg-accent hover:text-accent-foreground; }
+  .mcpe-btn-destructive { @apply bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90; }
+  .mcpe-btn-link      { @apply text-primary underline-offset-4 hover:underline; }
   /* Sizes */
-  .snx-btn-sm   { @apply h-8 rounded-md px-3 text-xs; }
-  .snx-btn-md   { @apply h-9 px-4 py-2; }
-  .snx-btn-lg   { @apply h-10 rounded-md px-8; }
-  .snx-btn-icon { @apply h-9 w-9; }
+  .mcpe-btn-sm   { @apply h-8 rounded-md px-3 text-xs; }
+  .mcpe-btn-md   { @apply h-9 px-4 py-2; }
+  .mcpe-btn-lg   { @apply h-10 rounded-md px-8; }
+  .mcpe-btn-icon { @apply h-9 w-9; }
 }

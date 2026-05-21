@@ -1,23 +1,23 @@
 @layer components {
-  .snx-loader {
+  .mcpe-loader {
     @apply inline-block animate-spin rounded-full border-2 border-current border-t-transparent;
   }
-  .snx-loader-sm {
+  .mcpe-loader-sm {
     @apply h-4 w-4;
   }
-  .snx-loader-md {
+  .mcpe-loader-md {
     @apply h-6 w-6;
   }
-  .snx-loader-lg {
+  .mcpe-loader-lg {
     @apply h-8 w-8;
   }
-  .snx-loader-xl {
+  .mcpe-loader-xl {
     @apply h-12 w-12;
   }
-  .snx-loader-muted {
+  .mcpe-loader-muted {
     @apply text-muted-foreground;
   }
-  .snx-loader-primary {
+  .mcpe-loader-primary {
     @apply text-primary;
   }
 }

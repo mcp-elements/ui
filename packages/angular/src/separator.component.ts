@@ -1,7 +1,7 @@
 import { Component, input, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-separator',
+  selector: 'mcpe-separator',
   standalone: true,
   template: `<div [class]="classes()" role="separator" [attr.aria-orientation]="orientation()"></div>`,
 })
@@ -10,6 +10,6 @@ export class SnxSeparatorComponent {
   class = input('')
 
   classes = computed(() =>
-    ['snx-separator', `snx-separator-${this.orientation()}`, this.class()].filter(Boolean).join(' ')
+    ['mcpe-separator', `mcpe-separator-${this.orientation()}`, this.class()].filter(Boolean).join(' ')
   )
 }

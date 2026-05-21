@@ -8,14 +8,14 @@ export interface ChipProps extends React.HTMLAttributes<HTMLSpanElement> {
 export function Chip({ variant = 'default', onRemove, className, children, ...props }: ChipProps) {
   return (
     <span
-      className={cn('snx-chip', `snx-chip-${variant}`, onRemove && 'snx-chip-removable', className)}
+      className={cn('mcpe-chip', `mcpe-chip-${variant}`, onRemove && 'mcpe-chip-removable', className)}
       {...props}
     >
       {children}
       {onRemove && (
         <button
           type="button"
-          className="snx-chip-remove"
+          className="mcpe-chip-remove"
           onClick={(e) => { e.stopPropagation(); onRemove() }}
           aria-label="Remove"
         >
@@ -31,5 +31,5 @@ export function Chip({ variant = 'default', onRemove, className, children, ...pr
 export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function Chips({ className, ...props }: ChipsProps) {
-  return <div className={cn('snx-chips', className)} {...props} />
+  return <div className={cn('mcpe-chips', className)} {...props} />
 }

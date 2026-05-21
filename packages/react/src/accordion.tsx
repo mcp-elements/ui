@@ -16,7 +16,7 @@ export function Accordion({ items, type, collapsible, children, className }: Acc
 }
 
 export function AccordionItem({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('snx-accordion-item', className)} {...props} />
+  return <div className={cn('mcpe-accordion-item', className)} {...props} />
 }
 
 export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,11 +28,11 @@ export function AccordionTrigger({ isExpanded, className, children, ...props }: 
     <h3>
       <button
         aria-expanded={isExpanded}
-        className={cn('snx-accordion-trigger', className)}
+        className={cn('mcpe-accordion-trigger', className)}
         {...props}
       >
         {children}
-        <svg className="snx-accordion-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="mcpe-accordion-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
@@ -41,7 +41,7 @@ export function AccordionTrigger({ isExpanded, className, children, ...props }: 
 }
 
 export function AccordionContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div role="region" className={cn('snx-accordion-content', className)} {...props} />
+  return <div role="region" className={cn('mcpe-accordion-content', className)} {...props} />
 }
 
 export { useAccordion } from './hooks/use-accordion'

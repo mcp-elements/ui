@@ -113,52 +113,52 @@ A vertically stacked set of collapsible content sections. Supports single or mul
         SnxAccordionContentComponent,
       ],
       template: `
-        <snx-accordion #accordion
+        <mcpe-accordion #accordion
           [items]="items" type="single" [collapsible]="true"
           class="w-full max-w-sm">
-          <snx-accordion-item>
-            <snx-accordion-trigger
+          <mcpe-accordion-item>
+            <mcpe-accordion-trigger
               [isExpanded]="accordion.isExpanded('item-1')"
               (onClick)="accordion.toggle('item-1')">
               Is it accessible?
-            </snx-accordion-trigger>
+            </mcpe-accordion-trigger>
             @if (accordion.isExpanded('item-1')) {
-              <snx-accordion-content [isExpanded]="true">
+              <mcpe-accordion-content [isExpanded]="true">
                 <p class="text-sm text-muted-foreground pb-3">
                   Yes. It adheres to WAI-ARIA design patterns.
                 </p>
-              </snx-accordion-content>
+              </mcpe-accordion-content>
             }
-          </snx-accordion-item>
-          <snx-accordion-item>
-            <snx-accordion-trigger
+          </mcpe-accordion-item>
+          <mcpe-accordion-item>
+            <mcpe-accordion-trigger
               [isExpanded]="accordion.isExpanded('item-2')"
               (onClick)="accordion.toggle('item-2')">
               Is it styled?
-            </snx-accordion-trigger>
+            </mcpe-accordion-trigger>
             @if (accordion.isExpanded('item-2')) {
-              <snx-accordion-content [isExpanded]="true">
+              <mcpe-accordion-content [isExpanded]="true">
                 <p class="text-sm text-muted-foreground pb-3">
                   Yes. Ships with default styles via Tailwind CSS.
                 </p>
-              </snx-accordion-content>
+              </mcpe-accordion-content>
             }
-          </snx-accordion-item>
-          <snx-accordion-item>
-            <snx-accordion-trigger
+          </mcpe-accordion-item>
+          <mcpe-accordion-item>
+            <mcpe-accordion-trigger
               [isExpanded]="accordion.isExpanded('item-3')"
               (onClick)="accordion.toggle('item-3')">
               Is it animated?
-            </snx-accordion-trigger>
+            </mcpe-accordion-trigger>
             @if (accordion.isExpanded('item-3')) {
-              <snx-accordion-content [isExpanded]="true">
+              <mcpe-accordion-content [isExpanded]="true">
                 <p class="text-sm text-muted-foreground pb-3">
                   Yes. Transitions are handled with CSS.
                 </p>
-              </snx-accordion-content>
+              </mcpe-accordion-content>
             }
-          </snx-accordion-item>
-        </snx-accordion>
+          </mcpe-accordion-item>
+        </mcpe-accordion>
       `,
     })
     export class AccordionDemoComponent {

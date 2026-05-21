@@ -1,26 +1,26 @@
 import { Component, input } from '@angular/core'
 
 @Component({
-  selector: 'snx-source-cards',
+  selector: 'mcpe-source-cards',
   standalone: true,
-  template: `<div class="snx-source-cards"><ng-content /></div>`,
+  template: `<div class="mcpe-source-cards"><ng-content /></div>`,
 })
 export class SnxSourceCardsComponent {}
 
 @Component({
-  selector: 'snx-source-card',
+  selector: 'mcpe-source-card',
   standalone: true,
   template: `
-    <a [href]="href()" class="snx-source-card" target="_blank" rel="noopener noreferrer">
+    <a [href]="href()" class="mcpe-source-card" target="_blank" rel="noopener noreferrer">
       @if (favicon()) {
-        <img class="snx-source-card-favicon" [src]="favicon()" [alt]="domain()" />
+        <img class="mcpe-source-card-favicon" [src]="favicon()" [alt]="domain()" />
       }
-      <div class="snx-source-card-body">
-        <p class="snx-source-card-title">{{ title() }}</p>
-        <p class="snx-source-card-domain">{{ domain() }}</p>
+      <div class="mcpe-source-card-body">
+        <p class="mcpe-source-card-title">{{ title() }}</p>
+        <p class="mcpe-source-card-domain">{{ domain() }}</p>
       </div>
       @if (index()) {
-        <span class="snx-source-card-index">{{ index() }}</span>
+        <span class="mcpe-source-card-index">{{ index() }}</span>
       }
     </a>
   `,

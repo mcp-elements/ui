@@ -1,27 +1,27 @@
 @layer components {
-  .snx-chips {
+  .mcpe-chips {
     @apply flex flex-wrap gap-1.5;
   }
-  .snx-chip {
+  .mcpe-chip {
     @apply inline-flex items-center gap-1 rounded-md border px-2.5 py-0.5 text-xs font-medium
            transition-colors cursor-default;
   }
-  .snx-chip-default {
+  .mcpe-chip-default {
     @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
   }
-  .snx-chip-primary {
+  .mcpe-chip-primary {
     @apply border-transparent bg-primary text-primary-foreground hover:bg-primary/80;
   }
-  .snx-chip-outline {
+  .mcpe-chip-outline {
     @apply border-border text-foreground;
   }
-  .snx-chip-destructive {
+  .mcpe-chip-destructive {
     @apply border-transparent bg-destructive text-destructive-foreground;
   }
-  .snx-chip-removable {
+  .mcpe-chip-removable {
     @apply cursor-pointer;
   }
-  .snx-chip-remove {
+  .mcpe-chip-remove {
     @apply ml-0.5 inline-flex h-3.5 w-3.5 items-center justify-center rounded-full
            opacity-60 hover:opacity-100 transition-opacity;
   }

@@ -1,7 +1,7 @@
 import { Component, input, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-textarea',
+  selector: 'mcpe-textarea',
   standalone: true,
   template: `
     <textarea
@@ -18,5 +18,5 @@ export class SnxTextareaComponent {
   rows = input(3)
   class = input('')
 
-  classes = computed(() => ['snx-textarea', this.class()].filter(Boolean).join(' '))
+  classes = computed(() => ['mcpe-textarea', this.class()].filter(Boolean).join(' '))
 }

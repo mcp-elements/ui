@@ -1,22 +1,22 @@
 @layer components {
-  .snx-counter {
+  .mcpe-counter {
     @apply inline-flex items-center;
   }
-  .snx-counter-button {
+  .mcpe-counter-button {
     @apply inline-flex h-9 w-9 items-center justify-center rounded-md border border-input
            bg-transparent text-sm font-medium shadow-sm transition-colors cursor-pointer
            hover:bg-accent hover:text-accent-foreground
            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
            disabled:pointer-events-none disabled:opacity-50;
   }
-  .snx-counter-input {
+  .mcpe-counter-input {
     @apply h-9 w-14 border-y border-input bg-transparent text-center text-sm
            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
   }
-  .snx-counter-button:first-child {
+  .mcpe-counter-button:first-child {
     @apply rounded-r-none;
   }
-  .snx-counter-button:last-child {
+  .mcpe-counter-button:last-child {
     @apply rounded-l-none;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, input, signal, ElementRef, viewChild } from '@angular/core'
 
 @Component({
-  selector: 'snx-popover',
+  selector: 'mcpe-popover',
   standalone: true,
   template: `
     <div class="relative inline-block" #container>
@@ -10,7 +10,7 @@ import { Component, input, signal, ElementRef, viewChild } from '@angular/core'
       </div>
       @if (isOpen()) {
         <div
-          class="snx-popover-content absolute top-full mt-2"
+          class="mcpe-popover-content absolute top-full mt-2"
           role="dialog"
           (keydown.escape)="close()"
         >

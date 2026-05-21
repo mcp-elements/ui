@@ -3,7 +3,7 @@ import { cn } from '@mcp-elements/core'
 
 export const Feedback = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-feedback', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-feedback', className)} {...props} />
   )
 )
 Feedback.displayName = 'Feedback'
@@ -18,9 +18,9 @@ export function FeedbackButton({ type, selected = false, className, ...props }: 
     <button
       type="button"
       className={cn(
-        'snx-feedback-btn',
-        `snx-feedback-btn-${type}`,
-        selected && 'snx-feedback-btn-selected',
+        'mcpe-feedback-btn',
+        `mcpe-feedback-btn-${type}`,
+        selected && 'mcpe-feedback-btn-selected',
         className
       )}
       {...props}
@@ -39,26 +39,26 @@ export function FeedbackButton({ type, selected = false, className, ...props }: 
 }
 
 export function FeedbackSeparator({ className }: { className?: string }) {
-  return <span className={cn('snx-feedback-separator', className)} />
+  return <span className={cn('mcpe-feedback-separator', className)} />
 }
 
 export const FeedbackForm = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-feedback-form', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-feedback-form', className)} {...props} />
   )
 )
 FeedbackForm.displayName = 'FeedbackForm'
 
 export const FeedbackInput = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (
-    <input ref={ref} className={cn('snx-feedback-input', className)} placeholder="Add a comment..." {...props} />
+    <input ref={ref} className={cn('mcpe-feedback-input', className)} placeholder="Add a comment..." {...props} />
   )
 )
 FeedbackInput.displayName = 'FeedbackInput'
 
 export const FeedbackSubmit = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
   ({ className, children = 'Submit', ...props }, ref) => (
-    <button ref={ref} className={cn('snx-feedback-submit', className)} {...props}>
+    <button ref={ref} className={cn('mcpe-feedback-submit', className)} {...props}>
       {children}
     </button>
   )

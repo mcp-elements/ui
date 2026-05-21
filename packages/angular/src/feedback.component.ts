@@ -1,16 +1,16 @@
 import { Component, input, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-feedback',
+  selector: 'mcpe-feedback',
   standalone: true,
-  template: `<div class="snx-feedback"><ng-content /></div>`,
+  template: `<div class="mcpe-feedback"><ng-content /></div>`,
 })
 export class SnxFeedbackComponent {}
 
 type FeedbackType = 'up' | 'down'
 
 @Component({
-  selector: 'snx-feedback-btn',
+  selector: 'mcpe-feedback-btn',
   standalone: true,
   template: `
     <button [class]="classes()" type="button">
@@ -32,40 +32,40 @@ export class SnxFeedbackButtonComponent {
   class = input('')
   classes = computed(() =>
     [
-      'snx-feedback-btn',
-      `snx-feedback-btn-${this.feedbackType()}`,
-      this.selected() ? 'snx-feedback-btn-selected' : '',
+      'mcpe-feedback-btn',
+      `mcpe-feedback-btn-${this.feedbackType()}`,
+      this.selected() ? 'mcpe-feedback-btn-selected' : '',
       this.class(),
     ].filter(Boolean).join(' ')
   )
 }
 
 @Component({
-  selector: 'snx-feedback-separator',
+  selector: 'mcpe-feedback-separator',
   standalone: true,
-  template: `<span class="snx-feedback-separator"></span>`,
+  template: `<span class="mcpe-feedback-separator"></span>`,
 })
 export class SnxFeedbackSeparatorComponent {}
 
 @Component({
-  selector: 'snx-feedback-form',
+  selector: 'mcpe-feedback-form',
   standalone: true,
-  template: `<div class="snx-feedback-form"><ng-content /></div>`,
+  template: `<div class="mcpe-feedback-form"><ng-content /></div>`,
 })
 export class SnxFeedbackFormComponent {}
 
 @Component({
-  selector: 'snx-feedback-input',
+  selector: 'mcpe-feedback-input',
   standalone: true,
-  template: `<input class="snx-feedback-input" [placeholder]="placeholder()" />`,
+  template: `<input class="mcpe-feedback-input" [placeholder]="placeholder()" />`,
 })
 export class SnxFeedbackInputComponent {
   placeholder = input('Add a comment...')
 }
 
 @Component({
-  selector: 'snx-feedback-submit',
+  selector: 'mcpe-feedback-submit',
   standalone: true,
-  template: `<button class="snx-feedback-submit" type="button"><ng-content /></button>`,
+  template: `<button class="mcpe-feedback-submit" type="button"><ng-content /></button>`,
 })
 export class SnxFeedbackSubmitComponent {}

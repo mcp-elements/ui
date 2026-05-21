@@ -1,23 +1,23 @@
 @layer components {
-  .snx-suggestion-chips {
+  .mcpe-suggestion-chips {
     @apply flex gap-2 overflow-x-auto;
     scrollbar-width: none;
   }
-  .snx-suggestion-chips::-webkit-scrollbar {
+  .mcpe-suggestion-chips::-webkit-scrollbar {
     display: none;
   }
-  .snx-suggestion-chip {
+  .mcpe-suggestion-chip {
     @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm whitespace-nowrap
            cursor-pointer transition-all active:scale-95 shrink-0
            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
   }
-  .snx-suggestion-chip-default {
+  .mcpe-suggestion-chip-default {
     @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
   }
-  .snx-suggestion-chip-primary {
+  .mcpe-suggestion-chip-primary {
     @apply bg-primary/10 text-primary hover:bg-primary/20;
   }
-  .snx-suggestion-chip-outline {
+  .mcpe-suggestion-chip-outline {
     @apply border border-input hover:bg-accent hover:text-accent-foreground;
   }
 }

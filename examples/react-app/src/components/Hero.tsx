@@ -38,7 +38,7 @@ export function Hero() {
 
         {/* CTA buttons */}
         <div className="flex gap-3 justify-center mt-8 animate-fade-in-up delay-400">
-          <a href="#components" className="snx-btn snx-btn-primary snx-btn-lg">
+          <a href="#components" className="mcpe-btn mcpe-btn-primary mcpe-btn-lg">
             Get Started
           </a>
           <Button

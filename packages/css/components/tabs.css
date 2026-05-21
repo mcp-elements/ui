@@ -1,17 +1,17 @@
 @layer components {
-  .snx-tabs-list {
+  .mcpe-tabs-list {
     @apply inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground;
   }
-  .snx-tabs-trigger {
+  .mcpe-tabs-trigger {
     @apply inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1
            text-sm font-medium ring-offset-background transition-all cursor-pointer active:scale-[0.98]
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
            disabled:pointer-events-none disabled:opacity-50;
   }
-  .snx-tabs-trigger-active {
+  .mcpe-tabs-trigger-active {
     @apply bg-background text-foreground shadow;
   }
-  .snx-tabs-content {
+  .mcpe-tabs-content {
     @apply mt-2 ring-offset-background
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }

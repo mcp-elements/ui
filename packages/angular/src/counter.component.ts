@@ -1,19 +1,19 @@
 import { Component, input, output, signal } from '@angular/core'
 
 @Component({
-  selector: 'snx-counter',
+  selector: 'mcpe-counter',
   standalone: true,
   template: `
-    <div class="snx-counter">
-      <button type="button" class="snx-counter-button" (click)="decrement()"
+    <div class="mcpe-counter">
+      <button type="button" class="mcpe-counter-button" (click)="decrement()"
               [disabled]="disabled() || value() <= min()" aria-label="Decrease">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14" />
         </svg>
       </button>
-      <input type="text" inputmode="numeric" class="snx-counter-input"
+      <input type="text" inputmode="numeric" class="mcpe-counter-input"
              [value]="value()" (change)="onInput($event)" [disabled]="disabled()" aria-label="Count" />
-      <button type="button" class="snx-counter-button" (click)="increment()"
+      <button type="button" class="mcpe-counter-button" (click)="increment()"
               [disabled]="disabled() || value() >= max()" aria-label="Increase">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14" /><path d="M12 5v14" />

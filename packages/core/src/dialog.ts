@@ -7,7 +7,7 @@ let dialogCounter = 0
 
 export function createDialog(config: DialogConfig = {}) {
   const { modal = true, onOpenChange } = config
-  const id = `snx-dialog-${++dialogCounter}`
+  const id = `mcpe-dialog-${++dialogCounter}`
 
   return {
     id,

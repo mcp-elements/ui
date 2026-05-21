@@ -10,7 +10,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', className, ...props }, ref) => (
     <button
       ref={ref}
-      className={cn('snx-btn', `snx-btn-${variant}`, `snx-btn-${size}`, className)}
+      className={cn('mcpe-btn', `mcpe-btn-${variant}`, `mcpe-btn-${size}`, className)}
       {...props}
     />
   )

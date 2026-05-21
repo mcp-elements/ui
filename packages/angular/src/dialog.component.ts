@@ -2,20 +2,20 @@ import { Component, input, output, signal, computed, effect, ElementRef, viewChi
 import { createDialog } from '@mcp-elements/core'
 
 @Component({
-  selector: 'snx-dialog',
+  selector: 'mcpe-dialog',
   standalone: true,
   template: `
     @if (open()) {
-      <div class="snx-dialog-overlay" (click)="close()"></div>
+      <div class="mcpe-dialog-overlay" (click)="close()"></div>
       <div
         #content
-        class="snx-dialog-content"
+        class="mcpe-dialog-content"
         role="dialog"
         [attr.aria-modal]="modal()"
         (keydown.escape)="close()"
       >
         <ng-content />
-        <button class="snx-dialog-close" (click)="close()" aria-label="Close">&#x2715;</button>
+        <button class="mcpe-dialog-close" (click)="close()" aria-label="Close">&#x2715;</button>
       </div>
     }
   `,

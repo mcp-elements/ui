@@ -72,21 +72,21 @@ Thumbs up/down feedback buttons for rating AI responses. Selected states use gre
         SnxFeedbackSubmitComponent,
       ],
       template: `
-        <snx-feedback>
-          <snx-feedback-btn
+        <mcpe-feedback>
+          <mcpe-feedback-btn
             type="up"
             [selected]="selected() === 'up'"
             (click)="toggle('up')" />
-          <snx-feedback-btn
+          <mcpe-feedback-btn
             type="down"
             [selected]="selected() === 'down'"
             (click)="toggle('down')" />
-        </snx-feedback>
+        </mcpe-feedback>
         @if (selected() === 'down') {
-          <snx-feedback-form>
-            <snx-feedback-input placeholder="What could be improved?" />
-            <snx-feedback-submit>Send</snx-feedback-submit>
-          </snx-feedback-form>
+          <mcpe-feedback-form>
+            <mcpe-feedback-input placeholder="What could be improved?" />
+            <mcpe-feedback-submit>Send</mcpe-feedback-submit>
+          </mcpe-feedback-form>
         }
       `,
     })

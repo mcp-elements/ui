@@ -30,7 +30,7 @@ export function Select({ options, placeholder = 'Select...', className, onChange
   return (
     <div ref={containerRef} className={cn('relative', className)}>
       <button
-        className="snx-select-trigger"
+        className="mcpe-select-trigger"
         aria-expanded={select.isOpen}
         aria-haspopup="listbox"
         aria-activedescendant={select.isOpen && select.highlightedIndex >= 0 ? `select-option-${options[select.highlightedIndex]?.value}` : undefined}
@@ -50,8 +50,8 @@ export function Select({ options, placeholder = 'Select...', className, onChange
         </svg>
       </button>
       {select.isOpen && (
-        <div className="snx-select-content absolute top-full mt-1 w-full">
-          <div className="snx-select-viewport" role="listbox">
+        <div className="mcpe-select-content absolute top-full mt-1 w-full">
+          <div className="mcpe-select-viewport" role="listbox">
             {options.map((option, index) => (
               <div
                 key={option.value}
@@ -59,9 +59,9 @@ export function Select({ options, placeholder = 'Select...', className, onChange
                 aria-selected={option.value === select.selectedValue}
                 aria-disabled={option.disabled || undefined}
                 className={cn(
-                  'snx-select-item',
-                  index === select.highlightedIndex && !option.disabled && 'snx-select-item-active',
-                  option.value === select.selectedValue && 'snx-select-item-selected',
+                  'mcpe-select-item',
+                  index === select.highlightedIndex && !option.disabled && 'mcpe-select-item-active',
+                  option.value === select.selectedValue && 'mcpe-select-item-selected',
                   option.disabled && 'opacity-50 pointer-events-none'
                 )}
                 onClick={() => {

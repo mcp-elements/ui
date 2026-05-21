@@ -60,15 +60,15 @@ A progress bar that displays completion percentage with smooth transitions. Incl
       imports: [SnxProgressComponent, SnxButtonComponent],
       template: `
         <div class="flex flex-col gap-3 w-full">
-          <snx-progress [value]="progress()" />
+          <mcpe-progress [value]="progress()" />
           <div class="flex items-center gap-2">
-            <snx-button size="sm" variant="outline"
-              (click)="decrease()">-10</snx-button>
+            <mcpe-button size="sm" variant="outline"
+              (click)="decrease()">-10</mcpe-button>
             <span class="text-sm tabular-nums">
               {{ progress() }}%
             </span>
-            <snx-button size="sm" variant="outline"
-              (click)="increase()">+10</snx-button>
+            <mcpe-button size="sm" variant="outline"
+              (click)="increase()">+10</mcpe-button>
           </div>
         </div>
       `,

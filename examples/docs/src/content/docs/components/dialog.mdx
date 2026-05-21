@@ -65,22 +65,22 @@ A modal dialog that displays above the page with a backdrop overlay. Includes he
       standalone: true,
       imports: [SnxDialogComponent, SnxButtonComponent],
       template: `
-        <snx-button (click)="dialog.show()">
+        <mcpe-button (click)="dialog.show()">
           Open Dialog
-        </snx-button>
-        <snx-dialog #dialog>
+        </mcpe-button>
+        <mcpe-dialog #dialog>
           <h2 class="dialog-title">Are you sure?</h2>
           <p class="dialog-description">
             This action cannot be undone. This will permanently
             delete your account and remove your data.
           </p>
           <div class="dialog-footer">
-            <snx-button variant="outline"
-              (click)="dialog.close()">Cancel</snx-button>
-            <snx-button variant="destructive"
-              (click)="dialog.close()">Confirm</snx-button>
+            <mcpe-button variant="outline"
+              (click)="dialog.close()">Cancel</mcpe-button>
+            <mcpe-button variant="destructive"
+              (click)="dialog.close()">Confirm</mcpe-button>
           </div>
-        </snx-dialog>
+        </mcpe-dialog>
       `,
     })
     export class DialogDemoComponent {}

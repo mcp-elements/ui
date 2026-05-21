@@ -5,7 +5,7 @@ export interface SuggestionChipsProps extends React.HTMLAttributes<HTMLDivElemen
 
 export const SuggestionChips = forwardRef<HTMLDivElement, SuggestionChipsProps>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('snx-suggestion-chips', className)} {...props} />
+    <div ref={ref} className={cn('mcpe-suggestion-chips', className)} {...props} />
   )
 )
 SuggestionChips.displayName = 'SuggestionChips'
@@ -19,7 +19,7 @@ export const SuggestionChip = forwardRef<HTMLButtonElement, SuggestionChipProps>
     <button
       ref={ref}
       type="button"
-      className={cn('snx-suggestion-chip', `snx-suggestion-chip-${variant}`, className)}
+      className={cn('mcpe-suggestion-chip', `mcpe-suggestion-chip-${variant}`, className)}
       {...props}
     />
   )

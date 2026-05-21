@@ -1,12 +1,12 @@
 import { Component, input, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-progress',
+  selector: 'mcpe-progress',
   standalone: true,
   template: `
-    <div class="snx-progress" role="progressbar"
+    <div class="mcpe-progress" role="progressbar"
          [attr.aria-valuenow]="value()" [attr.aria-valuemin]="0" [attr.aria-valuemax]="max()">
-      <div class="snx-progress-indicator" [style.transform]="transform()"></div>
+      <div class="mcpe-progress-indicator" [style.transform]="transform()"></div>
     </div>
   `,
 })

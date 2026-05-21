@@ -25,7 +25,7 @@ export function Tooltip({ content, delay, children, className, side = 'top' }: T
       {tooltip.open && (
         <div
           {...contentProps}
-          className={cn('snx-tooltip-content absolute', positionClasses, className)}
+          className={cn('mcpe-tooltip-content absolute', positionClasses, className)}
         >
           {content}
         </div>

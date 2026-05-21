@@ -3,7 +3,7 @@ import { Component, computed, input } from '@angular/core'
 type BadgeVariant = 'default' | 'secondary' | 'outline' | 'destructive'
 
 @Component({
-  selector: 'snx-badge',
+  selector: 'mcpe-badge',
   standalone: true,
   template: `<span [class]="classes()"><ng-content /></span>`,
 })
@@ -12,6 +12,6 @@ export class SnxBadgeComponent {
   class = input('')
 
   classes = computed(() =>
-    ['snx-badge', `snx-badge-${this.variant()}`, this.class()].filter(Boolean).join(' ')
+    ['mcpe-badge', `mcpe-badge-${this.variant()}`, this.class()].filter(Boolean).join(' ')
   )
 }

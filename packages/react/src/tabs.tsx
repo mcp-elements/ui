@@ -16,7 +16,7 @@ export function Tabs({ items, defaultValue, children, className }: TabsProps) {
 }
 
 export function TabsList({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div role="tablist" className={cn('snx-tabs-list', className)} {...props} />
+  return <div role="tablist" className={cn('mcpe-tabs-list', className)} {...props} />
 }
 
 export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,14 +38,14 @@ export function TabsTrigger({ isActive, className, ...props }: TabsTriggerProps)
       role="tab"
       aria-selected={isActive}
       tabIndex={isActive ? 0 : -1}
-      className={cn('snx-tabs-trigger', isActive && 'snx-tabs-trigger-active', className)}
+      className={cn('mcpe-tabs-trigger', isActive && 'mcpe-tabs-trigger-active', className)}
       {...props}
     />
   )
 }
 
 export function TabsContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div role="tabpanel" className={cn('snx-tabs-content', className)} {...props} />
+  return <div role="tabpanel" className={cn('mcpe-tabs-content', className)} {...props} />
 }
 
 export { useTabs } from './hooks/use-tabs'

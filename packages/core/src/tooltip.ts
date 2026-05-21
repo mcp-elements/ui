@@ -7,7 +7,7 @@ let tooltipCounter = 0
 
 export function createTooltip(config: TooltipConfig = {}) {
   const { delay = 700, onOpenChange } = config
-  const id = `snx-tooltip-${++tooltipCounter}`
+  const id = `mcpe-tooltip-${++tooltipCounter}`
   let timeoutId: ReturnType<typeof setTimeout> | null = null
 
   function clearDelay() {

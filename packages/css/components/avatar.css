@@ -1,11 +1,11 @@
 @layer components {
-  .snx-avatar {
+  .mcpe-avatar {
     @apply relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full;
   }
-  .snx-avatar-image {
+  .mcpe-avatar-image {
     @apply aspect-square h-full w-full object-cover;
   }
-  .snx-avatar-fallback {
+  .mcpe-avatar-fallback {
     @apply flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground;
   }
 }

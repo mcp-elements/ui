@@ -10,7 +10,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     <div
       ref={ref}
       role="alert"
-      className={cn('snx-alert', `snx-alert-${variant}`, className)}
+      className={cn('mcpe-alert', `mcpe-alert-${variant}`, className)}
       {...props}
     />
   )
@@ -18,9 +18,9 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
 Alert.displayName = 'Alert'
 
 export function AlertTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  return <h5 className={cn('snx-alert-title', className)} {...props} />
+  return <h5 className={cn('mcpe-alert-title', className)} {...props} />
 }
 
 export function AlertDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <div className={cn('snx-alert-description', className)} {...props} />
+  return <div className={cn('mcpe-alert-description', className)} {...props} />
 }

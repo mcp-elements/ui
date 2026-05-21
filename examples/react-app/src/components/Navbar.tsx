@@ -126,7 +126,7 @@ export function Navbar({ theme, onThemeChange }: NavbarProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="snx-btn snx-btn-ghost snx-btn-icon"
+            className="mcpe-btn mcpe-btn-ghost mcpe-btn-icon"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

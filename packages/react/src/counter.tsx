@@ -15,10 +15,10 @@ export function Counter({ value, onChange, min = 0, max = 99, step = 1, disabled
   const increment = () => onChange(Math.min(max, value + step))
 
   return (
-    <div className={cn('snx-counter', className)}>
+    <div className={cn('mcpe-counter', className)}>
       <button
         type="button"
-        className="snx-counter-button"
+        className="mcpe-counter-button"
         onClick={decrement}
         disabled={disabled || value <= min}
         aria-label="Decrease"
@@ -30,7 +30,7 @@ export function Counter({ value, onChange, min = 0, max = 99, step = 1, disabled
       <input
         type="text"
         inputMode="numeric"
-        className="snx-counter-input"
+        className="mcpe-counter-input"
         value={value}
         onChange={(e) => {
           const num = parseInt(e.target.value, 10)
@@ -41,7 +41,7 @@ export function Counter({ value, onChange, min = 0, max = 99, step = 1, disabled
       />
       <button
         type="button"
-        className="snx-counter-button"
+        className="mcpe-counter-button"
         onClick={increment}
         disabled={disabled || value >= max}
         aria-label="Increase"

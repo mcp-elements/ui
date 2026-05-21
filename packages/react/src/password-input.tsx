@@ -8,16 +8,16 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-      <div className="snx-password-input-wrapper">
+      <div className="mcpe-password-input-wrapper">
         <input
           ref={ref}
           type={showPassword ? 'text' : 'password'}
-          className={cn('snx-password-input', className)}
+          className={cn('mcpe-password-input', className)}
           {...props}
         />
         <button
           type="button"
-          className="snx-password-toggle"
+          className="mcpe-password-toggle"
           onClick={() => setShowPassword(!showPassword)}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
 

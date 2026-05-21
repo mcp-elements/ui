@@ -1,17 +1,17 @@
 import { Component, input, signal, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-password-input',
+  selector: 'mcpe-password-input',
   standalone: true,
   template: `
-    <div class="snx-password-input-wrapper">
+    <div class="mcpe-password-input-wrapper">
       <input
         [type]="showPassword() ? 'text' : 'password'"
-        class="snx-password-input"
+        class="mcpe-password-input"
         [placeholder]="placeholder()"
         [disabled]="disabled()"
       />
-      <button type="button" class="snx-password-toggle" (click)="showPassword.update(v => !v)"
+      <button type="button" class="mcpe-password-toggle" (click)="showPassword.update(v => !v)"
               [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'" tabindex="-1">
         @if (showPassword()) {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

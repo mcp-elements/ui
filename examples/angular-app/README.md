@@ -34,9 +34,9 @@ import { SnxButtonComponent } from './components/ui/button.component'
   standalone: true,
   imports: [SnxButtonComponent],
   template: `
-    <snx-button variant="primary" size="md">Click me</snx-button>
-    <snx-button variant="outline">Outline</snx-button>
-    <snx-button variant="destructive">Delete</snx-button>
+    <mcpe-button variant="primary" size="md">Click me</mcpe-button>
+    <mcpe-button variant="outline">Outline</mcpe-button>
+    <mcpe-button variant="destructive">Delete</mcpe-button>
   `,
 })
 export class AppComponent {}
@@ -64,15 +64,15 @@ import {
     SnxCardContentComponent,
   ],
   template: `
-    <snx-card>
-      <snx-card-header>
-        <snx-card-title>Welcome</snx-card-title>
-        <snx-card-description>Get started with snuxt-ui</snx-card-description>
-      </snx-card-header>
-      <snx-card-content>
+    <mcpe-card>
+      <mcpe-card-header>
+        <mcpe-card-title>Welcome</mcpe-card-title>
+        <mcpe-card-description>Get started with snuxt-ui</mcpe-card-description>
+      </mcpe-card-header>
+      <mcpe-card-content>
         <p>Your content here</p>
-      </snx-card-content>
-    </snx-card>
+      </mcpe-card-content>
+    </mcpe-card>
   `,
 })
 export class ExampleComponent {}
@@ -89,15 +89,15 @@ import { SnxButtonComponent } from './components/ui/button.component'
   standalone: true,
   imports: [SnxDialogComponent, SnxButtonComponent],
   template: `
-    <snx-button (click)="dialog.show()">Open Dialog</snx-button>
-    <snx-dialog #dialog [modal]="true">
-      <h2 class="snx-dialog-title">Confirm Action</h2>
-      <p class="snx-dialog-description">Are you sure you want to proceed?</p>
-      <div class="snx-dialog-footer">
-        <snx-button variant="outline" (click)="dialog.close()">Cancel</snx-button>
-        <snx-button variant="destructive" (click)="dialog.close()">Confirm</snx-button>
+    <mcpe-button (click)="dialog.show()">Open Dialog</mcpe-button>
+    <mcpe-dialog #dialog [modal]="true">
+      <h2 class="mcpe-dialog-title">Confirm Action</h2>
+      <p class="mcpe-dialog-description">Are you sure you want to proceed?</p>
+      <div class="mcpe-dialog-footer">
+        <mcpe-button variant="outline" (click)="dialog.close()">Cancel</mcpe-button>
+        <mcpe-button variant="destructive" (click)="dialog.close()">Confirm</mcpe-button>
       </div>
-    </snx-dialog>
+    </mcpe-dialog>
   `,
 })
 export class DialogExampleComponent {
@@ -120,22 +120,22 @@ import {
   standalone: true,
   imports: [SnxTabsComponent, SnxTabsListComponent, SnxTabsTriggerComponent, SnxTabsContentComponent],
   template: `
-    <snx-tabs [items]="[{value: 'tab1'}, {value: 'tab2'}]" defaultValue="tab1" #tabs>
-      <snx-tabs-list>
-        <snx-tabs-trigger [isActive]="tabs.isActive('tab1')" (onClick)="tabs.select('tab1')">
+    <mcpe-tabs [items]="[{value: 'tab1'}, {value: 'tab2'}]" defaultValue="tab1" #tabs>
+      <mcpe-tabs-list>
+        <mcpe-tabs-trigger [isActive]="tabs.isActive('tab1')" (onClick)="tabs.select('tab1')">
           Tab 1
-        </snx-tabs-trigger>
-        <snx-tabs-trigger [isActive]="tabs.isActive('tab2')" (onClick)="tabs.select('tab2')">
+        </mcpe-tabs-trigger>
+        <mcpe-tabs-trigger [isActive]="tabs.isActive('tab2')" (onClick)="tabs.select('tab2')">
           Tab 2
-        </snx-tabs-trigger>
-      </snx-tabs-list>
-      <snx-tabs-content [isActive]="tabs.isActive('tab1')">
+        </mcpe-tabs-trigger>
+      </mcpe-tabs-list>
+      <mcpe-tabs-content [isActive]="tabs.isActive('tab1')">
         Content for Tab 1
-      </snx-tabs-content>
-      <snx-tabs-content [isActive]="tabs.isActive('tab2')">
+      </mcpe-tabs-content>
+      <mcpe-tabs-content [isActive]="tabs.isActive('tab2')">
         Content for Tab 2
-      </snx-tabs-content>
-    </snx-tabs>
+      </mcpe-tabs-content>
+    </mcpe-tabs>
   `,
 })
 export class TabsExampleComponent {}
@@ -151,7 +151,7 @@ import { SnxSelectComponent } from './components/ui/select.component'
   standalone: true,
   imports: [SnxSelectComponent],
   template: `
-    <snx-select
+    <mcpe-select
       [options]="[
         { value: 'react', label: 'React' },
         { value: 'angular', label: 'Angular' },
@@ -180,9 +180,9 @@ import { SnxButtonComponent } from './components/ui/button.component'
   standalone: true,
   imports: [SnxTooltipDirective, SnxButtonComponent],
   template: `
-    <snx-button [snxTooltip]="'Helpful information'" variant="outline">
+    <mcpe-button [snxTooltip]="'Helpful information'" variant="outline">
       Hover me
-    </snx-button>
+    </mcpe-button>
   `,
 })
 export class TooltipExampleComponent {}

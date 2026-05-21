@@ -4,7 +4,7 @@ type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructiv
 type ButtonSize = 'sm' | 'md' | 'lg' | 'icon'
 
 @Component({
-  selector: 'snx-button',
+  selector: 'mcpe-button',
   standalone: true,
   template: `
     <button [class]="classes()" [disabled]="disabled()" [type]="type()">
@@ -20,7 +20,7 @@ export class SnxButtonComponent {
   class = input('')
 
   classes = computed(() =>
-    ['snx-btn', `snx-btn-${this.variant()}`, `snx-btn-${this.size()}`, this.class()]
+    ['mcpe-btn', `mcpe-btn-${this.variant()}`, `mcpe-btn-${this.size()}`, this.class()]
       .filter(Boolean)
       .join(' ')
   )

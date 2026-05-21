@@ -10,27 +10,27 @@ export function Toaster({ position = 'bottom-right', className }: ToasterProps) 
   const { toasts, dismiss } = useToast()
 
   return (
-    <div className={cn('snx-toaster', `snx-toaster-${position}`, className)}>
+    <div className={cn('mcpe-toaster', `mcpe-toaster-${position}`, className)}>
       {toasts.map((t) => (
         <div
           key={t.id}
           className={cn(
-            'snx-toast group',
-            t.variant === 'destructive' && 'snx-toast-destructive',
-            t.variant === 'success' && 'snx-toast-success'
+            'mcpe-toast group',
+            t.variant === 'destructive' && 'mcpe-toast-destructive',
+            t.variant === 'success' && 'mcpe-toast-success'
           )}
         >
           <div className="flex-1">
-            {t.title && <div className="snx-toast-title">{t.title}</div>}
-            {t.description && <div className="snx-toast-description">{t.description}</div>}
+            {t.title && <div className="mcpe-toast-title">{t.title}</div>}
+            {t.description && <div className="mcpe-toast-description">{t.description}</div>}
           </div>
           {t.action && (
-            <button className="snx-toast-action" onClick={t.action.onClick} type="button">
+            <button className="mcpe-toast-action" onClick={t.action.onClick} type="button">
               {t.action.label}
             </button>
           )}
           <button
-            className="snx-toast-close"
+            className="mcpe-toast-close"
             onClick={() => dismiss(t.id)}
             type="button"
             aria-label="Close"

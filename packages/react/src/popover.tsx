@@ -22,7 +22,7 @@ export function Popover({ trigger, children, className }: PopoverProps) {
       <div onClick={() => popover.setOpen(!popover.open)}>{trigger}</div>
       {popover.open && (
         <div
-          className={cn('snx-popover-content absolute top-full mt-2', className)}
+          className={cn('mcpe-popover-content absolute top-full mt-2', className)}
           role="dialog"
           onKeyDown={(e) => { if (e.key === 'Escape') popover.setOpen(false) }}
         >

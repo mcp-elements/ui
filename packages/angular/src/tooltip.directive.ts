@@ -1,11 +1,11 @@
 import { Directive, input, signal, HostListener, ElementRef, Renderer2, OnDestroy } from '@angular/core'
 
 @Directive({
-  selector: '[snxTooltip]',
+  selector: '[mcpeTooltip]',
   standalone: true,
 })
 export class SnxTooltipDirective implements OnDestroy {
-  snxTooltip = input<string>('')
+  mcpeTooltip = input<string>('')
   tooltipDelay = input(700)
 
   private tooltipEl: HTMLElement | null = null
@@ -30,13 +30,13 @@ export class SnxTooltipDirective implements OnDestroy {
   private show() {
     if (this.tooltipEl) return
     this.tooltipEl = this.renderer.createElement('div')
-    this.renderer.addClass(this.tooltipEl, 'snx-tooltip-content')
+    this.renderer.addClass(this.tooltipEl, 'mcpe-tooltip-content')
     this.renderer.setStyle(this.tooltipEl, 'position', 'absolute')
     this.renderer.setStyle(this.tooltipEl, 'bottom', '100%')
     this.renderer.setStyle(this.tooltipEl, 'left', '50%')
     this.renderer.setStyle(this.tooltipEl, 'transform', 'translateX(-50%)')
     this.renderer.setStyle(this.tooltipEl, 'margin-bottom', '0.5rem')
-    const text = this.renderer.createText(this.snxTooltip())
+    const text = this.renderer.createText(this.mcpeTooltip())
     this.renderer.appendChild(this.tooltipEl, text)
     this.renderer.setStyle(this.el.nativeElement, 'position', 'relative')
     this.renderer.appendChild(this.el.nativeElement, this.tooltipEl)

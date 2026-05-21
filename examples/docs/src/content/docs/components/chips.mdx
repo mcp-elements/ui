@@ -71,16 +71,16 @@ A set of removable chip/tag components for displaying selections or categories. 
       standalone: true,
       imports: [SnxChipsComponent, SnxChipComponent],
       template: `
-        <snx-chips>
+        <mcpe-chips>
           @for (chip of chips(); track chip.id) {
-            <snx-chip
+            <mcpe-chip
               [variant]="chip.variant"
               [removable]="true"
               (remove)="remove(chip.id)">
               {{ chip.label }}
-            </snx-chip>
+            </mcpe-chip>
           }
-        </snx-chips>
+        </mcpe-chips>
       `,
     })
     export class ChipsDemoComponent {

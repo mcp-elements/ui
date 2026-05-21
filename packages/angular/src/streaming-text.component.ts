@@ -1,43 +1,43 @@
 import { Component } from '@angular/core'
 
 @Component({
-  selector: 'snx-streaming-text',
+  selector: 'mcpe-streaming-text',
   standalone: true,
-  template: `<div class="snx-streaming-text-cursor"><ng-content /></div>`,
+  template: `<div class="mcpe-streaming-text-cursor"><ng-content /></div>`,
 })
 export class SnxStreamingTextComponent {}
 
 @Component({
-  selector: 'snx-streaming-text-fade-in',
+  selector: 'mcpe-streaming-text-fade-in',
   standalone: true,
-  template: `<span class="snx-streaming-text-fade-in"><ng-content /></span>`,
+  template: `<span class="mcpe-streaming-text-fade-in"><ng-content /></span>`,
 })
 export class SnxStreamingTextFadeInComponent {}
 
 @Component({
-  selector: 'snx-streaming-text-word',
+  selector: 'mcpe-streaming-text-word',
   standalone: true,
-  template: `<span class="snx-streaming-text-word"><ng-content /></span>`,
+  template: `<span class="mcpe-streaming-text-word"><ng-content /></span>`,
 })
 export class SnxStreamingTextWordComponent {}
 
 @Component({
-  selector: 'snx-streaming-text-line',
+  selector: 'mcpe-streaming-text-line',
   standalone: true,
-  template: `<div class="snx-streaming-text-line"><ng-content /></div>`,
+  template: `<div class="mcpe-streaming-text-line"><ng-content /></div>`,
 })
 export class SnxStreamingTextLineComponent {}
 
 @Component({
-  selector: 'snx-streaming-text-skeleton',
+  selector: 'mcpe-streaming-text-skeleton',
   standalone: true,
-  template: `<div class="snx-streaming-text-skeleton"><ng-content /></div>`,
+  template: `<div class="mcpe-streaming-text-skeleton"><ng-content /></div>`,
 })
 export class SnxStreamingTextSkeletonComponent {}
 
 @Component({
-  selector: 'snx-streaming-text-skeleton-line',
+  selector: 'mcpe-streaming-text-skeleton-line',
   standalone: true,
-  template: `<div class="snx-streaming-text-skeleton-line"></div>`,
+  template: `<div class="mcpe-streaming-text-skeleton-line"></div>`,
 })
 export class SnxStreamingTextSkeletonLineComponent {}

@@ -3,7 +3,7 @@ import { Component, input, computed } from '@angular/core'
 type AiBadgeVariant = 'default' | 'prominent' | 'subtle'
 
 @Component({
-  selector: 'snx-ai-badge',
+  selector: 'mcpe-ai-badge',
   standalone: true,
   template: `
     <span [class]="classes()">
@@ -21,6 +21,6 @@ export class SnxAiBadgeComponent {
   showIcon = input(true)
   class = input('')
   classes = computed(() =>
-    ['snx-ai-badge', `snx-ai-badge-${this.variant()}`, this.class()].filter(Boolean).join(' ')
+    ['mcpe-ai-badge', `mcpe-ai-badge-${this.variant()}`, this.class()].filter(Boolean).join(' ')
   )
 }

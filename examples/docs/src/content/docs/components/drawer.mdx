@@ -83,33 +83,33 @@ A slide-out panel with header, body, and footer sections. Supports left, right, 
         SnxButtonComponent, SnxInputComponent,
       ],
       template: `
-        <snx-button variant="outline"
+        <mcpe-button variant="outline"
           (click)="drawer.show()">
           Open Drawer
-        </snx-button>
-        <snx-drawer #drawer side="right">
-          <snx-drawer-header>
-            <snx-drawer-title>Edit Profile</snx-drawer-title>
-            <snx-drawer-description>
+        </mcpe-button>
+        <mcpe-drawer #drawer side="right">
+          <mcpe-drawer-header>
+            <mcpe-drawer-title>Edit Profile</mcpe-drawer-title>
+            <mcpe-drawer-description>
               Make changes to your profile here.
-            </snx-drawer-description>
-          </snx-drawer-header>
-          <snx-drawer-body>
+            </mcpe-drawer-description>
+          </mcpe-drawer-header>
+          <mcpe-drawer-body>
             <div class="flex flex-col gap-3">
-              <snx-input placeholder="Name" />
-              <snx-input placeholder="Email" />
+              <mcpe-input placeholder="Name" />
+              <mcpe-input placeholder="Email" />
             </div>
-          </snx-drawer-body>
-          <snx-drawer-footer>
-            <snx-button (click)="drawer.close()">
+          </mcpe-drawer-body>
+          <mcpe-drawer-footer>
+            <mcpe-button (click)="drawer.close()">
               Save
-            </snx-button>
-            <snx-button variant="outline"
+            </mcpe-button>
+            <mcpe-button variant="outline"
               (click)="drawer.close()">
               Cancel
-            </snx-button>
-          </snx-drawer-footer>
-        </snx-drawer>
+            </mcpe-button>
+          </mcpe-drawer-footer>
+        </mcpe-drawer>
       `,
     })
     export class DrawerDemoComponent {}

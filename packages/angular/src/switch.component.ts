@@ -1,7 +1,7 @@
 import { Component, input, output, signal, computed } from '@angular/core'
 
 @Component({
-  selector: 'snx-switch',
+  selector: 'mcpe-switch',
   standalone: true,
   template: `
     <button
@@ -10,12 +10,12 @@ import { Component, input, output, signal, computed } from '@angular/core'
       [attr.aria-checked]="checked()"
       [attr.aria-disabled]="disabled()"
       [disabled]="disabled()"
-      [class]="'snx-switch'"
+      [class]="'mcpe-switch'"
       (click)="toggle()"
       (keydown.space)="$event.preventDefault(); toggle()"
       (keydown.enter)="$event.preventDefault(); toggle()"
     >
-      <span class="snx-switch-thumb"></span>
+      <span class="mcpe-switch-thumb"></span>
     </button>
   `,
 })

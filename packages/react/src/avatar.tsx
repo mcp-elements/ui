@@ -12,11 +12,11 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const [hasError, setHasError] = useState(false)
 
     return (
-      <div ref={ref} className={cn('snx-avatar', className)} {...props}>
+      <div ref={ref} className={cn('mcpe-avatar', className)} {...props}>
         {src && !hasError ? (
-          <img src={src} alt={alt} className="snx-avatar-image" onError={() => setHasError(true)} />
+          <img src={src} alt={alt} className="mcpe-avatar-image" onError={() => setHasError(true)} />
         ) : (
-          <span className="snx-avatar-fallback">{fallback}</span>
+          <span className="mcpe-avatar-fallback">{fallback}</span>
         )}
       </div>
     )
