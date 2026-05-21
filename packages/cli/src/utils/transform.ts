@@ -54,7 +54,7 @@ const SYMBOL_TO_FILE: Record<string, string> = {
 }
 
 // Regex to match import statements from @mcp-elements/core
-const CORE_IMPORT_RE = /import\s+(type\s+)?{([^}]+)}\s+from\s+['"]@snuxt-ui\/core['"]/g
+const CORE_IMPORT_RE = /import\s+(type\s+)?{([^}]+)}\s+from\s+['"]@mcp-elements\/core['"]/g
 
 export function transformImports(content: string, config: SnxConfig): string {
   let result = content
