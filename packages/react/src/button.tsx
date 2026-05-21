@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link'

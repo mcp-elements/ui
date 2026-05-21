@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.2.0",
     "@astrojs/starlight": "^0.32.0",
-    "@snuxt-ui/core": "workspace:*",
+    "@mcp-elements/core": "workspace:*",
     "@snuxt-ui/react": "workspace:*",
     "@tailwindcss/vite": "^4.0.0",
     "astro": "^5.3.0",

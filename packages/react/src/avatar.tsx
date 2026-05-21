@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string

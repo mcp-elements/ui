@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@snuxt-ui/core": "workspace:*",
+    "@mcp-elements/core": "workspace:*",
     "@snuxt-ui/react": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

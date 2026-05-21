@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { createTooltip, type TooltipConfig } from '@snuxt-ui/core'
+import { createTooltip, type TooltipConfig } from '@mcp-elements/core'
 
 export function useTooltip(config: Omit<TooltipConfig, 'onOpenChange'> = {}) {
   const [open, setOpen] = useState(false)

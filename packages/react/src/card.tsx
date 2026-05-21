@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export const Card = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

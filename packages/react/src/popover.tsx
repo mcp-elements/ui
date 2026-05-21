@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { cn, createClickOutsideHandler } from '@snuxt-ui/core'
+import { cn, createClickOutsideHandler } from '@mcp-elements/core'
 import { usePopover } from './hooks/use-popover'
 
 export interface PopoverProps {

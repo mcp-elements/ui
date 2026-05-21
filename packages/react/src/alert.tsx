@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'destructive' | 'success' | 'warning'

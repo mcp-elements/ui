@@ -26,7 +26,7 @@ const layers: LayerInfo[] = [
   },
   {
     number: 1,
-    name: '@snuxt-ui/core',
+    name: '@mcp-elements/core',
     description: 'TS functions, state, ARIA',
     color: 'oklch(0.65 0.2 200)',
     icon: (

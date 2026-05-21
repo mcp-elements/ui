@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { toast as toastManager, type Toast } from '@snuxt-ui/core'
+import { toast as toastManager, type Toast } from '@mcp-elements/core'
 
 export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([])

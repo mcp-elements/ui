@@ -1,5 +1,5 @@
 import { Component, input, signal, computed } from '@angular/core'
-import { createAccordion, type AccordionItemConfig } from '@snuxt-ui/core'
+import { createAccordion, type AccordionItemConfig } from '@mcp-elements/core'
 
 @Component({
   selector: 'snx-accordion',

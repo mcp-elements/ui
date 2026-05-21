@@ -1,4 +1,4 @@
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 import { useTooltip } from './hooks/use-tooltip'
 
 export interface TooltipProps {

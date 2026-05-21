@@ -10,7 +10,7 @@
     "clean": "echo 'nothing to clean'"
   },
   "dependencies": {
-    "@snuxt-ui/core": "workspace:*"
+    "@mcp-elements/core": "workspace:*"
   },
   "peerDependencies": {
     "@angular/core": "^19.0.0",

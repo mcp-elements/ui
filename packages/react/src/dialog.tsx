@@ -1,5 +1,5 @@
 import { useEffect, useRef, useId, createContext, useContext } from 'react'
-import { cn, trapFocus, lockScroll } from '@snuxt-ui/core'
+import { cn, trapFocus, lockScroll } from '@mcp-elements/core'
 import { useDialog } from './hooks/use-dialog'
 
 const DialogIdContext = createContext<string>('')

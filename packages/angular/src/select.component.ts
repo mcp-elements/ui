@@ -1,5 +1,5 @@
 import { Component, input, output, signal, computed, ElementRef, viewChild, HostListener } from '@angular/core'
-import { createSelect, type SelectOption } from '@snuxt-ui/core'
+import { createSelect, type SelectOption } from '@mcp-elements/core'
 
 @Component({
   selector: 'snx-select',

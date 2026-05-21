@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { cn, trapFocus, lockScroll } from '@snuxt-ui/core'
+import { cn, trapFocus, lockScroll } from '@mcp-elements/core'
 import { useDrawer } from './hooks/use-drawer'
 
 export interface DrawerProps {

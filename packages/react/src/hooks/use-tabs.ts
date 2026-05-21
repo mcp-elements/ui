@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { createTabs, type TabItem, type TabsConfig } from '@snuxt-ui/core'
+import { createTabs, type TabItem, type TabsConfig } from '@mcp-elements/core'
 
 export function useTabs(items: TabItem[], config: Omit<TabsConfig, 'onValueChange'> = {}) {
   const [value, setValue] = useState(config.defaultValue ?? items[0]?.value ?? '')

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
-import { cn, createClickOutsideHandler } from '@snuxt-ui/core'
+import { cn, createClickOutsideHandler } from '@mcp-elements/core'
 import { useSelect } from './hooks/use-select'
-import type { SelectOption } from '@snuxt-ui/core'
+import type { SelectOption } from '@mcp-elements/core'
 
 export interface SelectProps {
   options: SelectOption[]

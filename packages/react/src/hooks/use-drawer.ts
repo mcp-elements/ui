@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { createDrawer, type DrawerConfig } from '@snuxt-ui/core'
+import { createDrawer, type DrawerConfig } from '@mcp-elements/core'
 
 export function useDrawer(config: Omit<DrawerConfig, 'onOpenChange'> = {}) {
   const [open, setOpen] = useState(false)

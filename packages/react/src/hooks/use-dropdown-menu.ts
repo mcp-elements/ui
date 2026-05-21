@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { createDropdownMenu, type DropdownMenuItem, type DropdownMenuConfig } from '@snuxt-ui/core'
+import { createDropdownMenu, type DropdownMenuItem, type DropdownMenuConfig } from '@mcp-elements/core'
 
 export function useDropdownMenu(items: DropdownMenuItem[], config: Omit<DropdownMenuConfig, 'onOpenChange'> = {}) {
   const [isOpen, setIsOpen] = useState(false)

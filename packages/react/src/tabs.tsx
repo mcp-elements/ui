@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 import { useTabs } from './hooks/use-tabs'
-import type { TabItem } from '@snuxt-ui/core'
+import type { TabItem } from '@mcp-elements/core'
 
 export interface TabsProps {
   items: TabItem[]

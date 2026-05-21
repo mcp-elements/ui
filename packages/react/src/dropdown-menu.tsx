@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
-import { cn, createClickOutsideHandler } from '@snuxt-ui/core'
+import { cn, createClickOutsideHandler } from '@mcp-elements/core'
 import { useDropdownMenu } from './hooks/use-dropdown-menu'
-import type { DropdownMenuItem } from '@snuxt-ui/core'
+import type { DropdownMenuItem } from '@mcp-elements/core'
 
 export interface DropdownMenuProps {
   trigger: React.ReactNode

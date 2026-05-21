@@ -1,5 +1,5 @@
 import { Component, input, output, signal, computed, effect, ElementRef, viewChild } from '@angular/core'
-import { createDialog } from '@snuxt-ui/core'
+import { createDialog } from '@mcp-elements/core'
 
 @Component({
   selector: 'snx-dialog',

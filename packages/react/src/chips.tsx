@@ -1,4 +1,4 @@
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export interface ChipProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'default' | 'primary' | 'outline' | 'destructive'

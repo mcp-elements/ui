@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { cn } from '@snuxt-ui/core'
+import { cn } from '@mcp-elements/core'
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: number

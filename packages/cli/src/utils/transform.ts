@@ -53,14 +53,14 @@ const SYMBOL_TO_FILE: Record<string, string> = {
   SwitchConfig: 'switch',
 }
 
-// Regex to match import statements from @snuxt-ui/core
+// Regex to match import statements from @mcp-elements/core
 const CORE_IMPORT_RE = /import\s+(type\s+)?{([^}]+)}\s+from\s+['"]@snuxt-ui\/core['"]/g
 
 export function transformImports(content: string, config: SnxConfig): string {
   let result = content
   const utilsPath = config.aliases.utils
 
-  // Collect all @snuxt-ui/core imports and replace them
+  // Collect all @mcp-elements/core imports and replace them
   result = result.replace(CORE_IMPORT_RE, (match, typeKeyword, symbolsStr) => {
     const isTypeOnly = !!typeKeyword
     const symbols = symbolsStr
