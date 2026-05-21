@@ -150,13 +150,23 @@ Layer 3  packages/cli                                 + Vue framework detection 
 - [ ] **A5: User reviews spec**
 - [ ] **A6: Invoke writing-plans skill** to produce step-by-step implementation plan
 
-### Stage B: Repo restructure (after A6 approved)
-- [ ] **B1: Rename packages** `@snuxt-ui/*` → `@<brand>/*` across codebase (Find/replace + import updates)
-- [ ] **B2: Update docs domain** (snuxt-ui.dev → `<brand>.dev`)
-- [ ] **B3: Update README + homepage** (new positioning + tagline)
-- [ ] **B4: Rename GitHub repo**
-- [ ] **B5: Deprecate `snuxt-ui` npm packages** with pointer to new name
-- [ ] **B6: Update all internal references** (`snx-` CSS prefix → `<brand-prefix>-`)
+### Stage B: Repo restructure ✅ COMPLETE 2026-05-21
+On branch `feat/rename-to-mcp-elements`, 11 commits (`7f5dd8f`..`7cf3264`). Build green 7/7. Assertion script `scripts/check-no-stale-brand.sh` passes.
+
+- [x] **B1: Rename packages** `@snuxt-ui/*` → `@mcp-elements/*` across codebase (commits `975ca6f`, `8cf7148`, `158fdc4`, `0acb36d`)
+- [x] **B2: Update docs domain** (snuxt-ui.dev → `mcp-elements.dev`) — done in docs site task (commit `92d902e`)
+- [x] **B3: Update README + homepage** — new positioning + tagline (commit `7cf3264`)
+- [ ] **B4: Rename GitHub repo** — deferred; do manually when ready to push (org `mcp-elements` reserved per brand research)
+- [ ] **B5: Deprecate `snuxt-ui` npm packages** with pointer to new name — deferred until v0.1 npm publish (Stage I)
+- [x] **B6: Update all internal references** (`snx-` CSS prefix → `mcpe-`) — commit `bf7c31f`, 794 occurrences
+
+**Follow-ups discovered during execution:**
+- CLI `transform.ts` regex literal needed manual fix (escaped slash bypassed sed; caught by code review, commit `9fb4db6`)
+- Plan underspecified examples/* package.json touch points (forced by pnpm workspace deps) — corrected during execution
+- macOS sed lacks `\b` word boundaries; future plans should use plain string match
+- CNAME file updated to `mcp-elements.wearesnx.studio` — DNS will need separate update when domain is acquired
+- Angular `snxTooltip` (camelCase) renamed to `mcpeTooltip` — would have been missed by hyphen-only sed; agent caught it
+- `packages/core/src/{dialog,tooltip}.ts` had `snx-` DOM ID prefixes that plan grep missed — agent caught
 
 ### Stage C: Vue adapter bootstrap (parallel ok with D)
 - [ ] **C1: Create `packages/vue/`** skeleton (vite + vitest + tsup, Vue 3 only)
@@ -340,3 +350,4 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-21 | Considered alternative: `herald` | Brand-name agent's top recommendation (also full availability, scales beyond MCP). Not chosen — `mcp-elements` won on launch-positioning clarity. Reference: `docs/research/brand-name-research.md` |
 | 2026-05-21 | Capacity: solo builder, 10-15 hrs/week | Phase 1 calendar revised to 8-10 weeks (was 4-6); Phase 1+1.5 = ~12 weeks |
 | 2026-05-21 | OQ1 resolved: ship McpAppFrame in Phase 1 with `preview` tag | Pinned to MCP Apps spec version `2026-01-26`; allows "full MCP UI kit" launch story |
+| 2026-05-21 | Stage B (rename) complete on feat/rename-to-mcp-elements branch | All package names, CLI bin, CSS prefix, docs, README renamed. 11 commits. Build + assertion green. Branch ready to merge to main pending user review. Historical refs preserved in WIP.md/specs/research/. |
