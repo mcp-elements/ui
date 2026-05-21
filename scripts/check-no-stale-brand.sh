@@ -3,6 +3,10 @@
 # Excludes intentional historical-context files.
 set -u
 
+# Refuse to run from outside the repo root — otherwise relative PATHS silently
+# match nothing and the script falsely reports clean.
+[[ -f package.json && -d packages ]] || { echo "❌ Must be run from repo root (no package.json + packages/ here)"; exit 2; }
+
 EXCLUDES=(
   --exclude-dir=node_modules
   --exclude-dir=dist
