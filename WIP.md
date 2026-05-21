@@ -19,7 +19,12 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - New deliverable: 7 MCP UI primitives + Vue adapter + 4 headless hooks per framework
 - Frameworks at launch: **React + Angular + Vue**
 
-**Next concrete step**: complete the formal spec at `docs/superpowers/specs/2026-05-21-mcp-elements-design.md`, user review, then invoke the writing-plans skill.
+**Status**:
+- ✅ Plan 1 (rename) executed + merged to main — 12 commits, build green
+- 📝 Plan 2 (MCP core utilities) drafted at `docs/superpowers/plans/2026-05-21-mcp-elements-02-core.md` — NOT yet executed
+- ⏳ Plans 3-6 to be drafted
+
+**Next concrete step**: execute Plan 2 — `git checkout -b feat/mcp-core-utilities`, then dispatch subagents per task. After merge, draft Plan 3 (MCP × React).
 
 ---
 
@@ -351,3 +356,5 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-21 | Capacity: solo builder, 10-15 hrs/week | Phase 1 calendar revised to 8-10 weeks (was 4-6); Phase 1+1.5 = ~12 weeks |
 | 2026-05-21 | OQ1 resolved: ship McpAppFrame in Phase 1 with `preview` tag | Pinned to MCP Apps spec version `2026-01-26`; allows "full MCP UI kit" launch story |
 | 2026-05-21 | Stage B (rename) complete on feat/rename-to-mcp-elements branch | All package names, CLI bin, CSS prefix, docs, README renamed. 11 commits. Build + assertion green. Branch ready to merge to main pending user review. Historical refs preserved in WIP.md/specs/research/. |
+| 2026-05-21 | Stage B merged to main via fast-forward | 12 commits (rename + WIP). Branch deleted. .astro build cache untracked + gitignored separately. |
+| 2026-05-21 | Plan 2 (MCP core utilities) drafted | 1351 lines, 9 TDD tasks. References protocol cheatsheet for type shapes. Execution pending. |
