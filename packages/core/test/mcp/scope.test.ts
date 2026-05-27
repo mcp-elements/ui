@@ -33,6 +33,22 @@ describe('parseScope', () => {
       permissions: ['read', 'write', 'delete'],
     })
   })
+
+  it('falls back to ["access"] for resource with empty permissions (resource:)', () => {
+    expect(parseScope('files:')).toEqual({
+      raw: 'files:',
+      resource: 'files',
+      permissions: ['access'],
+    })
+  })
+
+  it('handles multi-colon scopes by treating everything after first colon as permissions', () => {
+    expect(parseScope('openid:read:write')).toEqual({
+      raw: 'openid:read:write',
+      resource: 'openid',
+      permissions: ['read:write'],
+    })
+  })
 })
 
 describe('parseScopes (space-delimited list)', () => {
