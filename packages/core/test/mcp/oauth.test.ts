@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { generatePkcePair, buildAuthUrl, buildTokenExchangeBody, createOAuthFlow } from '../../src/mcp/oauth'
+import { generatePkcePair, buildAuthUrl, buildTokenExchangeBody, buildTokenRefreshBody, createOAuthFlow } from '../../src/mcp/oauth'
 
 describe('generatePkcePair', () => {
   it('returns a 43-128 char URL-safe verifier', async () => {
@@ -62,6 +62,20 @@ describe('buildTokenExchangeBody', () => {
   })
 })
 
+describe('buildTokenRefreshBody', () => {
+  it('returns URL-encoded refresh body', () => {
+    const body = buildTokenRefreshBody({
+      clientId: 'abc',
+      refreshToken: 'REFRESH',
+    })
+    const params = new URLSearchParams(body)
+    expect(params.get('grant_type')).toBe('refresh_token')
+    expect(params.get('client_id')).toBe('abc')
+    expect(params.get('refresh_token')).toBe('REFRESH')
+    expect(params.get('scope')).toBeNull()
+  })
+})
+
 describe('createOAuthFlow', () => {
   it('starts in idle', () => {
     const f = createOAuthFlow()
@@ -87,5 +101,14 @@ describe('createOAuthFlow', () => {
   it('throws on invalid transitions', () => {
     const f = createOAuthFlow()
     expect(() => f.markAuthorized({ accessToken: 'x', tokenType: 'Bearer' })).toThrow()
+  })
+
+  it('subscriber receives state updates', () => {
+    const f = createOAuthFlow()
+    const statuses: string[] = []
+    f.subscribe((s) => statuses.push(s.status))
+    f.start({ verifier: 'V', state: 'S' })
+    f.markAuthorized({ accessToken: 'T', tokenType: 'Bearer' })
+    expect(statuses).toEqual(['authorizing', 'authorized'])
   })
 })

@@ -67,6 +67,21 @@ export function buildTokenExchangeBody(input: TokenExchangeInput): string {
   return body.toString()
 }
 
+export interface TokenRefreshInput {
+  clientId: string
+  refreshToken: string
+  scope?: string
+}
+
+export function buildTokenRefreshBody(input: TokenRefreshInput): string {
+  const body = new URLSearchParams()
+  body.set('grant_type', 'refresh_token')
+  body.set('client_id', input.clientId)
+  body.set('refresh_token', input.refreshToken)
+  if (input.scope) body.set('scope', input.scope)
+  return body.toString()
+}
+
 export type OAuthStatus = 'idle' | 'authorizing' | 'authorized' | 'denied' | 'error'
 
 export interface OAuthTokens {
@@ -82,7 +97,7 @@ export interface OAuthFlowSnapshot {
   verifier?: string
   state?: string
   tokens?: OAuthTokens
-  error?: { code: string; message?: string }
+  error?: { code: string; message?: string; originalError?: Error }
 }
 
 export interface OAuthFlowApi extends Readonly<OAuthFlowSnapshot> {
@@ -153,7 +168,7 @@ export function createOAuthFlow(): OAuthFlowApi {
       transition('denied', { error: { code, message } })
     },
     markError(error) {
-      transition('error', { error: { code: 'unknown', message: error.message } })
+      transition('error', { error: { code: 'unknown', message: error.message, originalError: error } })
     },
     reset() {
       if (snap.status === 'idle') return
