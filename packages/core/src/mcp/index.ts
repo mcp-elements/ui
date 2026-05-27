@@ -2,3 +2,4 @@
 export * from './types'
 export * from './scope'
 export * from './tool-state'
+export * from './schema-form'
