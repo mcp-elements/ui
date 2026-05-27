@@ -11,7 +11,7 @@ export interface ToolStateSnapshot {
   endedAt?: number
 }
 
-export interface ToolStateApi extends ToolStateSnapshot {
+export interface ToolStateApi extends Readonly<ToolStateSnapshot> {
   start(input: { tool: string; args: Record<string, unknown> }): void
   markRunning(): void
   markDone(result: CallToolResult): void
@@ -40,7 +40,11 @@ export function createToolState(): ToolStateApi {
       throw new Error(`Invalid tool-state transition: ${snapshot.status} → ${to}`)
     }
     snapshot = { ...snapshot, ...patch, status: to }
-    for (const fn of listeners) fn(snapshot)
+    let firstError: unknown
+    for (const fn of listeners) {
+      try { fn(snapshot) } catch (e) { if (firstError === undefined) firstError = e }
+    }
+    if (firstError !== undefined) throw firstError
   }
 
   return {
@@ -67,8 +71,13 @@ export function createToolState(): ToolStateApi {
       transition('cancelled', { endedAt: Date.now() })
     },
     reset() {
+      if (snapshot.status === 'idle') return
       snapshot = { status: 'idle' }
-      for (const fn of listeners) fn(snapshot)
+      let firstError: unknown
+      for (const fn of listeners) {
+        try { fn(snapshot) } catch (e) { if (firstError === undefined) firstError = e }
+      }
+      if (firstError !== undefined) throw firstError
     },
     subscribe(fn) {
       listeners.add(fn)

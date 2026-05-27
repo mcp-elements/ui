@@ -68,4 +68,19 @@ describe('createToolState', () => {
     s.markDone({ content: [] })
     expect(updates).toEqual(['pending', 'running', 'done'])
   })
+
+  it('start() throws when already in pending state (double-start)', () => {
+    const s = createToolState()
+    s.start({ tool: 'foo', args: {} })
+    expect(() => s.start({ tool: 'bar', args: {} })).toThrow()
+  })
+
+  it('subscriber exceptions do not prevent other subscribers from receiving updates', () => {
+    const s = createToolState()
+    const received: string[] = []
+    s.subscribe(() => { throw new Error('bad subscriber') })
+    s.subscribe((state) => received.push(state.status))
+    expect(() => s.start({ tool: 'foo', args: {} })).toThrow()
+    expect(received).toEqual(['pending']) // second subscriber still got the update
+  })
 })
