@@ -2,7 +2,7 @@
 
 **Status**: Brainstorming + market research complete. Design locked. **Brand: `mcp-elements`.** Spec in progress.
 **Started**: 2026-05-21
-**Last updated**: 2026-05-21
+**Last updated**: 2026-05-28
 
 ---
 
@@ -24,7 +24,7 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - 📝 Plan 2 (MCP core utilities) drafted at `docs/superpowers/plans/2026-05-21-mcp-elements-02-core.md` — NOT yet executed
 - ⏳ Plans 3-6 to be drafted
 
-**Next concrete step**: execute Plan 2 — `git checkout -b feat/mcp-core-utilities`, then dispatch subagents per task. After merge, draft Plan 3 (MCP × React).
+**Next concrete step**: draft + execute Plan 3 — MCP × React (7 React components + 4 hooks using `@mcp-elements/core/mcp/*`).
 
 ---
 
@@ -183,13 +183,13 @@ On branch `feat/rename-to-mcp-elements`, 11 commits (`7f5dd8f`..`7cf3264`). Buil
 - [ ] **C6: Add Vue entries to `registry.json`**
 
 ### Stage D: MCP core utilities (parallel ok with C)
-- [ ] **D1: MCP types** — `packages/core/src/mcp/types.ts`
-- [ ] **D2: OAuth/PKCE state machine** — `packages/core/src/mcp/oauth.ts`
-- [ ] **D3: JSON Schema → form descriptor** — `packages/core/src/mcp/schema-form.ts`
-- [ ] **D4: Tool state machine** — `packages/core/src/mcp/tool-state.ts`
-- [ ] **D5: postMessage bridge** for MCP Apps — `packages/core/src/mcp/app-bridge.ts`
-- [ ] **D6: Scope parser** — `packages/core/src/mcp/scope.ts`
-- [ ] **D7: Unit tests** (Vitest, framework-free) for D1-D6
+- [x] **D1: MCP types** — `packages/core/src/mcp/types.ts`
+- [x] **D2: OAuth/PKCE state machine** — `packages/core/src/mcp/oauth.ts`
+- [x] **D3: JSON Schema → form descriptor** — `packages/core/src/mcp/schema-form.ts`
+- [x] **D4: Tool state machine** — `packages/core/src/mcp/tool-state.ts`
+- [x] **D5: postMessage bridge** for MCP Apps — `packages/core/src/mcp/app-bridge.ts`
+- [x] **D6: Scope parser** — `packages/core/src/mcp/scope.ts`
+- [x] **D7: Unit tests** (Vitest, framework-free) for D1-D6
 
 ### Stage E: MCP components × React (after D)
 - [ ] **E1: McpServerStatus** (CSS + React)
@@ -358,3 +358,4 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-21 | Stage B (rename) complete on feat/rename-to-mcp-elements branch | All package names, CLI bin, CSS prefix, docs, README renamed. 11 commits. Build + assertion green. Branch ready to merge to main pending user review. Historical refs preserved in WIP.md/specs/research/. |
 | 2026-05-21 | Stage B merged to main via fast-forward | 12 commits (rename + WIP). Branch deleted. .astro build cache untracked + gitignored separately. |
 | 2026-05-21 | Plan 2 (MCP core utilities) drafted | 1351 lines, 9 TDD tasks. References protocol cheatsheet for type shapes. Execution pending. |
+| 2026-05-28 | Stage D (MCP core utilities) complete | 6 modules + 46 tests on feat/mcp-core-utilities. Merged to main. |
