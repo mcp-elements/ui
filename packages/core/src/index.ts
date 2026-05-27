@@ -32,3 +32,5 @@ export type { DropdownMenuConfig, DropdownMenuItem } from './dropdown-menu'
 
 export { createSwitch } from './switch'
 export type { SwitchConfig } from './switch'
+
+export * from './mcp'
