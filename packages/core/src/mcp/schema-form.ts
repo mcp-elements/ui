@@ -60,7 +60,15 @@ function fieldFromProperty(key: string, schema: JsonSchema, required: boolean): 
       if (schema.format === 'email') return { ...base, kind: 'email' }
       if (schema.format === 'uri' || schema.format === 'url') return { ...base, kind: 'url' }
       if (schema.format === 'date' || schema.format === 'date-time') return { ...base, kind: 'date' }
-      if ((schema.maxLength ?? 0) > 200) return { ...base, kind: 'textarea', maxLength: schema.maxLength }
+      if ((schema.maxLength ?? 0) > 200) {
+        return {
+          ...base,
+          kind: 'textarea',
+          minLength: schema.minLength,
+          maxLength: schema.maxLength,
+          pattern: schema.pattern,
+        }
+      }
       return {
         ...base,
         kind: 'text',
@@ -76,6 +84,8 @@ function fieldFromProperty(key: string, schema: JsonSchema, required: boolean): 
       return { ...base, kind: 'switch' }
     case 'array':
       if (schema.items?.type === 'string') return { ...base, kind: 'multiselect' }
+      return { ...base, kind: 'unknown' }
+    case 'null':
       return { ...base, kind: 'unknown' }
     default:
       return { ...base, kind: 'unknown' }

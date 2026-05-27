@@ -90,4 +90,12 @@ describe('schemaToFields', () => {
   it('returns empty array for schema without properties', () => {
     expect(schemaToFields({ type: 'object' })).toEqual([])
   })
+
+  it('passes default value through to field descriptor', () => {
+    const fields = schemaToFields({
+      type: 'object',
+      properties: { count: { type: 'number', default: 5 } },
+    })
+    expect(fields[0].defaultValue).toBe(5)
+  })
 })
