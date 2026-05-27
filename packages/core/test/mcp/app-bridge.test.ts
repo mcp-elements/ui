@@ -61,4 +61,15 @@ describe('createAppBridge', () => {
     bridge.receive({ id: '2', type: 'app:event', payload: {} })
     expect(received).toHaveLength(1)
   })
+
+  it('a throwing onMessage subscriber does not prevent other subscribers from receiving the envelope', () => {
+    const bridge = createAppBridge({ postMessage: vi.fn() })
+    const received: unknown[] = []
+    bridge.onMessage(() => { throw new Error('bad subscriber') })
+    bridge.onMessage((env) => received.push(env))
+    expect(() =>
+      bridge.receive({ id: '1', type: 'app:event', payload: {} })
+    ).toThrow('bad subscriber')
+    expect(received).toHaveLength(1)
+  })
 })

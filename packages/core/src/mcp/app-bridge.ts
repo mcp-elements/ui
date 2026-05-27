@@ -3,7 +3,7 @@
 export interface AppMessageEnvelope {
   id: string
   type: string
-  payload: unknown
+  payload?: unknown
 }
 
 export function encodeEnvelope(env: AppMessageEnvelope): AppMessageEnvelope {
@@ -11,11 +11,11 @@ export function encodeEnvelope(env: AppMessageEnvelope): AppMessageEnvelope {
 }
 
 export function decodeEnvelope(raw: unknown): AppMessageEnvelope | null {
-  if (raw === null || typeof raw !== 'object') return null
+  if (raw === null || Array.isArray(raw) || typeof raw !== 'object') return null
   const o = raw as Record<string, unknown>
   if (typeof o.id !== 'string') return null
   if (typeof o.type !== 'string') return null
-  return { id: o.id, type: o.type, payload: o.payload ?? {} }
+  return { id: o.id, type: o.type, payload: o.payload }
 }
 
 export interface AppBridgeConfig {
