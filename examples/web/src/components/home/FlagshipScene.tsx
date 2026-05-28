@@ -21,9 +21,9 @@ import {
 import { createToolState } from '@mcp-elements/core'
 
 const RESOURCES: McpResource[] = [
-  { uri: 'mcp://github/repos/mcp-elements', name: 'mcp-elements/mcp-elements', mimeType: 'application/json' },
-  { uri: 'mcp://github/issues/42', name: 'Issue #42 — Add Vue adapter', mimeType: 'text/markdown' },
-  { uri: 'mcp://github/pulls/108', name: 'PR #108 — Refactor consent flow', mimeType: 'text/markdown' },
+  { uri: 'mcp://github/repos/mcp-elements', name: 'mcp-elements repo', mimeType: 'application/json' },
+  { uri: 'mcp://github/issues/42', name: 'Issue #42 · Vue adapter', mimeType: 'text/markdown' },
+  { uri: 'mcp://github/pulls/108', name: 'PR #108 · consent flow', mimeType: 'text/markdown' },
   { uri: 'mcp://github/file/readme', name: 'README.md', mimeType: 'text/markdown' },
 ]
 
@@ -166,7 +166,7 @@ export function FlagshipScene() {
           </div>
 
           {/* App body */}
-          <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_280px]" style={{ minHeight: '520px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_280px]" style={{ minHeight: '580px' }}>
             {/* Left rail — Resource browser */}
             <aside
               className="hidden lg:flex flex-col gap-4 p-4"
@@ -191,33 +191,84 @@ export function FlagshipScene() {
             {/* Main — chat with tool call */}
             <main className="flex flex-col" style={{ background: 'var(--site-bg)' }}>
               {/* Conversation */}
-              <div className="flex-1 overflow-hidden p-5 sm:p-6">
-                <div className="flex flex-col gap-4">
-                  {messages.map((m, i) => (
-                    <div key={i} className="flex gap-3">
-                      <div
-                        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold"
-                        style={{
-                          background: m.role === 'user' ? 'var(--site-bg-elevated)' : 'var(--site-accent-glow)',
-                          color: m.role === 'user' ? 'var(--site-text)' : 'var(--site-accent)',
-                          border: `1px solid ${m.role === 'user' ? 'var(--site-border)' : 'var(--site-accent)'}`,
-                        }}
-                      >
-                        {m.role === 'user' ? <User className="h-3.5 w-3.5" /> : <Sparkles className="h-3.5 w-3.5" />}
+              <div className="flex-1 overflow-y-auto p-5 sm:p-6">
+                <div className="flex flex-col gap-5">
+                  {messages.map((m, i) => {
+                    const isUser = m.role === 'user'
+                    return (
+                      <div key={i} className={`flex gap-3 ${isUser ? '' : 'items-start'}`}>
+                        {/* Avatar */}
+                        <div
+                          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                          style={
+                            isUser
+                              ? {
+                                  background: 'var(--site-bg-elevated)',
+                                  color: 'var(--site-text-muted)',
+                                  border: '1px solid var(--site-border-strong)',
+                                }
+                              : {
+                                  background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                                  color: 'oklch(1 0 0)',
+                                  boxShadow: '0 0 16px var(--site-accent-glow), inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
+                                }
+                          }
+                        >
+                          {isUser ? <User className="h-3.5 w-3.5" /> : <Sparkles className="h-4 w-4" />}
+                        </div>
+                        {/* Bubble */}
+                        <div className="flex-1 min-w-0">
+                          <div className="mb-1.5 flex items-center gap-2">
+                            <span className="text-xs font-semibold site-text">
+                              {isUser ? 'You' : 'Assistant'}
+                            </span>
+                            {!isUser && (
+                              <span
+                                className="rounded-full px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-widest"
+                                style={{
+                                  background: 'var(--site-accent-glow)',
+                                  color: 'var(--site-accent)',
+                                }}
+                              >
+                                MCP
+                              </span>
+                            )}
+                            <span className="text-[10px] font-mono site-text-subtle">just now</span>
+                          </div>
+                          <div
+                            className="rounded-xl px-3.5 py-2.5 text-sm leading-relaxed site-text"
+                            style={
+                              isUser
+                                ? { background: 'transparent' }
+                                : {
+                                    background: 'color-mix(in oklab, var(--site-accent-glow) 50%, var(--site-bg-elevated))',
+                                    boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.04)',
+                                  }
+                            }
+                          >
+                            {m.text}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-[11px] font-mono uppercase tracking-widest site-text-subtle mb-1">
-                          {m.role === 'user' ? 'You' : 'Assistant'}
-                        </p>
-                        <p className="text-sm leading-relaxed site-text">{m.text}</p>
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  })}
 
                   {/* Tool call panel — only when active */}
                   {activeStep >= 1 && (
-                    <div className="ml-10">
+                    <div className="ml-11">
                       <McpToolCall state={toolState} onRetry={() => toolState.reset()} />
+                    </div>
+                  )}
+
+                  {/* Typing indicator while running */}
+                  {activeStep === 2 && (
+                    <div className="ml-11 flex items-center gap-2 text-xs site-text-subtle">
+                      <span className="flex gap-1">
+                        <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: 'var(--site-accent)' }} />
+                        <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: 'var(--site-accent)', animationDelay: '0.2s' }} />
+                        <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: 'var(--site-accent)', animationDelay: '0.4s' }} />
+                      </span>
+                      <span>Calling search_files…</span>
                     </div>
                   )}
                 </div>

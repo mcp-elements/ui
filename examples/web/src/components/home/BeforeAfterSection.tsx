@@ -1,4 +1,4 @@
-import { Minus, Plus } from 'lucide-react'
+import { codeToHtml } from 'shiki'
 
 const BEFORE = `// Build a tool-call card from scratch
 import { useState, useEffect } from 'react'
@@ -39,133 +39,170 @@ import { McpToolCall } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
 
 const state = createToolState()
-state.start({ tool: 'search_files', args: { path: '/src' } })
+state.start({
+  tool: 'search_files',
+  args: { path: '/src' },
+})
 
 <McpToolCall state={state} onRetry={() => state.reset()} />`
 
-export function BeforeAfterSection() {
+export async function BeforeAfterSection() {
+  const [beforeHtml, afterHtml] = await Promise.all([
+    codeToHtml(BEFORE, {
+      lang: 'tsx',
+      themes: { dark: 'github-dark-dimmed', light: 'github-light' },
+      defaultColor: false,
+    }),
+    codeToHtml(AFTER, {
+      lang: 'tsx',
+      themes: { dark: 'github-dark-dimmed', light: 'github-light' },
+      defaultColor: false,
+    }),
+  ])
+
   return (
     <section className="site-section site-section-divider relative overflow-hidden">
-      <div className="site-container">
-        <div className="mb-12 max-w-2xl">
+      {/* Subtle accent wash, biased to the "after" side */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[-10%] top-[10%] h-[500px] w-[700px] rounded-full blur-[140px]"
+        style={{ background: 'var(--site-accent-glow)', opacity: 0.7 }}
+      />
+
+      <div className="site-container relative">
+        <div className="mb-12 max-w-3xl">
           <p className="site-eyebrow mb-3">Before / after</p>
           <h2 className="site-h2">
             Less code.{' '}
             <span className="site-text-muted">Same product.</span>
           </h2>
           <p className="site-lede mt-4">
-            The tool-call card alone is a week of work — state machine, accessibility, theme tokens, retry logic, six render states. You can hand-roll it, or you can drop in a component.
+            The tool-call card alone is a week of work — state machine, accessibility, theme tokens, retry logic, six render states.
+            You can hand-roll it, or you can drop in a component.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-5">
-          {/* Before */}
-          <article
-            className="relative overflow-hidden rounded-2xl"
-            style={{
-              border: '1px solid var(--site-border)',
-              background: 'var(--site-bg-elevated)',
-              boxShadow: 'var(--shadow-sm)',
-            }}
-          >
-            <header
-              className="flex items-center justify-between px-5 py-3"
-              style={{ borderBottom: '1px solid var(--site-border)' }}
-            >
-              <div className="flex items-center gap-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr] lg:gap-6">
+          {/* Before — dimmed, slightly faded */}
+          <article className="site-codeblock relative overflow-hidden">
+            <header className="site-codeblock-header">
+              <div className="flex items-center gap-2 min-w-0">
                 <span
-                  className="flex h-5 w-5 items-center justify-center rounded-full"
-                  style={{ background: 'oklch(0.62 0.22 25 / 0.18)', color: 'var(--site-error)' }}
+                  className="flex h-5 w-5 items-center justify-center rounded-full shrink-0"
+                  style={{ background: 'oklch(0.66 0.22 25 / 0.18)', color: 'var(--site-error)' }}
+                  aria-hidden
                 >
-                  <Minus className="h-3 w-3" strokeWidth={3} />
+                  <svg viewBox="0 0 14 14" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M2 7h10" strokeLinecap="round" />
+                  </svg>
                 </span>
-                <p className="text-sm font-semibold site-text">Without mcp-elements</p>
+                <span className="text-sm font-semibold site-text">Without mcp-elements</span>
+                <code className="site-codeblock-lang ml-1">tsx</code>
               </div>
-              <span
-                className="rounded px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider"
-                style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)', color: 'var(--site-text-subtle)' }}
-              >
-                47 lines · 1 component
+              <span className="text-[11px] font-mono uppercase tracking-[0.15em] site-text-subtle">
+                47 lines · still incomplete
               </span>
             </header>
-            <pre
-              className="overflow-x-auto p-5 font-mono text-[12px] leading-[1.7]"
-              style={{ background: 'var(--site-bg)', color: 'var(--site-text-muted)' }}
-            >
-              <code>{BEFORE}</code>
-            </pre>
-          </article>
-
-          {/* After */}
-          <article
-            className="relative overflow-hidden rounded-2xl"
-            style={{
-              border: '1px solid var(--site-accent)',
-              background: 'var(--site-bg-elevated)',
-              boxShadow: 'var(--shadow-glow)',
-            }}
-          >
-            <header
-              className="flex items-center justify-between px-5 py-3"
-              style={{ borderBottom: '1px solid var(--site-border)' }}
-            >
-              <div className="flex items-center gap-2">
-                <span
-                  className="flex h-5 w-5 items-center justify-center rounded-full"
-                  style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)' }}
-                >
-                  <Plus className="h-3 w-3" strokeWidth={3} />
-                </span>
-                <p className="text-sm font-semibold site-text">With mcp-elements</p>
-              </div>
-              <span
-                className="rounded px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider"
-                style={{ background: 'var(--site-accent-glow)', border: '1px solid var(--site-accent)', color: 'var(--site-accent)' }}
-              >
-                6 lines · ready
-              </span>
-            </header>
-            <pre
-              className="overflow-x-auto p-5 font-mono text-[12px] leading-[1.7]"
-              style={{ background: 'var(--site-bg)', color: 'var(--site-text)' }}
-            >
-              <code>{AFTER}</code>
-            </pre>
-
-            {/* Subtle gradient accent on bottom edge */}
+            <div
+              className="site-codeblock-body shiki-host"
+              style={{ maxHeight: '520px', overflow: 'auto' }}
+              dangerouslySetInnerHTML={{ __html: beforeHtml }}
+            />
+            {/* Fade overlay at the bottom to suggest "even longer than shown" */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
               style={{
-                background:
-                  'linear-gradient(90deg, transparent, var(--site-accent), transparent)',
+                background: 'linear-gradient(180deg, transparent, var(--site-bg-elevated))',
               }}
+            />
+          </article>
+
+          {/* After — accent-bordered glow */}
+          <article
+            className="relative overflow-hidden rounded-[var(--radius-lg)]"
+            style={{
+              background: 'var(--site-bg-elevated)',
+              boxShadow: 'var(--shadow-glow)',
+              isolation: 'isolate',
+            }}
+          >
+            {/* Gradient border via mask */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[inherit]"
+              style={{
+                padding: '1px',
+                background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2), transparent 70%)',
+                WebkitMask:
+                  'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+                WebkitMaskComposite: 'xor',
+                maskComposite: 'exclude' as any,
+                zIndex: 1,
+              }}
+            />
+            <header className="site-codeblock-header relative z-[2]">
+              <div className="flex items-center gap-2 min-w-0">
+                <span
+                  className="flex h-5 w-5 items-center justify-center rounded-full shrink-0"
+                  style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)' }}
+                  aria-hidden
+                >
+                  <svg viewBox="0 0 14 14" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M7 2v10M2 7h10" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <span className="text-sm font-semibold site-text">With mcp-elements</span>
+                <code className="site-codeblock-lang ml-1">tsx</code>
+              </div>
+              <span
+                className="text-[11px] font-mono uppercase tracking-[0.15em] rounded-md px-2 py-0.5"
+                style={{
+                  background: 'var(--site-accent-glow)',
+                  color: 'var(--site-accent)',
+                }}
+              >
+                7 lines · ready
+              </span>
+            </header>
+            <div
+              className="site-codeblock-body shiki-host relative z-[2]"
+              dangerouslySetInnerHTML={{ __html: afterHtml }}
             />
           </article>
         </div>
 
-        {/* Bullets below the comparison */}
-        <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+        {/* Stats row — bigger, more confident */}
+        <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[
-            { stat: '88%', label: 'less code per component' },
-            { stat: '7', label: 'MCP components shipped, not rebuilt' },
-            { stat: '0', label: 'runtime dependencies — you own the source' },
+            { stat: '88%', label: 'less code per component', accent: false },
+            { stat: '7', label: 'MCP components shipped, not rebuilt', accent: true },
+            { stat: '0', label: 'runtime dependencies — you own the source', accent: false },
           ].map((item) => (
-            <li
+            <div
               key={item.label}
-              className="flex items-baseline gap-3 rounded-xl px-4 py-3"
-              style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}
+              className="site-card flex items-end gap-4 px-5 py-4"
             >
               <span
-                className="font-bold tracking-tight site-text-accent"
-                style={{ fontSize: '1.5rem', letterSpacing: '-0.02em' }}
+                className="font-bold leading-none"
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+                  letterSpacing: '-0.04em',
+                  background: item.accent
+                    ? 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))'
+                    : 'transparent',
+                  WebkitBackgroundClip: item.accent ? 'text' : undefined,
+                  WebkitTextFillColor: item.accent ? 'transparent' : undefined,
+                  backgroundClip: item.accent ? 'text' : undefined,
+                  color: item.accent ? undefined : 'var(--site-text)',
+                }}
               >
                 {item.stat}
               </span>
-              <span className="text-sm site-text-muted">{item.label}</span>
-            </li>
+              <span className="text-sm leading-snug site-text-muted pb-1">{item.label}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )
