@@ -1,0 +1,51 @@
+@layer components {
+  .mcpe-mcp-consent-dialog-server {
+    @apply flex items-center gap-3 pb-4;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mcpe-mcp-consent-dialog-icon {
+    @apply h-10 w-10 rounded-lg overflow-hidden flex items-center justify-center text-lg font-bold shrink-0;
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  .mcpe-mcp-consent-dialog-server-name {
+    @apply font-semibold text-base;
+  }
+
+  .mcpe-mcp-consent-dialog-server-meta {
+    @apply text-xs;
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-consent-dialog-scopes {
+    @apply flex flex-col gap-2 py-3;
+  }
+
+  .mcpe-mcp-consent-dialog-scope-item {
+    @apply flex items-start gap-2 rounded-lg p-3;
+    background-color: var(--color-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .mcpe-mcp-consent-dialog-scope-resource {
+    @apply font-mono text-xs font-semibold;
+    color: var(--color-primary);
+  }
+
+  .mcpe-mcp-consent-dialog-scope-perms {
+    @apply flex flex-wrap gap-1 mt-0.5;
+  }
+
+  .mcpe-mcp-consent-dialog-scope-perm {
+    @apply rounded px-1.5 py-0.5 text-[10px] font-medium font-mono uppercase;
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+  }
+
+  .mcpe-mcp-consent-dialog-actions {
+    @apply flex gap-2 pt-2;
+    border-top: 1px solid var(--color-border);
+  }
+}

@@ -6,3 +6,6 @@ export type { McpToolCallProps } from './mcp-tool-call'
 
 export { McpToolForm } from './mcp-tool-form'
 export type { McpToolFormProps } from './mcp-tool-form'
+
+export { McpConsentDialog } from './mcp-consent-dialog'
+export type { McpConsentDialogProps } from './mcp-consent-dialog'
