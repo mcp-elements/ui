@@ -20,11 +20,19 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - Frameworks at launch: **React + Angular + Vue**
 
 **Status**:
-- ✅ Plan 1 (rename) executed + merged to main — 12 commits, build green
-- 📝 Plan 2 (MCP core utilities) drafted at `docs/superpowers/plans/2026-05-21-mcp-elements-02-core.md` — NOT yet executed
-- ⏳ Plans 3-6 to be drafted
+- ✅ Plan 1 (rename) — merged to main
+- ✅ Plan 2 (MCP core utilities) — 6 modules + 46 tests, merged
+- ✅ Plan 3a (site foundation) — `examples/web/` Next.js 15 site, merged
+- ✅ Plan 3c (MCP React components) — 7 components, merged
+- ✅ Plan 3b (component docs pages) — 38 routes, merged
+- ✅ Plan 3d (MCP site + playground + themes) — 3 routes, merged
+- ✅ Stage E8 (React MCP hooks) — 4 hooks, merged
+- ✅ Stage C (Vue adapter) — 10 base components, merged
+- ✅ Stage F (Angular MCP components) — 7 components, merged
+- ⏳ Stage G (Vue MCP components) — deferred to Phase 2
+- ⏳ Stage I (launch) — pending: npm publish v0.1.0, blog post, Show HN
 
-**Next concrete step**: draft + execute Plan 3 — MCP × React (7 React components + 4 hooks using `@mcp-elements/core/mcp/*`).
+**Next concrete step**: Stage I launch sequence — npm publish v0.1.0 across all `@mcp-elements/*` scoped packages, then announcement posts.
 
 ---
 
