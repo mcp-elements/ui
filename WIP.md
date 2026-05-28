@@ -1,6 +1,6 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: Plan 3c (MCP React components) complete on `feat/mcp-react-components`. Build green. Next: Plan 3b (component docs pages) or Plan 3d (MCP site pages + playground).
+**Status**: All Stage E (React MCP), Stage E8 (React hooks), Stage F (Angular MCP), Stage C (Vue adapter bootstrap), Plan 3b (docs pages), Plan 3d (MCP site pages) complete. Build green. 46 static routes. Next: Stage I (launch — npm publish, blog post, distribution).
 **Started**: 2026-05-21
 **Last updated**: 2026-05-28
 
@@ -173,14 +173,15 @@ On branch `feat/rename-to-mcp-elements`, 11 commits (`7f5dd8f`..`7cf3264`). Buil
 - Angular `snxTooltip` (camelCase) renamed to `mcpeTooltip` — would have been missed by hyphen-only sed; agent caught it
 - `packages/core/src/{dialog,tooltip}.ts` had `snx-` DOM ID prefixes that plan grep missed — agent caught
 
-### Stage C: Vue adapter bootstrap (parallel ok with D)
-- [ ] **C1: Create `packages/vue/`** skeleton (vite + vitest + tsup, Vue 3 only)
-- [ ] **C2: Port `cn()` utility + base imports**
-- [ ] **C3: Port 10 base components** as Vue 3 SFCs:
-  - [ ] Button, Card, Dialog, Input, Textarea, Select, Tabs, Badge, Switch, Alert
-- [ ] **C4: Vue example app** in `examples/vue-app/`
-- [ ] **C5: CLI updates** — detect Vue projects in `init`, emit Vue files in `add`
-- [ ] **C6: Add Vue entries to `registry.json`**
+### Stage C: Vue adapter bootstrap (parallel ok with D) ✅ COMPLETE 2026-05-28
+On branch `feat/vue-adapter`, merged via no-ff. Build green. `packages/vue/` ships 10 Vue 3 components as `.ts` files using `defineComponent` + render functions (tsup-compatible, no `.vue` SFC files needed).
+- [x] **C1: Create `packages/vue/`** skeleton — `package.json`, `tsconfig.json`, `tsup.config.ts`
+- [x] **C2: Use `cn()` utility from `@mcp-elements/core`** (workspace dep)
+- [x] **C3: Port 10 base components** as Vue 3 `defineComponent`s:
+  - [x] Button, Card (+ Header/Title/Description/Content/Footer), Dialog (Teleport + scroll lock), Input, Textarea, Select, Tabs, Badge, Switch, Alert
+- [ ] **C4: Vue example app** in `examples/vue-app/` (deferred)
+- [ ] **C5: CLI updates** — detect Vue projects in `init`, emit Vue files in `add` (deferred)
+- [ ] **C6: Add Vue entries to `registry.json`** (deferred)
 
 ### Stage D: MCP core utilities (parallel ok with C)
 - [x] **D1: MCP types** — `packages/core/src/mcp/types.ts`
@@ -200,13 +201,17 @@ On branch `feat/mcp-react-components`, 9 commits. Build green. All 7 components 
 - [x] **E5: McpConsentDialog** (CSS + React, parseScopes + Dialog + Button)
 - [x] **E6: McpResourceBrowser** (CSS + React, Skeleton loading state)
 - [x] **E7: McpAppFrame** (CSS + React, sandboxed iframe + createAppBridge)
-- [ ] **E8: React hooks** — useMcpToolState, useMcpOAuth, useMcpAppBridge, useMcpSchemaForm
+- [x] **E8: React hooks** — useMcpToolState, useMcpOAuth, useMcpAppBridge (ref pattern for stable inline callbacks), useMcpSchemaForm (useCallback stable refs) ✅ 2026-05-28
 
-### Stage F: MCP components × Angular (parallel ok with E, after D)
-- [ ] Same 7 components as Angular standalone components + services
+### Stage F: MCP components × Angular (parallel ok with E, after D) ✅ COMPLETE 2026-05-28
+On branch `feat/angular-mcp`, merged via no-ff. Build green. 7 Angular 19 standalone components in `packages/angular/src/mcp/` using signals + effect() for state subscriptions.
+- [x] All 7 Mcp components: ServerStatus, ToolCall, ToolForm (typed event handlers, no `$any()`), ConsentDialog, ScopeInspector, ResourceBrowser, AppFrame
+- [x] All use `McpeXxx` class naming + `mcpe-mcp-*` selectors
+- [x] Barrel export wired via `export * from './mcp'` in `packages/angular/src/index.ts`
+- [ ] **F8: Angular services** — equivalents of React hooks (deferred to Phase 1.5)
 
 ### Stage G: MCP components × Vue (after C + D)
-- [ ] Same 7 components as Vue 3 SFCs + composables
+- [ ] Same 7 components as Vue 3 SFCs + composables (deferred — base 10 done in Stage C)
 
 ### Stage H: Website + Docs (replaces old Astro/Starlight site)
 
@@ -217,20 +222,26 @@ On branch `feat/web-site-foundation`, 9 commits. Build green. Routes: `/`, `/com
 - [x] **H-W3: Homepage** — hero (animated HeroToolCallDemo), proof strip, 6-card features, 12-card bento showcase, MCP section, framework tabs, copy-paste CTA, footer
 - [x] **H-W4: Component browser** — `/components` page with 38-entry registry, search + category filter, ComponentCard grid
 
-#### Plan 3b: Component Docs Pages (to do)
-- [ ] MDX setup + `/components/[slug]` layout (3-column: sidebar / content / TOC)
-- [ ] 31 base component doc pages
-- [ ] 7 MCP component doc pages
+#### Plan 3b: Component Docs Pages ✅ COMPLETE 2026-05-28
+On branch `feat/docs-component-pages`, merged. 38 routes statically generated.
+- [x] `/components/[slug]` dynamic page with `generateStaticParams()` for all 38 components
+- [x] Sidebar layout grouped by 7 categories
+- [x] Header with name + category + framework + isNew badges
+- [x] Install command, usage code block (Shiki-highlighted), props table
+- [x] 15 fully documented components in `examples/web/src/lib/component-docs.ts` (Button, Badge, Input, Dialog, Card, Alert, Tabs, Skeleton + all 7 MCP)
+- [x] InstallCommand updated to accept optional `slug` prop
+- [ ] Remaining 23 components have "coming soon" fallback — content TBD
 
 #### Plan 3c: MCP React Components ✅ COMPLETE 2026-05-28
 On branch `feat/mcp-react-components`, 9 commits. Build green. All 7 MCP components shipped + barrel export wired.
 - [x] 7 components in `packages/react/src/mcp/` + CSS in `packages/css/components/mcp-*.css`
 - [x] Uses `@mcp-elements/core` state machines (createToolState, parseScopes, schemaToFields, createAppBridge)
 
-#### Plan 3d: MCP site pages + Playground + Themes (to do)
-- [ ] `/mcp` showcase page + `/mcp/[slug]` docs
-- [ ] `/playground` (Sandpack)
-- [ ] `/themes` page
+#### Plan 3d: MCP site pages + Playground + Themes ✅ COMPLETE 2026-05-28
+On branch `feat/mcp-site-pages`, merged. All 3 routes static-rendered.
+- [x] `/mcp` showcase page — hero, 4-step protocol flow (Connect/Authenticate/Execute/Render) linking to component docs, 7-MCP-component grid, quick start CodeBlock
+- [x] `/playground` — 5 tabbed examples (Server Status, Tool Call, Tool Form, Scope Inspector, Consent Dialog) with copy button (Sandpack deferred — tabbed code playground works without it)
+- [x] `/themes` — 4 OKLCH theme swatches (Dark, Midnight, Forest, Light) + CSS vars reference block
 
 ### Stage I: Launch
 - [ ] **I1: Publish v0.1.0** packages to npm under new scope
@@ -378,3 +389,5 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-28 | Stage D (MCP core utilities) complete | 6 modules + 46 tests on feat/mcp-core-utilities. Merged to main. |
 | 2026-05-28 | Plan 3a (site foundation) complete | `examples/web/` Next.js 15 site: homepage (7 sections, animated hero), component browser (38 components, search+filter), shared site components (SiteNav, SiteFooter, CodeBlock, InstallCommand). Build green on `feat/web-site-foundation`. |
 | 2026-05-28 | Plan 3c (MCP React components) complete | 7 MCP components: McpServerStatus, McpToolCall, McpToolForm, McpConsentDialog, McpScopeInspector, McpResourceBrowser, McpAppFrame. Each has CSS + React. All use `@mcp-elements/core` state machines. Barrel export wired. Build green on `feat/mcp-react-components`. |
+| 2026-05-28 | 5 parallel streams executed via git worktrees | Stage E8 (React hooks), Stage C (Vue adapter), Stage F (Angular MCP), Plan 3b (docs pages), Plan 3d (MCP site pages) — all built and merged same day. Worktrees live in `.worktrees/` (gitignored). Strategy: dispatch independent agents in parallel, run spec+quality reviews in parallel with next implementer, fix issues before merge. |
+| 2026-05-28 | Adopted worktree-parallel-development strategy | 5 streams × ~250kB diff merged cleanly via `git merge --no-ff` (one auto-generated `next-env.d.ts` needed to be untracked + gitignored). No human-blocking conflicts. All reviewers caught real issues (HTMLAttributes spread, useCallback stability, $any() in templates, missing class prop). Builds: 46 static pages, all 4 packages green. |
