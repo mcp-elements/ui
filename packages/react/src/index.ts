@@ -95,3 +95,11 @@ export type { FeedbackButtonProps } from './feedback'
 
 // MCP components
 export * from './mcp'
+
+// MCP hooks
+export { useMcpToolState } from './hooks/use-mcp-tool-state'
+export { useMcpOAuth } from './hooks/use-mcp-oauth'
+export type { UseMcpAppBridgeOptions, UseMcpAppBridgeReturn } from './hooks/use-mcp-app-bridge'
+export { useMcpAppBridge } from './hooks/use-mcp-app-bridge'
+export type { UseMcpSchemaFormReturn } from './hooks/use-mcp-schema-form'
+export { useMcpSchemaForm } from './hooks/use-mcp-schema-form'
