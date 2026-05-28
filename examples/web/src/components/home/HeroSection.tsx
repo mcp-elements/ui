@@ -79,7 +79,7 @@ export function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
-              <Link href="/components" className="site-btn site-btn-primary">
+              <Link href="/components" className="site-btn site-btn-accent">
                 Browse 38 components
                 <ArrowRight className="h-4 w-4" />
               </Link>

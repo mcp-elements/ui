@@ -123,32 +123,42 @@ export function FlagshipScene() {
           </p>
         </div>
 
-        {/* Fake browser frame */}
-        <div
-          className="relative overflow-hidden rounded-2xl"
-          style={{
-            border: '1px solid var(--site-border-strong)',
-            background: 'var(--site-bg-elevated)',
-            boxShadow: 'var(--shadow-lg)',
-          }}
-        >
-          {/* Browser chrome */}
+        {/* App frame — gradient-bordered glass panel, no hard 1px line */}
+        <div className="site-frame">
+          {/* App chrome — no traffic lights, just a sleek address bar */}
           <div
-            className="flex items-center gap-3 px-4 py-3"
-            style={{ borderBottom: '1px solid var(--site-border)', background: 'var(--site-bg-subtle)' }}
+            className="relative flex items-center gap-3 px-5 py-3.5"
+            style={{
+              borderBottom: '1px solid var(--site-border)',
+              background: 'linear-gradient(180deg, color-mix(in oklab, var(--site-bg-subtle) 80%, transparent), transparent)',
+            }}
           >
-            <div className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-full" style={{ background: 'var(--site-error)', opacity: 0.7 }} />
-              <span className="h-3 w-3 rounded-full" style={{ background: 'var(--site-warning)', opacity: 0.7 }} />
-              <span className="h-3 w-3 rounded-full" style={{ background: 'var(--site-success)', opacity: 0.7 }} />
+            <div className="flex items-center gap-2">
+              <span
+                className="flex h-7 w-7 items-center justify-center rounded-lg text-[10px] font-bold"
+                style={{
+                  background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                  color: 'oklch(1 0 0)',
+                  boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
+                }}
+                aria-hidden
+              >
+                M
+              </span>
+              <span className="font-mono text-xs uppercase tracking-widest site-text-subtle">studio</span>
             </div>
             <div
-              className="flex flex-1 items-center gap-2 rounded-md px-3 py-1.5 text-xs font-mono site-text-subtle"
-              style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}
+              className="flex flex-1 items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-mono"
+              style={{
+                background: 'color-mix(in oklab, var(--site-bg) 60%, transparent)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                color: 'var(--site-text-muted)',
+              }}
             >
               <span style={{ color: 'var(--site-success)' }}>●</span>
-              mcp-studio.app
-              <span className="site-text-subtle">/workspace</span>
+              <span className="site-text-subtle">mcp-studio.app</span>
+              <span className="site-text">/workspace</span>
             </div>
             <div className="hidden sm:flex">
               <McpServerStatus status="connected" serverName="github-mcp" />
@@ -160,7 +170,7 @@ export function FlagshipScene() {
             {/* Left rail — Resource browser */}
             <aside
               className="hidden lg:flex flex-col gap-4 p-4"
-              style={{ borderRight: '1px solid var(--site-border)', background: 'var(--site-bg-elevated)' }}
+              style={{ borderRight: '1px solid var(--site-border)' }}
             >
               <div className="flex items-center justify-between">
                 <p className="site-eyebrow">Resources</p>
@@ -216,18 +226,17 @@ export function FlagshipScene() {
               {/* Composer (decorative) */}
               <div
                 className="flex items-end gap-2 p-4"
-                style={{ borderTop: '1px solid var(--site-border)', background: 'var(--site-bg-elevated)' }}
+                style={{ borderTop: '1px solid var(--site-border)' }}
               >
                 <div
-                  className="flex-1 rounded-lg px-3 py-2.5 text-sm site-text-subtle"
-                  style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}
+                  className="flex-1 rounded-xl px-4 py-2.5 text-sm site-text-subtle"
+                  style={{ background: 'color-mix(in oklab, var(--site-bg-subtle) 70%, transparent)' }}
                 >
                   Ask anything about your codebase…
                 </div>
                 <button
                   type="button"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg transition-opacity hover:opacity-90"
-                  style={{ background: 'var(--site-accent)', color: 'var(--site-bg)' }}
+                  className="site-btn site-btn-accent h-10 w-10 !p-0"
                   aria-label="Send"
                 >
                   <ArrowUp className="h-4 w-4" />
@@ -238,7 +247,7 @@ export function FlagshipScene() {
             {/* Right rail — scopes + activity */}
             <aside
               className="hidden lg:flex flex-col gap-5 p-4"
-              style={{ borderLeft: '1px solid var(--site-border)', background: 'var(--site-bg-elevated)' }}
+              style={{ borderLeft: '1px solid var(--site-border)' }}
             >
               <div>
                 <div className="mb-2.5 flex items-center justify-between">
@@ -252,8 +261,14 @@ export function FlagshipScene() {
               </div>
 
               {/* Activity meter (decorative — adds life) */}
-              <div className="mt-auto rounded-lg p-3" style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}>
-                <div className="mb-2 flex items-center justify-between">
+              <div
+                className="mt-auto rounded-xl p-3.5"
+                style={{
+                  background: 'color-mix(in oklab, var(--site-bg-subtle) 60%, transparent)',
+                  boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.04)',
+                }}
+              >
+                <div className="mb-2.5 flex items-center justify-between">
                   <p className="site-eyebrow">Activity</p>
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-success)', boxShadow: '0 0 8px var(--site-success)' }} />
                 </div>
@@ -285,12 +300,13 @@ export function FlagshipScene() {
             className="absolute right-4 top-16 hidden sm:flex items-center gap-2 rounded-full px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider"
             style={{
               background: 'var(--site-bg-overlay)',
-              border: '1px solid var(--site-border-strong)',
+              backdropFilter: 'saturate(180%) blur(12px)',
+              WebkitBackdropFilter: 'saturate(180%) blur(12px)',
               color: 'var(--site-text-subtle)',
-              backdropFilter: 'blur(8px)',
+              boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.06)',
             }}
           >
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-success)' }} />
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-success)', boxShadow: '0 0 6px var(--site-success)' }} />
             Live · step {activeStep + 1} of 4
           </div>
         </div>
@@ -305,10 +321,9 @@ export function FlagshipScene() {
           ].map((c) => (
             <div
               key={c.name}
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-xs"
-              style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}
+              className="site-card flex items-center gap-3 px-3.5 py-2.5 text-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-accent)' }} />
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-accent)', boxShadow: '0 0 6px var(--site-accent-glow)' }} />
               <code className="font-mono font-semibold site-text">{c.name}</code>
               <span className="ml-auto site-text-subtle">{c.loc}</span>
             </div>

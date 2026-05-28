@@ -47,59 +47,95 @@
    ============================================= */
 
 :root {
-  --site-bg:           oklch(0.06 0.005 286);
-  --site-bg-elevated:  oklch(0.10 0.007 286);
-  --site-bg-subtle:    oklch(0.13 0.007 286);
-  --site-bg-overlay:   oklch(0.08 0.006 286 / 0.85);
-  --site-border:       oklch(0.18 0.008 286);
-  --site-border-strong:oklch(0.26 0.010 286);
-  --site-border-focus: oklch(0.637 0.174 265);
-  --site-text:         oklch(0.95 0 0);
-  --site-text-muted:   oklch(0.65 0.012 286);
-  --site-text-subtle:  oklch(0.45 0.010 286);
-  --site-accent:       oklch(0.637 0.174 265);
-  --site-accent-dim:   oklch(0.45 0.15 265);
-  --site-accent-glow:  oklch(0.637 0.174 265 / 0.12);
-  --site-success:      oklch(0.72 0.17 145);
-  --site-warning:      oklch(0.82 0.18 85);
-  --site-error:        oklch(0.62 0.22 25);
+  --site-bg:           oklch(0.10 0.012 280);          /* slightly tinted, not pure dark */
+  --site-bg-elevated:  oklch(0.135 0.014 280);
+  --site-bg-subtle:    oklch(0.16 0.015 280);
+  --site-bg-overlay:   oklch(0.10 0.012 280 / 0.72);
 
-  /* Depth scale — soft, dark-aware */
-  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.30);
-  --shadow-sm: 0 2px 4px -1px oklch(0 0 0 / 0.30), 0 1px 2px 0 oklch(0 0 0 / 0.18);
-  --shadow-md: 0 8px 16px -4px oklch(0 0 0 / 0.40), 0 4px 8px -2px oklch(0 0 0 / 0.22);
-  --shadow-lg: 0 16px 32px -8px oklch(0 0 0 / 0.50), 0 8px 16px -4px oklch(0 0 0 / 0.25);
-  --shadow-glow: 0 0 0 1px var(--site-accent-glow), 0 8px 24px -6px var(--site-accent-glow);
+  /* Borders that read as light edges, not hard lines */
+  --site-border:       oklch(1 0 0 / 0.07);            /* near-invisible separator */
+  --site-border-strong:oklch(1 0 0 / 0.12);            /* visible only on focus/hover */
+  --site-border-focus: oklch(0.70 0.18 265);
+  --site-edge-highlight: linear-gradient(180deg, oklch(1 0 0 / 0.06), oklch(1 0 0 / 0) 60%);
+
+  --site-text:         oklch(0.97 0 0);
+  --site-text-muted:   oklch(0.72 0.012 280);
+  --site-text-subtle:  oklch(0.50 0.010 280);
+
+  --site-accent:       oklch(0.68 0.19 265);
+  --site-accent-2:     oklch(0.74 0.18 295);            /* secondary hue for gradients */
+  --site-accent-dim:   oklch(0.45 0.15 265);
+  --site-accent-glow:  oklch(0.68 0.19 265 / 0.18);
+
+  --site-success:      oklch(0.75 0.17 150);
+  --site-warning:      oklch(0.84 0.18 85);
+  --site-error:        oklch(0.66 0.22 25);
+
+  /* Radii — bigger, modern */
+  --radius-xs: 0.375rem;     /*  6px */
+  --radius-sm: 0.5rem;       /*  8px */
+  --radius-md: 0.75rem;      /* 12px */
+  --radius-lg: 1.125rem;     /* 18px */
+  --radius-xl: 1.5rem;       /* 24px */
+  --radius-2xl: 2rem;        /* 32px */
+
+  /* Shadows — warmer, directional from top-left like real light */
+  --shadow-xs: 0 1px 1px 0 oklch(0 0 0 / 0.30);
+  --shadow-sm:
+    0 1px 2px 0 oklch(0 0 0 / 0.28),
+    0 2px 6px -2px oklch(0 0 0 / 0.20);
+  --shadow-md:
+    0 4px 8px -3px oklch(0 0 0 / 0.32),
+    0 10px 20px -6px oklch(0 0 0 / 0.28);
+  --shadow-lg:
+    0 10px 20px -6px oklch(0 0 0 / 0.40),
+    0 24px 48px -12px oklch(0 0 0 / 0.45);
+  --shadow-glow:
+    0 0 0 1px oklch(0.68 0.19 265 / 0.30),
+    0 10px 40px -8px oklch(0.68 0.19 265 / 0.35);
 
   /* Motion */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 120ms;
-  --duration-base: 180ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
 
   color-scheme: dark;
 }
 
 [data-theme="light"] {
-  --site-bg:           oklch(1 0 0);
-  --site-bg-elevated:  oklch(0.985 0.002 286);
-  --site-bg-subtle:    oklch(0.96 0.003 286);
-  --site-bg-overlay:   oklch(1 0 0 / 0.85);
-  --site-border:       oklch(0.91 0.005 286);
-  --site-border-strong:oklch(0.84 0.006 286);
-  --site-border-focus: oklch(0.50 0.15 265);
-  --site-text:         oklch(0.12 0.005 286);
-  --site-text-muted:   oklch(0.42 0.012 286);
-  --site-text-subtle:  oklch(0.58 0.010 286);
-  --site-accent:       oklch(0.50 0.174 265);
-  --site-accent-dim:   oklch(0.40 0.15 265);
-  --site-accent-glow:  oklch(0.50 0.174 265 / 0.10);
+  --site-bg:           oklch(0.99 0.002 280);
+  --site-bg-elevated:  oklch(1 0 0);
+  --site-bg-subtle:    oklch(0.97 0.003 280);
+  --site-bg-overlay:   oklch(1 0 0 / 0.72);
 
-  /* Soft, daylight shadows */
+  --site-border:       oklch(0 0 0 / 0.07);
+  --site-border-strong:oklch(0 0 0 / 0.12);
+  --site-border-focus: oklch(0.55 0.17 265);
+  --site-edge-highlight: linear-gradient(180deg, oklch(1 0 0 / 0.7), oklch(1 0 0 / 0) 60%);
+
+  --site-text:         oklch(0.14 0.008 280);
+  --site-text-muted:   oklch(0.42 0.013 280);
+  --site-text-subtle:  oklch(0.60 0.010 280);
+
+  --site-accent:       oklch(0.55 0.18 265);
+  --site-accent-2:     oklch(0.60 0.18 295);
+  --site-accent-glow:  oklch(0.55 0.18 265 / 0.12);
+
+  /* Soft daylight shadows */
   --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.04);
-  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.06), 0 1px 3px 0 oklch(0 0 0 / 0.06);
-  --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.06), 0 2px 4px -2px oklch(0 0 0 / 0.06);
-  --shadow-lg: 0 10px 24px -6px oklch(0 0 0 / 0.10), 0 4px 8px -4px oklch(0 0 0 / 0.06);
-  --shadow-glow: 0 0 0 1px var(--site-accent-glow), 0 8px 24px -6px var(--site-accent-glow);
+  --shadow-sm:
+    0 1px 2px 0 oklch(0 0 0 / 0.04),
+    0 2px 6px -2px oklch(0 0 0 / 0.06);
+  --shadow-md:
+    0 4px 8px -3px oklch(0 0 0 / 0.06),
+    0 12px 24px -8px oklch(0 0 0 / 0.10);
+  --shadow-lg:
+    0 12px 24px -8px oklch(0 0 0 / 0.10),
+    0 30px 60px -16px oklch(0 0 0 / 0.14);
+  --shadow-glow:
+    0 0 0 1px oklch(0.55 0.18 265 / 0.20),
+    0 14px 40px -10px oklch(0.55 0.18 265 / 0.20);
 
   color-scheme: light;
 }
@@ -136,17 +172,7 @@ body {
   .site-container { padding-inline: 1rem; }
 }
 
-/* Section rhythm — every top-level marketing section pads 96px top/bottom.
-   Use .site-section-tight (80px) for denser content. */
-.site-section {
-  padding-block: 6rem;
-}
-.site-section-tight {
-  padding-block: 5rem;
-}
-.site-section-divider {
-  border-top: 1px solid var(--site-border);
-}
+/* Section rhythm — defined further down with modern overrides */
 
 /* =============================================
    Typography hierarchy — five levels
@@ -228,40 +254,124 @@ body {
    Surfaces — cards, panels
    ============================================= */
 
+/* Modern card — soft glow inset highlight instead of hard 1px border.
+   The top edge has a faint white-to-transparent gradient that reads like
+   light hitting a real surface. The border itself is so faint it could
+   pass for none. */
 .site-card {
+  position: relative;
   background-color: var(--site-bg-elevated);
   border: 1px solid var(--site-border);
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   transition: border-color var(--duration-base) var(--ease-out-soft),
               box-shadow var(--duration-base) var(--ease-out-soft),
               transform var(--duration-base) var(--ease-out-soft);
 }
-.site-card-interactive {
-  cursor: pointer;
+.site-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--site-edge-highlight);
+  pointer-events: none;
+  z-index: 0;
 }
+.site-card > * { position: relative; z-index: 1; }
+.site-card-interactive { cursor: pointer; }
 .site-card-interactive:hover {
   border-color: var(--site-border-strong);
   box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .site-panel {
+  position: relative;
   background-color: var(--site-bg-elevated);
   border: 1px solid var(--site-border);
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
 }
+.site-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--site-edge-highlight);
+  pointer-events: none;
+  z-index: 0;
+}
 
-/* Hairline grid — used in mosaic layouts (Showcase, FeatureCards, MCP flow).
-   Children use bg-[var(--site-bg-elevated)] to reveal the underlying border. */
+/* Modern hairline grid — the separators are 0.5px-equivalent via opacity
+   so the divisions read as folds, not lines. */
 .site-mosaic {
   background: var(--site-border);
   border: 1px solid var(--site-border);
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   display: grid;
   gap: 1px;
+}
+
+/* A "frame" — used for the FlagshipScene browser window and any big
+   panel that needs a real container with a gradient border instead of
+   a hard rule. */
+.site-frame {
+  position: relative;
+  background-color: var(--site-bg-elevated);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  isolation: isolate;
+}
+.site-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg,
+    oklch(1 0 0 / 0.16),
+    oklch(1 0 0 / 0.04) 30%,
+    oklch(1 0 0 / 0) 60%,
+    oklch(1 0 0 / 0.06));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+[data-theme="light"] .site-frame::before {
+  background: linear-gradient(180deg,
+    oklch(0 0 0 / 0.10),
+    oklch(0 0 0 / 0.04) 30%,
+    oklch(0 0 0 / 0) 60%,
+    oklch(0 0 0 / 0.06));
+}
+
+/* Section spacing — slightly more generous on big screens */
+.site-section { padding-block: 5rem; }
+.site-section-tight { padding-block: 4rem; }
+@media (min-width: 1024px) {
+  .site-section { padding-block: 7rem; }
+  .site-section-tight { padding-block: 5.5rem; }
+}
+
+/* Replace the harsh divider with a faded gradient line */
+.site-section-divider {
+  border-top: none;
+  position: relative;
+}
+.site-section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  width: min(100%, 1280px);
+  background: linear-gradient(90deg, transparent, var(--site-border-strong), transparent);
 }
 
 /* =============================================
@@ -269,13 +379,14 @@ body {
    ============================================= */
 
 .site-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 2.5rem;            /* 40 */
-  padding-inline: 1.125rem;
-  border-radius: 0.5rem;
+  height: 2.625rem;          /* 42 */
+  padding-inline: 1.25rem;
+  border-radius: 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.005em;
@@ -283,33 +394,46 @@ body {
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: background-color var(--duration-fast) var(--ease-out-soft),
+  border: 1px solid transparent;
+  transition: background var(--duration-fast) var(--ease-out-soft),
               border-color var(--duration-fast) var(--ease-out-soft),
               color var(--duration-fast) var(--ease-out-soft),
               transform var(--duration-fast) var(--ease-out-soft),
               box-shadow var(--duration-fast) var(--ease-out-soft);
-  border: 1px solid transparent;
 }
 .site-btn:active { transform: translateY(0.5px); }
 
+/* Primary — glassy gradient pill with inset highlight */
 .site-btn-primary {
-  background: var(--site-text);
   color: var(--site-bg);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--site-text) 100%, oklch(1 0 0) 8%),
+    var(--site-text));
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.20),
+    var(--shadow-sm);
 }
 .site-btn-primary:hover {
-  background: var(--site-text-muted);
-  box-shadow: var(--shadow-md);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.24),
+    var(--shadow-md);
+  transform: translateY(-0.5px);
 }
 
+/* Secondary — glass with light border, no hard outline */
 .site-btn-secondary {
-  background: var(--site-bg-elevated);
+  background: color-mix(in oklab, var(--site-bg-elevated) 70%, transparent);
   color: var(--site-text);
-  border-color: var(--site-border);
+  border-color: var(--site-border-strong);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .site-btn-secondary:hover {
-  background: var(--site-bg-subtle);
-  border-color: var(--site-border-strong);
+  background: var(--site-bg-elevated);
+  border-color: oklch(1 0 0 / 0.18);
+}
+[data-theme="light"] .site-btn-secondary:hover {
+  border-color: oklch(0 0 0 / 0.18);
 }
 
 .site-btn-ghost {
@@ -318,7 +442,24 @@ body {
 }
 .site-btn-ghost:hover {
   color: var(--site-text);
-  background: var(--site-bg-elevated);
+  background: color-mix(in oklab, var(--site-text) 6%, transparent);
+}
+
+/* Accent button — gradient pop for "Buy now" / "Get started" moments */
+.site-btn-accent {
+  color: oklch(1 0 0);
+  background: linear-gradient(135deg, var(--site-accent), var(--site-accent-2));
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.22),
+    0 6px 20px -6px var(--site-accent-glow),
+    var(--shadow-sm);
+}
+.site-btn-accent:hover {
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.30),
+    0 10px 28px -6px var(--site-accent-glow),
+    var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 /* =============================================
@@ -361,22 +502,31 @@ code:not(pre code) {
 .site-codeblock {
   background: var(--site-bg-elevated);
   border: 1px solid var(--site-border);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   position: relative;
+  isolation: isolate;
 }
+.site-codeblock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--site-edge-highlight);
+  pointer-events: none;
+  z-index: 0;
+}
+.site-codeblock > * { position: relative; z-index: 1; }
 
 .site-codeblock-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.5rem 0.75rem 0.5rem 1rem;
+  padding: 0.625rem 0.75rem 0.625rem 1.125rem;
   border-bottom: 1px solid var(--site-border);
-  background: linear-gradient(180deg,
-    color-mix(in oklab, var(--site-bg-elevated) 100%, transparent),
-    color-mix(in oklab, var(--site-bg-subtle) 60%, transparent));
+  background: color-mix(in oklab, var(--site-bg-subtle) 50%, transparent);
 }
 
 .site-codeblock-filename {
