@@ -22,12 +22,12 @@ import type { JsonSchema, FieldDescriptor } from '@mcp-elements/core'
             @case ('switch') {
               <input type="checkbox" [id]="field.key" class="mcpe-switch"
                 [checked]="getBool(field.key)"
-                (change)="setValue(field.key, $any($event.target).checked)" />
+                (change)="onCheckChange(field.key, $event)" />
             }
             @case ('select') {
               <select [id]="field.key" class="mcpe-select"
                 [value]="getStr(field.key)"
-                (change)="setValue(field.key, $any($event.target).value)">
+                (change)="onInputChange(field.key, $event)">
                 <option value="">Select…</option>
                 @for (opt of field.options ?? []; track opt.value) {
                   <option [value]="opt.value">{{ opt.label }}</option>
@@ -37,17 +37,17 @@ import type { JsonSchema, FieldDescriptor } from '@mcp-elements/core'
             @case ('textarea') {
               <textarea [id]="field.key" class="mcpe-textarea" rows="4"
                 [value]="getStr(field.key)"
-                (input)="setValue(field.key, $any($event.target).value)"></textarea>
+                (input)="onInputChange(field.key, $event)"></textarea>
             }
             @case ('number') {
               <input type="number" [id]="field.key" class="mcpe-input"
                 [value]="getStr(field.key)"
-                (input)="setValue(field.key, +$any($event.target).value)" />
+                (input)="onNumberChange(field.key, $event)" />
             }
             @default {
               <input [type]="inputType(field)" [id]="field.key" class="mcpe-input"
                 [value]="getStr(field.key)"
-                (input)="setValue(field.key, $any($event.target).value)" />
+                (input)="onInputChange(field.key, $event)" />
             }
           }
           @if (field.help) {
@@ -85,6 +85,18 @@ export class McpeMcpToolFormComponent implements OnInit {
 
   setValue(key: string, value: unknown) {
     this.values.update((v: Record<string, unknown>) => ({ ...v, [key]: value }))
+  }
+
+  onInputChange(key: string, event: Event) {
+    this.setValue(key, (event.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement).value)
+  }
+
+  onNumberChange(key: string, event: Event) {
+    this.setValue(key, (event.target as HTMLInputElement).valueAsNumber)
+  }
+
+  onCheckChange(key: string, event: Event) {
+    this.setValue(key, (event.target as HTMLInputElement).checked)
   }
 
   getStr(key: string): string {
