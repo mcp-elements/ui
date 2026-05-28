@@ -1,0 +1,28 @@
+@layer components {
+  .mcpe-mcp-tool-form {
+    @apply flex flex-col gap-4;
+  }
+
+  .mcpe-mcp-tool-form-field {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .mcpe-mcp-tool-form-label {
+    @apply text-sm font-medium;
+    color: var(--color-foreground);
+  }
+
+  .mcpe-mcp-tool-form-label-required::after {
+    content: ' *';
+    color: var(--color-destructive);
+  }
+
+  .mcpe-mcp-tool-form-help {
+    @apply text-xs;
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-tool-form-submit {
+    @apply mt-2;
+  }
+}
