@@ -1,0 +1,33 @@
+{
+  "name": "@mcp-elements/vue",
+  "version": "0.1.0",
+  "private": false,
+  "description": "mcp-elements Vue 3 components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@mcp-elements/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "vue": "^3.4.0",
+    "@vue/tsconfig": "^0.7.0",
+    "tsup": "^8.3.0"
+  }
+}
