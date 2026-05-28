@@ -23,13 +23,14 @@ export default function ComponentsPage() {
   )
 
   return (
-    <div className="py-16">
+    <div className="py-12">
       <div className="site-container">
-        <div className="mb-10">
-          <h1 className="text-4xl font-bold" style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
+        <div className="mb-10 max-w-2xl">
+          <p className="site-eyebrow mb-2">Library</p>
+          <h1 className="site-h1" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)' }}>
             Components
           </h1>
-          <p className="mt-3 text-base" style={{ color: 'var(--site-text-muted)' }}>
+          <p className="site-lede mt-3">
             38 components for AI applications. Copy-paste into React, Angular, or Vue.
           </p>
         </div>
@@ -37,48 +38,71 @@ export default function ComponentsPage() {
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center">
           {/* Search */}
           <div className="relative flex-1 sm:max-w-md">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
-              style={{ color: 'var(--site-text-subtle)' }} />
-            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}
+            <Search
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 site-text-subtle"
+              aria-hidden
+            />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder="Search components…"
-              className="w-full rounded-lg py-2 pl-9 pr-10 text-sm outline-none"
+              className="w-full rounded-lg py-2 pl-9 pr-10 text-sm outline-none transition-colors duration-150"
               style={{
                 backgroundColor: 'var(--site-bg-elevated)',
                 border: '1px solid var(--site-border)',
                 color: 'var(--site-text)',
-              }} />
+                boxShadow: 'var(--shadow-xs)',
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = 'var(--site-border-focus)'
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = 'var(--site-border)'
+              }}
+            />
             {query && (
-              <button onClick={() => setQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-                style={{ color: 'var(--site-text-subtle)' }} aria-label="Clear">
+              <button
+                onClick={() => setQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 site-text-subtle hover:text-[var(--site-text)] transition-colors"
+                aria-label="Clear"
+              >
                 <X className="h-4 w-4" />
               </button>
             )}
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-2">
-            {(['All', ...CATEGORIES] as Filter[]).map((cat) => (
-              <button key={cat} onClick={() => setActiveFilter(cat)}
-                className="rounded-full px-3 py-1 text-xs font-medium transition-all duration-150"
-                style={{
-                  backgroundColor: activeFilter === cat ? 'var(--site-accent)' : 'var(--site-bg-elevated)',
-                  color: activeFilter === cat ? 'oklch(1 0 0)' : 'var(--site-text-muted)',
-                  border: `1px solid ${activeFilter === cat ? 'var(--site-accent)' : 'var(--site-border)'}`,
-                }}>
-                {cat}
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-1.5">
+            {(['All', ...CATEGORIES] as Filter[]).map((cat) => {
+              const isActive = activeFilter === cat
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
+                  className="rounded-full px-3 py-1 text-xs font-medium transition-colors duration-150"
+                  style={{
+                    backgroundColor: isActive ? 'var(--site-text)' : 'var(--site-bg-elevated)',
+                    color: isActive ? 'var(--site-bg)' : 'var(--site-text-muted)',
+                    border: `1px solid ${isActive ? 'var(--site-text)' : 'var(--site-border)'}`,
+                  }}
+                >
+                  {cat}
+                </button>
+              )
+            })}
           </div>
         </div>
 
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center gap-4 py-24 text-center">
-            <p className="text-lg font-medium" style={{ color: 'var(--site-text)' }}>
+            <p className="text-lg font-medium site-text">
               No components match &ldquo;{query}&rdquo;
             </p>
-            <button onClick={() => { setQuery(''); setActiveFilter('All') }}
-              className="text-sm underline underline-offset-2" style={{ color: 'var(--site-accent)' }}>
+            <button
+              onClick={() => { setQuery(''); setActiveFilter('All') }}
+              className="site-link-accent text-sm underline underline-offset-2"
+            >
               Clear filters
             </button>
           </div>
@@ -88,7 +112,7 @@ export default function ComponentsPage() {
           </div>
         )}
 
-        <p className="mt-6 text-sm" style={{ color: 'var(--site-text-subtle)' }}>
+        <p className="mt-8 text-sm site-text-subtle">
           {filtered.length} component{filtered.length !== 1 ? 's' : ''}
           {query && ` matching "${query}"`}
           {activeFilter !== 'All' && ` in ${activeFilter}`}

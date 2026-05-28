@@ -45,7 +45,7 @@ function SwitchMini() {
   return (
     <div className="flex items-center gap-3">
       <Switch checked={true} onCheckedChange={() => {}} />
-      <span className="text-sm" style={{ color: 'var(--site-text-muted)' }}>Auto-approve</span>
+      <span className="text-sm site-text-muted">Auto-approve</span>
     </div>
   )
 }
@@ -118,38 +118,38 @@ const TILES: { slug: string; name: string; category: string; isMcp?: boolean; re
 
 export function ComponentShowcase() {
   return (
-    <section className="border-t py-24" style={{ borderColor: 'var(--site-border)', backgroundColor: 'var(--site-bg)' }}>
+    <section className="site-section site-section-divider">
       <div className="site-container">
-        <div className="mb-12 flex items-end justify-between">
+        <div className="mb-12 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-2 text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
-              The library
-            </p>
-            <h2 className="text-3xl font-bold lg:text-4xl" style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
+            <p className="site-eyebrow mb-2">The library</p>
+            <h2 className="site-h2">
               38 components.{' '}
-              <span style={{ color: 'var(--site-text-muted)' }}>All rendered live.</span>
+              <span className="site-text-muted">All rendered live.</span>
             </h2>
           </div>
-          <Link href="/components"
-            className="hidden items-center gap-1.5 text-sm font-medium sm:flex"
-            style={{ color: 'var(--site-accent)' }}>
+          <Link
+            href="/components"
+            className="site-link-accent hidden items-center gap-1.5 text-sm font-medium sm:inline-flex"
+          >
             View all <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-2xl sm:grid-cols-2 lg:grid-cols-3"
-          style={{ background: 'var(--site-border)', border: '1px solid var(--site-border)' }}>
+        <div className="site-mosaic sm:grid-cols-2 lg:grid-cols-3">
           {TILES.map((tile) => (
             <Link
               key={tile.slug}
               href={`/components/${tile.slug}`}
-              className="group flex flex-col gap-4 p-5 transition-colors"
+              className="group relative flex flex-col gap-4 p-5 transition-colors duration-150"
               style={{ background: 'var(--site-bg-elevated)' }}
             >
               {/* Live preview area */}
-              <div className="flex min-h-[120px] flex-col items-center justify-center rounded-lg p-4"
-                style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}>
-                <div className="w-full max-w-full" style={{ maxWidth: '100%' }}>
+              <div
+                className="flex min-h-[120px] flex-col items-center justify-center rounded-lg p-4 transition-colors duration-150"
+                style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}
+              >
+                <div className="w-full max-w-full">
                   {tile.render()}
                 </div>
               </div>
@@ -157,19 +157,29 @@ export function ComponentShowcase() {
               {/* Label row */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
-                  <code className="font-mono text-sm font-semibold truncate" style={{ color: 'var(--site-text)' }}>
+                  <code className="font-mono text-sm font-semibold truncate site-text">
                     {tile.name}
                   </code>
                   {tile.isMcp && (
-                    <span className="rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide shrink-0"
-                      style={{ background: 'var(--site-accent)', color: 'var(--site-bg)' }}>
+                    <span
+                      className="rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide shrink-0"
+                      style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)', border: '1px solid var(--site-accent-glow)' }}
+                    >
                       MCP
                     </span>
                   )}
                 </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  style={{ color: 'var(--site-text-subtle)' }} />
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 site-text-subtle"
+                />
               </div>
+
+              {/* Hover ring */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                style={{ boxShadow: 'inset 0 0 0 1px var(--site-border-strong)' }}
+              />
             </Link>
           ))}
         </div>

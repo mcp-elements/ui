@@ -50,11 +50,13 @@
   --site-bg:           oklch(0.06 0.005 286);
   --site-bg-elevated:  oklch(0.10 0.007 286);
   --site-bg-subtle:    oklch(0.13 0.007 286);
+  --site-bg-overlay:   oklch(0.08 0.006 286 / 0.85);
   --site-border:       oklch(0.18 0.008 286);
+  --site-border-strong:oklch(0.26 0.010 286);
   --site-border-focus: oklch(0.637 0.174 265);
   --site-text:         oklch(0.95 0 0);
-  --site-text-muted:   oklch(0.55 0.012 286);
-  --site-text-subtle:  oklch(0.38 0.010 286);
+  --site-text-muted:   oklch(0.65 0.012 286);
+  --site-text-subtle:  oklch(0.45 0.010 286);
   --site-accent:       oklch(0.637 0.174 265);
   --site-accent-dim:   oklch(0.45 0.15 265);
   --site-accent-glow:  oklch(0.637 0.174 265 / 0.12);
@@ -62,21 +64,42 @@
   --site-warning:      oklch(0.82 0.18 85);
   --site-error:        oklch(0.62 0.22 25);
 
+  /* Depth scale — soft, dark-aware */
+  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.30);
+  --shadow-sm: 0 2px 4px -1px oklch(0 0 0 / 0.30), 0 1px 2px 0 oklch(0 0 0 / 0.18);
+  --shadow-md: 0 8px 16px -4px oklch(0 0 0 / 0.40), 0 4px 8px -2px oklch(0 0 0 / 0.22);
+  --shadow-lg: 0 16px 32px -8px oklch(0 0 0 / 0.50), 0 8px 16px -4px oklch(0 0 0 / 0.25);
+  --shadow-glow: 0 0 0 1px var(--site-accent-glow), 0 8px 24px -6px var(--site-accent-glow);
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+
   color-scheme: dark;
 }
 
 [data-theme="light"] {
-  --site-bg:           oklch(0.99 0 0);
-  --site-bg-elevated:  oklch(0.97 0.002 286);
-  --site-bg-subtle:    oklch(0.94 0.003 286);
-  --site-border:       oklch(0.88 0.005 286);
+  --site-bg:           oklch(1 0 0);
+  --site-bg-elevated:  oklch(0.985 0.002 286);
+  --site-bg-subtle:    oklch(0.96 0.003 286);
+  --site-bg-overlay:   oklch(1 0 0 / 0.85);
+  --site-border:       oklch(0.91 0.005 286);
+  --site-border-strong:oklch(0.84 0.006 286);
   --site-border-focus: oklch(0.50 0.15 265);
   --site-text:         oklch(0.12 0.005 286);
-  --site-text-muted:   oklch(0.45 0.012 286);
-  --site-text-subtle:  oklch(0.60 0.010 286);
+  --site-text-muted:   oklch(0.42 0.012 286);
+  --site-text-subtle:  oklch(0.58 0.010 286);
   --site-accent:       oklch(0.50 0.174 265);
   --site-accent-dim:   oklch(0.40 0.15 265);
   --site-accent-glow:  oklch(0.50 0.174 265 / 0.10);
+
+  /* Soft, daylight shadows */
+  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.06), 0 1px 3px 0 oklch(0 0 0 / 0.06);
+  --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.06), 0 2px 4px -2px oklch(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 24px -6px oklch(0 0 0 / 0.10), 0 4px 8px -4px oklch(0 0 0 / 0.06);
+  --shadow-glow: 0 0 0 1px var(--site-accent-glow), 0 8px 24px -6px var(--site-accent-glow);
 
   color-scheme: light;
 }
@@ -98,6 +121,10 @@ body {
   html { scroll-behavior: smooth; }
 }
 
+/* =============================================
+   Layout primitives
+   ============================================= */
+
 .site-container {
   width: 100%;
   max-width: 1280px;
@@ -109,11 +136,356 @@ body {
   .site-container { padding-inline: 1rem; }
 }
 
+/* Section rhythm — every top-level marketing section pads 96px top/bottom.
+   Use .site-section-tight (80px) for denser content. */
+.site-section {
+  padding-block: 6rem;
+}
+.site-section-tight {
+  padding-block: 5rem;
+}
+.site-section-divider {
+  border-top: 1px solid var(--site-border);
+}
+
+/* =============================================
+   Typography hierarchy — five levels
+   Geist Sans + tight tracking on display.
+   ============================================= */
+
+.site-eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;        /* 12px */
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--site-text-subtle);
+  font-weight: 500;
+}
+.site-eyebrow-accent {
+  color: var(--site-accent);
+}
+
+.site-h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4rem);  /* 40 → 64 */
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  color: var(--site-text);
+}
+
+.site-h2 {
+  font-size: clamp(1.875rem, 3.5vw, 2.5rem); /* 30 → 40 */
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--site-text);
+}
+
+.site-h3 {
+  font-size: 1.125rem;  /* 18 */
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: var(--site-text);
+}
+
+.site-lede {
+  font-size: 1.125rem;  /* 18 */
+  line-height: 1.6;
+  color: var(--site-text-muted);
+  max-width: 38rem;
+}
+
+.site-body {
+  font-size: 0.9375rem; /* 15 */
+  line-height: 1.6;
+  color: var(--site-text-muted);
+}
+
+.site-body-sm {
+  font-size: 0.875rem;  /* 14 */
+  line-height: 1.55;
+  color: var(--site-text-muted);
+}
+
+.site-caption {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--site-text-subtle);
+}
+
+/* =============================================
+   Text color utilities (replace inline styles)
+   ============================================= */
+
+.site-text         { color: var(--site-text); }
+.site-text-muted   { color: var(--site-text-muted); }
+.site-text-subtle  { color: var(--site-text-subtle); }
+.site-text-accent  { color: var(--site-accent); }
+
+/* =============================================
+   Surfaces — cards, panels
+   ============================================= */
+
+.site-card {
+  background-color: var(--site-bg-elevated);
+  border: 1px solid var(--site-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration-base) var(--ease-out-soft),
+              box-shadow var(--duration-base) var(--ease-out-soft),
+              transform var(--duration-base) var(--ease-out-soft);
+}
+.site-card-interactive {
+  cursor: pointer;
+}
+.site-card-interactive:hover {
+  border-color: var(--site-border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.site-panel {
+  background-color: var(--site-bg-elevated);
+  border: 1px solid var(--site-border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Hairline grid — used in mosaic layouts (Showcase, FeatureCards, MCP flow).
+   Children use bg-[var(--site-bg-elevated)] to reveal the underlying border. */
+.site-mosaic {
+  background: var(--site-border);
+  border: 1px solid var(--site-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 1px;
+}
+
+/* =============================================
+   Buttons (site-level — distinct from component lib Button)
+   ============================================= */
+
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.5rem;            /* 40 */
+  padding-inline: 1.125rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease-out-soft),
+              border-color var(--duration-fast) var(--ease-out-soft),
+              color var(--duration-fast) var(--ease-out-soft),
+              transform var(--duration-fast) var(--ease-out-soft),
+              box-shadow var(--duration-fast) var(--ease-out-soft);
+  border: 1px solid transparent;
+}
+.site-btn:active { transform: translateY(0.5px); }
+
+.site-btn-primary {
+  background: var(--site-text);
+  color: var(--site-bg);
+  box-shadow: var(--shadow-sm);
+}
+.site-btn-primary:hover {
+  background: var(--site-text-muted);
+  box-shadow: var(--shadow-md);
+}
+
+.site-btn-secondary {
+  background: var(--site-bg-elevated);
+  color: var(--site-text);
+  border-color: var(--site-border);
+}
+.site-btn-secondary:hover {
+  background: var(--site-bg-subtle);
+  border-color: var(--site-border-strong);
+}
+
+.site-btn-ghost {
+  background: transparent;
+  color: var(--site-text-muted);
+}
+.site-btn-ghost:hover {
+  color: var(--site-text);
+  background: var(--site-bg-elevated);
+}
+
+/* =============================================
+   Links — text links with consistent hover
+   ============================================= */
+
+.site-link {
+  color: var(--site-text-muted);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out-soft);
+}
+.site-link:hover { color: var(--site-text); }
+
+.site-link-accent {
+  color: var(--site-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out-soft);
+}
+.site-link-accent:hover { color: var(--site-text); }
+
+/* =============================================
+   Inline code (non-pre)
+   ============================================= */
+
 code:not(pre code) {
   background: var(--site-bg-elevated);
   border: 1px solid var(--site-border);
-  border-radius: 0.25rem;
+  border-radius: 0.3125rem;
   padding: 0.125rem 0.375rem;
   font-size: 0.875em;
   color: var(--site-accent);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* =============================================
+   Code block — shadcn-style polish
+   Used by <CodeBlock /> and <InstallCommand />
+   ============================================= */
+
+.site-codeblock {
+  background: var(--site-bg-elevated);
+  border: 1px solid var(--site-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.site-codeblock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem 0.5rem 1rem;
+  border-bottom: 1px solid var(--site-border);
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--site-bg-elevated) 100%, transparent),
+    color-mix(in oklab, var(--site-bg-subtle) 60%, transparent));
+}
+
+.site-codeblock-filename {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--site-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.site-codeblock-filename-icon {
+  color: var(--site-text-subtle);
+  flex-shrink: 0;
+}
+
+.site-codeblock-lang {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--site-text-subtle);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  background: var(--site-bg);
+  border: 1px solid var(--site-border);
+}
+
+.site-codeblock-body {
+  overflow-x: auto;
+  padding: 1rem 1.125rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.site-codeblock-body pre {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.site-codeblock-copy-floating {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity var(--duration-base) var(--ease-out-soft),
+              transform var(--duration-base) var(--ease-out-soft);
+}
+.site-codeblock:hover .site-codeblock-copy-floating,
+.site-codeblock:focus-within .site-codeblock-copy-floating {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   Sticky-nav scroll affordance
+   When body is scrolled, SiteNav uses a stronger border + shadow.
+   Toggled via [data-scrolled="true"] on <html>.
+   ============================================= */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background-color: var(--site-bg-overlay);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-base) var(--ease-out-soft),
+              box-shadow var(--duration-base) var(--ease-out-soft);
+}
+[data-scrolled="true"] .site-nav {
+  border-bottom-color: var(--site-border);
+  box-shadow: var(--shadow-xs);
+}
+
+/* =============================================
+   Light-mode hero grid — soften the grid lines
+   ============================================= */
+
+.site-hero-grid {
+  background-image:
+    linear-gradient(var(--site-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--site-border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, black 30%, transparent 80%);
+}
+
+/* =============================================
+   Reduce hover intensity for users who prefer it
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================
+   Focus ring — consistent across links/buttons
+   ============================================= */
+
+:focus-visible {
+  outline: 2px solid var(--site-border-focus);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
 }

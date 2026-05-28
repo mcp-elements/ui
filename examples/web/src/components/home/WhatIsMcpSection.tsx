@@ -21,26 +21,21 @@ const FACTS = [
 
 export function WhatIsMcpSection() {
   return (
-    <section className="border-t pb-24 pt-20" style={{ borderColor: 'var(--site-border)', backgroundColor: 'var(--site-bg)' }}>
+    <section className="site-section site-section-divider">
       <div className="site-container">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           {/* Left — heading */}
-          <div className="lg:sticky lg:top-28">
-            <p className="mb-3 text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-accent)' }}>
-              New to MCP?
-            </p>
-            <h2 className="text-3xl font-bold lg:text-4xl" style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
-              The 30-second explainer.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed" style={{ color: 'var(--site-text-muted)', maxWidth: '28rem' }}>
+          <div className="lg:sticky lg:top-24">
+            <p className="site-eyebrow site-eyebrow-accent mb-3">New to MCP?</p>
+            <h2 className="site-h2">The 30-second explainer.</h2>
+            <p className="site-body mt-4 max-w-md">
               MCP is the protocol behind Claude, Cursor, Windsurf, and 9,400+ open-source servers. We give you the UI for the parts your users actually see.
             </p>
             <Link
               href="https://modelcontextprotocol.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium transition-opacity hover:opacity-80"
-              style={{ color: 'var(--site-accent)' }}
+              className="site-link-accent mt-6 inline-flex items-center gap-1.5 text-sm font-medium"
             >
               Read the MCP spec
               <ArrowUpRight className="h-4 w-4" />
@@ -48,7 +43,7 @@ export function WhatIsMcpSection() {
           </div>
 
           {/* Right — three facts */}
-          <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl" style={{ background: 'var(--site-border)', border: '1px solid var(--site-border)' }}>
+          <div className="site-mosaic">
             {FACTS.map(({ icon: Icon, title, body }) => (
               <div
                 key={title}
@@ -57,13 +52,13 @@ export function WhatIsMcpSection() {
               >
                 <div
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                  style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}
+                  style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)', boxShadow: 'var(--shadow-xs)' }}
                 >
-                  <Icon className="h-5 w-5" style={{ color: 'var(--site-accent)' }} />
+                  <Icon className="h-5 w-5 site-text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold" style={{ color: 'var(--site-text)' }}>{title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>{body}</p>
+                  <h3 className="site-h3">{title}</h3>
+                  <p className="site-body-sm mt-1.5">{body}</p>
                 </div>
               </div>
             ))}

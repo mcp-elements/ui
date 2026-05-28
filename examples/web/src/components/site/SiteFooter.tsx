@@ -38,10 +38,10 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Logo col */}
           <div className="flex flex-col gap-3">
-            <Link href="/" className="font-mono text-sm font-semibold" style={{ color: 'var(--site-text)' }}>
-              <span style={{ color: 'var(--site-accent)' }}>●</span> mcp-elements
+            <Link href="/" className="font-mono text-sm font-semibold site-text">
+              <span className="site-text-accent">●</span> mcp-elements
             </Link>
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>
+            <p className="site-body-sm">
               The UI kit for MCP applications. Copy-paste into any framework.
             </p>
             <span
@@ -59,12 +59,7 @@ export function SiteFooter() {
           {/* Link cols */}
           {FOOTER_COLS.map((col) => (
             <div key={col.label} className="flex flex-col gap-3">
-              <p
-                className="text-xs font-medium uppercase tracking-widest"
-                style={{ color: 'var(--site-text-subtle)' }}
-              >
-                {col.label}
-              </p>
+              <p className="site-eyebrow">{col.label}</p>
               <ul className="flex flex-col gap-2">
                 {col.links.map((link) => (
                   <li key={link.href}>
@@ -73,17 +68,12 @@ export function SiteFooter() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm transition-colors duration-150 hover:text-[var(--site-text)]"
-                        style={{ color: 'var(--site-text-muted)' }}
+                        className="site-link text-sm"
                       >
                         {link.label}
                       </a>
                     ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm transition-colors duration-150 hover:text-[var(--site-text)]"
-                        style={{ color: 'var(--site-text-muted)' }}
-                      >
+                      <Link href={link.href} className="site-link text-sm">
                         {link.label}
                       </Link>
                     )}
@@ -105,7 +95,8 @@ export function SiteFooter() {
               href="https://github.com/mayurrawte"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 transition-colors hover:text-[var(--site-text)]"
+              className="site-link underline underline-offset-2"
+              style={{ color: 'var(--site-text-muted)' }}
             >
               Mayur Rawte
             </a>

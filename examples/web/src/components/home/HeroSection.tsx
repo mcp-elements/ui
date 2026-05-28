@@ -5,17 +5,11 @@ import { InstallCommand } from '@/components/site/InstallCommand'
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-32" style={{ backgroundColor: 'var(--site-bg)' }}>
+    <section className="relative overflow-hidden pt-20 pb-24 lg:pt-28 lg:pb-32">
       {/* Background grid */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.12]"
-        style={{
-          backgroundImage:
-            'linear-gradient(var(--site-border) 1px, transparent 1px), linear-gradient(90deg, var(--site-border) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          maskImage: 'radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 80%)',
-        }}
+        className="site-hero-grid pointer-events-none absolute inset-0 opacity-[0.18]"
       />
 
       <div className="site-container relative z-10">
@@ -27,64 +21,49 @@ export function HeroSection() {
               href="https://modelcontextprotocol.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-medium transition-colors"
+              className="group inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-medium transition-colors duration-150 hover:bg-[var(--site-bg-subtle)]"
               style={{
                 background: 'var(--site-bg-elevated)',
                 border: '1px solid var(--site-border)',
                 color: 'var(--site-text-muted)',
               }}
             >
-              <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: 'var(--site-accent)' }}>v0.1</span>
+              <span className="font-mono text-[10px] uppercase tracking-widest site-text-accent">v0.1</span>
               <span className="h-3 w-px" style={{ background: 'var(--site-border)' }} />
               Built for the Model Context Protocol
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="h-3 w-3 transition-transform duration-150 group-hover:translate-x-0.5" />
             </Link>
 
             {/* Headline */}
-            <h1
-              className="text-5xl font-bold leading-[1.05] lg:text-[64px]"
-              style={{ color: 'var(--site-text)', letterSpacing: '-0.035em' }}
-            >
+            <h1 className="site-h1">
               The UI layer for{' '}
-              <span style={{ color: 'var(--site-accent)' }}>MCP</span>.
+              <span className="site-text-accent">MCP</span>.
             </h1>
 
             {/* Subhead — concrete, names the parts, no jargon */}
-            <p className="text-lg leading-relaxed" style={{ color: 'var(--site-text-muted)', maxWidth: '36rem' }}>
+            <p className="site-lede">
               Drop-in components for apps that talk to a Model Context Protocol server.{' '}
-              <span style={{ color: 'var(--site-text)' }}>Tool calls, OAuth consent, scope inspectors, resource browsers</span> — copy-paste, framework-native, no runtime to install.
+              <span className="site-text">Tool calls, OAuth consent, scope inspectors, resource browsers</span> — copy-paste, framework-native, no runtime to install.
             </p>
 
             {/* Install command */}
-            <div className="max-w-md">
+            <div className="max-w-md w-full">
               <InstallCommand componentName="mcp-tool-call" animate />
             </div>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/components"
-                className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-                style={{ background: 'var(--site-text)', color: 'var(--site-bg)' }}
-              >
+              <Link href="/components" className="site-btn site-btn-primary">
                 Browse 38 components
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="/mcp"
-                className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors"
-                style={{
-                  background: 'transparent',
-                  border: '1px solid var(--site-border)',
-                  color: 'var(--site-text)',
-                }}
-              >
+              <Link href="/mcp" className="site-btn site-btn-secondary">
                 See the MCP flow
               </Link>
             </div>
 
             {/* Tiny footnote — frameworks */}
-            <div className="mt-2 flex items-center gap-4 text-xs" style={{ color: 'var(--site-text-subtle)' }}>
+            <div className="mt-2 flex items-center gap-4 text-xs site-text-subtle">
               <span className="font-mono uppercase tracking-widest">Works with</span>
               <span className="flex items-center gap-3 font-mono">
                 <span>React</span>

@@ -29,40 +29,47 @@ const STEPS = [
 
 export function FeatureCards() {
   return (
-    <section className="border-t py-24" style={{ borderColor: 'var(--site-border)', backgroundColor: 'var(--site-bg-elevated)' }}>
+    <section
+      className="site-section site-section-divider"
+      style={{ backgroundColor: 'var(--site-bg-elevated)' }}
+    >
       <div className="site-container">
         <div className="mb-12 max-w-2xl">
-          <p className="mb-2 text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
-            How it works
-          </p>
-          <h2 className="text-3xl font-bold lg:text-4xl" style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
+          <p className="site-eyebrow mb-2">How it works</p>
+          <h2 className="site-h2">
             Three steps. No runtime.{' '}
-            <span style={{ color: 'var(--site-text-muted)' }}>You own the code.</span>
+            <span className="site-text-muted">You own the code.</span>
           </h2>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-2xl sm:grid-cols-3"
-          style={{ background: 'var(--site-border)', border: '1px solid var(--site-border)' }}>
+        <div className="site-mosaic sm:grid-cols-3">
           {STEPS.map(({ n, icon: Icon, title, body, code, codeLabel }) => (
-            <div key={n} className="flex flex-col gap-5 p-7" style={{ background: 'var(--site-bg)' }}>
+            <div
+              key={n}
+              className="flex flex-col gap-5 p-7"
+              style={{ background: 'var(--site-bg)' }}
+            >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-sm tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
-                  {n}
-                </span>
-                <Icon className="h-5 w-5" style={{ color: 'var(--site-accent)' }} />
+                <span className="font-mono text-sm tracking-widest site-text-subtle">{n}</span>
+                <div
+                  className="flex h-8 w-8 items-center justify-center rounded-md"
+                  style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}
+                >
+                  <Icon className="h-4 w-4 site-text-accent" aria-hidden />
+                </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold" style={{ color: 'var(--site-text)' }}>{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>{body}</p>
+                <h3 className="site-h3" style={{ fontSize: '1.0625rem' }}>{title}</h3>
+                <p className="site-body-sm mt-2">{body}</p>
               </div>
-              <div className="mt-auto rounded-md p-3"
-                style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}>
-                <p className="mb-1.5 text-[10px] font-mono uppercase tracking-widest"
-                  style={{ color: 'var(--site-text-subtle)' }}>
+              <div
+                className="mt-auto rounded-md p-3"
+                style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}
+              >
+                <p className="mb-1.5 text-[10px] font-mono uppercase tracking-widest site-text-subtle">
                   {codeLabel}
                 </p>
-                <code className="block break-all font-mono text-xs leading-relaxed"
-                  style={{ color: 'var(--site-text)' }}>
+                <code className="block break-all font-mono text-xs leading-relaxed site-text">
                   {code}
                 </code>
               </div>

@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/home/HeroSection'
+import { FlagshipScene } from '@/components/home/FlagshipScene'
 import { WhatIsMcpSection } from '@/components/home/WhatIsMcpSection'
 import { ProofStrip } from '@/components/home/ProofStrip'
 import { ComponentShowcase } from '@/components/home/ComponentShowcase'
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <FlagshipScene />
       <WhatIsMcpSection />
       <ProofStrip />
       <ComponentShowcase />

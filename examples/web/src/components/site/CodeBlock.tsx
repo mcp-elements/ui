@@ -1,38 +1,65 @@
 import { codeToHtml } from 'shiki'
+import { FileCode2 } from 'lucide-react'
 import { CopyButton } from './CopyButton'
 
 interface CodeBlockProps {
   code: string
   lang?: string
   filename?: string
+  /** Hide the header row entirely (useful for inline snippets). */
+  hideHeader?: boolean
 }
 
-export async function CodeBlock({ code, lang = 'typescript', filename }: CodeBlockProps) {
+const LANG_LABEL: Record<string, string> = {
+  tsx: 'TSX',
+  ts: 'TS',
+  typescript: 'TS',
+  jsx: 'JSX',
+  js: 'JS',
+  javascript: 'JS',
+  bash: 'Bash',
+  sh: 'Bash',
+  shell: 'Bash',
+  css: 'CSS',
+  html: 'HTML',
+  json: 'JSON',
+  vue: 'Vue',
+  angular: 'TS',
+}
+
+export async function CodeBlock({ code, lang = 'typescript', filename, hideHeader = false }: CodeBlockProps) {
   const html = await codeToHtml(code, {
     lang,
-    theme: 'github-dark-dimmed',
+    themes: {
+      dark: 'github-dark-dimmed',
+      light: 'github-light',
+    },
+    defaultColor: false,
   })
 
+  const langLabel = LANG_LABEL[lang.toLowerCase()] ?? lang.toUpperCase()
+
   return (
-    <div
-      className="group relative overflow-hidden rounded-xl"
-      style={{ backgroundColor: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}
-    >
-      {filename ? (
-        <div
-          className="flex items-center justify-between px-4 py-2 text-xs font-mono"
-          style={{ borderBottom: '1px solid var(--site-border)', color: 'var(--site-text-muted)' }}
-        >
-          <span>{filename}</span>
-          <CopyButton text={code} />
+    <div className="site-codeblock group">
+      {!hideHeader && (
+        <div className="site-codeblock-header">
+          <span className="site-codeblock-filename">
+            <FileCode2 className="site-codeblock-filename-icon h-3.5 w-3.5" aria-hidden />
+            <span className="truncate">{filename ?? `example.${lang === 'typescript' ? 'ts' : lang}`}</span>
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="site-codeblock-lang">{langLabel}</span>
+            <CopyButton text={code} />
+          </span>
         </div>
-      ) : (
-        <div className="absolute right-3 top-3 z-10 opacity-0 transition-opacity group-hover:opacity-100">
+      )}
+      {hideHeader && (
+        <div className="site-codeblock-copy-floating">
           <CopyButton text={code} />
         </div>
       )}
       <div
-        className="overflow-x-auto p-4 text-sm [&_pre]:!bg-transparent [&_pre]:!p-0"
+        className="site-codeblock-body shiki-host"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

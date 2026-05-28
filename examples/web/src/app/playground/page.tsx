@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { FileCode2 } from 'lucide-react'
 import { DEMOS } from '@/components/demos/registry'
 import { CopyButton } from '@/components/site/CopyButton'
 import { getComponentDoc } from '@/lib/component-docs'
@@ -28,19 +29,17 @@ export default function PlaygroundPage() {
   const code = doc?.usage ?? ''
 
   return (
-    <div className="pb-24 pt-20">
+    <div className="site-section">
       <div className="site-container">
         {/* Header */}
         <div className="mb-12 max-w-3xl">
-          <p className="mb-3 text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-accent)' }}>
-            Playground
-          </p>
-          <h1 className="text-4xl font-bold sm:text-5xl" style={{ color: 'var(--site-text)', letterSpacing: '-0.03em' }}>
+          <p className="site-eyebrow site-eyebrow-accent mb-3">Playground</p>
+          <h1 className="site-h1" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)' }}>
             Tap a component.{' '}
-            <span style={{ color: 'var(--site-text-muted)' }}>See it run.</span>
+            <span className="site-text-muted">See it run.</span>
           </h1>
-          <p className="mt-4 text-lg leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>
-            Every example below is a real <code className="font-mono text-sm" style={{ color: 'var(--site-accent)' }}>@mcp-elements/react</code> component running in this page — no screenshots, no mockups.
+          <p className="site-lede mt-4">
+            Every example below is a real <code className="font-mono text-sm site-text-accent">@mcp-elements/react</code> component running in this page — no screenshots, no mockups.
           </p>
         </div>
 
@@ -52,11 +51,12 @@ export default function PlaygroundPage() {
               <button
                 key={ex.slug}
                 onClick={() => setActive(ex.slug)}
-                className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
+                className="rounded-lg px-3.5 py-1.5 text-sm font-medium transition-colors duration-150"
                 style={{
                   background: isActive ? 'var(--site-text)' : 'var(--site-bg-elevated)',
                   color: isActive ? 'var(--site-bg)' : 'var(--site-text-muted)',
                   border: `1px solid ${isActive ? 'var(--site-text)' : 'var(--site-border)'}`,
+                  boxShadow: isActive ? 'var(--shadow-sm)' : undefined,
                 }}
               >
                 {ex.label}
@@ -66,55 +66,78 @@ export default function PlaygroundPage() {
         </div>
 
         {/* Active example — preview + code */}
-        <div className="grid gap-px overflow-hidden rounded-2xl lg:grid-cols-2"
-          style={{ background: 'var(--site-border)', border: '1px solid var(--site-border)' }}>
+        <div className="site-mosaic lg:grid-cols-2">
           {/* Preview */}
           <div style={{ background: 'var(--site-bg-elevated)' }}>
-            <div className="flex items-center justify-between px-5 py-3"
-              style={{ borderBottom: '1px solid var(--site-border)' }}>
+            <div
+              className="flex items-center justify-between px-5 py-3"
+              style={{ borderBottom: '1px solid var(--site-border)' }}
+            >
               <div>
-                <p className="text-sm font-semibold" style={{ color: 'var(--site-text)' }}>{example.label}</p>
-                <p className="text-xs" style={{ color: 'var(--site-text-muted)' }}>{example.description}</p>
+                <p className="text-sm font-semibold site-text">{example.label}</p>
+                <p className="text-xs site-text-muted mt-0.5">{example.description}</p>
               </div>
-              <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider"
-                style={{ color: 'var(--site-text-subtle)' }}>
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--site-success)' }} />
+              <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider site-text-subtle">
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ background: 'var(--site-success)', boxShadow: '0 0 6px var(--site-success)' }}
+                />
                 live
               </span>
             </div>
-            <div className="flex min-h-[280px] items-center justify-center p-8"
-              style={{ background: 'var(--site-bg)' }}>
-              {Demo ? <Demo /> : <p className="text-sm" style={{ color: 'var(--site-text-muted)' }}>No demo available</p>}
+            <div
+              className="flex min-h-[320px] items-center justify-center p-8"
+              style={{ background: 'var(--site-bg)' }}
+            >
+              {Demo ? <Demo /> : <p className="text-sm site-text-muted">No demo available</p>}
             </div>
           </div>
 
           {/* Code */}
           <div className="flex flex-col" style={{ background: 'var(--site-bg-elevated)' }}>
-            <div className="flex items-center justify-between px-5 py-3"
-              style={{ borderBottom: '1px solid var(--site-border)' }}>
-              <p className="text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
-                Source · tsx
-              </p>
-              <CopyButton text={code} />
+            <div
+              className="flex items-center justify-between px-5 py-3"
+              style={{ borderBottom: '1px solid var(--site-border)' }}
+            >
+              <span className="site-codeblock-filename text-xs">
+                <FileCode2 className="site-codeblock-filename-icon h-3.5 w-3.5" aria-hidden />
+                <span>{example.slug}.tsx</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="site-codeblock-lang">TSX</span>
+                <CopyButton text={code} />
+              </span>
             </div>
-            <pre className="flex-1 overflow-auto p-5 font-mono text-xs leading-relaxed"
-              style={{ background: 'var(--site-bg)', color: 'var(--site-text-muted)' }}>
+            <pre
+              className="flex-1 overflow-auto p-5 font-mono text-xs leading-relaxed site-text-muted"
+              style={{ background: 'var(--site-bg)' }}
+            >
               <code>{code || '// No example yet'}</code>
             </pre>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-12 flex flex-col items-start gap-3 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between"
-          style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}>
+        <div
+          className="mt-12 flex flex-col items-start gap-4 rounded-2xl p-6 sm:p-7 sm:flex-row sm:items-center sm:justify-between"
+          style={{
+            background: 'var(--site-bg-elevated)',
+            border: '1px solid var(--site-border)',
+            boxShadow: 'var(--shadow-sm)',
+          }}
+        >
           <div>
-            <p className="text-base font-semibold" style={{ color: 'var(--site-text)' }}>Ready to build?</p>
-            <p className="mt-1 text-sm" style={{ color: 'var(--site-text-muted)' }}>
-              Install the package and start dropping components in.
-            </p>
+            <p className="text-base font-semibold site-text">Ready to build?</p>
+            <p className="site-body-sm mt-1">Install the package and start dropping components in.</p>
           </div>
-          <code className="rounded-lg px-4 py-2 font-mono text-sm"
-            style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)', color: 'var(--site-accent)' }}>
+          <code
+            className="w-full sm:w-auto rounded-lg px-4 py-2 font-mono text-sm"
+            style={{
+              background: 'var(--site-bg)',
+              border: '1px solid var(--site-border)',
+              color: 'var(--site-accent)',
+            }}
+          >
             npm install @mcp-elements/react @mcp-elements/core
           </code>
         </div>

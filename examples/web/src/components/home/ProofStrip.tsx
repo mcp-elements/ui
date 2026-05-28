@@ -1,21 +1,34 @@
 const STATS = [
-  '97M+ monthly MCP downloads',
-  '9,652+ servers',
-  'React · Angular · Vue',
-  'MIT License',
-  'Copy-paste',
+  { label: '97M+', sub: 'monthly MCP downloads' },
+  { label: '9,652+', sub: 'open-source servers' },
+  { label: '3', sub: 'frameworks at launch' },
+  { label: 'MIT', sub: 'licensed' },
+  { label: '0', sub: 'runtime dependencies' },
 ]
 
 export function ProofStrip() {
   return (
-    <div className="w-full border-y py-4"
-      style={{ borderColor: 'var(--site-border)', backgroundColor: 'var(--site-bg-elevated)' }}>
-      <div className="site-container flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-        {STATS.map((stat, i) => (
-          <span key={i} className="text-sm" style={{ color: 'var(--site-text-muted)' }}>
-            {stat}
-          </span>
-        ))}
+    <div
+      className="w-full py-6"
+      style={{
+        borderTop: '1px solid var(--site-border)',
+        borderBottom: '1px solid var(--site-border)',
+        backgroundColor: 'var(--site-bg-elevated)',
+      }}
+    >
+      <div className="site-container">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center text-center gap-0.5">
+              <span className="font-mono text-base font-semibold tracking-tight site-text sm:text-lg">
+                {stat.label}
+              </span>
+              <span className="text-[11px] uppercase tracking-widest site-text-subtle">
+                {stat.sub}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
