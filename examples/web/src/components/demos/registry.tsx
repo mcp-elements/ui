@@ -106,17 +106,17 @@ const TabsDemo: DemoFn = () => {
             {items.map((t) => (
               <TabsTrigger
                 key={t.value}
-                isActive={api.activeValue === t.value}
-                onClick={() => api.setActive(t.value)}
+                isActive={api.value === t.value}
+                onClick={() => api.setValue(t.value)}
               >
                 {t.label}
               </TabsTrigger>
             ))}
           </TabsList>
           <TabsContent>
-            {api.activeValue === 'tools' && <p className="text-sm">12 tools exposed by this server.</p>}
-            {api.activeValue === 'resources' && <p className="text-sm">3 resources you can browse.</p>}
-            {api.activeValue === 'prompts' && <p className="text-sm">5 prompt templates ready to use.</p>}
+            {api.value === 'tools' && <p className="text-sm">12 tools exposed by this server.</p>}
+            {api.value === 'resources' && <p className="text-sm">3 resources you can browse.</p>}
+            {api.value === 'prompts' && <p className="text-sm">5 prompt templates ready to use.</p>}
           </TabsContent>
         </>
       )}
