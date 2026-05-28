@@ -1,35 +1,71 @@
-import { Layers, Globe2, Clipboard, Palette, Accessibility, Zap } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { Search, Clipboard, Sparkles } from 'lucide-react'
 
-const FEATURES: { icon: LucideIcon; title: string; body: string }[] = [
-  { icon: Layers, title: 'MCP-native', body: 'The only library with pre-built consent dialogs, tool-call cards, and scope inspectors.' },
-  { icon: Globe2, title: 'Every framework', body: 'React, Angular, Vue. Same API, same design tokens, same copy-paste CLI.' },
-  { icon: Clipboard, title: 'You own the code', body: 'Components are copied into your project. No runtime dependency, no version lock-in.' },
-  { icon: Palette, title: 'Beautiful by default', body: 'OKLCH design tokens, dark/glass/light themes, Tailwind v4. Looks great out of the box.' },
-  { icon: Accessibility, title: 'Accessible first', body: 'WAI-ARIA patterns, keyboard navigation, screen reader support — built into core.' },
-  { icon: Zap, title: 'Framework-free core', body: 'Pure TypeScript state machines. OAuth PKCE, tool-state, schema-form — no framework required.' },
+const STEPS = [
+  {
+    n: '01',
+    icon: Search,
+    title: 'Pick a component',
+    body: 'Browse 38 components across 7 categories — base UI, AI primitives, and the 7 MCP-specific ones.',
+    code: '/components/mcp-tool-call',
+    codeLabel: 'browse',
+  },
+  {
+    n: '02',
+    icon: Clipboard,
+    title: 'Copy it in',
+    body: 'One command drops the source into your project. No runtime dep, no version lock-in. You own the file.',
+    code: 'npx @mcp-elements/cli add mcp-tool-call',
+    codeLabel: 'install',
+  },
+  {
+    n: '03',
+    icon: Sparkles,
+    title: 'Wire it to state',
+    body: 'Each component subscribes to a framework-free state machine from @mcp-elements/core. React, Angular, or Vue.',
+    code: 'createToolState() → <McpToolCall state={…} />',
+    codeLabel: 'use',
+  },
 ]
 
 export function FeatureCards() {
   return (
-    <section className="py-24">
+    <section className="border-t py-24" style={{ borderColor: 'var(--site-border)', backgroundColor: 'var(--site-bg-elevated)' }}>
       <div className="site-container">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight"
-            style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
-            Why mcp-elements
-          </h2>
-          <p className="mt-3 text-base" style={{ color: 'var(--site-text-muted)' }}>
-            Everything you need to build polished MCP applications.
+        <div className="mb-12 max-w-2xl">
+          <p className="mb-2 text-xs font-mono uppercase tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
+            How it works
           </p>
+          <h2 className="text-3xl font-bold lg:text-4xl" style={{ color: 'var(--site-text)', letterSpacing: '-0.02em' }}>
+            Three steps. No runtime.{' '}
+            <span style={{ color: 'var(--site-text-muted)' }}>You own the code.</span>
+          </h2>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f) => (
-            <div key={f.title} className="flex flex-col gap-3 rounded-xl p-6"
-              style={{ backgroundColor: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}>
-              <f.icon className="h-5 w-5" style={{ color: 'var(--site-accent)' }} />
-              <h3 className="font-semibold text-sm" style={{ color: 'var(--site-text)' }}>{f.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>{f.body}</p>
+
+        <div className="grid gap-px overflow-hidden rounded-2xl sm:grid-cols-3"
+          style={{ background: 'var(--site-border)', border: '1px solid var(--site-border)' }}>
+          {STEPS.map(({ n, icon: Icon, title, body, code, codeLabel }) => (
+            <div key={n} className="flex flex-col gap-5 p-7" style={{ background: 'var(--site-bg)' }}>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-sm tracking-widest" style={{ color: 'var(--site-text-subtle)' }}>
+                  {n}
+                </span>
+                <Icon className="h-5 w-5" style={{ color: 'var(--site-accent)' }} />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold" style={{ color: 'var(--site-text)' }}>{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--site-text-muted)' }}>{body}</p>
+              </div>
+              <div className="mt-auto rounded-md p-3"
+                style={{ background: 'var(--site-bg-elevated)', border: '1px solid var(--site-border)' }}>
+                <p className="mb-1.5 text-[10px] font-mono uppercase tracking-widest"
+                  style={{ color: 'var(--site-text-subtle)' }}>
+                  {codeLabel}
+                </p>
+                <code className="block break-all font-mono text-xs leading-relaxed"
+                  style={{ color: 'var(--site-text)' }}>
+                  {code}
+                </code>
+              </div>
             </div>
           ))}
         </div>
