@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { SiteNav } from '@/components/site/SiteNav'
+import { SiteFooter } from '@/components/site/SiteFooter'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
   keywords: ['MCP', 'Model Context Protocol', 'UI components', 'React', 'Angular', 'Vue', 'AI'],
 }
 
-// Inline script sets theme from localStorage before first paint — prevents flash
 function ThemeScript() {
   const script = `(function(){try{var t=localStorage.getItem('mcp-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})()`
   return <script dangerouslySetInnerHTML={{ __html: script }} />
@@ -41,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeScript />
         <SiteNav />
         <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   )
