@@ -1,0 +1,96 @@
+@layer components {
+  .mcpe-mcp-tool-call {
+    @apply rounded-xl p-4 flex flex-col gap-3;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-card-foreground);
+  }
+
+  .mcpe-mcp-tool-call-header {
+    @apply flex items-center justify-between;
+  }
+
+  .mcpe-mcp-tool-call-name {
+    @apply flex items-center gap-2;
+  }
+
+  .mcpe-mcp-tool-call-icon {
+    @apply flex h-7 w-7 items-center justify-center rounded-md font-mono text-xs font-semibold;
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  .mcpe-mcp-tool-call-title {
+    @apply font-mono text-sm font-medium;
+  }
+
+  .mcpe-mcp-tool-call-args {
+    @apply rounded-md p-3 font-mono text-xs;
+    background-color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted-foreground);
+    overflow-x: auto;
+  }
+
+  .mcpe-mcp-tool-call-progress {
+    @apply overflow-hidden rounded-full;
+    height: 3px;
+    background-color: var(--color-muted);
+  }
+
+  .mcpe-mcp-tool-call-progress-bar {
+    @apply h-full rounded-full transition-all duration-100;
+    background-color: var(--color-primary);
+  }
+
+  .mcpe-mcp-tool-call-result {
+    @apply rounded-md p-3 text-sm;
+  }
+
+  .mcpe-mcp-tool-call-result-done {
+    background-color: oklch(0.72 0.17 145 / 0.08);
+    border: 1px solid oklch(0.72 0.17 145 / 0.25);
+    color: oklch(0.72 0.17 145);
+  }
+
+  .mcpe-mcp-tool-call-result-error {
+    background-color: oklch(0.62 0.22 25 / 0.08);
+    border: 1px solid oklch(0.62 0.22 25 / 0.25);
+    color: oklch(0.62 0.22 25);
+  }
+
+  .mcpe-mcp-tool-call-footer {
+    @apply flex items-center justify-between;
+  }
+
+  /* Status badges */
+  .mcpe-mcp-tool-call-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+
+  .mcpe-mcp-tool-call-badge-idle {
+    background-color: var(--color-muted);
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-tool-call-badge-pending,
+  .mcpe-mcp-tool-call-badge-running {
+    background-color: oklch(0.82 0.18 85 / 0.15);
+    color: oklch(0.82 0.18 85);
+  }
+
+  .mcpe-mcp-tool-call-badge-done {
+    background-color: oklch(0.72 0.17 145 / 0.15);
+    color: oklch(0.72 0.17 145);
+  }
+
+  .mcpe-mcp-tool-call-badge-error {
+    background-color: oklch(0.62 0.22 25 / 0.15);
+    color: oklch(0.62 0.22 25);
+  }
+
+  .mcpe-mcp-tool-call-badge-cancelled {
+    background-color: var(--color-muted);
+    color: var(--color-muted-foreground);
+  }
+}
