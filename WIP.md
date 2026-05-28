@@ -1,6 +1,6 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: Plan 3a (site foundation) complete on `feat/web-site-foundation`. Build green. Next: MCP React components (Plan 3c) or docs pages (Plan 3b).
+**Status**: Plan 3c (MCP React components) complete on `feat/mcp-react-components`. Build green. Next: Plan 3b (component docs pages) or Plan 3d (MCP site pages + playground).
 **Started**: 2026-05-21
 **Last updated**: 2026-05-28
 
@@ -191,14 +191,15 @@ On branch `feat/rename-to-mcp-elements`, 11 commits (`7f5dd8f`..`7cf3264`). Buil
 - [x] **D6: Scope parser** — `packages/core/src/mcp/scope.ts`
 - [x] **D7: Unit tests** (Vitest, framework-free) for D1-D6
 
-### Stage E: MCP components × React (after D)
-- [ ] **E1: McpServerStatus** (CSS + React)
-- [ ] **E2: McpToolCall** (CSS + React, composes Card+Button)
-- [ ] **E3: McpToolForm** (CSS + React, composes Input/Textarea/Select/Switch)
-- [ ] **E4: McpScopeInspector** (CSS + React, composes Accordion+Badge)
-- [ ] **E5: McpConsentDialog** (CSS + React, composes Dialog+Button+Alert)
-- [ ] **E6: McpResourceBrowser** (CSS + React, composes Card+Skeleton)
-- [ ] **E7: McpAppFrame** (CSS + React, sandboxed iframe + postMessage bridge)
+### Stage E: MCP components × React (after D) ✅ COMPLETE 2026-05-28
+On branch `feat/mcp-react-components`, 9 commits. Build green. All 7 components in `packages/react/src/mcp/` + CSS in `packages/css/components/mcp-*.css`. Accessible via `@mcp-elements/react` root import.
+- [x] **E1: McpServerStatus** (CSS + React)
+- [x] **E2: McpToolCall** (CSS + React, subscribes to ToolStateApi)
+- [x] **E3: McpToolForm** (CSS + React, schemaToFields → dynamic form)
+- [x] **E4: McpScopeInspector** (CSS + React, accordion)
+- [x] **E5: McpConsentDialog** (CSS + React, parseScopes + Dialog + Button)
+- [x] **E6: McpResourceBrowser** (CSS + React, Skeleton loading state)
+- [x] **E7: McpAppFrame** (CSS + React, sandboxed iframe + createAppBridge)
 - [ ] **E8: React hooks** — useMcpToolState, useMcpOAuth, useMcpAppBridge, useMcpSchemaForm
 
 ### Stage F: MCP components × Angular (parallel ok with E, after D)
@@ -221,9 +222,10 @@ On branch `feat/web-site-foundation`, 9 commits. Build green. Routes: `/`, `/com
 - [ ] 31 base component doc pages
 - [ ] 7 MCP component doc pages
 
-#### Plan 3c: MCP React Components (to do — blocks Plan 3b MCP docs)
-- [ ] 7 components in `packages/react/src/mcp/` + CSS in `packages/css/components/mcp-*.css`
-- [ ] Uses `@mcp-elements/core/mcp/*` state machines
+#### Plan 3c: MCP React Components ✅ COMPLETE 2026-05-28
+On branch `feat/mcp-react-components`, 9 commits. Build green. All 7 MCP components shipped + barrel export wired.
+- [x] 7 components in `packages/react/src/mcp/` + CSS in `packages/css/components/mcp-*.css`
+- [x] Uses `@mcp-elements/core` state machines (createToolState, parseScopes, schemaToFields, createAppBridge)
 
 #### Plan 3d: MCP site pages + Playground + Themes (to do)
 - [ ] `/mcp` showcase page + `/mcp/[slug]` docs
@@ -375,3 +377,4 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-21 | Plan 2 (MCP core utilities) drafted | 1351 lines, 9 TDD tasks. References protocol cheatsheet for type shapes. Execution pending. |
 | 2026-05-28 | Stage D (MCP core utilities) complete | 6 modules + 46 tests on feat/mcp-core-utilities. Merged to main. |
 | 2026-05-28 | Plan 3a (site foundation) complete | `examples/web/` Next.js 15 site: homepage (7 sections, animated hero), component browser (38 components, search+filter), shared site components (SiteNav, SiteFooter, CodeBlock, InstallCommand). Build green on `feat/web-site-foundation`. |
+| 2026-05-28 | Plan 3c (MCP React components) complete | 7 MCP components: McpServerStatus, McpToolCall, McpToolForm, McpConsentDialog, McpScopeInspector, McpResourceBrowser, McpAppFrame. Each has CSS + React. All use `@mcp-elements/core` state machines. Barrel export wired. Build green on `feat/mcp-react-components`. |
