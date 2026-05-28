@@ -1,10 +1,12 @@
 import { defineComponent, h, Teleport, onMounted, onUnmounted, watch } from 'vue'
+import { cn } from '@mcp-elements/core'
 
 export const McpeDialog = defineComponent({
   name: 'McpeDialog',
   props: {
     modelValue: { type: Boolean, default: false },
     modal: { type: Boolean, default: true },
+    class: { type: String, default: '' },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
@@ -64,7 +66,7 @@ export const McpeDialog = defineComponent({
         h(
           'div',
           {
-            class: 'mcpe-dialog-content',
+            class: cn('mcpe-dialog-content', props.class),
             role: 'dialog',
             'aria-modal': props.modal,
             onClick: (e: MouseEvent) => e.stopPropagation(),
