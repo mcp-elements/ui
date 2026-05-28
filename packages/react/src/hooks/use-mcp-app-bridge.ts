@@ -17,10 +17,18 @@ export interface UseMcpAppBridgeReturn {
 /**
  * React hook that sets up a postMessage bridge with an MCP App iframe.
  * Wire it up: <iframe ref={frameRef} src={...} />
+ *
+ * onMessage is stored in a ref so inline callbacks don't recreate the bridge.
  */
 export function useMcpAppBridge(options: UseMcpAppBridgeOptions = {}): UseMcpAppBridgeReturn {
   const { onMessage } = options
   const frameRef = useRef<HTMLIFrameElement | null>(null)
+  const onMessageRef = useRef(onMessage)
+
+  // Sync ref each render without adding to effect deps
+  useEffect(() => {
+    onMessageRef.current = onMessage
+  })
 
   const postToFrame = useCallback((env: AppMessageEnvelope) => {
     frameRef.current?.contentWindow?.postMessage(env, '*')
@@ -35,16 +43,14 @@ export function useMcpAppBridge(options: UseMcpAppBridgeOptions = {}): UseMcpApp
     const handler = (e: MessageEvent) => bridge.receive(e.data)
     window.addEventListener('message', handler)
 
-    let unsub: (() => void) | undefined
-    if (onMessage) {
-      unsub = bridge.onMessage(onMessage)
-    }
+    // Route all messages through the ref so inline callbacks don't trigger re-creation
+    const unsub = bridge.onMessage((env) => onMessageRef.current?.(env))
 
     return () => {
       window.removeEventListener('message', handler)
-      unsub?.()
+      unsub()
     }
-  }, [onMessage, postToFrame])
+  }, [postToFrame]) // postToFrame is stable (useCallback with no deps)
 
   const send = useCallback((env: AppMessageEnvelope) => {
     sendRef.current(env)
