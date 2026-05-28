@@ -1,4 +1,4 @@
-import { Component, input, output, signal, computed, contentChildren, ElementRef } from '@angular/core'
+import { Component, input, output, signal, computed, effect, contentChildren, ElementRef } from '@angular/core'
 import { createTabs, type TabItem } from '@mcp-elements/core'
 
 @Component({

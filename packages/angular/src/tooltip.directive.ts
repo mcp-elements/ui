@@ -1,4 +1,4 @@
-import { Directive, input, signal, HostListener, ElementRef, Renderer2, OnDestroy } from '@angular/core'
+import { Directive, input, HostListener, ElementRef, Renderer2, OnDestroy } from '@angular/core'
 
 @Directive({
   selector: '[mcpeTooltip]',
