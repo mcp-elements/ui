@@ -9,3 +9,6 @@ export type { McpToolFormProps } from './mcp-tool-form'
 
 export { McpConsentDialog } from './mcp-consent-dialog'
 export type { McpConsentDialogProps } from './mcp-consent-dialog'
+
+export { McpScopeInspector } from './mcp-scope-inspector'
+export type { McpScopeInspectorProps } from './mcp-scope-inspector'

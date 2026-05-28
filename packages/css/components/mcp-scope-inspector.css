@@ -1,0 +1,49 @@
+@layer components {
+  .mcpe-mcp-scope-inspector {
+    @apply flex flex-col gap-1;
+  }
+
+  .mcpe-mcp-scope-inspector-item {
+    @apply rounded-lg overflow-hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .mcpe-mcp-scope-inspector-trigger {
+    @apply flex w-full items-center justify-between px-4 py-3 text-left;
+    background-color: var(--color-card);
+  }
+
+  .mcpe-mcp-scope-inspector-trigger:hover {
+    background-color: var(--color-accent);
+  }
+
+  .mcpe-mcp-scope-inspector-resource {
+    @apply font-mono text-sm font-medium;
+  }
+
+  .mcpe-mcp-scope-inspector-perms {
+    @apply flex items-center gap-1;
+  }
+
+  .mcpe-mcp-scope-inspector-perm {
+    @apply rounded px-1.5 py-0.5 text-[10px] font-mono font-medium uppercase;
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+  }
+
+  .mcpe-mcp-scope-inspector-chevron {
+    @apply h-4 w-4 shrink-0 transition-transform duration-200;
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-scope-inspector-chevron-open {
+    transform: rotate(180deg);
+  }
+
+  .mcpe-mcp-scope-inspector-body {
+    @apply px-4 py-3 text-sm;
+    background-color: var(--color-muted);
+    color: var(--color-muted-foreground);
+    border-top: 1px solid var(--color-border);
+  }
+}
