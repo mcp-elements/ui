@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/mayurrawte/thepsygeek/snx-ui/examples/web/src/app/layout":["static/media/39a5c75b28bf49bc.p.woff2","static/media/b5bb120f6fcabcb4-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
