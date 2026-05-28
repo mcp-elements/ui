@@ -11,6 +11,12 @@ export function HeroSection() {
         aria-hidden
         className="site-hero-grid pointer-events-none absolute inset-0 opacity-[0.18]"
       />
+      {/* Accent radial behind the headline */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 left-0 h-[600px] w-[700px] rounded-full blur-[120px]"
+        style={{ background: 'var(--site-accent-glow)', opacity: 0.5 }}
+      />
 
       <div className="site-container relative z-10">
         <div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-[1.05fr_1fr] lg:items-center">
@@ -34,10 +40,30 @@ export function HeroSection() {
               <ArrowRight className="h-3 w-3 transition-transform duration-150 group-hover:translate-x-0.5" />
             </Link>
 
-            {/* Headline */}
-            <h1 className="site-h1">
-              The UI layer for{' '}
-              <span className="site-text-accent">MCP</span>.
+            {/* Headline — bigger, more dramatic */}
+            <h1
+              className="font-bold"
+              style={{
+                fontSize: 'clamp(2.75rem, 6vw, 5rem)',
+                lineHeight: '1.02',
+                letterSpacing: '-0.04em',
+                color: 'var(--site-text)',
+              }}
+            >
+              The UI layer{' '}
+              <br className="hidden sm:block" />
+              for{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, var(--site-accent) 0%, oklch(0.74 0.18 280) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                MCP
+              </span>
+              <span className="site-text-accent">.</span>
             </h1>
 
             {/* Subhead — concrete, names the parts, no jargon */}

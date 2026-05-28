@@ -1,5 +1,6 @@
 import { HeroSection } from '@/components/home/HeroSection'
 import { FlagshipScene } from '@/components/home/FlagshipScene'
+import { BeforeAfterSection } from '@/components/home/BeforeAfterSection'
 import { WhatIsMcpSection } from '@/components/home/WhatIsMcpSection'
 import { ProofStrip } from '@/components/home/ProofStrip'
 import { ComponentShowcase } from '@/components/home/ComponentShowcase'
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FlagshipScene />
+      <BeforeAfterSection />
       <WhatIsMcpSection />
       <ProofStrip />
       <ComponentShowcase />
