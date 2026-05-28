@@ -1,6 +1,6 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: Brainstorming + market research complete. Design locked. **Brand: `mcp-elements`.** Spec in progress.
+**Status**: Plan 3a (site foundation) complete on `feat/web-site-foundation`. Build green. Next: MCP React components (Plan 3c) or docs pages (Plan 3b).
 **Started**: 2026-05-21
 **Last updated**: 2026-05-28
 
@@ -207,13 +207,28 @@ On branch `feat/rename-to-mcp-elements`, 11 commits (`7f5dd8f`..`7cf3264`). Buil
 ### Stage G: MCP components × Vue (after C + D)
 - [ ] Same 7 components as Vue 3 SFCs + composables
 
-### Stage H: Docs + reference example
-- [ ] **H1: New docs section "MCP UI"** in `examples/docs/`
-- [ ] **H2: Per-component doc pages** with live demos for each of 7
-- [ ] **H3: Reference example app** in `examples/mcp-agent/` — connects to a real MCP server (GitHub MCP or filesystem MCP) and showcases all 7 components in a real agent flow
-- [ ] **H4: Migration guide** from `snuxt-ui` → new brand
-- [ ] **H5: Update homepage hero** — new positioning + framework badges + MCP-first messaging
-- [ ] **H6: 4 framework "Quick Start" guides** (React, Angular, Vue, vanilla via CDN)
+### Stage H: Website + Docs (replaces old Astro/Starlight site)
+
+#### Plan 3a: Site Foundation ✅ COMPLETE 2026-05-28
+On branch `feat/web-site-foundation`, 9 commits. Build green. Routes: `/`, `/components`.
+- [x] **H-W1: Next.js 15 scaffold** — `examples/web/` with Tailwind v4, Geist fonts, workspace deps
+- [x] **H-W2: Shared site components** — SiteNav (GitHub stars), SiteFooter, ThemeToggle (dark/light), CodeBlock (Shiki), CopyButton, InstallCommand
+- [x] **H-W3: Homepage** — hero (animated HeroToolCallDemo), proof strip, 6-card features, 12-card bento showcase, MCP section, framework tabs, copy-paste CTA, footer
+- [x] **H-W4: Component browser** — `/components` page with 38-entry registry, search + category filter, ComponentCard grid
+
+#### Plan 3b: Component Docs Pages (to do)
+- [ ] MDX setup + `/components/[slug]` layout (3-column: sidebar / content / TOC)
+- [ ] 31 base component doc pages
+- [ ] 7 MCP component doc pages
+
+#### Plan 3c: MCP React Components (to do — blocks Plan 3b MCP docs)
+- [ ] 7 components in `packages/react/src/mcp/` + CSS in `packages/css/components/mcp-*.css`
+- [ ] Uses `@mcp-elements/core/mcp/*` state machines
+
+#### Plan 3d: MCP site pages + Playground + Themes (to do)
+- [ ] `/mcp` showcase page + `/mcp/[slug]` docs
+- [ ] `/playground` (Sandpack)
+- [ ] `/themes` page
 
 ### Stage I: Launch
 - [ ] **I1: Publish v0.1.0** packages to npm under new scope
@@ -359,3 +374,4 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-21 | Stage B merged to main via fast-forward | 12 commits (rename + WIP). Branch deleted. .astro build cache untracked + gitignored separately. |
 | 2026-05-21 | Plan 2 (MCP core utilities) drafted | 1351 lines, 9 TDD tasks. References protocol cheatsheet for type shapes. Execution pending. |
 | 2026-05-28 | Stage D (MCP core utilities) complete | 6 modules + 46 tests on feat/mcp-core-utilities. Merged to main. |
+| 2026-05-28 | Plan 3a (site foundation) complete | `examples/web/` Next.js 15 site: homepage (7 sections, animated hero), component browser (38 components, search+filter), shared site components (SiteNav, SiteFooter, CodeBlock, InstallCommand). Build green on `feat/web-site-foundation`. |
