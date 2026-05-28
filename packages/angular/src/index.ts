@@ -81,3 +81,6 @@ export {
   SnxFeedbackInputComponent,
   SnxFeedbackSubmitComponent,
 } from './feedback.component'
+
+// MCP components
+export * from './mcp'
