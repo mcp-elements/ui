@@ -55,7 +55,7 @@ export function HeroSection() {
               for{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, var(--site-accent) 0%, oklch(0.74 0.18 280) 100%)',
+                  background: 'linear-gradient(135deg, var(--site-accent) 0%, var(--site-accent-2) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',

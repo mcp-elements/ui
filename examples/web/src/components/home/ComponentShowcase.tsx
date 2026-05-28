@@ -19,10 +19,6 @@ import {
 } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
 
-/**
- * Live mini-previews of real components. Click any tile to open the doc page.
- * Each tile renders the actual @mcp-elements/react component, scaled down.
- */
 function ToolCallMini() {
   const state = useMemo(() => createToolState(), [])
   useEffect(() => {
@@ -30,9 +26,9 @@ function ToolCallMini() {
     const t: ReturnType<typeof setTimeout>[] = []
     function s(fn: () => void, ms: number) { t.push(setTimeout(() => { if (!cancelled) fn() }, ms)) }
     function loop() {
-      s(() => state.start({ tool: 'list_files', args: { dir: '/' } }), 600)
+      s(() => state.start({ tool: 'list_files', args: { dir: '/src' } }), 600)
       s(() => state.markRunning(), 1100)
-      s(() => state.markDone({ content: [{ type: 'text', text: '12 files' }] }), 2800)
+      s(() => state.markDone({ content: [{ type: 'text', text: '12 files found' }] }), 2800)
       s(() => { state.reset(); if (!cancelled) loop() }, 5000)
     }
     loop()
@@ -41,86 +37,136 @@ function ToolCallMini() {
   return <McpToolCall state={state} />
 }
 
-function SwitchMini() {
-  return (
-    <div className="flex items-center gap-3">
-      <Switch checked={true} onCheckedChange={() => {}} />
-      <span className="text-sm site-text-muted">Auto-approve</span>
-    </div>
-  )
+interface Tile {
+  slug: string
+  name: string
+  isMcp?: boolean
+  /** Grid span — use to make bento layout */
+  span?: string
+  /** Centered tight content (default false → fills) */
+  centered?: boolean
+  render: () => React.ReactNode
 }
 
-function ProgressMini() {
-  return <Progress value={62} className="w-full max-w-[160px]" />
-}
-
-const TILES: { slug: string; name: string; category: string; isMcp?: boolean; render: () => React.ReactNode }[] = [
+const TILES: Tile[] = [
+  // Row 1 — McpToolCall is the hero tile (2x2)
   {
-    slug: 'mcp-tool-call', name: 'McpToolCall', category: 'MCP', isMcp: true,
-    render: () => <div className="w-full"><ToolCallMini /></div>,
-  },
-  {
-    slug: 'mcp-server-status', name: 'McpServerStatus', category: 'MCP', isMcp: true,
+    slug: 'mcp-tool-call', name: 'McpToolCall', isMcp: true,
+    span: 'lg:col-span-2 lg:row-span-2',
     render: () => (
-      <div className="flex flex-col gap-2">
+      <div className="w-full max-w-md">
+        <ToolCallMini />
+      </div>
+    ),
+  },
+  // Server status — tall (2 rows)
+  {
+    slug: 'mcp-server-status', name: 'McpServerStatus', isMcp: true,
+    span: 'lg:row-span-2',
+    render: () => (
+      <div className="flex flex-col gap-2.5 w-full">
         <McpServerStatus status="connected" serverName="github-mcp" />
         <McpServerStatus status="connecting" serverName="linear-mcp" />
+        <McpServerStatus status="disconnected" />
+        <McpServerStatus status="error" serverName="jira-mcp" />
       </div>
     ),
   },
+  // Badge — single
   {
-    slug: 'button', name: 'Button', category: 'Form',
+    slug: 'badge', name: 'Badge', centered: true,
     render: () => (
-      <div className="flex flex-wrap gap-2">
-        <Button variant="primary" size="sm">Save</Button>
-        <Button variant="outline" size="sm">Cancel</Button>
-      </div>
-    ),
-  },
-  {
-    slug: 'badge', name: 'Badge', category: 'Display',
-    render: () => (
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 justify-center">
         <Badge>Active</Badge>
         <Badge variant="secondary">Stable</Badge>
         <Badge variant="destructive">Error</Badge>
       </div>
     ),
   },
+  // Button — single
   {
-    slug: 'card', name: 'Card', category: 'Display',
+    slug: 'button', name: 'Button', centered: true,
+    render: () => (
+      <div className="flex flex-wrap gap-2 justify-center">
+        <Button variant="primary" size="sm">Save</Button>
+        <Button variant="outline" size="sm">Cancel</Button>
+      </div>
+    ),
+  },
+  // Row 2 continues
+  // Card — wide (2 cols)
+  {
+    slug: 'card', name: 'Card',
+    span: 'lg:col-span-2',
     render: () => (
       <Card className="w-full">
-        <CardHeader className="p-3">
-          <CardTitle className="text-sm">github-mcp</CardTitle>
-          <CardDescription className="text-xs">12 tools · OAuth</CardDescription>
+        <CardHeader className="p-4">
+          <CardTitle className="text-base">github-mcp</CardTitle>
+          <CardDescription className="text-xs">12 tools · OAuth-secured</CardDescription>
         </CardHeader>
       </Card>
     ),
   },
+  // Switch
   {
-    slug: 'input', name: 'Input', category: 'Form',
-    render: () => <Input placeholder="search…" className="w-full" />,
+    slug: 'switch', name: 'Switch', centered: true,
+    render: () => (
+      <div className="flex items-center gap-3">
+        <Switch checked={true} onCheckedChange={() => {}} />
+        <span className="text-sm site-text-muted">Auto-approve</span>
+      </div>
+    ),
   },
+  // Input — wide
   {
-    slug: 'switch', name: 'Switch', category: 'Form',
-    render: SwitchMini,
+    slug: 'input', name: 'Input',
+    span: 'lg:col-span-2',
+    render: () => (
+      <Input
+        placeholder="Search components, tools, resources…"
+        className="w-full"
+        defaultValue="mcp-tool-call"
+      />
+    ),
   },
+  // Alert
   {
-    slug: 'alert', name: 'Alert', category: 'Feedback',
-    render: () => <Alert variant="success" className="text-xs">Connected.</Alert>,
+    slug: 'alert', name: 'Alert',
+    render: () => (
+      <Alert variant="success" className="text-xs">Connected to github-mcp.</Alert>
+    ),
   },
+  // Progress
   {
-    slug: 'progress', name: 'Progress', category: 'Display',
-    render: ProgressMini,
+    slug: 'progress', name: 'Progress', centered: true,
+    render: () => (
+      <div className="flex flex-col gap-2 w-full">
+        <Progress value={62} className="w-full" />
+        <div className="flex justify-between text-xs site-text-subtle">
+          <span>Indexing</span><span>62%</span>
+        </div>
+      </div>
+    ),
   },
 ]
 
 export function ComponentShowcase() {
   return (
-    <section className="site-section site-section-divider">
-      <div className="site-container">
-        <div className="mb-12 flex items-end justify-between gap-6">
+    <section className="site-section site-section-divider relative overflow-hidden">
+      {/* Ambient color */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[-15%] top-[20%] h-[500px] w-[700px] rounded-full blur-[140px]"
+        style={{ background: 'oklch(0.76 0.18 35 / 0.12)' }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[-10%] bottom-[10%] h-[400px] w-[600px] rounded-full blur-[120px]"
+        style={{ background: 'var(--site-accent-glow)' }}
+      />
+
+      <div className="site-container relative">
+        <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="site-eyebrow mb-2">The library</p>
             <h2 className="site-h2">
@@ -128,58 +174,43 @@ export function ComponentShowcase() {
               <span className="site-text-muted">All rendered live.</span>
             </h2>
           </div>
-          <Link
-            href="/components"
-            className="site-link-accent hidden items-center gap-1.5 text-sm font-medium sm:inline-flex"
-          >
+          <Link href="/components" className="site-link-accent hidden items-center gap-1.5 text-sm font-medium sm:inline-flex">
             View all <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="site-mosaic sm:grid-cols-2 lg:grid-cols-3">
+        {/* Bento grid — 4 cols on lg, with explicit row height */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 lg:auto-rows-[160px]">
           {TILES.map((tile) => (
             <Link
               key={tile.slug}
               href={`/components/${tile.slug}`}
-              className="group relative flex flex-col gap-4 p-5 transition-colors duration-150"
-              style={{ background: 'var(--site-bg-elevated)' }}
+              className={`group site-card relative flex flex-col overflow-hidden p-5 transition-all duration-200 hover:-translate-y-0.5 ${tile.span ?? ''}`}
             >
-              {/* Live preview area */}
-              <div
-                className="flex min-h-[120px] flex-col items-center justify-center rounded-lg p-4 transition-colors duration-150"
-                style={{ background: 'var(--site-bg)', border: '1px solid var(--site-border)' }}
-              >
-                <div className="w-full max-w-full">
-                  {tile.render()}
-                </div>
+              {/* Preview area — fills remaining space */}
+              <div className={`flex flex-1 ${tile.centered ? 'items-center justify-center' : 'items-start'} min-h-0`}>
+                {tile.render()}
               </div>
 
               {/* Label row */}
-              <div className="flex items-center justify-between">
+              <div className="mt-4 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <code className="font-mono text-sm font-semibold truncate site-text">
                     {tile.name}
                   </code>
                   {tile.isMcp && (
                     <span
-                      className="rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide shrink-0"
-                      style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)', border: '1px solid var(--site-accent-glow)' }}
+                      className="rounded-md px-1.5 py-0.5 text-[9px] font-semibold tracking-widest shrink-0 uppercase"
+                      style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)' }}
                     >
                       MCP
                     </span>
                   )}
                 </div>
                 <ArrowUpRight
-                  className="h-4 w-4 shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 site-text-subtle"
+                  className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 site-text-subtle"
                 />
               </div>
-
-              {/* Hover ring */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-                style={{ boxShadow: 'inset 0 0 0 1px var(--site-border-strong)' }}
-              />
             </Link>
           ))}
         </div>
