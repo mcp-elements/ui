@@ -4,8 +4,20 @@ import { useState, useEffect } from 'react'
 import { Terminal } from 'lucide-react'
 import { CopyButton } from './CopyButton'
 
-export function InstallCommand({ componentName, animate = false }: { componentName: string; animate?: boolean }) {
-  const command = `npx mcp-elements add ${componentName}`
+export function InstallCommand({
+  componentName,
+  slug,
+  animate = false,
+}: {
+  componentName?: string
+  slug?: string
+  animate?: boolean
+}) {
+  const command = slug
+    ? `npx @mcp-elements/cli add ${slug}`
+    : componentName
+      ? `npx @mcp-elements/cli add ${componentName}`
+      : 'npm install @mcp-elements/react'
   const [displayed, setDisplayed] = useState(animate ? '' : command)
 
   useEffect(() => {
