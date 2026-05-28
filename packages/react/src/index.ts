@@ -92,3 +92,6 @@ export type { StreamingTextProps } from './streaming-text'
 
 export { Feedback, FeedbackButton, FeedbackSeparator, FeedbackForm, FeedbackInput, FeedbackSubmit } from './feedback'
 export type { FeedbackButtonProps } from './feedback'
+
+// MCP components
+export * from './mcp'
