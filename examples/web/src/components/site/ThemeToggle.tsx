@@ -10,24 +10,29 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem('mcp-theme') as Theme | null
-    if (stored) setTheme(stored)
+    if (stored === 'light' || stored === 'dark') {
+      setTheme(stored)
+      document.documentElement.setAttribute('data-theme', stored)
+    } else {
+      // Ensure data-theme is always set so component tokens resolve correctly
+      document.documentElement.setAttribute('data-theme', 'dark')
+    }
   }, [])
 
   function toggle() {
     const next: Theme = theme === 'dark' ? 'light' : 'dark'
     setTheme(next)
     localStorage.setItem('mcp-theme', next)
-    if (next === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light')
-    } else {
-      document.documentElement.removeAttribute('data-theme')
-    }
+    // Always set explicitly — never remove. Site tokens (--site-*) and
+    // component tokens (--color-*) have inverse defaults, so missing
+    // data-theme means they desync.
+    document.documentElement.setAttribute('data-theme', next)
   }
 
   return (
     <button
       onClick={toggle}
-      className="inline-flex items-center justify-center rounded-md p-2 transition-colors duration-150"
+      className="inline-flex items-center justify-center rounded-md p-2 transition-colors duration-150 hover:opacity-80"
       style={{
         color: 'var(--site-text-muted)',
         border: '1px solid var(--site-border)',

@@ -1,5 +1,10 @@
 @layer components {
   .mcpe-skeleton {
-    @apply animate-pulse rounded-md bg-primary/10;
+    @apply animate-pulse rounded-md;
+    background-color: var(--color-muted-foreground);
+    opacity: 0.18;
+  }
+  [data-theme='dark'] .mcpe-skeleton {
+    opacity: 0.28;
   }
 }

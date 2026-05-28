@@ -13,9 +13,9 @@ const FOOTER_COLS = [
   {
     label: 'Community',
     links: [
-      { href: 'https://github.com/thepsygeek/mcp-elements', label: 'GitHub', external: true },
-      { href: 'https://github.com/thepsygeek/mcp-elements/issues', label: 'Issues', external: true },
-      { href: 'https://github.com/thepsygeek/mcp-elements/discussions', label: 'Discussions', external: true },
+      { href: 'https://github.com/mcp-elements/mcp-elements', label: 'GitHub', external: true },
+      { href: 'https://github.com/mcp-elements/mcp-elements/issues', label: 'Issues', external: true },
+      { href: 'https://github.com/mcp-elements/mcp-elements/discussions', label: 'Discussions', external: true },
     ],
   },
   {
@@ -100,14 +100,14 @@ export function SiteFooter() {
         >
           <p>© 2026 mcp-elements · MIT License</p>
           <p>
-            Built with ☕ by{' '}
+            Built by{' '}
             <a
-              href="https://github.com/thepsygeek"
+              href="https://github.com/mayurrawte"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2"
+              className="underline underline-offset-2 transition-colors hover:text-[var(--site-text)]"
             >
-              @thepsygeek
+              Mayur Rawte
             </a>
           </p>
         </div>

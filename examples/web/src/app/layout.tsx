@@ -29,8 +29,10 @@ export const metadata: Metadata = {
 }
 
 function ThemeScript() {
-  // Default to dark. Flip to light only when user has explicitly chosen it.
-  const script = `(function(){try{var t=localStorage.getItem('mcp-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})()`
+  // Always set data-theme explicitly so both --site-* and --color-* tokens
+  // resolve to the same theme. Default to dark, flip to light only when
+  // user has chosen it.
+  const script = `(function(){try{var t=localStorage.getItem('mcp-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})()`
   return <script dangerouslySetInnerHTML={{ __html: script }} />
 }
 
