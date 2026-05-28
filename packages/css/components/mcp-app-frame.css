@@ -1,0 +1,12 @@
+@layer components {
+  .mcpe-mcp-app-frame {
+    @apply block w-full rounded-xl overflow-hidden;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card);
+  }
+
+  .mcpe-mcp-app-frame iframe {
+    @apply block w-full;
+    border: none;
+  }
+}

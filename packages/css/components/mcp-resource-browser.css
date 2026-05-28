@@ -1,0 +1,42 @@
+@layer components {
+  .mcpe-mcp-resource-browser {
+    @apply flex flex-col gap-1;
+  }
+
+  .mcpe-mcp-resource-browser-item {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 cursor-pointer transition-colors;
+    border: 1px solid transparent;
+  }
+
+  .mcpe-mcp-resource-browser-item:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-border);
+  }
+
+  .mcpe-mcp-resource-browser-item-selected {
+    background-color: var(--color-accent);
+    border-color: var(--color-ring);
+  }
+
+  .mcpe-mcp-resource-browser-icon {
+    @apply h-8 w-8 rounded-md flex items-center justify-center text-xs font-mono shrink-0;
+    background-color: var(--color-muted);
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-resource-browser-name {
+    @apply text-sm font-medium truncate;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mcpe-mcp-resource-browser-type {
+    @apply text-xs font-mono shrink-0;
+    color: var(--color-muted-foreground);
+  }
+
+  .mcpe-mcp-resource-browser-empty {
+    @apply py-8 text-center text-sm;
+    color: var(--color-muted-foreground);
+  }
+}

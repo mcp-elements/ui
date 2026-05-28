@@ -12,3 +12,9 @@ export type { McpConsentDialogProps } from './mcp-consent-dialog'
 
 export { McpScopeInspector } from './mcp-scope-inspector'
 export type { McpScopeInspectorProps } from './mcp-scope-inspector'
+
+export { McpResourceBrowser } from './mcp-resource-browser'
+export type { McpResourceBrowserProps, McpResource } from './mcp-resource-browser'
+
+export { McpAppFrame } from './mcp-app-frame'
+export type { McpAppFrameProps } from './mcp-app-frame'
