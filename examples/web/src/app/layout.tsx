@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { SiteNav } from '@/components/site/SiteNav'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -36,11 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
-      >
+      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
         <ThemeScript />
-        {children}
+        <SiteNav />
+        <main>{children}</main>
       </body>
     </html>
   )
