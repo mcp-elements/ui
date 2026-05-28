@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+/* mcp-elements component library tokens + styles */
+@import "@mcp-elements/css/base.css";
+@import "@mcp-elements/css/components/accordion.css";
+@import "@mcp-elements/css/components/ai-badge.css";
+@import "@mcp-elements/css/components/alert.css";
+@import "@mcp-elements/css/components/avatar.css";
+@import "@mcp-elements/css/components/badge.css";
+@import "@mcp-elements/css/components/button.css";
+@import "@mcp-elements/css/components/card.css";
+@import "@mcp-elements/css/components/chat-bubble.css";
+@import "@mcp-elements/css/components/chips.css";
+@import "@mcp-elements/css/components/counter.css";
+@import "@mcp-elements/css/components/dialog.css";
+@import "@mcp-elements/css/components/drawer.css";
+@import "@mcp-elements/css/components/dropdown-menu.css";
+@import "@mcp-elements/css/components/feedback.css";
+@import "@mcp-elements/css/components/input.css";
+@import "@mcp-elements/css/components/loader.css";
+@import "@mcp-elements/css/components/password-input.css";
+@import "@mcp-elements/css/components/popover.css";
+@import "@mcp-elements/css/components/progress.css";
+@import "@mcp-elements/css/components/prompt-input.css";
+@import "@mcp-elements/css/components/select.css";
+@import "@mcp-elements/css/components/separator.css";
+@import "@mcp-elements/css/components/skeleton.css";
+@import "@mcp-elements/css/components/source-card.css";
+@import "@mcp-elements/css/components/streaming-text.css";
+@import "@mcp-elements/css/components/suggestion-chips.css";
+@import "@mcp-elements/css/components/switch.css";
+@import "@mcp-elements/css/components/tabs.css";
+@import "@mcp-elements/css/components/textarea.css";
+@import "@mcp-elements/css/components/toast.css";
+@import "@mcp-elements/css/components/tooltip.css";
+@import "@mcp-elements/css/components/mcp-server-status.css";
+@import "@mcp-elements/css/components/mcp-tool-call.css";
+@import "@mcp-elements/css/components/mcp-tool-form.css";
+@import "@mcp-elements/css/components/mcp-consent-dialog.css";
+@import "@mcp-elements/css/components/mcp-scope-inspector.css";
+@import "@mcp-elements/css/components/mcp-resource-browser.css";
+@import "@mcp-elements/css/components/mcp-app-frame.css";
+
 /* =============================================
    mcp-elements website design tokens
    Dark-first. Light mode via [data-theme="light"]

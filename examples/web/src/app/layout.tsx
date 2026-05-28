@@ -29,13 +29,14 @@ export const metadata: Metadata = {
 }
 
 function ThemeScript() {
+  // Default to dark. Flip to light only when user has explicitly chosen it.
   const script = `(function(){try{var t=localStorage.getItem('mcp-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})()`
   return <script dangerouslySetInnerHTML={{ __html: script }} />
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head />
       <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
         <ThemeScript />
