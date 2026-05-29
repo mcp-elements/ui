@@ -1,8 +1,8 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: All Stage E (React MCP), Stage E8 (React hooks), Stage F (Angular MCP), Stage C (Vue adapter bootstrap), Plan 3b (docs pages), Plan 3d (MCP site pages) complete. Build green. 46 static routes. Next: Stage I (launch — npm publish, blog post, distribution).
+**Status**: All product engineering done (Stages C/E/E8/F + Plans 3a-d). Site visually re-skinned — pink/coral accent (killed AI-blue cliché), bento grid, FlagshipScene wow moment, BeforeAfter with Shiki, periodic-table logo, repositioned as "38 components, MCP-native" not "MCP-only". Build green, 46 static routes. **GitHub org `mcp-elements` created** (repo still pending). Next: Stage I (npm publish + push to org + launch posts).
 **Started**: 2026-05-21
-**Last updated**: 2026-05-28
+**Last updated**: 2026-05-29
 
 ---
 
@@ -11,12 +11,14 @@
 We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI components, near-zero traction) into **`mcp-elements`** — an MCP-native, multi-framework AI UI library.
 
 - **Brand**: `mcp-elements` (locked 2026-05-21)
-- **Tagline**: "MCP UI for any framework."
+- **Tagline**: "38 copy-paste components. Multi-framework. MCP-native." (revised 2026-05-29 — was "MCP UI for any framework", which read as MCP-only)
+- **Positioning**: lead with full library breadth (31 base + 7 AI + 7 MCP), MCP is the differentiator chapter not the whole story
+- **Accent palette**: hot pink → coral (not blue+violet — that's the AI-template cliché)
+- **Logo**: periodic table element tile — atomic number 7 (the 7 MCP components), symbol "Mcp", "ELEMENTS" subtitle
 - **npm**: `@mcp-elements/{core,react,angular,vue,css,cli}` — all free
 - **Domain**: `mcp-elements.dev` (preferred); .ui / .io / .tools / .app also free
-- **GitHub**: `github.com/mcp-elements` (org) — available
+- **GitHub**: `github.com/mcp-elements` (org **created 2026-05-29**, repo `mcp-elements/mcp-elements` pending)
 - Architecture: keep the existing 4-layer (CSS → core → adapters → CLI)
-- New deliverable: 7 MCP UI primitives + Vue adapter + 4 headless hooks per framework
 - Frameworks at launch: **React + Angular + Vue**
 
 **Status**:
@@ -29,10 +31,11 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - ✅ Stage E8 (React MCP hooks) — 4 hooks, merged
 - ✅ Stage C (Vue adapter) — 10 base components, merged
 - ✅ Stage F (Angular MCP components) — 7 components, merged
+- ✅ Visual + brand pass (2026-05-29) — see [Stage H+ section](#stage-h-design--brand-pass-2026-05-29) below
 - ⏳ Stage G (Vue MCP components) — deferred to Phase 2
-- ⏳ Stage I (launch) — pending: npm publish v0.1.0, blog post, Show HN
+- ⏳ Stage I (launch) — pending: create `mcp-elements/mcp-elements` repo, push, npm publish v0.1.0, blog post, Show HN
 
-**Next concrete step**: Stage I launch sequence — npm publish v0.1.0 across all `@mcp-elements/*` scoped packages, then announcement posts.
+**Next concrete step**: Create `github.com/mcp-elements/mcp-elements` repo (org is already created), update `origin` remote, push. Then npm publish v0.1.0 across all `@mcp-elements/*` scoped packages.
 
 ---
 
@@ -251,13 +254,75 @@ On branch `feat/mcp-site-pages`, merged. All 3 routes static-rendered.
 - [x] `/playground` — 5 tabbed examples (Server Status, Tool Call, Tool Form, Scope Inspector, Consent Dialog) with copy button (Sandpack deferred — tabbed code playground works without it)
 - [x] `/themes` — 4 OKLCH theme swatches (Dark, Midnight, Forest, Light) + CSS vars reference block
 
+### Stage H+: Design + brand pass (2026-05-29) ✅ COMPLETE
+Iterative visual transformation after Plan 3a-d shipped. User feedback drove each round:
+
+**Round 1 — components weren't rendering at all**
+- `@mcp-elements/css` package was workspaced but never imported into `examples/web` → fixed in `globals.css`
+- ThemeToggle was *removing* `data-theme` for dark mode, which desynced `--site-*` (default dark) and `--color-*` (default light) tokens — components rendered with light-mode colors against a dark site. Fixed to always set the attribute explicitly.
+- `next-env.d.ts` had been committed to git from a subagent's build → moved to .gitignore.
+- Live demo registry (`src/components/demos/registry.tsx`) — 16 demos rendering the real components for /components/[slug] and /playground.
+- Bug: `slug in DEMOS` check on server component silently failed because Next.js doesn't pass non-component values from `'use client'` modules. Moved the guard inside `<ComponentPreview>`.
+
+**Round 2 — "still looks like a basic POC"**
+- LiveHeroDemo (was fake framer-motion animation) replaced with real `McpToolCall + McpServerStatus` driven by `createToolState()` state machine cycling idle→running→done.
+- FlagshipScene — fake browser-chromed "MCP Studio" workspace with 3-pane layout (resources / chat / scopes), continuous 4-step loop. Drops the cliché traffic-light dots; replaces with gradient "M" app icon + monospace "studio" label + glass-blurred address bar.
+- BeforeAfterSection — 47 lines of boilerplate vs 6 lines with the component. Critical fix: code blocks were raw monochrome grey text — added server-rendered Shiki TSX highlighting on both sides.
+- Component visibility fixes (CSS package):
+  - `Switch`: thumb was `bg-background` = invisible against dark site bg. Now: white thumb in light + unchecked-dark; dark thumb on accent track.
+  - `Skeleton`: `bg-primary/10` was nearly invisible in light mode. Now: muted-foreground at 18%/28% opacity per theme.
+  - `Input/Textarea/Select`: were `bg-transparent` → invisible. Now have explicit `--color-background` fill.
+  - `mcpe-select` class was used in HTML but only `.mcpe-select-trigger` was defined → added base styles with custom dropdown arrow.
+
+**Round 3 — "borders look old / website looks old"**
+- Replaced hard 1px solid borders with translucent (`oklch 1 / 0.07`) — read as light edges not rules.
+- Added `--site-edge-highlight` gradient — every card has a `::before` top-edge sheen, like real light catching the surface.
+- Bigger radii everywhere: cards 18px, panels 24px, big frames 32px (was 12-16px).
+- New shadow scale: warmer, directional, with larger diffuse drops at md/lg (`shadow-lg` = `0 24px 48px`).
+- New `.site-frame` utility — gradient-bordered glass panel (CSS mask technique), used by FlagshipScene.
+- Replaced harsh section dividers with faded gradient hairlines (transparent → border → transparent).
+- New `.site-btn-accent` — gradient pill with glow shadow + inset highlight.
+- Tinted dark background (oklch 0.10 280) instead of pure near-black — adds depth.
+
+**Round 4 — "blue color is AI slop color / or violet"**
+- Swapped `--site-accent` from oklch(0.68 0.19 265) blue → oklch(0.71 0.22 5) hot pink.
+- Swapped `--site-accent-2` from oklch(0.74 0.18 295) violet → oklch(0.76 0.18 35) coral.
+- Hardcoded oklch(0.74 0.18 280) in HeroSection MCP gradient → uses var(--site-accent-2).
+- Ambient orbs in section backgrounds: pink + coral instead of violet.
+- All glow shadows, focus rings, accents: pink/coral.
+- Light mode mirror: pink ~0.58 lightness, coral ~0.65 lightness.
+
+**Round 5 — bento ComponentShowcase**
+- Replaced uniform 3×3 grid of tiny components in huge empty cells with a real bento layout:
+  - McpToolCall: hero tile (2 cols × 2 rows, animated)
+  - McpServerStatus: tall tile (1 col × 2 rows, shows all 4 states)
+  - Card, Input: span 2 cols (need width to read)
+  - Other tiles 1×1
+- Explicit `auto-rows-[160px]` keeps the rhythm.
+- Pink + coral radial orbs in section background.
+
+**Round 6 — logo**
+- Periodic table tile design: atomic number 7 (the 7 MCP components — a nod), "Mcp" as the chemical symbol bold center, "ELEMENTS" mono caps below. Pink/coral border.
+- `Logo.tsx` component (outline + filled variants), `Wordmark.tsx` (mark + text inline).
+- Wired into SiteNav, SiteFooter, favicon (`/icon.svg`).
+
+**Round 7 — "is this only MCP components?"**
+- Site was over-pivoted on MCP. Repositioned to lead with the full library:
+  - Headline: "38 copy-paste components. Multi-framework. MCP-native." (was "The UI layer for MCP.")
+  - Subhead spells out the 3 groups: 31 base + 7 AI + 7 MCP.
+  - New `CategoriesSection.tsx` right after the hero — 7 tiles showing each category with icon, count, blurb, and the first 4 component names. MCP tile gets the accent treatment.
+  - `/components` page rebuilt — when "All" is selected, components are grouped into 7 sections (each with its icon + count + blurb + "Filter to X →" link); when filtered, flat grid. URL filtering via `?category=X` works on initial load and is shareable.
+  - SiteFooter tagline + layout.tsx metadata updated to match.
+
 ### Stage I: Launch
-- [ ] **I1: Publish v0.1.0** packages to npm under new scope
-- [ ] **I2: Launch blog post** — "the MCP UI library, multi-framework, copy-paste"
-- [ ] **I3: Show HN** post
-- [ ] **I4: Submit to MCP-UI org showcase** (`mcpui.dev`)
-- [ ] **I5: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
-- [ ] **I6: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
+- [ ] **I1: Create `mcp-elements/mcp-elements` repo on GitHub** (org exists, repo pending)
+- [ ] **I2: Update git remote** from `snxstudio/snuxt-ui` to `mcp-elements/mcp-elements`, push
+- [ ] **I3: Publish v0.1.0** packages to npm under new scope
+- [ ] **I4: Launch blog post** — "the MCP UI library, multi-framework, copy-paste"
+- [ ] **I5: Show HN** post
+- [ ] **I6: Submit to MCP-UI org showcase** (`mcpui.dev`)
+- [ ] **I7: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
+- [ ] **I8: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
 
 ### Stage J: Phase 2 (post-launch)
 - [ ] Remaining 21 base components → Vue
@@ -399,3 +464,7 @@ If you (Claude or human) lost context, here's how to pick up:
 | 2026-05-28 | Plan 3c (MCP React components) complete | 7 MCP components: McpServerStatus, McpToolCall, McpToolForm, McpConsentDialog, McpScopeInspector, McpResourceBrowser, McpAppFrame. Each has CSS + React. All use `@mcp-elements/core` state machines. Barrel export wired. Build green on `feat/mcp-react-components`. |
 | 2026-05-28 | 5 parallel streams executed via git worktrees | Stage E8 (React hooks), Stage C (Vue adapter), Stage F (Angular MCP), Plan 3b (docs pages), Plan 3d (MCP site pages) — all built and merged same day. Worktrees live in `.worktrees/` (gitignored). Strategy: dispatch independent agents in parallel, run spec+quality reviews in parallel with next implementer, fix issues before merge. |
 | 2026-05-28 | Adopted worktree-parallel-development strategy | 5 streams × ~250kB diff merged cleanly via `git merge --no-ff` (one auto-generated `next-env.d.ts` needed to be untracked + gitignored). No human-blocking conflicts. All reviewers caught real issues (HTMLAttributes spread, useCallback stability, $any() in templates, missing class prop). Builds: 46 static pages, all 4 packages green. |
+| 2026-05-29 | Visual + brand pass complete (7 rounds) | Iterative visual fix driven by user feedback. (1) wired @mcp-elements/css into web app, fixed theme-toggle desync, added live demos. (2) shipped FlagshipScene + BeforeAfter with Shiki + bigger hero. (3) replaced hard 1px borders with edge-highlight gradients, bigger radii, glass. (4) swapped blue+violet ('AI slop color') → hot pink + coral. (5) ComponentShowcase rebuilt as bento grid with McpToolCall as 2×2 hero tile. (6) Logo = periodic table tile (atomic #7 = the 7 MCP components). (7) Repositioned: 'The UI layer for MCP' → '38 copy-paste components. Multi-framework. MCP-native.' MCP is the differentiator, not the whole product. |
+| 2026-05-29 | GitHub org `mcp-elements` created | Repo `mcp-elements/mcp-elements` still pending. Current `origin` points to old `snxstudio/snuxt-ui` — needs update during Stage I. |
+| 2026-05-29 | Positioning: lead with components, MCP as differentiator | User asked 'is this only MCP components?' Site had over-pivoted. Now: hero claims '38 components', new CategoriesSection right after hero shows all 7 buckets (Form/Display/Overlay/Navigation/Feedback/AI/MCP) with counts + preview names. MCP gets the accent treatment but doesn't dominate. /components page rebuilt to group by category in default view, URL filtering (`?category=MCP`) works for shareable links. |
+| 2026-05-29 | Accent palette locked: hot pink → coral | Blue+violet is the AI startup template cliché (OpenAI, Claude UI, every ChatGPT clone). Picked hot pink (`oklch(0.71 0.22 5)`) + coral (`oklch(0.76 0.18 35)`) — Linear/Vercel-magenta energy, distinctly not AI-template. Used on logo border, hero gradient text, primary CTA, FlagshipScene assistant avatar, all glow shadows + focus rings. |
