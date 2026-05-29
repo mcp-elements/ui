@@ -315,14 +315,15 @@ Iterative visual transformation after Plan 3a-d shipped. User feedback drove eac
   - SiteFooter tagline + layout.tsx metadata updated to match.
 
 ### Stage I: Launch
-- [ ] **I1: Create `mcp-elements/mcp-elements` repo on GitHub** (org exists, repo pending)
-- [ ] **I2: Update git remote** from `snxstudio/snuxt-ui` to `mcp-elements/mcp-elements`, push
-- [ ] **I3: Publish v0.1.0** packages to npm under new scope
-- [ ] **I4: Launch blog post** — "the MCP UI library, multi-framework, copy-paste"
-- [ ] **I5: Show HN** post
-- [ ] **I6: Submit to MCP-UI org showcase** (`mcpui.dev`)
-- [ ] **I7: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
-- [ ] **I8: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
+- [x] **I1: Create `mcp-elements/mcp-elements` repo on GitHub** ✅ 2026-05-29 — https://github.com/mcp-elements/mcp-elements (public, 12 topics)
+- [x] **I2: Update git remote** to `mcp-elements/mcp-elements`, push ✅ 2026-05-29 — 94 commits pushed
+- [ ] **I3: Publish v0.1.0** packages to npm under new scope (`@mcp-elements/core`, `react`, `angular`, `vue`, `css`, `cli`)
+- [ ] **I4: Deploy site** to Vercel (or similar) under `mcp-elements.dev` domain — needs DNS + Vercel project
+- [ ] **I5: Launch blog post** — "38 copy-paste components for AI apps. The only library with MCP-native primitives."
+- [ ] **I6: Show HN** post
+- [ ] **I7: Submit to MCP-UI org showcase** (`mcpui.dev`)
+- [ ] **I8: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
+- [ ] **I9: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
 
 ### Stage J: Phase 2 (post-launch)
 - [ ] Remaining 21 base components → Vue
