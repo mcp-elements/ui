@@ -7,14 +7,14 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'mcp-elements — The UI kit for MCP applications',
+    default: 'mcp-elements — 38 copy-paste components. Multi-framework. MCP-native.',
     template: '%s · mcp-elements',
   },
   description:
-    'Pre-built consent dialogs, tool-call cards, and scope inspectors for MCP applications. Copy-paste into React, Angular, or Vue.',
+    '38 copy-paste UI components for AI apps. Buttons, dialogs, chat bubbles, tool-call cards — and the only MCP-native primitives anywhere. React, Angular, Vue.',
   openGraph: {
     title: 'mcp-elements',
-    description: 'The UI kit for MCP applications.',
+    description: '38 copy-paste components. Multi-framework. MCP-native.',
     url: 'https://mcp-elements.dev',
     siteName: 'mcp-elements',
     locale: 'en_US',
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'mcp-elements',
-    description: 'The UI kit for MCP applications.',
+    description: '38 copy-paste components. Multi-framework. MCP-native.',
   },
-  keywords: ['MCP', 'Model Context Protocol', 'UI components', 'React', 'Angular', 'Vue', 'AI'],
+  keywords: ['UI components', 'React', 'Angular', 'Vue', 'AI', 'MCP', 'Model Context Protocol', 'shadcn', 'copy-paste components'],
 }
 
 function ThemeScript() {

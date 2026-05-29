@@ -22,12 +22,9 @@ export function HeroSection() {
         <div className="grid grid-cols-1 gap-x-12 gap-y-16 lg:grid-cols-[1.05fr_1fr] lg:items-center">
           {/* Left */}
           <div className="flex flex-col gap-7 max-w-2xl">
-            {/* Badge — built for MCP */}
-            <Link
-              href="https://modelcontextprotocol.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-medium transition-colors duration-150 hover:bg-[var(--site-bg-subtle)]"
+            {/* Badge — 38 components × 3 frameworks */}
+            <div
+              className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-medium"
               style={{
                 background: 'var(--site-bg-elevated)',
                 border: '1px solid var(--site-border)',
@@ -36,23 +33,26 @@ export function HeroSection() {
             >
               <span className="font-mono text-[10px] uppercase tracking-widest site-text-accent">v0.1</span>
               <span className="h-3 w-px" style={{ background: 'var(--site-border)' }} />
-              Built for the Model Context Protocol
-              <ArrowRight className="h-3 w-3 transition-transform duration-150 group-hover:translate-x-0.5" />
-            </Link>
+              <span>38 components</span>
+              <span style={{ color: 'var(--site-border)' }}>·</span>
+              <span>React · Angular · Vue</span>
+              <span style={{ color: 'var(--site-border)' }}>·</span>
+              <span className="site-text-accent">MCP-native</span>
+            </div>
 
-            {/* Headline — bigger, more dramatic */}
+            {/* Headline — broader positioning */}
             <h1
               className="font-bold"
               style={{
-                fontSize: 'clamp(2.75rem, 6vw, 5rem)',
+                fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
                 lineHeight: '1.02',
-                letterSpacing: '-0.04em',
+                letterSpacing: '-0.035em',
                 color: 'var(--site-text)',
               }}
             >
-              The UI layer{' '}
+              38 copy-paste{' '}
+              <span className="site-text-muted">components.</span>
               <br className="hidden sm:block" />
-              for{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, var(--site-accent) 0%, var(--site-accent-2) 100%)',
@@ -61,15 +61,16 @@ export function HeroSection() {
                   backgroundClip: 'text',
                 }}
               >
-                MCP
+                Multi-framework. MCP-native.
               </span>
-              <span className="site-text-accent">.</span>
             </h1>
 
-            {/* Subhead — concrete, names the parts, no jargon */}
+            {/* Subhead — names the categories so visitors know what they get */}
             <p className="site-lede">
-              Drop-in components for apps that talk to a Model Context Protocol server.{' '}
-              <span className="site-text">Tool calls, OAuth consent, scope inspectors, resource browsers</span> — copy-paste, framework-native, no runtime to install.
+              Buttons, dialogs, chat bubbles, tool-call cards.{' '}
+              <span className="site-text">31 base components</span> for any app,{' '}
+              <span className="site-text">7 AI primitives</span> for chat &amp; streaming, and{' '}
+              <span className="site-text">7 MCP components</span> nobody else ships. React, Angular, Vue.
             </p>
 
             {/* Install command */}
@@ -80,23 +81,29 @@ export function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
               <Link href="/components" className="site-btn site-btn-accent">
-                Browse 38 components
+                Browse all 38
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/mcp" className="site-btn site-btn-secondary">
-                See the MCP flow
+                See the MCP set
               </Link>
             </div>
 
-            {/* Tiny footnote — frameworks */}
-            <div className="mt-2 flex items-center gap-4 text-xs site-text-subtle">
-              <span className="font-mono uppercase tracking-widest">Works with</span>
+            {/* Tiny footnote — categories */}
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs site-text-subtle">
+              <span className="font-mono uppercase tracking-widest">Includes</span>
               <span className="flex items-center gap-3 font-mono">
-                <span>React</span>
+                <span>Form</span>
                 <span style={{ color: 'var(--site-border)' }}>·</span>
-                <span>Angular</span>
+                <span>Display</span>
                 <span style={{ color: 'var(--site-border)' }}>·</span>
-                <span>Vue</span>
+                <span>Overlay</span>
+                <span style={{ color: 'var(--site-border)' }}>·</span>
+                <span>Navigation</span>
+                <span style={{ color: 'var(--site-border)' }}>·</span>
+                <span>AI</span>
+                <span style={{ color: 'var(--site-border)' }}>·</span>
+                <span className="site-text-accent">MCP</span>
               </span>
             </div>
           </div>
