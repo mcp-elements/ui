@@ -3,6 +3,7 @@ import { Star, Menu } from 'lucide-react'
 import { getGitHubStars } from '@/lib/github'
 import { ThemeToggle } from './ThemeToggle'
 import { ScrollObserver } from './ScrollObserver'
+import { Logo } from './Logo'
 
 const NAV_LINKS = [
   { href: '/components', label: 'Components' },
@@ -21,9 +22,10 @@ export async function SiteNav() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-mono text-sm font-semibold site-text transition-opacity hover:opacity-90"
+          className="flex items-center gap-2.5 font-mono text-sm font-semibold site-text transition-opacity hover:opacity-90"
+          aria-label="mcp-elements home"
         >
-          <span className="site-text-accent">●</span>
+          <Logo size={28} />
           <span>mcp-elements</span>
         </Link>
 

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="#1a1418" stroke="#ff5c8a" stroke-width="2.5"/>
+  <text x="8" y="16" font-size="9" font-family="ui-monospace, monospace" font-weight="500" fill="#ff5c8a" letter-spacing="0.05em">7</text>
+  <text x="32" y="40" font-size="20" font-family="system-ui, sans-serif" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="-0.02em">Mcp</text>
+  <text x="32" y="54" font-size="6" font-family="ui-monospace, monospace" fill="#7a7280" text-anchor="middle" letter-spacing="0.18em">ELEMENTS</text>
+</svg>

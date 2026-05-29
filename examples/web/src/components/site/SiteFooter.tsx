@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Logo } from './Logo'
 
 const FOOTER_COLS = [
   {
@@ -38,8 +39,9 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Logo col */}
           <div className="flex flex-col gap-3">
-            <Link href="/" className="font-mono text-sm font-semibold site-text">
-              <span className="site-text-accent">●</span> mcp-elements
+            <Link href="/" className="inline-flex items-center gap-2.5 font-mono text-sm font-semibold site-text">
+              <Logo size={32} />
+              <span>mcp-elements</span>
             </Link>
             <p className="site-body-sm">
               The UI kit for MCP applications. Copy-paste into any framework.
