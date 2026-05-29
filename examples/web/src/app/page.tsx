@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/home/HeroSection'
+import { CategoriesSection } from '@/components/home/CategoriesSection'
 import { FlagshipScene } from '@/components/home/FlagshipScene'
 import { BeforeAfterSection } from '@/components/home/BeforeAfterSection'
 import { WhatIsMcpSection } from '@/components/home/WhatIsMcpSection'
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <CategoriesSection />
       <FlagshipScene />
       <BeforeAfterSection />
       <WhatIsMcpSection />
