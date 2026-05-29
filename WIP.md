@@ -1,6 +1,6 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: All product engineering done (Stages C/E/E8/F + Plans 3a-d). Site visually re-skinned — pink/coral accent (killed AI-blue cliché), bento grid, FlagshipScene wow moment, BeforeAfter with Shiki, periodic-table logo, repositioned as "38 components, MCP-native" not "MCP-only". Build green, 46 static routes. **GitHub org `mcp-elements` created** (repo still pending). Next: Stage I (npm publish + push to org + launch posts).
+**Status**: All product engineering done. Visual + brand pass complete (pink/coral palette, periodic-table logo, repositioned as "38 components, MCP-native"). **Repo live at https://github.com/mcp-elements/mcp-elements** — public, 95+ commits, 12 discovery topics. Remaining: README/LICENSE, Vercel deploy, npm publish v0.1.0, launch posts.
 **Started**: 2026-05-21
 **Last updated**: 2026-05-29
 
@@ -35,7 +35,12 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - ⏳ Stage G (Vue MCP components) — deferred to Phase 2
 - ⏳ Stage I (launch) — pending: create `mcp-elements/mcp-elements` repo, push, npm publish v0.1.0, blog post, Show HN
 
-**Next concrete step**: Create `github.com/mcp-elements/mcp-elements` repo (org is already created), update `origin` remote, push. Then npm publish v0.1.0 across all `@mcp-elements/*` scoped packages.
+**Next concrete step** (resume here): **README + LICENSE** for the new repo. Currently the GitHub page shows whatever was at root before — likely stale snuxt-ui content. Without a README the homepage looks empty. Recommended order to resume:
+1. **Write `README.md`** at repo root: hero, install commands per package, quick `<McpToolCall>` example, link to `mcp-elements.dev`, link to component list. Reuse the homepage copy.
+2. **Confirm `LICENSE` is MIT** with the right copyright holder line.
+3. **Deploy site to Vercel** (`vercel link` + `vercel deploy --prod`) — points the public URL somewhere before launch.
+4. **npm publish v0.1.0** (`pnpm -r publish --access public`) — **one-way door**, double-check `package.json` versions first.
+5. Launch posts (I5–I9).
 
 ---
 
@@ -316,14 +321,16 @@ Iterative visual transformation after Plan 3a-d shipped. User feedback drove eac
 
 ### Stage I: Launch
 - [x] **I1: Create `mcp-elements/mcp-elements` repo on GitHub** ✅ 2026-05-29 — https://github.com/mcp-elements/mcp-elements (public, 12 topics)
-- [x] **I2: Update git remote** to `mcp-elements/mcp-elements`, push ✅ 2026-05-29 — 94 commits pushed
-- [ ] **I3: Publish v0.1.0** packages to npm under new scope (`@mcp-elements/core`, `react`, `angular`, `vue`, `css`, `cli`)
-- [ ] **I4: Deploy site** to Vercel (or similar) under `mcp-elements.dev` domain — needs DNS + Vercel project
-- [ ] **I5: Launch blog post** — "38 copy-paste components for AI apps. The only library with MCP-native primitives."
-- [ ] **I6: Show HN** post
-- [ ] **I7: Submit to MCP-UI org showcase** (`mcpui.dev`)
-- [ ] **I8: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
-- [ ] **I9: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
+- [x] **I2: Update git remote** to `mcp-elements/mcp-elements`, push ✅ 2026-05-29 — 95 commits pushed, branch tracks origin
+- [ ] **I3: Write `README.md`** at repo root — reuse homepage copy (hero headline, install commands per package, quick `<McpToolCall>` example, link to mcp-elements.dev). Right now the GitHub landing page is bare/stale.
+- [ ] **I4: Confirm `LICENSE`** is MIT with the right copyright holder
+- [ ] **I5: Deploy site** to Vercel under `mcp-elements.dev` — needs DNS pointing + Vercel project link. `pnpm --filter @mcp-elements/web build` is green.
+- [ ] **I6: Publish v0.1.0** packages to npm (`@mcp-elements/core`, `react`, `angular`, `vue`, `css`, `cli`) — **one-way door**. Verify version numbers + build artifacts first. `pnpm -r publish --access public`.
+- [ ] **I7: Launch blog post** — "38 copy-paste components for AI apps. The only library with MCP-native primitives."
+- [ ] **I8: Show HN** post
+- [ ] **I9: Submit to MCP-UI org showcase** (`mcpui.dev`)
+- [ ] **I10: Distribution** — Twitter thread, dev.to article, r/LocalLLaMA, r/LangChain, r/nextjs
+- [ ] **I11: Reach out to MCP server authors** (Cursor, Cloudflare, GitHub) for cross-promo
 
 ### Stage J: Phase 2 (post-launch)
 - [ ] Remaining 21 base components → Vue
