@@ -107,13 +107,13 @@ importers:
   examples/web:
     dependencies:
       '@mcp-elements/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/core
       '@mcp-elements/css':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/css
       '@mcp-elements/react':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/react
       framer-motion:
         specifier: ^12.0.0
