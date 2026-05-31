@@ -3,7 +3,8 @@
 </p>
 
 <p align="center">
-  MCP-native UI components that copy into your project. Multi-framework. Open Source. Open Code.
+  <strong>38 copy-paste UI components. Multi-framework. MCP-native.</strong><br/>
+  Beautifully designed components that copy into your project — React, Angular, and Vue. You own the code. No lock-in.
 </p>
 
 <p align="center">
@@ -15,6 +16,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/React-18%2F19-61DAFB?logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/Angular-19+-DD0031?logo=angular&logoColor=white" alt="Angular" />
+  <img src="https://img.shields.io/badge/Vue-3-42B883?logo=vuedotjs&logoColor=white" alt="Vue" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/TypeScript-5.7+-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License" />
@@ -26,7 +28,9 @@
 
 mcp-elements is a component library that works differently. Instead of installing a package you depend on forever, our CLI copies production-ready source code directly into your project. You own it. You modify it. No lock-in.
 
-The same component logic powers both React and Angular through a layered architecture — CSS and core behavior are shared, framework adapters are thin wrappers on top.
+The same component logic powers React, Angular, and Vue through a layered architecture — CSS and core behavior are shared, framework adapters are thin wrappers on top.
+
+On top of 31 base components, mcp-elements ships **7 MCP-native primitives** — tool-call cards, schema-driven forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. That's the piece no other component library provides.
 
 ---
 
@@ -68,7 +72,9 @@ Add the base styles alongside Tailwind in your CSS:
 
 ---
 
-## Components (31)
+## Components (38)
+
+**31 base** (14 CSS-only + 10 interactive + 7 AI) plus **7 MCP-native** primitives. Base components ship for React, Angular, and Vue; MCP primitives ship for React and Angular today, with Vue [in progress](https://github.com/mcp-elements/mcp-elements/issues/4).
 
 ### CSS-Only (14)
 
@@ -121,6 +127,22 @@ Purpose-built components for AI-powered applications and chat interfaces.
 | **Source Card** | Attribution card for cited sources |
 | **Streaming Text** | Text component with streaming/typewriter effect |
 | **Feedback** | Thumbs up/down with optional text feedback form |
+
+### MCP-Native (7)
+
+Protocol-aware primitives for apps that consume [Model Context Protocol](https://modelcontextprotocol.io) servers. Runtime-free — bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, etc.). State machines live in `@mcp-elements/core`; the framework components are thin shells. _Available for React and Angular; Vue [in progress](https://github.com/mcp-elements/mcp-elements/issues/4)._
+
+| Component | Description |
+|-----------|-------------|
+| **McpToolCall** | Tool-call card: name, args, status (idle → pending → running → done/error), result, retry |
+| **McpToolForm** | JSON Schema → validated form fields with submit |
+| **McpConsentDialog** | OAuth/PKCE consent UI with scope list and approve/deny |
+| **McpScopeInspector** | Expandable scope tree with human-readable descriptions |
+| **McpResourceBrowser** | Browse MCP resources with type icons and a preview pane |
+| **McpServerStatus** | Connection badge: connected / disconnected / error / reconnecting (CSS-only) |
+| **McpAppFrame** _(preview)_ | Sandboxed iframe wrapper for the MCP-Apps spec with a bidirectional `postMessage` bridge |
+
+Headless hooks/composables per framework: `useMcpToolState`, `useMcpOAuth`, `useMcpAppBridge`, `useMcpSchemaForm`.
 
 ---
 
@@ -192,7 +214,7 @@ npx mcp-elements theme glass
 
 ### `npx mcp-elements list`
 
-List all 31 available components with their types.
+List all 38 available components with their types.
 
 ---
 
@@ -206,6 +228,7 @@ List all 31 available components with their types.
 │  Layer 2: Framework Adapters                │
 │  React hooks + components                   │
 │  Angular standalone components              │
+│  Vue components + composables               │
 ├─────────────────────────────────────────────┤
 │  Layer 1: Core      Plain TypeScript        │
 │  State machines, props, ARIA attributes     │
@@ -247,6 +270,9 @@ mcp-elements/
 │   ├── angular/              # Layer 2 — Angular adapters
 │   │   └── src/              # Standalone components + directives
 │   │
+│   ├── vue/                  # Layer 2 — Vue 3 adapters
+│   │   └── src/              # Components + composables
+│   │
 │   └── cli/                  # Layer 3 — CLI tool
 │       └── src/
 │           ├── commands/     # init, add, theme, list
@@ -254,7 +280,8 @@ mcp-elements/
 │           └── utils/        # fetch, transform, detect, fs
 │
 └── examples/
-    ├── docs/                 # Astro + Starlight documentation site
+    ├── web/                  # Next.js documentation site (mcp-elements.dev)
+    ├── docs/                 # Astro + Starlight docs
     ├── react-app/            # Vite + React example
     └── angular-app/          # Angular example
 ```
@@ -361,7 +388,7 @@ Additional tokens: `--color-secondary`, `--color-accent`, `--color-muted`, `--co
 ### Setup
 
 ```bash
-git clone https://github.com/snxstudio/mcp-elements.git
+git clone https://github.com/mcp-elements/mcp-elements.git
 cd mcp-elements
 pnpm install
 ```
@@ -384,6 +411,7 @@ pnpm install
 |---------|------|--------|
 | `@mcp-elements/core` | ~16 KB | ESM + DTS |
 | `@mcp-elements/react` | ~47 KB | ESM + DTS |
+| `@mcp-elements/vue` | ESM + DTS | — |
 | `mcp-elements` (CLI) | ~20 KB | ESM (with `#!/usr/bin/env node` banner) |
 | `@mcp-elements/angular` | Source-distributed via CLI | — |
 | `@mcp-elements/css` | Pure CSS | — |
@@ -421,10 +449,11 @@ biome.json              # Linter + formatter (single quotes, no semicolons, 2-sp
 3. Create React adapter in `packages/react/src/{name}.tsx`
 4. Create React hook in `packages/react/src/hooks/use-{name}.ts` (if interactive)
 5. Create Angular adapter in `packages/angular/src/{name}.component.ts`
-6. Add entry to `packages/cli/src/registry/registry.json`
-7. Export from each package's `index.ts`
-8. Add documentation page in `examples/docs/src/content/docs/components/`
-9. Add demo component in `examples/docs/src/demos/`
+6. Create Vue adapter in `packages/vue/src/{name}.ts` (`defineComponent` + render function)
+7. Add entry to `packages/cli/src/registry/registry.json`
+8. Export from each package's `index.ts`
+9. Add documentation page in `examples/docs/src/content/docs/components/`
+10. Add demo component in `examples/docs/src/demos/`
 
 ---
 
@@ -445,8 +474,8 @@ biome.json              # Linter + formatter (single quotes, no semicolons, 2-sp
 
 ## Contributing
 
-We welcome contributions! Please read our [contributing guide](CONTRIBUTING.md) before submitting a pull request.
+Contributions are welcome! Check the [open issues](https://github.com/mcp-elements/mcp-elements/issues) (good first issues are labeled) and the [roadmap project](https://github.com/orgs/mcp-elements/projects/1). Please open an issue to discuss substantial changes before submitting a pull request.
 
 ## License
 
-Licensed under the [MIT License](LICENSE.md).
+Licensed under the [MIT License](LICENSE).
