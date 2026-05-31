@@ -4,7 +4,7 @@ import type { ComponentEntry } from '@/data/components'
 
 export function ComponentCard({ component }: { component: ComponentEntry }) {
   const { name, slug, category, description, frameworks, isMcp, isNew } = component
-  const href = isMcp ? `/mcp/${slug}` : `/components/${slug}`
+  const href = `/components/${slug}`
 
   return (
     <Link
