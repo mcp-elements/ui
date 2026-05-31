@@ -30,6 +30,23 @@ import {
   McpScopeInspector,
   McpResourceBrowser,
   McpAppFrame,
+  AiBadge,
+  ChatBubble,
+  ChatBubbleAvatar,
+  ChatBubbleContent,
+  ChatBubbleTimestamp,
+  SuggestionChips,
+  SuggestionChip,
+  SourceCards,
+  SourceCard,
+  StreamingText,
+  Feedback,
+  FeedbackButton,
+  PromptInput,
+  PromptInputTextarea,
+  PromptInputFooter,
+  PromptInputActions,
+  PromptInputCharCount,
 } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
 
@@ -305,6 +322,72 @@ const McpAppFrameDemo: DemoFn = () => {
   )
 }
 
+// ───────── AI components ─────────
+
+const AiBadgeDemo: DemoFn = () => (
+  <div className="flex flex-wrap items-center gap-3">
+    <AiBadge>AI</AiBadge>
+    <AiBadge variant="prominent">AI Generated</AiBadge>
+    <AiBadge variant="subtle" showIcon={false}>Beta</AiBadge>
+  </div>
+)
+const ChatBubbleDemo: DemoFn = () => (
+  <div className="flex w-full max-w-md flex-col gap-4">
+    <ChatBubble variant="user">
+      <ChatBubbleContent>How do I add a component?</ChatBubbleContent>
+      <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
+    </ChatBubble>
+    <ChatBubble variant="ai">
+      <ChatBubbleAvatar src="" alt="Assistant" />
+      <ChatBubbleContent>Run `npx mcp-elements add button` and it copies into your project.</ChatBubbleContent>
+      <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
+    </ChatBubble>
+  </div>
+)
+const SuggestionChipsDemo: DemoFn = () => (
+  <SuggestionChips>
+    <SuggestionChip>Summarize this</SuggestionChip>
+    <SuggestionChip variant="primary">Write tests</SuggestionChip>
+    <SuggestionChip variant="outline">Explain the error</SuggestionChip>
+  </SuggestionChips>
+)
+const SourceCardDemo: DemoFn = () => (
+  <SourceCards className="w-full max-w-md">
+    <SourceCard index={1} title="Model Context Protocol" domain="modelcontextprotocol.io" href="https://modelcontextprotocol.io" />
+    <SourceCard index={2} title="mcp-elements docs" domain="mcp-elements.dev" href="https://mcp-elements.dev" />
+  </SourceCards>
+)
+const StreamingTextDemo: DemoFn = () => (
+  <div className="w-full max-w-md">
+    <StreamingText>Streaming a response token by token, just like an LLM would render it in real time.</StreamingText>
+  </div>
+)
+const FeedbackDemo: DemoFn = () => {
+  const [sel, setSel] = useState<'up' | 'down' | null>(null)
+  return (
+    <Feedback>
+      <FeedbackButton type="up" selected={sel === 'up'} onClick={() => setSel('up')} aria-label="Thumbs up" />
+      <FeedbackButton type="down" selected={sel === 'down'} onClick={() => setSel('down')} aria-label="Thumbs down" />
+    </Feedback>
+  )
+}
+const PromptInputDemo: DemoFn = () => {
+  const [value, setValue] = useState('')
+  return (
+    <div className="w-full max-w-md">
+      <PromptInput>
+        <PromptInputTextarea placeholder="Ask anything…" value={value} onChange={(e) => setValue(e.target.value)} rows={2} />
+        <PromptInputFooter>
+          <PromptInputCharCount count={value.length} max={2000} />
+          <PromptInputActions>
+            <Button size="sm" disabled={!value.trim()}>Send</Button>
+          </PromptInputActions>
+        </PromptInputFooter>
+      </PromptInput>
+    </div>
+  )
+}
+
 // ───────── Registry ─────────
 
 export const DEMOS: Record<string, DemoFn> = {
@@ -324,6 +407,13 @@ export const DEMOS: Record<string, DemoFn> = {
   'mcp-scope-inspector': McpScopeInspectorDemo,
   'mcp-resource-browser': McpResourceBrowserDemo,
   'mcp-app-frame': McpAppFrameDemo,
+  'ai-badge': AiBadgeDemo,
+  'chat-bubble': ChatBubbleDemo,
+  'suggestion-chips': SuggestionChipsDemo,
+  'source-card': SourceCardDemo,
+  'streaming-text': StreamingTextDemo,
+  feedback: FeedbackDemo,
+  'prompt-input': PromptInputDemo,
 }
 
 export function ComponentPreview({ slug }: { slug: string }) {
