@@ -338,7 +338,7 @@ const ChatBubbleDemo: DemoFn = () => (
       <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
     </ChatBubble>
     <ChatBubble variant="ai">
-      <ChatBubbleAvatar src="" alt="Assistant" />
+      <ChatBubbleAvatar src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' rx='16' fill='%236366f1'/%3E%3Ctext x='16' y='21' font-size='14' fill='white' text-anchor='middle' font-family='sans-serif'%3EA%3C/text%3E%3C/svg%3E" alt="Assistant" />
       <ChatBubbleContent>Run `npx mcp-elements add button` and it copies into your project.</ChatBubbleContent>
       <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
     </ChatBubble>
