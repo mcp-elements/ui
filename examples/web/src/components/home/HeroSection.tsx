@@ -70,7 +70,7 @@ export function HeroSection() {
               38 copy-paste components. Multi-framework.{' '}
               <strong className="site-text">MCP-native.</strong>{' '}
               7 MCP primitives nobody else ships — tool-call cards, OAuth consent, scope inspector and more —
-              plus 31 base UI primitives to build on. React, Angular, Vue.
+              plus 24 base UI primitives to build on. React, Angular, Vue.
             </p>
 
             {/* Install command */}

@@ -171,7 +171,7 @@ export function ComponentShowcase() {
             <p className="site-eyebrow mb-2">The library</p>
             <h2 className="site-h2">
               7 MCP primitives.{' '}
-              <span className="site-text-muted">And 31 base UI primitives to build on.</span>
+              <span className="site-text-muted">And 24 base UI primitives to build on.</span>
             </h2>
             <p className="site-lede mt-3 max-w-xl">
               The{' '}

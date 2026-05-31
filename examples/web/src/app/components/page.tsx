@@ -86,7 +86,7 @@ function ComponentsPageInner() {
           </h1>
           <p className="site-lede mt-3">
             <span className="site-text">38 copy-paste components</span> for AI apps —
-            31 base, 7 AI, 7 MCP. React, Angular, Vue.
+            24 base, 7 AI, 7 MCP. React, Angular, Vue.
           </p>
         </div>
 
@@ -257,7 +257,7 @@ function ComponentsPageInner() {
                 <p className="site-eyebrow mb-1">Extras</p>
                 <h2 className="site-h2">Extras — base UI primitives</h2>
                 <p className="site-lede mt-2 max-w-xl">
-                  31 polished base components to build on — forms, overlays, navigation, and more.
+                  24 polished base components to build on — forms, overlays, navigation, and more.
                 </p>
               </div>
               <div className="flex flex-col gap-14">
