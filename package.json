@@ -2,7 +2,17 @@
   "name": "mcp-elements",
   "private": true,
   "version": "0.1.0",
-  "description": "MCP UI for any framework. Beautifully designed components that copy into your project.",
+  "description": "38 copy-paste UI components. Multi-framework. MCP-native.",
+  "author": "Mayur Rawte",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-elements/mcp-elements.git"
+  },
+  "homepage": "https://mcp-elements.dev",
+  "bugs": {
+    "url": "https://github.com/mcp-elements/mcp-elements/issues"
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
