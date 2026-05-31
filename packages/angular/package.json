@@ -1,7 +1,6 @@
 {
   "name": "@mcp-elements/angular",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
@@ -15,5 +14,9 @@
   "peerDependencies": {
     "@angular/core": "^19.0.0",
     "@angular/common": "^19.0.0"
-  }
+  },
+  "files": [
+    "src"
+  ],
+  "types": "./src/index.ts"
 }

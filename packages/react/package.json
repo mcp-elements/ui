@@ -1,7 +1,6 @@
 {
   "name": "@mcp-elements/react",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -32,5 +31,8 @@
     "react-dom": "^19.0.0",
     "tsup": "^8.3.0",
     "vitest": "^2.1.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
