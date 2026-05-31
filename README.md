@@ -74,7 +74,7 @@ Add the base styles alongside Tailwind in your CSS:
 
 ## Components (38)
 
-**31 base** (14 CSS-only + 10 interactive + 7 AI) plus **7 MCP-native** primitives. Base components ship for React, Angular, and Vue; MCP primitives ship for React and Angular today, with Vue [in progress](https://github.com/mcp-elements/mcp-elements/issues/4).
+**31 base** (14 CSS-only + 10 interactive + 7 AI) plus **7 MCP-native** primitives. Base components ship for React, Angular, and Vue; MCP primitives ship for React and Angular today, with Vue [in progress](https://github.com/mcp-elements/ui/issues/4).
 
 ### CSS-Only (14)
 
@@ -130,7 +130,7 @@ Purpose-built components for AI-powered applications and chat interfaces.
 
 ### MCP-Native (7)
 
-Protocol-aware primitives for apps that consume [Model Context Protocol](https://modelcontextprotocol.io) servers. Runtime-free — bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, etc.). State machines live in `@mcp-elements/core`; the framework components are thin shells. _Available for React and Angular; Vue [in progress](https://github.com/mcp-elements/mcp-elements/issues/4)._
+Protocol-aware primitives for apps that consume [Model Context Protocol](https://modelcontextprotocol.io) servers. Runtime-free — bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, etc.). State machines live in `@mcp-elements/core`; the framework components are thin shells. _Available for React and Angular; Vue [in progress](https://github.com/mcp-elements/ui/issues/4)._
 
 | Component | Description |
 |-----------|-------------|
@@ -388,7 +388,7 @@ Additional tokens: `--color-secondary`, `--color-accent`, `--color-muted`, `--co
 ### Setup
 
 ```bash
-git clone https://github.com/mcp-elements/mcp-elements.git
+git clone https://github.com/mcp-elements/ui.git
 cd mcp-elements
 pnpm install
 ```
@@ -474,7 +474,7 @@ biome.json              # Linter + formatter (single quotes, no semicolons, 2-sp
 
 ## Contributing
 
-Contributions are welcome! Check the [open issues](https://github.com/mcp-elements/mcp-elements/issues) (good first issues are labeled) and the [roadmap project](https://github.com/orgs/mcp-elements/projects/1). Please open an issue to discuss substantial changes before submitting a pull request.
+Contributions are welcome! Check the [open issues](https://github.com/mcp-elements/ui/issues) (good first issues are labeled) and the [roadmap project](https://github.com/orgs/mcp-elements/projects/1). Please open an issue to discuss substantial changes before submitting a pull request.
 
 ## License
 

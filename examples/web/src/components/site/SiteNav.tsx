@@ -13,7 +13,7 @@ const NAV_LINKS = [
 ]
 
 export async function SiteNav() {
-  const stars = await getGitHubStars('mcp-elements/mcp-elements')
+  const stars = await getGitHubStars('mcp-elements/ui')
 
   return (
     <header className="site-nav">
@@ -56,7 +56,7 @@ export async function SiteNav() {
           </span>
 
           <a
-            href="https://github.com/mcp-elements/mcp-elements"
+            href="https://github.com/mcp-elements/ui"
             target="_blank"
             rel="noopener noreferrer"
             className="site-btn site-btn-secondary hidden md:inline-flex h-8 gap-1.5 px-3 text-xs"

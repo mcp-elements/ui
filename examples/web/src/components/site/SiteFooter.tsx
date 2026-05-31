@@ -14,9 +14,9 @@ const FOOTER_COLS = [
   {
     label: 'Community',
     links: [
-      { href: 'https://github.com/mcp-elements/mcp-elements', label: 'GitHub', external: true },
-      { href: 'https://github.com/mcp-elements/mcp-elements/issues', label: 'Issues', external: true },
-      { href: 'https://github.com/mcp-elements/mcp-elements/discussions', label: 'Discussions', external: true },
+      { href: 'https://github.com/mcp-elements/ui', label: 'GitHub', external: true },
+      { href: 'https://github.com/mcp-elements/ui/issues', label: 'Issues', external: true },
+      { href: 'https://github.com/mcp-elements/ui/discussions', label: 'Discussions', external: true },
     ],
   },
   {

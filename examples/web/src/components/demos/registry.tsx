@@ -274,7 +274,7 @@ const McpResourceBrowserDemo: DemoFn = () => {
     <div className="w-full max-w-md">
       <McpResourceBrowser
         resources={[
-          { uri: 'mcp://github/repos/mcp-elements', name: 'mcp-elements/mcp-elements', mimeType: 'application/json' },
+          { uri: 'mcp://github/repos/mcp-elements', name: 'mcp-elements/ui', mimeType: 'application/json' },
           { uri: 'mcp://github/issues/42', name: 'Issue #42: Add Vue adapter', mimeType: 'text/markdown' },
           { uri: 'mcp://github/pulls/108', name: 'PR #108: Refactor consent flow', mimeType: 'text/markdown' },
           { uri: 'mcp://github/file/README.md', name: 'README.md', mimeType: 'text/markdown' },

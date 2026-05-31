@@ -7,11 +7,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcp-elements/mcp-elements.git"
+    "url": "git+https://github.com/mcp-elements/ui.git"
   },
   "homepage": "https://mcp-elements.dev",
   "bugs": {
-    "url": "https://github.com/mcp-elements/mcp-elements/issues"
+    "url": "https://github.com/mcp-elements/ui/issues"
   },
   "scripts": {
     "build": "turbo build",
