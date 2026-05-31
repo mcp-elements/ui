@@ -344,6 +344,168 @@ export function Example() {
   )
 }`,
   },
+  'ai-badge': {
+    slug: 'ai-badge',
+    props: [
+      { name: 'variant', type: "'default' | 'prominent' | 'subtle'", default: "'default'", description: 'Visual style of the badge' },
+      { name: 'showIcon', type: 'boolean', default: 'true', description: 'Whether to show the sparkle icon' },
+      { name: 'children', type: 'React.ReactNode', description: 'Label text displayed inside the badge' },
+    ],
+    usage: `import { AiBadge } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-3">
+      <AiBadge>AI</AiBadge>
+      <AiBadge variant="prominent">AI Generated</AiBadge>
+      <AiBadge variant="subtle" showIcon={false}>Beta</AiBadge>
+    </div>
+  )
+}`,
+  },
+  'chat-bubble': {
+    slug: 'chat-bubble',
+    props: [
+      { name: 'variant', type: "'user' | 'ai'", default: "'ai'", description: 'Which side and style the bubble renders on' },
+      { name: 'children', type: 'React.ReactNode', description: 'Use ChatBubbleContent, ChatBubbleTimestamp, ChatBubbleAvatar as children' },
+      { name: 'src (ChatBubbleAvatar)', type: 'string', required: true, description: 'Image URL for the avatar' },
+      { name: 'alt (ChatBubbleAvatar)', type: 'string', required: true, description: 'Alt text for the avatar image' },
+    ],
+    usage: `import { ChatBubble, ChatBubbleAvatar, ChatBubbleContent, ChatBubbleTimestamp } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <div className="flex flex-col gap-4">
+      <ChatBubble variant="user">
+        <ChatBubbleContent>How do I add a component?</ChatBubbleContent>
+        <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
+      </ChatBubble>
+      <ChatBubble variant="ai">
+        <ChatBubbleAvatar src="/avatar.png" alt="Assistant" />
+        <ChatBubbleContent>Run \`npx mcp-elements add button\`.</ChatBubbleContent>
+        <ChatBubbleTimestamp>9:41 AM</ChatBubbleTimestamp>
+      </ChatBubble>
+    </div>
+  )
+}`,
+  },
+  'suggestion-chips': {
+    slug: 'suggestion-chips',
+    props: [
+      { name: 'children', type: 'React.ReactNode', description: 'SuggestionChip elements to render' },
+      { name: 'variant (SuggestionChip)', type: "'default' | 'primary' | 'outline'", default: "'default'", description: 'Visual style of an individual chip' },
+    ],
+    usage: `import { SuggestionChips, SuggestionChip } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <SuggestionChips>
+      <SuggestionChip>Summarize this</SuggestionChip>
+      <SuggestionChip variant="primary">Write tests</SuggestionChip>
+      <SuggestionChip variant="outline">Explain the error</SuggestionChip>
+    </SuggestionChips>
+  )
+}`,
+  },
+  'source-card': {
+    slug: 'source-card',
+    props: [
+      { name: 'title', type: 'string', required: true, description: 'Title of the source document or page' },
+      { name: 'domain', type: 'string', required: true, description: 'Domain name shown below the title' },
+      { name: 'href', type: 'string', description: 'URL the card links to (opens in new tab)' },
+      { name: 'favicon', type: 'string', description: 'URL of the site favicon image' },
+      { name: 'index', type: 'number', description: 'Numeric citation index shown on the card' },
+    ],
+    usage: `import { SourceCards, SourceCard } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <SourceCards>
+      <SourceCard
+        index={1}
+        title="Model Context Protocol"
+        domain="modelcontextprotocol.io"
+        href="https://modelcontextprotocol.io"
+      />
+      <SourceCard
+        index={2}
+        title="mcp-elements docs"
+        domain="mcp-elements.dev"
+        href="https://mcp-elements.dev"
+      />
+    </SourceCards>
+  )
+}`,
+  },
+  'streaming-text': {
+    slug: 'streaming-text',
+    props: [
+      { name: 'children', type: 'React.ReactNode', description: 'Text or elements to display with the streaming cursor effect' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes for the container div' },
+    ],
+    usage: `import { StreamingText } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <StreamingText>
+      Streaming a response token by token, just like an LLM would render it in real time.
+    </StreamingText>
+  )
+}`,
+  },
+  feedback: {
+    slug: 'feedback',
+    props: [
+      { name: 'children', type: 'React.ReactNode', description: 'FeedbackButton elements and optional separators' },
+      { name: 'type (FeedbackButton)', type: "'up' | 'down'", required: true, description: 'Whether the button is a thumbs-up or thumbs-down' },
+      { name: 'selected (FeedbackButton)', type: 'boolean', default: 'false', description: 'Whether the button is in the selected/active state' },
+    ],
+    usage: `import { Feedback, FeedbackButton } from '@mcp-elements/react'
+import { useState } from 'react'
+
+export function Example() {
+  const [sel, setSel] = useState<'up' | 'down' | null>(null)
+  return (
+    <Feedback>
+      <FeedbackButton type="up" selected={sel === 'up'} onClick={() => setSel('up')} aria-label="Thumbs up" />
+      <FeedbackButton type="down" selected={sel === 'down'} onClick={() => setSel('down')} aria-label="Thumbs down" />
+    </Feedback>
+  )
+}`,
+  },
+  'prompt-input': {
+    slug: 'prompt-input',
+    props: [
+      { name: 'children', type: 'React.ReactNode', description: 'Use PromptInputTextarea, PromptInputFooter, PromptInputActions as children' },
+      { name: 'placeholder (PromptInputTextarea)', type: 'string', description: 'Placeholder text for the textarea' },
+      { name: 'value (PromptInputTextarea)', type: 'string', description: 'Controlled value of the textarea' },
+      { name: 'onChange (PromptInputTextarea)', type: 'React.ChangeEventHandler<HTMLTextAreaElement>', description: 'Change handler for the textarea' },
+      { name: 'count (PromptInputCharCount)', type: 'number', required: true, description: 'Current character count to display' },
+      { name: 'max (PromptInputCharCount)', type: 'number', description: 'Maximum allowed characters; renders count/max when provided' },
+    ],
+    usage: `import { PromptInput, PromptInputTextarea, PromptInputFooter, PromptInputActions, PromptInputCharCount } from '@mcp-elements/react'
+import { useState } from 'react'
+
+export function Example() {
+  const [value, setValue] = useState('')
+  return (
+    <PromptInput>
+      <PromptInputTextarea
+        placeholder="Ask anything…"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        rows={2}
+      />
+      <PromptInputFooter>
+        <PromptInputCharCount count={value.length} max={2000} />
+        <PromptInputActions>
+          <button disabled={!value.trim()}>Send</button>
+        </PromptInputActions>
+      </PromptInputFooter>
+    </PromptInput>
+  )
+}`,
+  },
 }
 
 export function getComponentDoc(slug: string): ComponentDoc | undefined {
