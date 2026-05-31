@@ -14,7 +14,7 @@ import {
   Plug,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { COMPONENTS, CATEGORIES, type ComponentCategory } from '@/data/components'
+import { COMPONENTS, CATEGORIES, FEATURED_CATEGORIES, EXTRA_CATEGORIES, type ComponentCategory } from '@/data/components'
 import { ComponentCard } from '@/components/site/ComponentCard'
 
 type Filter = 'All' | ComponentCategory
@@ -176,69 +176,137 @@ function ComponentsPageInner() {
 
         {/* Grouped view — All + no search */}
         {hasResults && showGrouped && (
-          <div className="flex flex-col gap-16">
-            {CATEGORIES.map((cat) => {
-              const items = COMPONENTS.filter((c) => c.category === cat)
-              if (items.length === 0) return null
-              const Icon = CATEGORY_ICONS[cat]
-              const isMcp = cat === 'MCP'
-              return (
-                <section key={cat} id={cat.toLowerCase()}>
-                  <header className="mb-5 flex items-end justify-between gap-4 border-b pb-4"
-                    style={{ borderColor: 'var(--site-border)' }}>
-                    <div className="flex items-center gap-3">
-                      <span
-                        className="flex h-9 w-9 items-center justify-center rounded-lg"
-                        style={
-                          isMcp
-                            ? {
-                                background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
-                                color: 'oklch(1 0 0)',
-                                boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
-                              }
-                            : {
-                                background: 'var(--site-bg-elevated)',
-                                border: '1px solid var(--site-border-strong)',
-                                color: 'var(--site-text)',
-                              }
-                        }
-                      >
-                        <Icon className="h-4 w-4" />
-                      </span>
-                      <div>
-                        <div className="flex items-baseline gap-2">
-                          <h2 className="text-xl font-semibold site-text" style={{ letterSpacing: '-0.01em' }}>
-                            {cat}
-                          </h2>
-                          <span className="font-mono text-xs site-text-subtle">
-                            {items.length} component{items.length !== 1 ? 's' : ''}
+          <div className="flex flex-col gap-20">
+            {/* ── Featured: MCP-native & AI ── */}
+            <div>
+              <div className="mb-8">
+                <p className="site-eyebrow mb-1">Featured</p>
+                <h2 className="site-h2">MCP-native &amp; AI</h2>
+                <p className="site-lede mt-2 max-w-xl">
+                  The primitives you need to build MCP-powered and AI-first interfaces — nobody else ships these.
+                </p>
+              </div>
+              <div className="flex flex-col gap-14">
+                {FEATURED_CATEGORIES.map((cat) => {
+                  const items = COMPONENTS.filter((c) => c.category === cat)
+                  if (items.length === 0) return null
+                  const Icon = CATEGORY_ICONS[cat]
+                  const isMcp = cat === 'MCP'
+                  return (
+                    <section key={cat} id={cat.toLowerCase()}>
+                      <header className="mb-5 flex items-end justify-between gap-4 border-b pb-4"
+                        style={{ borderColor: 'var(--site-border)' }}>
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="flex h-9 w-9 items-center justify-center rounded-lg"
+                            style={
+                              isMcp
+                                ? {
+                                    background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                                    color: 'oklch(1 0 0)',
+                                    boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
+                                  }
+                                : {
+                                    background: 'var(--site-bg-elevated)',
+                                    border: '1px solid var(--site-border-strong)',
+                                    color: 'var(--site-text)',
+                                  }
+                            }
+                          >
+                            <Icon className="h-4 w-4" />
                           </span>
-                          {isMcp && (
-                            <span
-                              className="rounded-md px-1.5 py-0.5 text-[9px] font-semibold tracking-widest uppercase"
-                              style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)' }}
-                            >
-                              Differentiator
-                            </span>
-                          )}
+                          <div>
+                            <div className="flex items-baseline gap-2">
+                              <h3 className="text-xl font-semibold site-text" style={{ letterSpacing: '-0.01em' }}>
+                                {cat}
+                              </h3>
+                              <span className="font-mono text-xs site-text-subtle">
+                                {items.length} component{items.length !== 1 ? 's' : ''}
+                              </span>
+                              {isMcp && (
+                                <span
+                                  className="rounded-md px-1.5 py-0.5 text-[9px] font-semibold tracking-widest uppercase"
+                                  style={{ background: 'var(--site-accent-glow)', color: 'var(--site-accent)' }}
+                                >
+                                  Differentiator
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-xs site-text-subtle mt-0.5">{CATEGORY_BLURBS[cat]}</p>
+                          </div>
                         </div>
-                        <p className="text-xs site-text-subtle mt-0.5">{CATEGORY_BLURBS[cat]}</p>
+                        <button
+                          onClick={() => setActiveFilter(cat)}
+                          className="site-link-accent hidden text-xs font-medium sm:inline-flex"
+                        >
+                          Filter to {cat} →
+                        </button>
+                      </header>
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {items.map((c) => <ComponentCard key={c.slug} component={c} />)}
                       </div>
-                    </div>
-                    <button
-                      onClick={() => setActiveFilter(cat)}
-                      className="site-link-accent hidden text-xs font-medium sm:inline-flex"
-                    >
-                      Filter to {cat} →
-                    </button>
-                  </header>
+                    </section>
+                  )
+                })}
+              </div>
+            </div>
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {items.map((c) => <ComponentCard key={c.slug} component={c} />)}
-                  </div>
-                </section>
-              )
-            })}
+            {/* ── Extras: base UI primitives ── */}
+            <div>
+              <div className="mb-8">
+                <p className="site-eyebrow mb-1">Extras</p>
+                <h2 className="site-h2">Extras — base UI primitives</h2>
+                <p className="site-lede mt-2 max-w-xl">
+                  31 polished base components to build on — forms, overlays, navigation, and more.
+                </p>
+              </div>
+              <div className="flex flex-col gap-14">
+                {EXTRA_CATEGORIES.map((cat) => {
+                  const items = COMPONENTS.filter((c) => c.category === cat)
+                  if (items.length === 0) return null
+                  const Icon = CATEGORY_ICONS[cat]
+                  return (
+                    <section key={cat} id={cat.toLowerCase()}>
+                      <header className="mb-5 flex items-end justify-between gap-4 border-b pb-4"
+                        style={{ borderColor: 'var(--site-border)' }}>
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="flex h-9 w-9 items-center justify-center rounded-lg"
+                            style={{
+                              background: 'var(--site-bg-elevated)',
+                              border: '1px solid var(--site-border-strong)',
+                              color: 'var(--site-text)',
+                            }}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          <div>
+                            <div className="flex items-baseline gap-2">
+                              <h3 className="text-xl font-semibold site-text" style={{ letterSpacing: '-0.01em' }}>
+                                {cat}
+                              </h3>
+                              <span className="font-mono text-xs site-text-subtle">
+                                {items.length} component{items.length !== 1 ? 's' : ''}
+                              </span>
+                            </div>
+                            <p className="text-xs site-text-subtle mt-0.5">{CATEGORY_BLURBS[cat]}</p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setActiveFilter(cat)}
+                          className="site-link-accent hidden text-xs font-medium sm:inline-flex"
+                        >
+                          Filter to {cat} →
+                        </button>
+                      </header>
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {items.map((c) => <ComponentCard key={c.slug} component={c} />)}
+                      </div>
+                    </section>
+                  )
+                })}
+              </div>
+            </div>
           </div>
         )}
 
