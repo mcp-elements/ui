@@ -33,6 +33,15 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Verify npm auth (dry-run only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run }}
+        run: |
+          echo "Authenticated as: $(npm whoami)"
+          echo "--- @mcp-elements scope access ---"
+          npm access list packages @mcp-elements 2>/dev/null || npm org ls mcp-elements 2>/dev/null || echo "(scope is empty/new — expected before first publish)"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MCP_ELEMENT_NPM_TOKEN }}
+
       - name: Publish to npm
         if: ${{ github.event_name == 'push' || !inputs.dry-run }}
         run: pnpm -r publish --access public --no-git-checks
