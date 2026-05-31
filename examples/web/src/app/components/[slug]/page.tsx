@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { COMPONENTS, getComponentBySlug } from '@/data/components'
 import { getComponentDoc } from '@/lib/component-docs'
@@ -13,13 +14,17 @@ export async function generateStaticParams() {
   return COMPONENTS.map((c) => ({ slug: c.slug }))
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const component = getComponentBySlug(slug)
   if (!component) return {}
   return {
-    title: `${component.name} — mcp-elements`,
+    title: `${component.name} — ${component.category} component`,
     description: component.description,
+    openGraph: {
+      title: `${component.name} · mcp-elements`,
+      description: component.description,
+    },
   }
 }
 

@@ -3,29 +3,31 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { SiteNav } from '@/components/site/SiteNav'
 import { SiteFooter } from '@/components/site/SiteFooter'
+import { JsonLd } from '@/components/site/JsonLd'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mcp-elements.wearesnx.studio'),
   title: {
-    default: 'mcp-elements — 38 copy-paste components. Multi-framework. MCP-native.',
+    default: 'mcp-elements — MCP-native UI components',
     template: '%s · mcp-elements',
   },
   description:
-    '38 copy-paste UI components for AI apps. Buttons, dialogs, chat bubbles, tool-call cards — and the only MCP-native primitives anywhere. React, Angular, Vue.',
+    '38 copy-paste UI components. Multi-framework (React, Angular, Vue). The only library with MCP-native primitives — tool calls, consent, scopes, resources.',
+  keywords: ['MCP', 'Model Context Protocol', 'AI UI', 'React components', 'shadcn', 'agent UI', 'tool calling UI', 'copy-paste components'],
   openGraph: {
-    title: 'mcp-elements',
-    description: '38 copy-paste components. Multi-framework. MCP-native.',
-    url: 'https://mcp-elements.dev',
-    siteName: 'mcp-elements',
-    locale: 'en_US',
     type: 'website',
+    url: 'https://mcp-elements.wearesnx.studio',
+    siteName: 'mcp-elements',
+    title: 'mcp-elements — MCP-native UI components',
+    description: 'Copy-paste UI primitives for AI & MCP apps. React, Angular, Vue.',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'mcp-elements',
-    description: '38 copy-paste components. Multi-framework. MCP-native.',
+    description: 'MCP-native, multi-framework copy-paste UI components.',
   },
-  keywords: ['UI components', 'React', 'Angular', 'Vue', 'AI', 'MCP', 'Model Context Protocol', 'shadcn', 'copy-paste components'],
 }
 
 function ThemeScript() {
@@ -41,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head />
       <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}>
+        <JsonLd />
         <ThemeScript />
         <SiteNav />
         <main>{children}</main>
