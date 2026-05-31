@@ -67,10 +67,10 @@ export function HeroSection() {
 
             {/* Subhead — names the categories so visitors know what they get */}
             <p className="site-lede">
-              Buttons, dialogs, chat bubbles, tool-call cards.{' '}
-              <span className="site-text">31 base components</span> for any app,{' '}
-              <span className="site-text">7 AI primitives</span> for chat &amp; streaming, and{' '}
-              <span className="site-text">7 MCP components</span> nobody else ships. React, Angular, Vue.
+              38 copy-paste components. Multi-framework.{' '}
+              <strong className="site-text">MCP-native.</strong>{' '}
+              7 MCP primitives nobody else ships — tool-call cards, OAuth consent, scope inspector and more —
+              plus 31 base UI primitives to build on. React, Angular, Vue.
             </p>
 
             {/* Install command */}

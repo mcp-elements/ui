@@ -170,9 +170,15 @@ export function ComponentShowcase() {
           <div>
             <p className="site-eyebrow mb-2">The library</p>
             <h2 className="site-h2">
-              38 components.{' '}
-              <span className="site-text-muted">All rendered live.</span>
+              7 MCP primitives.{' '}
+              <span className="site-text-muted">And 31 base UI primitives to build on.</span>
             </h2>
+            <p className="site-lede mt-3 max-w-xl">
+              The{' '}
+              <Link href="/mcp" className="site-link-accent font-medium">7 MCP-native components</Link>
+              {' '}are the headline — tool execution, OAuth consent, resource browsing, server status and more.
+              All rendered live.
+            </p>
           </div>
           <Link href="/components" className="site-link-accent hidden items-center gap-1.5 text-sm font-medium sm:inline-flex">
             View all <ArrowRight className="h-4 w-4" />
