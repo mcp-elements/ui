@@ -59,7 +59,11 @@ export const COMPONENTS: ComponentEntry[] = [
   { name: 'McpAppFrame', slug: 'mcp-app-frame', category: 'MCP', description: 'Sandboxed iframe + postMessage bridge for MCP Apps spec.', frameworks: ['react'], isMcp: true, isNew: true },
 ]
 
-export const CATEGORIES: ComponentCategory[] = ['Form', 'Display', 'Overlay', 'Navigation', 'Feedback', 'AI', 'MCP']
+export const CATEGORIES: ComponentCategory[] = ['MCP', 'AI', 'Form', 'Display', 'Overlay', 'Navigation', 'Feedback']
+
+/** Base ("extras") categories — everything that isn't MCP or AI. */
+export const EXTRA_CATEGORIES: ComponentCategory[] = ['Form', 'Display', 'Overlay', 'Navigation', 'Feedback']
+export const FEATURED_CATEGORIES: ComponentCategory[] = ['MCP', 'AI']
 
 export function getComponentBySlug(slug: string): ComponentEntry | undefined {
   return COMPONENTS.find((c) => c.slug === slug)
