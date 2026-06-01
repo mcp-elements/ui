@@ -1,8 +1,8 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: All product engineering done. Visual + brand pass complete (pink/coral palette, periodic-table logo, repositioned as "38 components, MCP-native"). **Repo live at https://github.com/mcp-elements/mcp-elements** — public, 95+ commits, 12 discovery topics. Remaining: README/LICENSE, Vercel deploy, npm publish v0.1.0, launch posts.
+**Status**: 🚀 **LAUNCHED — v0.1.0 live on npm (2026-05-31)** and docs site live at **https://mcp-elements.wearesnx.studio**. Repo renamed to **https://github.com/mcp-elements/ui**. Post-launch: MCP-first reposition + AI demos/docs + SEO/LLM discoverability shipped (2026-05-31). Remaining: register MCP components in the CLI registry (the headline feature isn't `add`-able yet), launch posts.
 **Started**: 2026-05-21
-**Last updated**: 2026-05-29
+**Last updated**: 2026-06-01
 
 ---
 
@@ -12,12 +12,12 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 
 - **Brand**: `mcp-elements` (locked 2026-05-21)
 - **Tagline**: "38 copy-paste components. Multi-framework. MCP-native." (revised 2026-05-29 — was "MCP UI for any framework", which read as MCP-only)
-- **Positioning**: lead with full library breadth (31 base + 7 AI + 7 MCP), MCP is the differentiator chapter not the whole story
+- **Positioning** (revised 2026-05-31 → MCP-first): site headlines the 7 MCP-native + 7 AI primitives as "Featured"; the 24 base UI components are "Extras — primitives to build on". 38 total. (README/npm still use the "31 base + 7 MCP" framing — align later.)
 - **Accent palette**: hot pink → coral (not blue+violet — that's the AI-template cliché)
 - **Logo**: periodic table element tile — atomic number 7 (the 7 MCP components), symbol "Mcp", "ELEMENTS" subtitle
 - **npm**: `@mcp-elements/{core,react,angular,vue,css,cli}` — all free
-- **Domain**: `mcp-elements.dev` (preferred); .ui / .io / .tools / .app also free
-- **GitHub**: `github.com/mcp-elements` (org **created 2026-05-29**, repo `mcp-elements/mcp-elements` pending)
+- **Domain**: `mcp-elements.dev` (preferred, not yet wired); **live now at `mcp-elements.wearesnx.studio`** (Vercel)
+- **GitHub**: org `github.com/mcp-elements`, repo **`mcp-elements/ui`** (renamed from `/mcp-elements` 2026-05-31, shadcn `brand/ui` convention) + `.github` repo for org profile
 - Architecture: keep the existing 4-layer (CSS → core → adapters → CLI)
 - Frameworks at launch: **React + Angular + Vue**
 
@@ -32,12 +32,18 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 - ✅ Stage C (Vue adapter) — 10 base components, merged
 - ✅ Stage F (Angular MCP components) — 7 components, merged
 - ✅ Visual + brand pass (2026-05-29) — see [Stage H+ section](#stage-h-design--brand-pass-2026-05-29) below
-- ⏳ Stage G (Vue MCP components) — deferred to Phase 2
-- ⏳ Stage I (launch) — pending: create `mcp-elements/mcp-elements` repo, push, npm publish v0.1.0, blog post, Show HN
+- ✅ **README + LICENSE (MIT)** — written 2026-05-31
+- ✅ **CI/CD** — `.github/workflows/`: ci.yml (build+test blocking, lint non-blocking), release.yml (tag `v*` → `pnpm -r publish` w/ provenance). Actions on checkout@v5/setup-node@v5/Node 24.
+- ✅ **Repo rename** `mcp-elements/mcp-elements` → `mcp-elements/ui`; CLI raw-content URLs + package.json repo fields repointed; org profile `.github` repo added.
+- ✅ **Stage I (launch) — npm publish v0.1.0 (2026-05-31)** — all 6 packages live: `mcp-elements` (CLI) + `@mcp-elements/{core,react,vue,angular,css}`. Note: unscoped `mcp-elements` required a **Classic Automation token** (granular tokens 403/404 on new/unscoped packages); 5 scoped published via CI/local, CLI via interactive account.
+- ✅ **Vercel deploy** — site live at `mcp-elements.wearesnx.studio` (project `mayurrawtes-projects/mcp-elements`, deploys `examples/web`; site deps pinned to published `^0.1.0` + `link-workspace-packages=true` for local dev).
+- ✅ **Post-launch site work (2026-05-31)** — fixed MCP catalog 404; added live demos + docs for the 7 AI components (were blank); repositioned MCP-first (Featured = 7 MCP + 7 AI, Extras = 24 base, 38 total); added SEO/LLM surfaces: robots.ts, sitemap.ts, OpenGraph/Twitter, JSON-LD, `llms.txt` + `llms-full.txt`. Plan: `docs/superpowers/plans/2026-05-31-mcp-first-showcase-and-llm-seo.md`.
+- ⏳ Stage G (Vue MCP components) — deferred to Phase 2 (issue #4)
+- ⏳ Launch posts (blog, Show HN) — pending
 
-**Next concrete step** (resume here): **README + LICENSE** for the new repo. Currently the GitHub page shows whatever was at root before — likely stale snuxt-ui content. Without a README the homepage looks empty. Recommended order to resume:
-1. **Write `README.md`** at repo root: hero, install commands per package, quick `<McpToolCall>` example, link to `mcp-elements.dev`, link to component list. Reuse the homepage copy.
-2. **Confirm `LICENSE` is MIT** with the right copyright holder line.
+**Next concrete step** (resume here): **Register the 7 MCP components in the CLI registry** (`packages/cli/src/registry/registry.json`) — currently it holds only the 31 base components, so `npx mcp-elements add mcp-tool-call` fails (the headline feature isn't installable). Needs registry entries with per-framework files + dependency wiring (MCP components compose base components + `@mcp-elements/core` MCP utils) + a `category: "mcp"` tag. CLI `list` is already future-proofed to surface them. A plan for this is not yet written (`docs/superpowers/plans/2026-05-31-cli-register-mcp-components.md`).
+
+Open issues + roadmap board: https://github.com/orgs/mcp-elements/projects/1 (issues #1–#10).
 3. **Deploy site to Vercel** (`vercel link` + `vercel deploy --prod`) — points the public URL somewhere before launch.
 4. **npm publish v0.1.0** (`pnpm -r publish --access public`) — **one-way door**, double-check `package.json` versions first.
 5. Launch posts (I5–I9).
