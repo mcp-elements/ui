@@ -3,6 +3,8 @@ import registryData from './registry.json' with { type: 'json' }
 export interface ComponentEntry {
   name: string
   type: 'css-only' | 'interactive'
+  category?: string
+  tags?: string[]
   files: {
     css?: string
     core?: string
