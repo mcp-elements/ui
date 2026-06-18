@@ -4,6 +4,93 @@
     "sharedCoreDeps": ["core/src/utils/cn.ts"]
   },
   "components": {
+    "mcp-server-status": {
+      "name": "mcp-server-status",
+      "type": "css-only",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-server-status.css",
+        "react": "react/src/mcp/mcp-server-status.tsx",
+        "angular": "angular/src/mcp/mcp-server-status.component.ts"
+      },
+      "dependencies": { "internal": [], "npm": {} }
+    },
+    "mcp-tool-call": {
+      "name": "mcp-tool-call",
+      "type": "interactive",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-tool-call.css",
+        "core": "core/src/mcp/tool-state.ts",
+        "react": "react/src/mcp/mcp-tool-call.tsx",
+        "angular": "angular/src/mcp/mcp-tool-call.component.ts"
+      },
+      "coreDeps": ["core/src/mcp/types.ts"],
+      "dependencies": { "internal": [], "npm": {} }
+    },
+    "mcp-tool-form": {
+      "name": "mcp-tool-form",
+      "type": "interactive",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-tool-form.css",
+        "core": "core/src/mcp/schema-form.ts",
+        "react": "react/src/mcp/mcp-tool-form.tsx",
+        "angular": "angular/src/mcp/mcp-tool-form.component.ts"
+      },
+      "coreDeps": ["core/src/mcp/types.ts"],
+      "dependencies": { "internal": [], "npm": {} }
+    },
+    "mcp-consent-dialog": {
+      "name": "mcp-consent-dialog",
+      "type": "interactive",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-consent-dialog.css",
+        "core": "core/src/mcp/scope.ts",
+        "react": "react/src/mcp/mcp-consent-dialog.tsx",
+        "angular": "angular/src/mcp/mcp-consent-dialog.component.ts"
+      },
+      "coreDeps": ["core/src/mcp/types.ts"],
+      "dependencies": { "internal": ["dialog", "button"], "npm": {} }
+    },
+    "mcp-scope-inspector": {
+      "name": "mcp-scope-inspector",
+      "type": "interactive",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-scope-inspector.css",
+        "core": "core/src/mcp/scope.ts",
+        "react": "react/src/mcp/mcp-scope-inspector.tsx",
+        "angular": "angular/src/mcp/mcp-scope-inspector.component.ts"
+      },
+      "coreDeps": ["core/src/mcp/types.ts"],
+      "dependencies": { "internal": [], "npm": {} }
+    },
+    "mcp-resource-browser": {
+      "name": "mcp-resource-browser",
+      "type": "css-only",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-resource-browser.css",
+        "react": "react/src/mcp/mcp-resource-browser.tsx",
+        "angular": "angular/src/mcp/mcp-resource-browser.component.ts"
+      },
+      "dependencies": { "internal": ["skeleton"], "npm": {} }
+    },
+    "mcp-app-frame": {
+      "name": "mcp-app-frame",
+      "type": "interactive",
+      "category": "mcp",
+      "files": {
+        "css": "css/components/mcp-app-frame.css",
+        "core": "core/src/mcp/app-bridge.ts",
+        "react": "react/src/mcp/mcp-app-frame.tsx",
+        "angular": "angular/src/mcp/mcp-app-frame.component.ts"
+      },
+      "coreDeps": [],
+      "dependencies": { "internal": [], "npm": {} }
+    },
     "button": {
       "name": "button",
       "type": "css-only",
