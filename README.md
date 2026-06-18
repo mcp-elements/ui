@@ -30,7 +30,7 @@ mcp-elements is a component library that works differently. Instead of installin
 
 The same component logic powers React, Angular, and Vue through a layered architecture — CSS and core behavior are shared, framework adapters are thin wrappers on top.
 
-On top of 31 base components, mcp-elements ships **7 MCP-native primitives** — tool-call cards, schema-driven forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. That's the piece no other component library provides.
+Beyond 24 base UI components and 7 AI primitives, mcp-elements ships **7 MCP-native primitives** — tool-call cards, schema-driven forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. That's the piece no other component library provides.
 
 ---
 
@@ -55,6 +55,12 @@ This will:
 npx mcp-elements add button dialog tabs
 ```
 
+Or add the MCP-native primitives — the CLI resolves their base-component and `@mcp-elements/core` dependencies automatically:
+
+```bash
+npx mcp-elements add mcp-tool-call mcp-consent-dialog
+```
+
 Or run without arguments for an interactive picker:
 
 ```bash
@@ -74,7 +80,7 @@ Add the base styles alongside Tailwind in your CSS:
 
 ## Components (38)
 
-**31 base** (14 CSS-only + 10 interactive + 7 AI) plus **7 MCP-native** primitives. Base components ship for React, Angular, and Vue; MCP primitives ship for React and Angular today, with Vue [in progress](https://github.com/mcp-elements/ui/issues/4).
+**24 base UI** (14 CSS-only + 10 interactive) + **7 AI** + **7 MCP-native** primitives. Base and AI components ship for React and Angular (Vue covers 10 essential base components today); MCP primitives ship for React and Angular, with Vue [in progress](https://github.com/mcp-elements/ui/issues/4).
 
 ### CSS-Only (14)
 
@@ -142,6 +148,12 @@ Protocol-aware primitives for apps that consume [Model Context Protocol](https:/
 | **McpServerStatus** | Connection badge: connected / disconnected / error / reconnecting (CSS-only) |
 | **McpAppFrame** _(preview)_ | Sandboxed iframe wrapper for the MCP-Apps spec with a bidirectional `postMessage` bridge |
 
+Install any of them with the CLI — the base components and `@mcp-elements/core` state machines they build on are resolved and copied automatically:
+
+```bash
+npx mcp-elements add mcp-tool-call
+```
+
 Headless hooks/composables per framework: `useMcpToolState`, `useMcpOAuth`, `useMcpAppBridge`, `useMcpSchemaForm`.
 
 ---
@@ -164,6 +176,9 @@ Add one or more components to your project.
 ```bash
 # Add specific components
 npx mcp-elements add button dialog select
+
+# Add MCP-native primitives (deps resolved automatically)
+npx mcp-elements add mcp-tool-call mcp-consent-dialog
 
 # Interactive multi-select picker
 npx mcp-elements add
