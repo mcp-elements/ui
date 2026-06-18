@@ -27,9 +27,9 @@ export function InstallCommand({
   const command =
     overrideCommand ??
     (slug
-      ? `npx @mcp-elements/cli add ${slug}`
+      ? `npx mcp-elements add ${slug}`
       : componentName
-        ? `npx @mcp-elements/cli add ${componentName}`
+        ? `npx mcp-elements add ${componentName}`
         : 'npm install @mcp-elements/react')
 
   const [displayed, setDisplayed] = useState(animate ? '' : command)
