@@ -14,7 +14,7 @@ const STEPS = [
     icon: Clipboard,
     title: 'Copy it in',
     body: 'One command drops the source into your project. No runtime dep, no version lock-in. You own the file.',
-    code: 'npx @mcp-elements/cli add mcp-tool-call',
+    code: 'npx mcp-elements add mcp-tool-call',
     codeLabel: 'install',
   },
   {
