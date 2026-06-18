@@ -51,6 +51,51 @@ const SYMBOL_TO_FILE: Record<string, string> = {
   // switch
   createSwitch: 'switch',
   SwitchConfig: 'switch',
+  // mcp/types.ts
+  BaseMetadata: 'types',
+  Icons: 'types',
+  Implementation: 'types',
+  ServerCapabilities: 'types',
+  JsonSchema: 'types',
+  Tool: 'types',
+  Resource: 'types',
+  Prompt: 'types',
+  ContentBlock: 'types',
+  CallToolResult: 'types',
+  UiResource: 'types',
+  ToolCallStatus: 'types',
+  ScopeDescriptor: 'types',
+  // mcp/tool-state.ts
+  createToolState: 'tool-state',
+  ToolStateSnapshot: 'tool-state',
+  ToolStateApi: 'tool-state',
+  // mcp/scope.ts
+  parseScope: 'scope',
+  parseScopes: 'scope',
+  // mcp/schema-form.ts
+  schemaToFields: 'schema-form',
+  FieldKind: 'schema-form',
+  FieldDescriptor: 'schema-form',
+  // mcp/app-bridge.ts
+  createAppBridge: 'app-bridge',
+  encodeEnvelope: 'app-bridge',
+  decodeEnvelope: 'app-bridge',
+  AppBridge: 'app-bridge',
+  AppBridgeConfig: 'app-bridge',
+  AppMessageEnvelope: 'app-bridge',
+  // mcp/oauth.ts
+  createOAuthFlow: 'oauth',
+  buildAuthUrl: 'oauth',
+  buildTokenExchangeBody: 'oauth',
+  buildTokenRefreshBody: 'oauth',
+  OAuthFlowApi: 'oauth',
+  OAuthFlowSnapshot: 'oauth',
+  OAuthStatus: 'oauth',
+  OAuthTokens: 'oauth',
+  PkcePair: 'oauth',
+  AuthUrlInput: 'oauth',
+  TokenExchangeInput: 'oauth',
+  TokenRefreshInput: 'oauth',
 }
 
 // Regex to match import statements from @mcp-elements/core
@@ -108,6 +153,11 @@ export function transformImports(content: string, config: SnxConfig): string {
     /from ['"]\.\/hooks\//g,
     `from './`
   )
+
+  // Collapse parent-directory component imports. MCP components live in a
+  // `mcp/` subdir and import their base-component deps via `../button` etc.,
+  // but the CLI copies every component flat into the same directory.
+  result = result.replace(/from ['"]\.\.\//g, `from './`)
 
   return result
 }
