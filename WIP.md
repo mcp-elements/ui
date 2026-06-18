@@ -45,7 +45,7 @@ We're pivoting `snuxt-ui` (generic UI lib with 31 components + 7 thin AI compone
 
 - ✅ **Docs alignment + install-command bug fix (2026-06-18)** — README reframed to the site's "24 base + 7 AI + 7 MCP = 38" grouping (was "31 base + 7 MCP"); added `npx mcp-elements add mcp-*` examples to Quick Start, the MCP-Native section, and the CLI Reference (advertising the now-installable headline feature). **Fixed a shipped bug**: the live docs site (`InstallCommand.tsx`, `FeatureCards.tsx`) told users to run `npx @mcp-elements/cli add …`, but the published CLI is the unscoped `mcp-elements` — so every install command on the site was broken. Now `npx mcp-elements add …`. Web typechecks clean.
 
-**Next concrete step** (resume here): work sits on branch `feat/cli-register-mcp-components` (2 commits, **unpushed**). Push + open PR when ready. Then: launch posts (I7–I11) and Stage G (Vue MCP components, issue #4). (Audited: the `examples/docs` Astro site already uses the correct `npx mcp-elements add` form — the broken `@mcp-elements/cli` references were only in `examples/web`, now fixed.)
+**Next concrete step** (resume here): **PR #12 open** — https://github.com/mcp-elements/ui/pull/12 (branch `feat/cli-register-mcp-components`, 2 commits, pushed). Awaiting CI + review/merge. After merge: launch posts (I7–I11) and Stage G (Vue MCP components, issue #4). (Audited: the `examples/docs` Astro site already uses the correct `npx mcp-elements add` form — the broken `@mcp-elements/cli` references were only in `examples/web`, now fixed.)
 
 Open issues + roadmap board: https://github.com/orgs/mcp-elements/projects/1 (issues #1–#10).
 3. **Deploy site to Vercel** (`vercel link` + `vercel deploy --prod`) — points the public URL somewhere before launch.
