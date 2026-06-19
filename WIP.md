@@ -1,8 +1,8 @@
 # WIP: Pivot to `mcp-elements` — MCP-Native, Multi-Framework AI UI Library
 
-**Status**: 🚀 **LAUNCHED — v0.1.0 live on npm (2026-05-31)** and docs site live at **https://mcp-elements.wearesnx.studio**. Repo renamed to **https://github.com/mcp-elements/ui**. Post-launch: MCP-first reposition + AI demos/docs + SEO/LLM discoverability shipped (2026-05-31). Remaining: register MCP components in the CLI registry (the headline feature isn't `add`-able yet), launch posts.
+**Status**: 🚀 **LAUNCHED — v0.1.0 live on npm (2026-05-31)** and docs site live at **https://mcp-elements.wearesnx.studio**. Repo renamed to **https://github.com/mcp-elements/ui**. Post-launch shipped: MCP-first reposition + AI demos/docs + SEO/LLM discoverability (2026-05-31); **CLI registry — 7 MCP components now `add`-able (the headline feature works), README/site count alignment, and a live-site install-command fix — PR #12 merged + site redeployed (2026-06-18)**. Remaining: launch posts (I7–I11) and Stage G (Vue MCP components, issue #4).
 **Started**: 2026-05-21
-**Last updated**: 2026-06-01
+**Last updated**: 2026-06-18
 
 ---
 
