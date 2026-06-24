@@ -48,7 +48,7 @@ export function createAccordion(items: AccordionItemConfig[], config: AccordionC
         onClick: () => {
           if (!item?.disabled) toggle(value, expandedValues)
         },
-        onKeyDown: (e: KeyboardEvent) => {
+        onKeyDown: (e: { key: string; preventDefault: () => void }) => {
           const enabledItems = items.filter(i => !i.disabled)
           const currentEnabledIndex = enabledItems.findIndex(i => i.value === value)
 

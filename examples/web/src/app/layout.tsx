@@ -13,20 +13,20 @@ export const metadata: Metadata = {
     template: '%s · mcp-elements',
   },
   description:
-    '38 copy-paste UI components. Multi-framework (React, Angular, Vue). The only library with MCP-native primitives — tool calls, consent, scopes, resources.',
-  keywords: ['MCP', 'Model Context Protocol', 'AI UI', 'React components', 'shadcn', 'agent UI', 'tool calling UI', 'copy-paste components'],
+    'The MCP-native UI kit. The only library shipping copy-paste, framework-agnostic MCP primitives — OAuth consent, scope inspector, tool-call cards, JSON-Schema tool-forms, sandboxed MCP-Apps frame. React, Angular & Vue.',
+  keywords: ['MCP', 'Model Context Protocol', 'MCP UI', 'MCP Apps', 'OAuth consent UI', 'tool calling UI', 'AI UI', 'agent UI', 'React components', 'Angular', 'Vue', 'shadcn', 'copy-paste components'],
   openGraph: {
     type: 'website',
     url: 'https://mcp-elements.wearesnx.studio',
     siteName: 'mcp-elements',
-    title: 'mcp-elements — MCP-native UI components',
-    description: 'Copy-paste UI primitives for AI & MCP apps. React, Angular, Vue.',
+    title: 'mcp-elements — the MCP-native UI kit',
+    description: 'Copy-paste, framework-agnostic MCP UI primitives — consent, scopes, tool calls, tool-forms, MCP-Apps frame. React, Angular & Vue.',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'mcp-elements',
-    description: 'MCP-native, multi-framework copy-paste UI components.',
+    title: 'mcp-elements — the MCP-native UI kit',
+    description: 'The only copy-paste, framework-agnostic MCP UI primitive kit. React, Angular & Vue.',
   },
 }
 

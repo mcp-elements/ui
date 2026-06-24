@@ -10,6 +10,7 @@ export interface ComponentEntry {
     core?: string
     react?: string | string[]
     angular?: string | string[]
+    vue?: string | string[]
   }
   coreDeps?: string[]
   dependencies: {

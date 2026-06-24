@@ -26,7 +26,8 @@ export default function PlaygroundPage() {
   const example = EXAMPLES.find((e) => e.slug === active)!
   const Demo = DEMOS[example.slug]
   const doc = getComponentDoc(example.slug)
-  const code = doc?.usage ?? ''
+  // Playground previews are React; use the React variant when usage is per-framework.
+  const code = typeof doc?.usage === 'string' ? doc.usage : (doc?.usage?.react ?? '')
 
   return (
     <div className="site-section">

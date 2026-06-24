@@ -29,6 +29,7 @@ export function detectFramework(cwd: string): string | null {
 
     if (allDeps['@angular/core']) return 'angular'
     if (allDeps['react']) return 'react'
+    if (allDeps['vue']) return 'vue'
 
     return null
   } catch {

@@ -73,21 +73,29 @@ describe('mcp registry entries', () => {
 })
 
 describe('transformImports rewrites MCP component imports', () => {
-  it('leaves no @mcp-elements/core or parent-dir imports in any MCP React file', () => {
+  // config has components '@/components/ui' + utils '@/lib', so util imports are
+  // rewritten to the relative path between them: '../../lib/<file>'.
+  it('leaves no @mcp-elements/core or uncollapsed sibling imports in any MCP React file', () => {
     for (const name of MCP_COMPONENTS) {
       const rel = registry.components[name].files.react as string
       const src = fs.readFileSync(path.join(PACKAGES, rel), 'utf-8')
       const out = transformImports(src, config)
       expect(out, `${name}: core import remains`).not.toContain('@mcp-elements/core')
-      expect(out, `${name}: parent-dir import remains`).not.toMatch(/from ['"]\.\.\//)
+      // sibling component imports (../button) must collapse to ./button; the
+      // relative util imports (../../lib/...) are expected and start with ../..
+      expect(out, `${name}: uncollapsed sibling import remains`).not.toMatch(
+        /from ['"]\.\.\/[^.]/
+      )
+      // every MCP component pulls in cn, rewritten relative to the utils dir
+      expect(out, `${name}: cn not rewritten relative`).toContain("from '../../lib/cn'")
     }
   })
 
   it('maps consent-dialog symbols to the right local files', () => {
     const rel = registry.components['mcp-consent-dialog'].files.react as string
     const out = transformImports(fs.readFileSync(path.join(PACKAGES, rel), 'utf-8'), config)
-    expect(out).toContain("from '@/lib/cn'") // cn
-    expect(out).toContain("from '@/lib/scope'") // parseScopes
+    expect(out).toContain("from '../../lib/cn'") // cn
+    expect(out).toContain("from '../../lib/scope'") // parseScopes
     expect(out).toContain("from './dialog'") // ../dialog collapsed
     expect(out).toContain("from './button'") // ../button collapsed
   })
@@ -95,13 +103,13 @@ describe('transformImports rewrites MCP component imports', () => {
   it('maps tool-form schema symbols across schema-form.ts and types.ts', () => {
     const rel = registry.components['mcp-tool-form'].files.react as string
     const out = transformImports(fs.readFileSync(path.join(PACKAGES, rel), 'utf-8'), config)
-    expect(out).toContain("from '@/lib/schema-form'") // schemaToFields, FieldDescriptor
-    expect(out).toContain("from '@/lib/types'") // JsonSchema
+    expect(out).toContain("from '../../lib/schema-form'") // schemaToFields, FieldDescriptor
+    expect(out).toContain("from '../../lib/types'") // JsonSchema
   })
 
   it('maps tool-call ToolState symbols to tool-state.ts', () => {
     const rel = registry.components['mcp-tool-call'].files.react as string
     const out = transformImports(fs.readFileSync(path.join(PACKAGES, rel), 'utf-8'), config)
-    expect(out).toContain("from '@/lib/tool-state'") // ToolStateApi, ToolStateSnapshot
+    expect(out).toContain("from '../../lib/tool-state'") // ToolStateApi, ToolStateSnapshot
   })
 })

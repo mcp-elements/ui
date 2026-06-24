@@ -33,14 +33,14 @@ export function HeroSection() {
             >
               <span className="font-mono text-[10px] uppercase tracking-widest site-text-accent">v0.1</span>
               <span className="h-3 w-px" style={{ background: 'var(--site-border)' }} />
-              <span>38 components</span>
+              <span className="site-text-accent">MCP-native</span>
               <span style={{ color: 'var(--site-border)' }}>·</span>
               <span>React · Angular · Vue</span>
               <span style={{ color: 'var(--site-border)' }}>·</span>
-              <span className="site-text-accent">MCP-native</span>
+              <span>copy-paste</span>
             </div>
 
-            {/* Headline — broader positioning */}
+            {/* Headline — lead with the MCP wedge */}
             <h1
               className="font-bold"
               style={{
@@ -50,9 +50,7 @@ export function HeroSection() {
                 color: 'var(--site-text)',
               }}
             >
-              38 copy-paste{' '}
-              <span className="site-text-muted">components.</span>
-              <br className="hidden sm:block" />
+              The{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, var(--site-accent) 0%, var(--site-accent-2) 100%)',
@@ -61,16 +59,19 @@ export function HeroSection() {
                   backgroundClip: 'text',
                 }}
               >
-                Multi-framework. MCP-native.
-              </span>
+                MCP-native
+              </span>{' '}
+              UI kit
+              <br className="hidden sm:block" />
+              <span className="site-text-muted">for any framework.</span>
             </h1>
 
-            {/* Subhead — names the categories so visitors know what they get */}
+            {/* Subhead — lead with the primitives nobody else ships */}
             <p className="site-lede">
-              38 copy-paste components. Multi-framework.{' '}
-              <strong className="site-text">MCP-native.</strong>{' '}
-              7 MCP primitives nobody else ships — tool-call cards, OAuth consent, scope inspector and more —
-              plus 24 base UI primitives to build on. React, Angular, Vue.
+              The only library shipping copy-paste, framework-agnostic{' '}
+              <strong className="site-text">MCP primitives</strong> — OAuth consent, scope inspector,
+              tool-call cards, JSON-Schema tool-forms, and a sandboxed MCP-Apps frame. Plus 31 base +
+              AI components to build the rest. React, Angular, Vue — you own the code.
             </p>
 
             {/* Install command */}
@@ -80,12 +81,12 @@ export function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
-              <Link href="/components" className="site-btn site-btn-accent">
-                Browse all 38
+              <Link href="/mcp" className="site-btn site-btn-accent">
+                Explore the MCP set
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/mcp" className="site-btn site-btn-secondary">
-                See the MCP set
+              <Link href="/components" className="site-btn site-btn-secondary">
+                Browse all 38
               </Link>
             </div>
 

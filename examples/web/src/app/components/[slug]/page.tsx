@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { COMPONENTS, getComponentBySlug } from '@/data/components'
 import { getComponentDoc } from '@/lib/component-docs'
 import { CodeBlock } from '@/components/site/CodeBlock'
+import { UsageTabs } from '@/components/site/UsageTabs'
 import { InstallCommand } from '@/components/site/InstallCommand'
 import { ComponentPreview } from '@/components/demos/registry'
 
@@ -108,7 +109,29 @@ export default async function ComponentDocPage({ params }: Props) {
       {doc?.usage && (
         <section className="mb-10">
           <h2 className="site-eyebrow mb-3">Usage</h2>
-          <CodeBlock code={doc.usage} lang="tsx" filename={`${slug}-example.tsx`} />
+          {typeof doc.usage === 'string' ? (
+            <CodeBlock code={doc.usage} lang="tsx" filename={`${slug}-example.tsx`} />
+          ) : (
+            <UsageTabs
+              tabs={(
+                [
+                  { fw: 'react', label: 'React', lang: 'tsx', file: `${slug}-example.tsx` },
+                  { fw: 'angular', label: 'Angular', lang: 'ts', file: `${slug}.component.ts` },
+                  { fw: 'vue', label: 'Vue', lang: 'vue', file: `${slug}.vue` },
+                ] as const
+              )
+                .map((m) => {
+                  const code = (doc.usage as Record<string, string | undefined>)[m.fw]
+                  if (!code) return null
+                  return {
+                    framework: m.fw,
+                    label: m.label,
+                    node: <CodeBlock code={code} lang={m.lang} filename={m.file} />,
+                  }
+                })
+                .filter((t): t is NonNullable<typeof t> => t !== null)}
+            />
+          )}
         </section>
       )}
 

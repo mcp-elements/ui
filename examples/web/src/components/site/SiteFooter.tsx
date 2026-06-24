@@ -44,8 +44,8 @@ export function SiteFooter() {
               <span>mcp-elements</span>
             </Link>
             <p className="site-body-sm">
-              38 copy-paste components for AI apps — React, Angular, Vue.
-              The only library with MCP-native primitives.
+              The MCP-native UI kit — copy-paste MCP primitives for React, Angular & Vue.
+              Plus 31 base + AI components. You own the code.
             </p>
             <span
               className="inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-mono"
