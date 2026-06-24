@@ -23,18 +23,18 @@ export function App() {
   )
 }`,
   angular: `import { Component } from '@angular/core'
-import { McpToolCallComponent } from '@mcp-elements/angular'
+import { McpeMcpToolCallComponent } from '@mcp-elements/angular'
 import { createToolState } from '@mcp-elements/core'
 
 @Component({
   selector: 'app-root',
-  imports: [McpToolCallComponent],
+  imports: [McpeMcpToolCallComponent],
   template: \`
-    <mcp-tool-call
+    <mcpe-mcp-tool-call
       toolName="search_files"
       [args]="args"
       [state]="state"
-      (retry)="state.reset()"
+      (onRetry)="state.reset()"
     />
   \`,
 })
@@ -43,7 +43,7 @@ export class AppComponent {
   state = createToolState()
 }`,
   vue: `<script setup>
-import { McpToolCall } from '@mcp-elements/vue'
+import { McpeMcpToolCall } from '@mcp-elements/vue'
 import { createToolState } from '@mcp-elements/core'
 
 const state = createToolState()
@@ -51,7 +51,7 @@ const args = { path: '/src', pattern: '*.ts' }
 </script>
 
 <template>
-  <McpToolCall
+  <McpeMcpToolCall
     tool-name="search_files"
     :args="args"
     :state="state"

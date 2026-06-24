@@ -1,22 +1,37 @@
 {
   "name": "@mcp-elements/angular",
   "version": "0.1.0",
+  "private": false,
+  "description": "mcp-elements Angular 19 standalone components",
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
-    "build": "echo 'Angular components are source-distributed via CLI'",
-    "test": "echo 'Angular tests run in example app'",
-    "clean": "echo 'nothing to clean'"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@mcp-elements/core": "workspace:*"
   },
   "peerDependencies": {
     "@angular/core": "^19.0.0",
-    "@angular/common": "^19.0.0"
+    "@angular/common": "^19.0.0",
+    "@angular/forms": "^19.0.0"
   },
-  "files": [
-    "src"
-  ],
-  "types": "./src/index.ts"
+  "devDependencies": {
+    "@angular/core": "^19.0.0",
+    "@angular/common": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@swc/core": "^1.7.0",
+    "tsup": "^8.3.0"
+  }
 }

@@ -50,13 +50,13 @@ export const COMPONENTS: ComponentEntry[] = [
   { name: 'StreamingText', slug: 'streaming-text', category: 'AI', description: 'Typewriter text for streaming AI responses.', frameworks: ['react', 'angular'] },
   { name: 'Feedback', slug: 'feedback', category: 'AI', description: 'Thumbs up/down rating for AI responses.', frameworks: ['react', 'angular'] },
   // MCP
-  { name: 'McpToolCall', slug: 'mcp-tool-call', category: 'MCP', description: 'Tool execution card: idle → running → done/error with retry.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpToolForm', slug: 'mcp-tool-form', category: 'MCP', description: 'JSON Schema → dynamic form with validation.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpConsentDialog', slug: 'mcp-consent-dialog', category: 'MCP', description: 'OAuth consent UI: scope list, approve/deny.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpScopeInspector', slug: 'mcp-scope-inspector', category: 'MCP', description: 'Expandable scope tree with human-readable descriptions.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpResourceBrowser', slug: 'mcp-resource-browser', category: 'MCP', description: 'Browse MCP resources with type icons and preview.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpServerStatus', slug: 'mcp-server-status', category: 'MCP', description: 'Connection badge: connected/disconnected/error/reconnecting.', frameworks: ['react'], isMcp: true, isNew: true },
-  { name: 'McpAppFrame', slug: 'mcp-app-frame', category: 'MCP', description: 'Sandboxed iframe + postMessage bridge for MCP Apps spec.', frameworks: ['react'], isMcp: true, isNew: true },
+  { name: 'McpToolCall', slug: 'mcp-tool-call', category: 'MCP', description: 'Tool execution card: idle → running → done/error with retry.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpToolForm', slug: 'mcp-tool-form', category: 'MCP', description: 'JSON Schema → dynamic form with validation.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpConsentDialog', slug: 'mcp-consent-dialog', category: 'MCP', description: 'OAuth consent UI: scope list, approve/deny.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpScopeInspector', slug: 'mcp-scope-inspector', category: 'MCP', description: 'Expandable scope tree with human-readable descriptions.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpResourceBrowser', slug: 'mcp-resource-browser', category: 'MCP', description: 'Browse MCP resources with type icons and preview.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpServerStatus', slug: 'mcp-server-status', category: 'MCP', description: 'Connection badge: connected/disconnected/error/reconnecting.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpAppFrame', slug: 'mcp-app-frame', category: 'MCP', description: 'Sandboxed iframe + postMessage bridge for MCP Apps spec.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
 ]
 
 export const CATEGORIES: ComponentCategory[] = ['MCP', 'AI', 'Form', 'Display', 'Overlay', 'Navigation', 'Feedback']
