@@ -41,18 +41,21 @@ export function createClickOutsideHandler(
 }
 
 export function lockScroll(): () => void {
-  const scrollY = window.scrollY
   const body = document.body
-  body.style.position = 'fixed'
-  body.style.top = `-${scrollY}px`
-  body.style.width = '100%'
+  // Compensate for the scrollbar disappearing so centered/fixed content
+  // doesn't shift ("shake") the moment the overlay opens.
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+  const prevOverflow = body.style.overflow
+  const prevPaddingRight = body.style.paddingRight
+
   body.style.overflow = 'hidden'
+  if (scrollbarWidth > 0) {
+    const currentPad = parseFloat(getComputedStyle(body).paddingRight) || 0
+    body.style.paddingRight = `${currentPad + scrollbarWidth}px`
+  }
 
   return () => {
-    body.style.position = ''
-    body.style.top = ''
-    body.style.width = ''
-    body.style.overflow = ''
-    window.scrollTo(0, scrollY)
+    body.style.overflow = prevOverflow
+    body.style.paddingRight = prevPaddingRight
   }
 }

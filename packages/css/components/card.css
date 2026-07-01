@@ -1,6 +1,17 @@
 @layer components {
   .mcpe-card {
-    @apply rounded-xl border bg-card text-card-foreground shadow;
+    @apply relative border bg-card text-card-foreground;
+    border-radius: 0.75rem; /* 12px */
+    box-shadow:
+      inset 0 1px 0 0 oklch(1 0 0 / 0.04),
+      0 1px 2px 0 oklch(0 0 0 / 0.06),
+      0 8px 24px -12px oklch(0 0 0 / 0.12);
+  }
+  [data-theme='dark'] .mcpe-card {
+    box-shadow:
+      inset 0 1px 0 0 oklch(1 0 0 / 0.04),
+      0 1px 2px 0 oklch(0 0 0 / 0.24),
+      0 12px 28px -12px oklch(0 0 0 / 0.40);
   }
   .mcpe-card-header {
     @apply flex flex-col space-y-1.5 p-6;

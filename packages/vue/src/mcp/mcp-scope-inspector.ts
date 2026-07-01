@@ -55,7 +55,7 @@ export const McpeMcpScopeInspector = defineComponent({
                     'div',
                     { class: 'mcpe-mcp-scope-inspector-perms' },
                     s.permissions.map((p) =>
-                      h('span', { class: 'mcpe-mcp-scope-inspector-perm' }, p)
+                      h('span', { class: 'mcpe-mcp-scope-inspector-perm', 'data-perm': p.toLowerCase() }, p)
                     )
                   ),
                 ]),

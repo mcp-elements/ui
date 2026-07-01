@@ -1,51 +1,99 @@
 @layer components {
+  /* Root — consistent vertical rhythm between identity, scopes, actions */
+  .mcpe-mcp-consent-dialog {
+    @apply flex flex-col gap-4;
+  }
+
+  /* Server identity row */
   .mcpe-mcp-consent-dialog-server {
-    @apply flex items-center gap-3 pb-4;
-    border-bottom: 1px solid var(--color-border);
+    @apply flex items-center gap-3;
   }
 
   .mcpe-mcp-consent-dialog-icon {
-    @apply h-10 w-10 rounded-lg overflow-hidden flex items-center justify-center text-lg font-bold shrink-0;
+    @apply flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden text-base font-semibold;
+    border-radius: 0.625rem; /* 10px */
     background-color: var(--color-accent);
     color: var(--color-accent-foreground);
+    border: 1px solid var(--color-border);
+  }
+  .mcpe-mcp-consent-dialog-icon img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 
+  .mcpe-mcp-consent-dialog-server-text {
+    @apply min-w-0;
+  }
   .mcpe-mcp-consent-dialog-server-name {
-    @apply font-semibold text-base;
+    @apply text-sm font-semibold leading-tight;
+    color: var(--color-foreground);
   }
-
   .mcpe-mcp-consent-dialog-server-meta {
-    @apply text-xs;
+    @apply text-xs leading-tight;
+    margin-top: 0.125rem;
     color: var(--color-muted-foreground);
   }
 
+  /* Scope list */
   .mcpe-mcp-consent-dialog-scopes {
-    @apply flex flex-col gap-2 py-3;
+    @apply flex flex-col gap-1.5;
   }
 
   .mcpe-mcp-consent-dialog-scope-item {
-    @apply flex items-start gap-2 rounded-lg p-3;
+    @apply flex items-center justify-between gap-3;
+    padding: 0.625rem 0.75rem; /* 10px / 12px */
+    border-radius: 0.5rem; /* 8px */
     background-color: var(--color-muted);
-    border: 1px solid var(--color-border);
+    border: 1px solid transparent;
+    transition: border-color 140ms var(--mcpe-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+                background-color 140ms ease,
+                transform 140ms var(--mcpe-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+                box-shadow 140ms ease;
+  }
+  .mcpe-mcp-consent-dialog-scope-item:hover {
+    border-color: var(--color-border);
+    background-color: color-mix(in oklab, var(--color-muted) 60%, var(--color-accent));
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px -4px oklch(0 0 0 / 0.30);
   }
 
   .mcpe-mcp-consent-dialog-scope-resource {
-    @apply font-mono text-xs font-semibold;
-    color: var(--color-primary);
+    @apply truncate font-mono text-[0.8125rem] font-medium;
+    color: var(--color-foreground);
   }
 
   .mcpe-mcp-consent-dialog-scope-perms {
-    @apply flex flex-wrap gap-1 mt-0.5;
+    @apply flex shrink-0 flex-wrap items-center gap-1;
   }
 
+  /* Permission badge — neutral by default; elevated perms (write/admin/…)
+     get a warning tint so risky grants stand out at a glance. */
   .mcpe-mcp-consent-dialog-scope-perm {
-    @apply rounded px-1.5 py-0.5 text-[10px] font-medium font-mono uppercase;
-    background-color: var(--color-secondary);
-    color: var(--color-secondary-foreground);
+    @apply inline-flex items-center font-mono text-[0.625rem] font-semibold uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.3125rem; /* 5px */
+    background-color: color-mix(in oklab, var(--color-foreground) 8%, transparent);
+    color: var(--color-muted-foreground);
+    border: 1px solid transparent;
+  }
+  .mcpe-mcp-consent-dialog-scope-perm[data-perm='write'],
+  .mcpe-mcp-consent-dialog-scope-perm[data-perm='admin'],
+  .mcpe-mcp-consent-dialog-scope-perm[data-perm='delete'],
+  .mcpe-mcp-consent-dialog-scope-perm[data-perm='manage'] {
+    background-color: color-mix(in oklab, var(--color-warning) 16%, transparent);
+    color: var(--color-warning);
+    border-color: color-mix(in oklab, var(--color-warning) 30%, transparent);
   }
 
+  /* Actions — separated from the content by a divider + generous spacing */
   .mcpe-mcp-consent-dialog-actions {
-    @apply flex gap-2 pt-2;
+    @apply flex items-center gap-2.5 pt-4;
+    margin-top: 0.25rem;
     border-top: 1px solid var(--color-border);
+  }
+  .mcpe-mcp-consent-dialog-actions > .mcpe-btn {
+    flex: 1 1 0%;
   }
 }

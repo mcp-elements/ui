@@ -71,13 +71,14 @@
   --site-warning:      oklch(0.84 0.18 85);
   --site-error:        oklch(0.66 0.22 25);
 
-  /* Radii — bigger, modern */
-  --radius-xs: 0.375rem;     /*  6px */
-  --radius-sm: 0.5rem;       /*  8px */
-  --radius-md: 0.75rem;      /* 12px */
-  --radius-lg: 1.125rem;     /* 18px */
-  --radius-xl: 1.5rem;       /* 24px */
-  --radius-2xl: 2rem;        /* 32px */
+  /* Radii — restrained, precise. Big enough to feel modern, small enough
+     to read as engineered surfaces rather than bubbly pills. */
+  --radius-xs: 0.25rem;      /*  4px */
+  --radius-sm: 0.375rem;     /*  6px */
+  --radius-md: 0.5rem;       /*  8px */
+  --radius-lg: 0.75rem;      /* 12px */
+  --radius-xl: 1rem;         /* 16px */
+  --radius-2xl: 1.25rem;     /* 20px */
 
   /* Shadows — warmer, directional from top-left like real light */
   --shadow-xs: 0 1px 1px 0 oklch(0 0 0 / 0.30);

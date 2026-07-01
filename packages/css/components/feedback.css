@@ -11,7 +11,8 @@
     @apply ring-1 ring-ring;
   }
   .mcpe-feedback-btn-up.mcpe-feedback-btn-selected {
-    @apply text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/15;
+    color: var(--color-success);
+    background-color: color-mix(in oklab, var(--color-success) 12%, transparent);
   }
   .mcpe-feedback-btn-down.mcpe-feedback-btn-selected {
     @apply text-destructive bg-destructive/10 hover:bg-destructive/15;

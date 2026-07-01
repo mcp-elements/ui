@@ -1,7 +1,7 @@
 {
   "name": "mcp-elements",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "38 copy-paste UI components. Multi-framework. MCP-native.",
   "author": "Mayur Rawte",
   "license": "MIT",

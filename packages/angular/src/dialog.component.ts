@@ -6,16 +6,22 @@ import { createDialog } from '@mcp-elements/core'
   standalone: true,
   template: `
     @if (open()) {
-      <div class="mcpe-dialog-overlay" (click)="close()"></div>
-      <div
-        #content
-        class="mcpe-dialog-content"
-        role="dialog"
-        [attr.aria-modal]="modal()"
-        (keydown.escape)="close()"
-      >
-        <ng-content />
-        <button class="mcpe-dialog-close" (click)="close()" aria-label="Close">&#x2715;</button>
+      <div class="mcpe-dialog-overlay" (click)="close()">
+        <div
+          #content
+          class="mcpe-dialog-content"
+          role="dialog"
+          [attr.aria-modal]="modal()"
+          (click)="$event.stopPropagation()"
+          (keydown.escape)="close()"
+        >
+          <ng-content />
+          <button class="mcpe-dialog-close" (click)="close()" type="button" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
     }
   `,

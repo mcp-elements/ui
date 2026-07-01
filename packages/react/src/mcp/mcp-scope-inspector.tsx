@@ -65,7 +65,7 @@ export function McpScopeInspector({ scopes, descriptions = {}, className }: McpS
                 <span className="mcpe-mcp-scope-inspector-resource">{s.resource}</span>
                 <div className="mcpe-mcp-scope-inspector-perms">
                   {s.permissions.map((p) => (
-                    <span key={p} className="mcpe-mcp-scope-inspector-perm">{p}</span>
+                    <span key={p} className="mcpe-mcp-scope-inspector-perm" data-perm={p.toLowerCase()}>{p}</span>
                   ))}
                 </div>
               </div>

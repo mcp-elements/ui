@@ -21,7 +21,7 @@ import type { ScopeDescriptor } from '@mcp-elements/core'
               <span class="mcpe-mcp-scope-inspector-resource">{{ s.resource }}</span>
               <div class="mcpe-mcp-scope-inspector-perms">
                 @for (p of s.permissions; track p) {
-                  <span class="mcpe-mcp-scope-inspector-perm">{{ p }}</span>
+                  <span class="mcpe-mcp-scope-inspector-perm" [attr.data-perm]="p.toLowerCase()">{{ p }}</span>
                 }
               </div>
             </div>

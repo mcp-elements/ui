@@ -11,11 +11,15 @@
     @apply border-destructive/50 text-destructive [&>svg]:text-destructive;
   }
   .mcpe-alert-success {
-    @apply border-green-500/50 text-green-600 [&>svg]:text-green-600;
+    border-color: color-mix(in oklab, var(--color-success) 45%, transparent);
+    color: var(--color-success);
   }
+  .mcpe-alert-success > svg { color: var(--color-success); }
   .mcpe-alert-warning {
-    @apply border-yellow-500/50 text-yellow-600 [&>svg]:text-yellow-600;
+    border-color: color-mix(in oklab, var(--color-warning) 45%, transparent);
+    color: var(--color-warning);
   }
+  .mcpe-alert-warning > svg { color: var(--color-warning); }
   .mcpe-alert-title {
     @apply mb-1 font-medium leading-none tracking-tight;
   }

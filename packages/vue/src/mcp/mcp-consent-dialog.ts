@@ -29,10 +29,18 @@ export const McpeMcpConsentDialog = defineComponent({
     // Match McpeDialog behaviour: Escape closes (deny) + scroll lock while open.
     let unlockScroll: (() => void) | null = null
     const lockScroll = () => {
-      const prev = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
+      const body = document.body
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+      const prevOverflow = body.style.overflow
+      const prevPaddingRight = body.style.paddingRight
+      body.style.overflow = 'hidden'
+      if (scrollbarWidth > 0) {
+        const currentPad = parseFloat(getComputedStyle(body).paddingRight) || 0
+        body.style.paddingRight = `${currentPad + scrollbarWidth}px`
+      }
       return () => {
-        document.body.style.overflow = prev
+        body.style.overflow = prevOverflow
+        body.style.paddingRight = prevPaddingRight
       }
     }
 
@@ -63,62 +71,82 @@ export const McpeMcpConsentDialog = defineComponent({
       if (!props.open) return h('span', { style: 'display:none' })
 
       const iconChild: VNode | string = props.serverIcon
-        ? h('img', { src: props.serverIcon, alt: '', class: 'h-full w-full object-cover' })
+        ? h('img', { src: props.serverIcon, alt: '' })
         : (props.serverName[0]?.toUpperCase() ?? '?')
 
       return h(Teleport as unknown as string, { to: 'body' }, [
-        h('div', { class: 'mcpe-dialog-overlay', onClick: deny }),
         h(
           'div',
-          {
-            class: 'mcpe-dialog-content',
-            role: 'dialog',
-            'aria-modal': 'true',
-            'aria-label': `Allow ${props.serverName}?`,
-            onClick: (e: MouseEvent) => e.stopPropagation(),
-          },
+          { class: 'mcpe-dialog-overlay', onClick: deny },
           [
-            h('div', { class: 'mcpe-mcp-consent-dialog-server' }, [
-              h('div', { class: 'mcpe-mcp-consent-dialog-icon', 'aria-hidden': 'true' }, [iconChild]),
-              h('div', {}, [
-                h('p', { class: 'mcpe-mcp-consent-dialog-server-name' }, props.serverName),
-                h('p', { class: 'mcpe-mcp-consent-dialog-server-meta' }, 'is requesting access to'),
-              ]),
-            ]),
             h(
               'div',
               {
-                class: 'mcpe-mcp-consent-dialog-scopes',
-                role: 'list',
-                'aria-label': 'Requested permissions',
+                class: 'mcpe-dialog-content',
+                role: 'dialog',
+                'aria-modal': 'true',
+                'aria-label': `Allow ${props.serverName}?`,
+                onClick: (e: MouseEvent) => e.stopPropagation(),
               },
-              parsedScopes.value.map((s) =>
-                h('div', { class: 'mcpe-mcp-consent-dialog-scope-item', role: 'listitem' }, [
-                  h('div', { class: 'flex-1 min-w-0' }, [
-                    h('p', { class: 'mcpe-mcp-consent-dialog-scope-resource' }, s.resource),
+              [
+                h('div', { class: 'mcpe-mcp-consent-dialog' }, [
+                  h('div', { class: 'mcpe-dialog-header' }, [
+                    h('h2', { class: 'mcpe-dialog-title' }, 'Permission Request'),
                     h(
-                      'div',
-                      { class: 'mcpe-mcp-consent-dialog-scope-perms' },
-                      s.permissions.map((p) =>
-                        h('span', { class: 'mcpe-mcp-consent-dialog-scope-perm' }, p)
-                      )
+                      'p',
+                      { class: 'mcpe-dialog-description' },
+                      'Review and approve the permissions this server is requesting.'
                     ),
                   ]),
-                ])
-              )
+                  h('div', { class: 'mcpe-mcp-consent-dialog-server' }, [
+                    h('div', { class: 'mcpe-mcp-consent-dialog-icon', 'aria-hidden': 'true' }, [iconChild]),
+                    h('div', { class: 'mcpe-mcp-consent-dialog-server-text' }, [
+                      h('p', { class: 'mcpe-mcp-consent-dialog-server-name' }, props.serverName),
+                      h('p', { class: 'mcpe-mcp-consent-dialog-server-meta' }, 'is requesting access to'),
+                    ]),
+                  ]),
+                  h(
+                    'div',
+                    {
+                      class: 'mcpe-mcp-consent-dialog-scopes',
+                      role: 'list',
+                      'aria-label': 'Requested permissions',
+                    },
+                    parsedScopes.value.map((s) =>
+                      h('div', { class: 'mcpe-mcp-consent-dialog-scope-item', role: 'listitem' }, [
+                        h('span', { class: 'mcpe-mcp-consent-dialog-scope-resource' }, s.resource),
+                        h(
+                          'div',
+                          { class: 'mcpe-mcp-consent-dialog-scope-perms' },
+                          s.permissions.map((p) =>
+                            h(
+                              'span',
+                              {
+                                class: 'mcpe-mcp-consent-dialog-scope-perm',
+                                'data-perm': p.toLowerCase(),
+                              },
+                              p
+                            )
+                          )
+                        ),
+                      ])
+                    )
+                  ),
+                  h('div', { class: 'mcpe-mcp-consent-dialog-actions' }, [
+                    h(
+                      'button',
+                      { type: 'button', class: 'mcpe-btn mcpe-btn-outline', onClick: deny },
+                      'Deny'
+                    ),
+                    h(
+                      'button',
+                      { type: 'button', class: 'mcpe-btn mcpe-btn-primary', onClick: approve },
+                      'Allow'
+                    ),
+                  ]),
+                ]),
+              ]
             ),
-            h('div', { class: 'mcpe-mcp-consent-dialog-actions' }, [
-              h(
-                'button',
-                { type: 'button', class: 'mcpe-btn mcpe-btn-outline flex-1', onClick: deny },
-                'Deny'
-              ),
-              h(
-                'button',
-                { type: 'button', class: 'mcpe-btn mcpe-btn-primary flex-1', onClick: approve },
-                'Allow'
-              ),
-            ]),
           ]
         ),
       ])

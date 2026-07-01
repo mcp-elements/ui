@@ -1,4 +1,5 @@
 import { useEffect, useRef, useId, createContext, useContext } from 'react'
+import { createPortal } from 'react-dom'
 import { cn, trapFocus, lockScroll } from '@mcp-elements/core'
 import { useDialog } from './hooks/use-dialog'
 
@@ -38,26 +39,35 @@ export function Dialog({ open: controlledOpen, onOpenChange, modal = true, child
     return () => el.removeEventListener('keydown', handler)
   }, [isOpen])
 
-  if (!isOpen) return null
+  if (!isOpen || typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <DialogIdContext.Provider value={dialogId}>
-      <div className="mcpe-dialog-overlay" onClick={() => setOpen(false)} />
-      <div ref={contentRef} className="mcpe-dialog-content" role="dialog" aria-modal={modal} aria-labelledby={`${dialogId}-title`} aria-describedby={`${dialogId}-description`}>
-        {children}
-        <button
-          className="mcpe-dialog-close"
-          aria-label="Close"
-          onClick={() => setOpen(false)}
-          type="button"
+      <div className="mcpe-dialog-overlay" onClick={() => setOpen(false)}>
+        <div
+          ref={contentRef}
+          className="mcpe-dialog-content"
+          role="dialog"
+          aria-modal={modal}
+          aria-labelledby={`${dialogId}-title`}
+          aria-describedby={`${dialogId}-description`}
+          onClick={(e) => e.stopPropagation()}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 6 6 18" /><path d="m6 6 12 12" />
-          </svg>
-          <span className="sr-only">Close</span>
-        </button>
+          {children}
+          <button
+            className="mcpe-dialog-close"
+            aria-label="Close"
+            onClick={() => setOpen(false)}
+            type="button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </DialogIdContext.Provider>
+    </DialogIdContext.Provider>,
+    document.body
   )
 }
 

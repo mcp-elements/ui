@@ -48,15 +48,15 @@
   }
 
   .mcpe-mcp-tool-call-result-done {
-    background-color: oklch(0.72 0.17 145 / 0.08);
-    border: 1px solid oklch(0.72 0.17 145 / 0.25);
-    color: oklch(0.72 0.17 145);
+    background-color: color-mix(in oklab, var(--color-success) 9%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-success) 25%, transparent);
+    color: var(--color-success);
   }
 
   .mcpe-mcp-tool-call-result-error {
-    background-color: oklch(0.62 0.22 25 / 0.08);
-    border: 1px solid oklch(0.62 0.22 25 / 0.25);
-    color: oklch(0.62 0.22 25);
+    background-color: color-mix(in oklab, var(--color-danger) 9%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-danger) 25%, transparent);
+    color: var(--color-danger);
   }
 
   .mcpe-mcp-tool-call-footer {
@@ -75,18 +75,18 @@
 
   .mcpe-mcp-tool-call-badge-pending,
   .mcpe-mcp-tool-call-badge-running {
-    background-color: oklch(0.82 0.18 85 / 0.15);
-    color: oklch(0.82 0.18 85);
+    background-color: color-mix(in oklab, var(--color-warning) 15%, transparent);
+    color: var(--color-warning);
   }
 
   .mcpe-mcp-tool-call-badge-done {
-    background-color: oklch(0.72 0.17 145 / 0.15);
-    color: oklch(0.72 0.17 145);
+    background-color: color-mix(in oklab, var(--color-success) 15%, transparent);
+    color: var(--color-success);
   }
 
   .mcpe-mcp-tool-call-badge-error {
-    background-color: oklch(0.62 0.22 25 / 0.15);
-    color: oklch(0.62 0.22 25);
+    background-color: color-mix(in oklab, var(--color-danger) 15%, transparent);
+    color: var(--color-danger);
   }
 
   .mcpe-mcp-tool-call-badge-cancelled {

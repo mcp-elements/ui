@@ -15,10 +15,19 @@ export const McpeDialog = defineComponent({
     let unlockScroll: (() => void) | null = null
 
     const lockScroll = () => {
-      const prev = document.body.style.overflow
-      document.body.style.overflow = 'hidden'
+      const body = document.body
+      // Compensate for the scrollbar so the page doesn't shift on open.
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+      const prevOverflow = body.style.overflow
+      const prevPaddingRight = body.style.paddingRight
+      body.style.overflow = 'hidden'
+      if (scrollbarWidth > 0) {
+        const currentPad = parseFloat(getComputedStyle(body).paddingRight) || 0
+        body.style.paddingRight = `${currentPad + scrollbarWidth}px`
+      }
       return () => {
-        document.body.style.overflow = prev
+        body.style.overflow = prevOverflow
+        body.style.paddingRight = prevPaddingRight
       }
     }
 
@@ -59,48 +68,53 @@ export const McpeDialog = defineComponent({
       if (!props.modelValue) return h('span', { style: 'display:none' })
 
       return h(Teleport as unknown as string, { to: 'body' }, [
-        h('div', {
-          class: 'mcpe-dialog-overlay',
-          onClick: close,
-        }),
         h(
           'div',
           {
-            class: cn('mcpe-dialog-content', props.class),
-            role: 'dialog',
-            'aria-modal': props.modal,
-            onClick: (e: MouseEvent) => e.stopPropagation(),
+            class: 'mcpe-dialog-overlay',
+            onClick: close,
           },
           [
-            slots.default?.(),
             h(
-              'button',
+              'div',
               {
-                class: 'mcpe-dialog-close',
-                'aria-label': 'Close',
-                type: 'button',
-                onClick: close,
+                class: cn('mcpe-dialog-content', props.class),
+                role: 'dialog',
+                'aria-modal': props.modal,
+                onClick: (e: MouseEvent) => e.stopPropagation(),
               },
               [
+                slots.default?.(),
                 h(
-                  'svg',
+                  'button',
                   {
-                    xmlns: 'http://www.w3.org/2000/svg',
-                    width: '15',
-                    height: '15',
-                    viewBox: '0 0 24 24',
-                    fill: 'none',
-                    stroke: 'currentColor',
-                    'stroke-width': '2',
-                    'stroke-linecap': 'round',
-                    'stroke-linejoin': 'round',
+                    class: 'mcpe-dialog-close',
+                    'aria-label': 'Close',
+                    type: 'button',
+                    onClick: close,
                   },
                   [
-                    h('path', { d: 'M18 6 6 18' }),
-                    h('path', { d: 'm6 6 12 12' }),
+                    h(
+                      'svg',
+                      {
+                        xmlns: 'http://www.w3.org/2000/svg',
+                        width: '16',
+                        height: '16',
+                        viewBox: '0 0 24 24',
+                        fill: 'none',
+                        stroke: 'currentColor',
+                        'stroke-width': '2',
+                        'stroke-linecap': 'round',
+                        'stroke-linejoin': 'round',
+                        'aria-hidden': 'true',
+                      },
+                      [
+                        h('path', { d: 'M18 6 6 18' }),
+                        h('path', { d: 'm6 6 12 12' }),
+                      ]
+                    ),
                   ]
                 ),
-                h('span', { class: 'sr-only' }, 'Close'),
               ]
             ),
           ]

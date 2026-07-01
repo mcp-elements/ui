@@ -6,6 +6,24 @@ export interface ToasterProps {
   className?: string
 }
 
+const TOAST_ICONS: Record<string, React.ReactNode> = {
+  success: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21.801 10A10 10 0 1 1 17 3.335" /><path d="m9 11 3 3L22 4" />
+    </svg>
+  ),
+  destructive: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" />
+    </svg>
+  ),
+  default: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
+    </svg>
+  ),
+}
+
 export function Toaster({ position = 'bottom-right', className }: ToasterProps) {
   const { toasts, dismiss } = useToast()
 
@@ -20,7 +38,10 @@ export function Toaster({ position = 'bottom-right', className }: ToasterProps) 
             t.variant === 'success' && 'mcpe-toast-success'
           )}
         >
-          <div className="flex-1">
+          <span className="mcpe-toast-icon" aria-hidden="true">
+            {TOAST_ICONS[t.variant ?? 'default'] ?? TOAST_ICONS.default}
+          </span>
+          <div className="mcpe-toast-body">
             {t.title && <div className="mcpe-toast-title">{t.title}</div>}
             {t.description && <div className="mcpe-toast-description">{t.description}</div>}
           </div>
