@@ -80,7 +80,7 @@ export const addCommand = new Command('add')
 
       console.log(`  ${pc.cyan(name)} ${component.type === 'css-only' ? '(CSS)' : '(interactive)'}`)
 
-      const framework = config.framework as 'react' | 'angular'
+      const framework = config.framework as 'react' | 'angular' | 'vue'
       const componentDir = path.join(cwd, config.aliases.components)
       await ensureDir(componentDir)
 
@@ -193,6 +193,27 @@ export const addCommand = new Command('add')
           } catch (err) {
             console.log(pc.red(`    Failed: ${cssFileName} — ${(err as Error).message}`))
           }
+        }
+
+        // Wire the component's CSS into the global stylesheet — otherwise the
+        // copied components render unstyled (nothing else imports it).
+        const globalCssPath = path.join(cwd, config.tailwind.css)
+        const importLine = `@import './components/${cssFileName}';`
+        try {
+          const existing = fs.existsSync(globalCssPath)
+            ? fs.readFileSync(globalCssPath, 'utf-8')
+            : ''
+          if (!existing.includes(importLine)) {
+            fs.writeFileSync(
+              globalCssPath,
+              existing ? `${importLine}\n${existing}` : `${importLine}\n`
+            )
+            console.log(pc.green(`    Linked: ${config.tailwind.css} ← components/${cssFileName}`))
+          }
+        } catch (err) {
+          console.log(
+            pc.yellow(`    Could not link CSS into ${config.tailwind.css}: ${(err as Error).message}`)
+          )
         }
       }
     }

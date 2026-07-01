@@ -38,6 +38,7 @@ export const initCommand = new Command('init')
         choices: [
           { title: 'React', value: 'react' },
           { title: 'Angular', value: 'angular' },
+          { title: 'Vue', value: 'vue' },
         ],
       })
       framework = response.framework
@@ -51,9 +52,9 @@ export const initCommand = new Command('init')
     }
 
     // Ask for component directory
-    const defaultComponentDir = framework === 'react'
-      ? 'src/components/ui'
-      : 'src/app/components/ui'
+    const defaultComponentDir = framework === 'angular'
+      ? 'src/app/components/ui'
+      : 'src/components/ui'
 
     const { componentDir, cssPath, typescript } = await prompts([
       {
@@ -66,7 +67,12 @@ export const initCommand = new Command('init')
         type: 'text',
         name: 'cssPath',
         message: 'Where is your global CSS file?',
-        initial: framework === 'react' ? 'src/index.css' : 'src/styles.css',
+        initial:
+          framework === 'react'
+            ? 'src/index.css'
+            : framework === 'vue'
+              ? 'src/style.css'
+              : 'src/styles.css',
       },
       {
         type: 'confirm',
@@ -87,7 +93,7 @@ export const initCommand = new Command('init')
       },
       aliases: {
         components: componentDir,
-        utils: framework === 'react' ? 'src/lib/utils' : 'src/app/lib/utils',
+        utils: framework === 'angular' ? 'src/app/lib/utils' : 'src/lib/utils',
       },
     }
 

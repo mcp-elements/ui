@@ -6,11 +6,16 @@ export interface PropRow {
   description: string
 }
 
+export type DocFramework = 'react' | 'angular' | 'vue'
+
+/** A plain string is a React-only example; an object renders per-framework tabs. */
+export type UsageExamples = string | Partial<Record<DocFramework, string>>
+
 export interface ComponentDoc {
   slug: string
   props: PropRow[]
   /** Code shown in the usage example */
-  usage: string
+  usage: UsageExamples
 }
 
 export const COMPONENT_DOCS: Record<string, ComponentDoc> = {
@@ -56,21 +61,19 @@ export function Example() {
   input: {
     slug: 'input',
     props: [
-      { name: 'label', type: 'string', description: 'Label text above the input' },
+      { name: 'type', type: 'string', default: "'text'", description: 'HTML input type (text, email, password, number, etc.)' },
       { name: 'placeholder', type: 'string', description: 'Placeholder text' },
-      { name: 'error', type: 'string', description: 'Error message shown below the input' },
-      { name: 'helperText', type: 'string', description: 'Helper text shown below the input' },
+      { name: 'value', type: 'string', description: 'Controlled value of the input' },
+      { name: 'defaultValue', type: 'string', description: 'Initial value when uncontrolled' },
+      { name: 'onChange', type: '(e: React.ChangeEvent<HTMLInputElement>) => void', description: 'Called when the value changes' },
       { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the input is disabled' },
+      { name: 'className', type: 'string', description: 'Additional classes merged onto the input' },
     ],
     usage: `import { Input } from '@mcp-elements/react'
 
 export function Example() {
   return (
-    <Input
-      label="Email address"
-      placeholder="you@example.com"
-      helperText="We'll never share your email."
-    />
+    <Input type="email" placeholder="you@example.com" />
   )
 }`,
   },
@@ -111,15 +114,53 @@ export function Example() {
       { name: 'args', type: 'Record<string, unknown>', description: 'Fallback args when state.args is undefined' },
       { name: 'onRetry', type: '() => void', description: 'Callback for the Retry button shown on error' },
     ],
-    usage: `import { McpToolCall } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpToolCall } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
 
 const state = createToolState()
-state.start('search', { query: 'MCP protocol' })
+state.start({ tool: 'search', args: { query: 'MCP protocol' } })
 
 export function Example() {
-  return <McpToolCall state={state} />
+  return <McpToolCall state={state} onRetry={() => state.reset()} />
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpToolCallComponent } from '@mcp-elements/angular'
+import { createToolState } from '@mcp-elements/core'
+
+@Component({
+  selector: 'app-tool-call-example',
+  standalone: true,
+  imports: [McpeMcpToolCallComponent],
+  template: \`<mcpe-mcp-tool-call [state]="state" (onRetry)="onRetry()" />\`,
+})
+export class ToolCallExampleComponent {
+  state = createToolState()
+  constructor() {
+    this.state.start({ tool: 'search', args: { query: 'MCP protocol' } })
+  }
+  onRetry() {
+    this.state.reset()
+    this.state.start({ tool: 'search', args: { query: 'MCP protocol' } })
+  }
+}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpToolCall } from '@mcp-elements/vue'
+import { createToolState } from '@mcp-elements/core'
+
+const state = createToolState()
+state.start({ tool: 'search', args: { query: 'MCP protocol' } })
+
+function onRetry() {
+  state.reset()
+  state.start({ tool: 'search', args: { query: 'MCP protocol' } })
+}
+</script>
+
+<template>
+  <McpeMcpToolCall :state="state" @retry="onRetry" />
+</template>`,
+    },
   },
   'mcp-server-status': {
     slug: 'mcp-server-status',
@@ -127,7 +168,8 @@ export function Example() {
       { name: 'status', type: "'connected' | 'connecting' | 'disconnected' | 'error'", required: true, description: 'Connection state to display' },
       { name: 'serverName', type: 'string', description: 'Optional server name shown before the status label' },
     ],
-    usage: `import { McpServerStatus } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpServerStatus } from '@mcp-elements/react'
 
 export function Example() {
   return (
@@ -139,6 +181,36 @@ export function Example() {
     </div>
   )
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpServerStatusComponent } from '@mcp-elements/angular'
+
+@Component({
+  selector: 'app-server-status-example',
+  standalone: true,
+  imports: [McpeMcpServerStatusComponent],
+  template: \`
+    <div class="flex gap-3 flex-wrap">
+      <mcpe-mcp-server-status status="connected" serverName="github-mcp" />
+      <mcpe-mcp-server-status status="connecting" />
+      <mcpe-mcp-server-status status="disconnected" />
+      <mcpe-mcp-server-status status="error" />
+    </div>
+  \`,
+})
+export class ServerStatusExampleComponent {}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpServerStatus } from '@mcp-elements/vue'
+</script>
+
+<template>
+  <div class="flex gap-3 flex-wrap">
+    <McpeMcpServerStatus status="connected" server-name="github-mcp" />
+    <McpeMcpServerStatus status="connecting" />
+    <McpeMcpServerStatus status="disconnected" />
+    <McpeMcpServerStatus status="error" />
+  </div>
+</template>`,
+    },
   },
   'mcp-consent-dialog': {
     slug: 'mcp-consent-dialog',
@@ -150,7 +222,8 @@ export function Example() {
       { name: 'onApprove', type: '() => void', required: true, description: 'Called when user clicks Allow' },
       { name: 'onDeny', type: '() => void', required: true, description: 'Called when user clicks Deny or closes the dialog' },
     ],
-    usage: `import { McpConsentDialog } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpConsentDialog } from '@mcp-elements/react'
 import { useState } from 'react'
 
 export function Example() {
@@ -165,6 +238,43 @@ export function Example() {
     />
   )
 }`,
+      angular: `import { Component, signal } from '@angular/core'
+import { McpeMcpConsentDialogComponent } from '@mcp-elements/angular'
+
+@Component({
+  selector: 'app-consent-dialog-example',
+  standalone: true,
+  imports: [McpeMcpConsentDialogComponent],
+  template: \`
+    <mcpe-mcp-consent-dialog
+      [open]="open()"
+      serverName="GitHub MCP"
+      [scopes]="['repo:read', 'user.email:read']"
+      (onApprove)="open.set(false)"
+      (onDeny)="open.set(false)"
+    />
+  \`,
+})
+export class ConsentDialogExampleComponent {
+  open = signal(true)
+}`,
+      vue: `<script setup lang="ts">
+import { ref } from 'vue'
+import { McpeMcpConsentDialog } from '@mcp-elements/vue'
+
+const open = ref(true)
+</script>
+
+<template>
+  <McpeMcpConsentDialog
+    :open="open"
+    server-name="GitHub MCP"
+    :scopes="['repo:read', 'user.email:read']"
+    @approve="open = false"
+    @deny="open = false"
+  />
+</template>`,
+    },
   },
   card: {
     slug: 'card',
@@ -257,12 +367,13 @@ export function Example() {
   'mcp-tool-form': {
     slug: 'mcp-tool-form',
     props: [
-      { name: 'schema', type: 'JSONSchema7', required: true, description: 'JSON Schema object that drives the form fields' },
+      { name: 'schema', type: 'JsonSchema', required: true, description: 'JSON Schema object that drives the form fields' },
       { name: 'onSubmit', type: '(values: Record<string, unknown>) => void', required: true, description: 'Called with validated form values on submit' },
       { name: 'submitLabel', type: 'string', default: "'Run'", description: 'Label text for the submit button' },
       { name: 'loading', type: 'boolean', default: 'false', description: 'Disables the form and shows a spinner on the button' },
     ],
-    usage: `import { McpToolForm } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpToolForm } from '@mcp-elements/react'
 
 const schema = {
   type: 'object',
@@ -282,23 +393,98 @@ export function Example() {
     />
   )
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpToolFormComponent } from '@mcp-elements/angular'
+import type { JsonSchema } from '@mcp-elements/core'
+
+@Component({
+  selector: 'app-tool-form-example',
+  standalone: true,
+  imports: [McpeMcpToolFormComponent],
+  template: \`<mcpe-mcp-tool-form [schema]="schema" submitLabel="Search" (onSubmit)="run($event)" />\`,
+})
+export class ToolFormExampleComponent {
+  schema: JsonSchema = {
+    type: 'object',
+    properties: {
+      query: { type: 'string', description: 'Search query' },
+      limit: { type: 'number', default: 10, description: 'Max results' },
+    },
+    required: ['query'],
+  }
+  run(values: Record<string, unknown>) {
+    console.log(values)
+  }
+}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpToolForm } from '@mcp-elements/vue'
+import type { JsonSchema } from '@mcp-elements/core'
+
+const schema: JsonSchema = {
+  type: 'object',
+  properties: {
+    query: { type: 'string', description: 'Search query' },
+    limit: { type: 'number', default: 10, description: 'Max results' },
+  },
+  required: ['query'],
+}
+
+function run(values: Record<string, unknown>) {
+  console.log(values)
+}
+</script>
+
+<template>
+  <McpeMcpToolForm :schema="schema" submit-label="Search" @submit="run" />
+</template>`,
+    },
   },
   'mcp-scope-inspector': {
     slug: 'mcp-scope-inspector',
     props: [
-      { name: 'scopes', type: 'ScopeDescriptor[]', required: true, description: 'Array of scope descriptor objects to display' },
-      { name: 'defaultExpanded', type: 'boolean', default: 'false', description: 'Whether all scope groups are expanded by default' },
+      { name: 'scopes', type: 'string | ScopeDescriptor[]', required: true, description: 'Space-separated scope string (e.g. "repo:read repo:write") or pre-parsed ScopeDescriptor[]' },
+      { name: 'descriptions', type: 'Record<string, string>', description: 'Human-readable descriptions keyed by raw scope or resource' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes' },
     ],
-    usage: `import { McpScopeInspector } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpScopeInspector } from '@mcp-elements/react'
 
-const scopes = [
-  { id: 'repo:read', label: 'Read repositories', description: 'List and read repository contents', risk: 'low' },
-  { id: 'repo:write', label: 'Write repositories', description: 'Create and modify files', risk: 'high' },
-]
+const descriptions = {
+  'repo:read': 'List and read repository contents',
+  'repo:write': 'Create and modify files',
+}
 
 export function Example() {
-  return <McpScopeInspector scopes={scopes} defaultExpanded />
+  return <McpScopeInspector scopes="repo:read repo:write" descriptions={descriptions} />
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpScopeInspectorComponent } from '@mcp-elements/angular'
+
+@Component({
+  selector: 'app-scope-inspector-example',
+  standalone: true,
+  imports: [McpeMcpScopeInspectorComponent],
+  template: \`<mcpe-mcp-scope-inspector scopes="repo:read repo:write" [descriptions]="descriptions" />\`,
+})
+export class ScopeInspectorExampleComponent {
+  descriptions: Record<string, string> = {
+    'repo:read': 'List and read repository contents',
+    'repo:write': 'Create and modify files',
+  }
+}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpScopeInspector } from '@mcp-elements/vue'
+
+const descriptions: Record<string, string> = {
+  'repo:read': 'List and read repository contents',
+  'repo:write': 'Create and modify files',
+}
+</script>
+
+<template>
+  <McpeMcpScopeInspector scopes="repo:read repo:write" :descriptions="descriptions" />
+</template>`,
+    },
   },
   'mcp-resource-browser': {
     slug: 'mcp-resource-browser',
@@ -307,7 +493,8 @@ export function Example() {
       { name: 'onSelect', type: '(resource: McpResource) => void', description: 'Called when user clicks a resource row' },
       { name: 'loading', type: 'boolean', default: 'false', description: 'Shows skeleton loading rows' },
     ],
-    usage: `import { McpResourceBrowser } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpResourceBrowser } from '@mcp-elements/react'
 
 const resources = [
   { uri: 'file:///src/index.ts', name: 'index.ts', mimeType: 'text/typescript' },
@@ -322,27 +509,92 @@ export function Example() {
     />
   )
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpResourceBrowserComponent, type McpResource } from '@mcp-elements/angular'
+
+@Component({
+  selector: 'app-resource-browser-example',
+  standalone: true,
+  imports: [McpeMcpResourceBrowserComponent],
+  template: \`<mcpe-mcp-resource-browser [resources]="resources" (onSelect)="select($event)" />\`,
+})
+export class ResourceBrowserExampleComponent {
+  resources: McpResource[] = [
+    { uri: 'file:///src/index.ts', name: 'index.ts', mimeType: 'text/typescript' },
+    { uri: 'file:///README.md', name: 'README.md', mimeType: 'text/markdown' },
+  ]
+  select(r: McpResource) {
+    console.log('selected', r.uri)
+  }
+}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpResourceBrowser, type McpResource } from '@mcp-elements/vue'
+
+const resources: McpResource[] = [
+  { uri: 'file:///src/index.ts', name: 'index.ts', mimeType: 'text/typescript' },
+  { uri: 'file:///README.md', name: 'README.md', mimeType: 'text/markdown' },
+]
+
+function select(r: McpResource) {
+  console.log('selected', r.uri)
+}
+</script>
+
+<template>
+  <McpeMcpResourceBrowser :resources="resources" @select="select" />
+</template>`,
+    },
   },
   'mcp-app-frame': {
     slug: 'mcp-app-frame',
     props: [
       { name: 'src', type: 'string', required: true, description: 'URL of the MCP App to load in the sandboxed iframe' },
-      { name: 'onMessage', type: '(event: MessageEvent) => void', description: 'Called when the embedded app sends a postMessage' },
-      { name: 'height', type: 'string | number', default: '480', description: 'Height of the iframe in pixels or CSS value' },
-      { name: 'title', type: 'string', required: true, description: 'Accessible title for the iframe element' },
+      { name: 'onMessage', type: '(envelope: AppMessageEnvelope) => void', description: 'Called with a decoded envelope when the embedded app sends a message' },
+      { name: 'height', type: 'number', default: '480', description: 'Height of the iframe in pixels' },
+      { name: 'sandbox', type: 'string', default: "'allow-scripts allow-same-origin'", description: 'iframe sandbox flags' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes' },
     ],
-    usage: `import { McpAppFrame } from '@mcp-elements/react'
+    usage: {
+      react: `import { McpAppFrame } from '@mcp-elements/react'
+import type { AppMessageEnvelope } from '@mcp-elements/core'
 
 export function Example() {
   return (
     <McpAppFrame
       src="https://my-mcp-app.example.com"
-      title="My MCP App"
       height={600}
-      onMessage={(e) => console.log('app message', e.data)}
+      onMessage={(env: AppMessageEnvelope) => console.log('app message', env)}
     />
   )
 }`,
+      angular: `import { Component } from '@angular/core'
+import { McpeMcpAppFrameComponent } from '@mcp-elements/angular'
+import type { AppMessageEnvelope } from '@mcp-elements/core'
+
+@Component({
+  selector: 'app-app-frame-example',
+  standalone: true,
+  imports: [McpeMcpAppFrameComponent],
+  template: \`<mcpe-mcp-app-frame src="https://my-mcp-app.example.com" [height]="600" (onMessage)="onMessage($event)" />\`,
+})
+export class AppFrameExampleComponent {
+  onMessage(env: AppMessageEnvelope) {
+    console.log('app message', env)
+  }
+}`,
+      vue: `<script setup lang="ts">
+import { McpeMcpAppFrame } from '@mcp-elements/vue'
+import type { AppMessageEnvelope } from '@mcp-elements/core'
+
+function onMessage(env: AppMessageEnvelope) {
+  console.log('app message', env)
+}
+</script>
+
+<template>
+  <McpeMcpAppFrame src="https://my-mcp-app.example.com" :height="600" @message="onMessage" />
+</template>`,
+    },
   },
   'ai-badge': {
     slug: 'ai-badge',
@@ -503,6 +755,365 @@ export function Example() {
         </PromptInputActions>
       </PromptInputFooter>
     </PromptInput>
+  )
+}`,
+  },
+  accordion: {
+    slug: 'accordion',
+    props: [
+      { name: 'items', type: 'AccordionItemConfig[]', required: true, description: 'Item configs, each with a unique `value` and optional `disabled` flag' },
+      { name: 'type', type: "'single' | 'multiple'", default: "'single'", description: 'Whether one or multiple items can be expanded at once' },
+      { name: 'collapsible', type: 'boolean', default: 'false', description: 'In single mode, allow collapsing the open item by clicking it again' },
+      { name: 'children', type: '(api: ReturnType<typeof useAccordion>) => React.ReactNode', required: true, description: 'Render prop receiving the accordion API (expandedValues, getTriggerProps, getContentProps, etc.)' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes for the wrapper' },
+    ],
+    usage: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@mcp-elements/react'
+
+const items = [
+  { value: 'transport' },
+  { value: 'auth' },
+  { value: 'tools' },
+]
+
+export function Example() {
+  return (
+    <Accordion items={items} collapsible className="w-full max-w-md">
+      {({ expandedValues, getTriggerProps, getContentProps }) => (
+        <>
+          {items.map((item) => (
+            <AccordionItem key={item.value}>
+              <AccordionTrigger
+                {...getTriggerProps(item.value, expandedValues)}
+                isExpanded={expandedValues.includes(item.value)}
+              >
+                {item.value}
+              </AccordionTrigger>
+              <AccordionContent {...getContentProps(item.value, expandedValues)}>
+                Configuration details for {item.value}.
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </>
+      )}
+    </Accordion>
+  )
+}`,
+  },
+  avatar: {
+    slug: 'avatar',
+    props: [
+      { name: 'src', type: 'string', description: 'Image URL; falls back to `fallback` text if it fails to load' },
+      { name: 'alt', type: 'string', description: 'Alt text for the avatar image' },
+      { name: 'fallback', type: 'string', description: 'Text (usually initials) shown when there is no image or it fails to load' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes' },
+    ],
+    usage: `import { Avatar } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-3">
+      <Avatar src="https://github.com/anthropics.png" alt="Anthropic" fallback="AN" />
+      <Avatar fallback="MB" />
+    </div>
+  )
+}`,
+  },
+  chips: {
+    slug: 'chips',
+    props: [
+      { name: 'variant', type: "'default' | 'primary' | 'outline' | 'destructive'", default: "'default'", description: 'Visual style of the chip (Chip prop)' },
+      { name: 'onRemove', type: '() => void', description: 'When provided, renders a remove button; called when it is clicked (Chip prop)' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes (Chip and Chips)' },
+    ],
+    usage: `import { Chip, Chips } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <Chips>
+      <Chip>read</Chip>
+      <Chip variant="primary">write</Chip>
+      <Chip variant="outline" onRemove={() => {}}>tools:list</Chip>
+      <Chip variant="destructive">admin</Chip>
+    </Chips>
+  )
+}`,
+  },
+  counter: {
+    slug: 'counter',
+    props: [
+      { name: 'value', type: 'number', required: true, description: 'Current numeric value (controlled)' },
+      { name: 'onChange', type: '(value: number) => void', required: true, description: 'Called with the next value when incremented, decremented, or typed' },
+      { name: 'min', type: 'number', default: '0', description: 'Minimum allowed value' },
+      { name: 'max', type: 'number', default: '99', description: 'Maximum allowed value' },
+      { name: 'step', type: 'number', default: '1', description: 'Amount added or removed per increment/decrement' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the counter is disabled' },
+      { name: 'className', type: 'string', description: 'Additional CSS classes' },
+    ],
+    usage: `import { useState } from 'react'
+import { Counter } from '@mcp-elements/react'
+
+export function Example() {
+  const [value, setValue] = useState(4)
+  return <Counter value={value} onChange={setValue} min={1} max={20} />
+}`,
+  },
+  drawer: {
+    slug: 'drawer',
+    props: [
+      { name: 'open', type: 'boolean', description: 'Controlled open state. Omit to use the internal useDrawer state' },
+      { name: 'onOpenChange', type: '(open: boolean) => void', description: 'Called when the open state should change (overlay click, Escape, close button)' },
+      { name: 'side', type: "'left' | 'right' | 'top' | 'bottom'", default: "'right'", description: 'Edge the drawer slides in from' },
+      { name: 'children', type: 'React.ReactNode', required: true, description: 'Drawer content, typically DrawerHeader / DrawerBody / DrawerFooter' },
+    ],
+    usage: `import { Drawer, DrawerHeader, DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter, Button } from '@mcp-elements/react'
+import { useState } from 'react'
+
+export function Example() {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Configure server</Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Server settings</DrawerTitle>
+          <DrawerDescription>Edit connection details for filesystem-mcp.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>Endpoint, scopes, and environment variables go here.</DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Save</Button>
+        </DrawerFooter>
+      </Drawer>
+    </>
+  )
+}`,
+  },
+  'dropdown-menu': {
+    slug: 'dropdown-menu',
+    props: [
+      { name: 'trigger', type: 'React.ReactNode', required: true, description: 'Element that toggles the menu when clicked' },
+      { name: 'items', type: 'DropdownMenuItem[]', required: true, description: 'Menu entries. Each item has an id and label, plus optional type ("item" | "separator" | "label"), shortcut, disabled, and onSelect' },
+      { name: 'align', type: "'start' | 'end'", default: "'end'", description: 'Horizontal alignment of the menu relative to the trigger' },
+      { name: 'className', type: 'string', description: 'Extra classes applied to the menu content container' },
+    ],
+    usage: `import { DropdownMenu, Button } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <DropdownMenu
+      trigger={<Button variant="outline">Actions</Button>}
+      align="start"
+      items={[
+        { id: 'label', type: 'label', label: 'filesystem-mcp' },
+        { id: 'restart', label: 'Restart server', shortcut: '⌘R', onSelect: () => {} },
+        { id: 'logs', label: 'View logs', onSelect: () => {} },
+        { id: 'sep', type: 'separator', label: '' },
+        { id: 'remove', label: 'Remove', onSelect: () => {} },
+      ]}
+    />
+  )
+}`,
+  },
+  loader: {
+    slug: 'loader',
+    props: [
+      { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Diameter of the spinner' },
+      { name: 'variant', type: "'primary' | 'muted'", default: "'primary'", description: 'Color treatment of the spinner' },
+    ],
+    usage: `import { Loader } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-4">
+      <Loader size="sm" />
+      <Loader size="md" />
+      <Loader size="lg" variant="muted" />
+    </div>
+  )
+}`,
+  },
+  'password-input': {
+    slug: 'password-input',
+    props: [
+      { name: 'placeholder', type: 'string', description: 'Placeholder text shown in the field' },
+      { name: 'value', type: 'string', description: 'Controlled value of the input' },
+      { name: 'defaultValue', type: 'string', description: 'Initial value for an uncontrolled input' },
+      { name: 'onChange', type: '(e: React.ChangeEvent<HTMLInputElement>) => void', description: 'Change handler for the underlying input' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the input is disabled' },
+    ],
+    usage: `import { PasswordInput } from '@mcp-elements/react'
+
+export function Example() {
+  return <PasswordInput placeholder="Enter API key" />
+}`,
+  },
+  popover: {
+    slug: 'popover',
+    props: [
+      { name: 'trigger', type: 'React.ReactNode', required: true, description: 'Element that toggles the popover open when clicked' },
+      { name: 'children', type: 'React.ReactNode', required: true, description: 'Content rendered inside the popover panel' },
+      { name: 'className', type: 'string', description: 'Additional classes for the popover content panel' },
+    ],
+    usage: `import { Popover, Button } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <Popover trigger={<Button variant="outline">Connection info</Button>}>
+      <div className="space-y-1">
+        <p className="text-sm font-medium">github-mcp</p>
+        <p className="text-xs text-muted-foreground">
+          Connected over stdio · 14 tools exposed
+        </p>
+      </div>
+    </Popover>
+  )
+}`,
+  },
+  progress: {
+    slug: 'progress',
+    props: [
+      { name: 'value', type: 'number', default: '0', description: 'Current progress value' },
+      { name: 'max', type: 'number', default: '100', description: 'Maximum value representing 100% complete' },
+      { name: 'className', type: 'string', description: 'Additional classes for the progress track' },
+    ],
+    usage: `import { Progress } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <Progress value={64} max={100} className="w-full" />
+  )
+}`,
+  },
+  select: {
+    slug: 'select',
+    props: [
+      { name: 'options', type: 'SelectOption[]', required: true, description: 'List of selectable options ({ value, label, disabled? })' },
+      { name: 'placeholder', type: 'string', default: "'Select...'", description: 'Text shown when no option is selected' },
+      { name: 'onChange', type: '(value: string) => void', description: 'Called with the value when a selection is made' },
+      { name: 'className', type: 'string', description: 'Additional classes for the select container' },
+    ],
+    usage: `import { Select } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <Select
+      placeholder="Choose a tool"
+      options={[
+        { value: 'search_code', label: 'search_code' },
+        { value: 'create_issue', label: 'create_issue' },
+        { value: 'run_query', label: 'run_query', disabled: true },
+      ]}
+      onChange={(value) => console.log(value)}
+    />
+  )
+}`,
+  },
+  separator: {
+    slug: 'separator',
+    props: [
+      { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Axis the separator is drawn along' },
+      { name: 'className', type: 'string', description: 'Additional classes for the separator element' },
+    ],
+    usage: `import { Separator } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <div className="space-y-3">
+      <p className="text-sm font-medium">Server settings</p>
+      <Separator />
+      <p className="text-sm text-muted-foreground">Configure transport and scopes.</p>
+    </div>
+  )
+}`,
+  },
+  switch: {
+    slug: 'switch',
+    props: [
+      { name: 'checked', type: 'boolean', default: 'false', description: 'Whether the switch is on' },
+      { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'Called when the checked state should change' },
+      { name: 'disabled', type: 'boolean', description: 'Whether the switch is disabled' },
+      { name: 'id', type: 'string', description: 'HTML id applied to the switch button' },
+      { name: 'name', type: 'string', description: 'Name for a hidden input, useful inside forms' },
+    ],
+    usage: `import { Switch } from '@mcp-elements/react'
+import { useState } from 'react'
+
+export function Example() {
+  const [checked, setChecked] = useState(true)
+  return (
+    <label className="flex items-center gap-3">
+      <Switch checked={checked} onCheckedChange={setChecked} />
+      Auto-approve safe tool calls
+    </label>
+  )
+}`,
+  },
+  textarea: {
+    slug: 'textarea',
+    props: [
+      { name: 'value', type: 'string', description: 'Controlled value of the textarea' },
+      { name: 'defaultValue', type: 'string', description: 'Initial value when uncontrolled' },
+      { name: 'onChange', type: '(e: React.ChangeEvent<HTMLTextAreaElement>) => void', description: 'Called when the value changes' },
+      { name: 'placeholder', type: 'string', description: 'Placeholder text' },
+      { name: 'rows', type: 'number', description: 'Number of visible text rows' },
+      { name: 'disabled', type: 'boolean', default: 'false', description: 'Whether the textarea is disabled' },
+      { name: 'className', type: 'string', description: 'Additional classes merged onto the textarea' },
+    ],
+    usage: `import { Textarea } from '@mcp-elements/react'
+import { useState } from 'react'
+
+export function Example() {
+  const [value, setValue] = useState('')
+  return (
+    <Textarea
+      placeholder="Describe the tool you want to call…"
+      rows={4}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  )
+}`,
+  },
+  toast: {
+    slug: 'toast',
+    props: [
+      { name: 'position', type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'", default: "'bottom-right'", description: 'Where the toast stack is anchored on screen' },
+      { name: 'className', type: 'string', description: 'Additional classes merged onto the toaster container' },
+    ],
+    usage: `import { Toaster, useToast } from '@mcp-elements/react'
+
+export function Example() {
+  const { toast } = useToast()
+  return (
+    <>
+      <button
+        onClick={() =>
+          toast.success('Tool call complete', 'search_files returned 47 results')
+        }
+      >
+        Run tool
+      </button>
+      <Toaster position="bottom-right" />
+    </>
+  )
+}`,
+  },
+  tooltip: {
+    slug: 'tooltip',
+    props: [
+      { name: 'content', type: 'React.ReactNode', required: true, description: 'Content shown inside the tooltip' },
+      { name: 'children', type: 'React.ReactElement', required: true, description: 'The trigger element the tooltip is attached to' },
+      { name: 'side', type: "'top' | 'bottom'", default: "'top'", description: 'Which side of the trigger the tooltip appears on' },
+      { name: 'delay', type: 'number', description: 'Delay in milliseconds before the tooltip opens' },
+      { name: 'className', type: 'string', description: 'Additional classes merged onto the tooltip content' },
+    ],
+    usage: `import { Tooltip } from '@mcp-elements/react'
+
+export function Example() {
+  return (
+    <Tooltip content="Auto-approve read-only tool calls" side="top">
+      <button>Auto-approve</button>
+    </Tooltip>
   )
 }`,
   },

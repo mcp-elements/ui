@@ -1,4 +1,4 @@
-import { Component, input, signal, computed } from '@angular/core'
+import { Component, input, output, signal, computed } from '@angular/core'
 import { createAccordion, type AccordionItemConfig } from '@mcp-elements/core'
 
 @Component({

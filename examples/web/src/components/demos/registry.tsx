@@ -47,6 +47,31 @@ import {
   PromptInputFooter,
   PromptInputActions,
   PromptInputCharCount,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  Avatar,
+  Chip,
+  Chips,
+  Counter,
+  Drawer,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerBody,
+  DrawerFooter,
+  DropdownMenu,
+  Loader,
+  PasswordInput,
+  Popover,
+  Progress,
+  Select,
+  Separator,
+  Textarea,
+  Toaster,
+  useToast,
+  Tooltip,
 } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
 
@@ -390,6 +415,275 @@ const PromptInputDemo: DemoFn = () => {
 
 // ───────── Registry ─────────
 
+// ───────── Additional base components ─────────
+
+const ACCORDION_ITEMS = [
+  { value: 'transport', title: 'Transport', body: 'mcp-elements speaks both stdio and streamable HTTP. The client negotiates the transport during the initialize handshake.' },
+  { value: 'auth', title: 'Authentication', body: 'OAuth 2.1 with PKCE is supported out of the box. Tokens are scoped per-server and refreshed automatically.' },
+  { value: 'tools', title: 'Tool discovery', body: 'Tools are listed via tools/list and invoked with tools/call. Schemas are validated against the advertised JSON Schema.' },
+]
+
+const AccordionDemo: DemoFn = () => (
+  <Accordion items={ACCORDION_ITEMS} collapsible className="w-full max-w-md">
+    {({ expandedValues, getTriggerProps, getContentProps }) => (
+      <>
+        {ACCORDION_ITEMS.map((item) => (
+          <AccordionItem key={item.value}>
+            <AccordionTrigger
+              {...getTriggerProps(item.value, expandedValues)}
+              isExpanded={expandedValues.includes(item.value)}
+            >
+              {item.title}
+            </AccordionTrigger>
+            <AccordionContent {...getContentProps(item.value, expandedValues)}>
+              {item.body}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </>
+    )}
+  </Accordion>
+)
+
+const AvatarDemo: DemoFn = () => (
+  <div className="flex items-center gap-3">
+    <Avatar src="https://github.com/anthropics.png" alt="Anthropic" fallback="AN" />
+    <Avatar src="https://github.com/modelcontextprotocol.png" alt="MCP" fallback="MCP" />
+    <Avatar fallback="MB" />
+  </div>
+)
+
+const ChipsDemo: DemoFn = () => {
+  const [scopes, setScopes] = useState(['tools:list', 'tools:call', 'resources:read', 'prompts:get'])
+  return (
+    <Chips>
+      <Chip variant="primary">connected</Chip>
+      {scopes.map((scope) => (
+        <Chip
+          key={scope}
+          variant="outline"
+          onRemove={() => setScopes((prev) => prev.filter((s) => s !== scope))}
+        >
+          {scope}
+        </Chip>
+      ))}
+      <Chip variant="destructive">admin</Chip>
+    </Chips>
+  )
+}
+
+const CounterDemo: DemoFn = () => {
+  const [maxResults, setMaxResults] = useState(5)
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <span className="text-sm text-muted-foreground">Max tool results</span>
+      <Counter value={maxResults} onChange={setMaxResults} min={1} max={25} step={1} />
+    </div>
+  )
+}
+
+const DrawerDemo: DemoFn = () => {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Configure server</Button>
+      <Drawer open={open} onOpenChange={setOpen} side="right">
+        <DrawerHeader>
+          <DrawerTitle>Server settings</DrawerTitle>
+          <DrawerDescription>Edit connection details for filesystem-mcp.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <div className="flex flex-col gap-3">
+            <Input placeholder="Endpoint — https://localhost:8080/sse" />
+            <Input placeholder="Auth token — sk-..." />
+          </div>
+        </DrawerBody>
+        <DrawerFooter>
+          <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Save changes</Button>
+        </DrawerFooter>
+      </Drawer>
+    </>
+  )
+}
+
+const DropdownMenuDemo: DemoFn = () => (
+  <DropdownMenu
+    trigger={<Button variant="outline">Server actions</Button>}
+    align="start"
+    items={[
+      { id: 'label', type: 'label', label: 'filesystem-mcp' },
+      { id: 'restart', label: 'Restart server', shortcut: '⌘R', onSelect: () => {} },
+      { id: 'logs', label: 'View logs', shortcut: '⌘L', onSelect: () => {} },
+      { id: 'inspect', label: 'Inspect scopes', onSelect: () => {} },
+      { id: 'sep', type: 'separator', label: '' },
+      { id: 'disabled', label: 'Export config', disabled: true, onSelect: () => {} },
+      { id: 'remove', label: 'Remove server', onSelect: () => {} },
+    ]}
+  />
+)
+
+const LoaderDemo: DemoFn = () => (
+  <div className="flex flex-wrap items-center gap-6">
+    <Loader size="sm" />
+    <Loader size="md" />
+    <Loader size="lg" />
+    <Loader size="xl" />
+    <Loader size="md" variant="muted" />
+  </div>
+)
+
+const PasswordInputDemo: DemoFn = () => {
+  const [value, setValue] = useState('sk-mcp-7f3a9c01')
+  return (
+    <div className="w-full max-w-sm">
+      <PasswordInput
+        placeholder="Enter API key"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </div>
+  )
+}
+
+const PopoverDemo: DemoFn = () => (
+  <Popover trigger={<Button variant="outline">Connection info</Button>}>
+    <div className="space-y-1">
+      <p className="text-sm font-medium">github-mcp</p>
+      <p className="text-xs text-muted-foreground">
+        Connected over stdio · 14 tools exposed
+      </p>
+    </div>
+  </Popover>
+)
+
+const ProgressDemo: DemoFn = () => {
+  const [value, setValue] = useState(20)
+  useEffect(() => {
+    const id = setInterval(() => {
+      setValue((v) => (v >= 100 ? 0 : v + 5))
+    }, 600)
+    return () => clearInterval(id)
+  }, [])
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-2">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>Indexing repository files</span>
+        <span>{value}%</span>
+      </div>
+      <Progress value={value} max={100} />
+    </div>
+  )
+}
+
+const SelectDemo: DemoFn = () => {
+  const [value, setValue] = useState('')
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-2">
+      <Select
+        placeholder="Choose a tool"
+        options={[
+          { value: 'search_code', label: 'search_code' },
+          { value: 'create_issue', label: 'create_issue' },
+          { value: 'list_repos', label: 'list_repos' },
+          { value: 'run_query', label: 'run_query', disabled: true },
+        ]}
+        onChange={setValue}
+      />
+      <p className="text-xs text-muted-foreground">
+        {value ? `Selected: ${value}` : 'No tool selected'}
+      </p>
+    </div>
+  )
+}
+
+const SeparatorDemo: DemoFn = () => (
+  <div className="w-full max-w-sm">
+    <div className="space-y-1">
+      <p className="text-sm font-medium">github-mcp</p>
+      <p className="text-xs text-muted-foreground">Configure transport and exposed scopes.</p>
+    </div>
+    <Separator className="my-3" />
+    <div className="flex h-5 items-center gap-3 text-xs text-muted-foreground">
+      <span>stdio</span>
+      <Separator orientation="vertical" />
+      <span>14 tools</span>
+      <Separator orientation="vertical" />
+      <span>3 scopes</span>
+    </div>
+  </div>
+)
+
+const TextareaDemo: DemoFn = () => {
+  const [value, setValue] = useState(
+    'You are an MCP host. Approve read-only tool calls automatically and ask before any write.'
+  )
+  return (
+    <div className="flex w-full max-w-md flex-col gap-2">
+      <label className="text-sm" style={{ color: 'var(--site-text-muted)' }}>
+        System prompt
+      </label>
+      <Textarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        rows={4}
+        placeholder="Describe how the assistant should behave…"
+      />
+    </div>
+  )
+}
+
+const ToastDemo: DemoFn = () => {
+  const { toast } = useToast()
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap gap-2">
+        <Button
+          variant="secondary"
+          onClick={() => toast.success('Tool call complete', 'search_files returned 47 results')}
+        >
+          Success
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={() => toast.default('Connecting to server', 'github-mcp is starting up…')}
+        >
+          Info
+        </Button>
+        <Button
+          variant="destructive"
+          onClick={() => toast.destructive('Tool call failed', 'Connection to jira-mcp timed out')}
+        >
+          Error
+        </Button>
+        <Button
+          onClick={() =>
+            toast.custom({
+              title: 'Approve write access?',
+              description: 'github-mcp wants to create a pull request.',
+              action: { label: 'Approve', onClick: () => toast.success('Approved', 'github-mcp can now write') },
+            })
+          }
+        >
+          With action
+        </Button>
+      </div>
+      <Toaster position="bottom-right" />
+    </div>
+  )
+}
+
+const TooltipDemo: DemoFn = () => (
+  <div className="flex flex-wrap items-center gap-6 py-6">
+    <Tooltip content="Read-only tool calls run without confirmation" side="top">
+      <Button variant="secondary">Auto-approve</Button>
+    </Tooltip>
+    <Tooltip content="Sends the request to github-mcp" side="bottom" delay={150}>
+      <Button>Run tool</Button>
+    </Tooltip>
+  </div>
+)
+
 export const DEMOS: Record<string, DemoFn> = {
   button: ButtonDemo,
   badge: BadgeDemo,
@@ -414,6 +708,21 @@ export const DEMOS: Record<string, DemoFn> = {
   'streaming-text': StreamingTextDemo,
   feedback: FeedbackDemo,
   'prompt-input': PromptInputDemo,
+  accordion: AccordionDemo,
+  avatar: AvatarDemo,
+  chips: ChipsDemo,
+  counter: CounterDemo,
+  drawer: DrawerDemo,
+  'dropdown-menu': DropdownMenuDemo,
+  loader: LoaderDemo,
+  'password-input': PasswordInputDemo,
+  popover: PopoverDemo,
+  progress: ProgressDemo,
+  select: SelectDemo,
+  separator: SeparatorDemo,
+  textarea: TextareaDemo,
+  toast: ToastDemo,
+  tooltip: TooltipDemo,
 }
 
 export function ComponentPreview({ slug }: { slug: string }) {

@@ -1,3 +1,4 @@
+import path from 'node:path'
 import type { SnxConfig } from './detect.js'
 
 // Maps each exported symbol to its source file (relative to utils dir)
@@ -103,7 +104,13 @@ const CORE_IMPORT_RE = /import\s+(type\s+)?{([^}]+)}\s+from\s+['"]@mcp-elements\
 
 export function transformImports(content: string, config: SnxConfig): string {
   let result = content
-  const utilsPath = config.aliases.utils
+  // Components are copied into `aliases.components` and their core/util deps into
+  // `aliases.utils`. Emit a RELATIVE specifier between those two dirs so the
+  // import resolves in any project with zero tsconfig `paths`/bundler-alias
+  // setup (e.g. `../../lib/utils/cn`). A bare `src/lib/utils/cn` would be
+  // treated as a node_modules package and fail to resolve.
+  const utilsPath =
+    path.posix.relative(config.aliases.components, config.aliases.utils) || '.'
 
   // Collect all @mcp-elements/core imports and replace them
   result = result.replace(CORE_IMPORT_RE, (match, typeKeyword, symbolsStr) => {
@@ -156,8 +163,10 @@ export function transformImports(content: string, config: SnxConfig): string {
 
   // Collapse parent-directory component imports. MCP components live in a
   // `mcp/` subdir and import their base-component deps via `../button` etc.,
-  // but the CLI copies every component flat into the same directory.
-  result = result.replace(/from ['"]\.\.\//g, `from './`)
+  // but the CLI copies every component flat into the same directory. The
+  // negative lookahead leaves deeper relative paths (e.g. the `../../lib/utils`
+  // util imports emitted above) untouched.
+  result = result.replace(/from (['"])\.\.\/(?!\.\.\/)/g, `from $1./`)
 
   return result
 }

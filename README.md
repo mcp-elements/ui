@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <strong>38 copy-paste UI components. Multi-framework. MCP-native.</strong><br/>
-  Beautifully designed components that copy into your project — React, Angular, and Vue. You own the code. No lock-in.
+  <strong>The MCP-native UI kit — for React, Angular & Vue.</strong><br/>
+  The only library shipping copy-paste, framework-agnostic MCP primitives — OAuth consent, scope inspector, tool-call cards, JSON-Schema tool-forms, and a sandboxed MCP-Apps frame. Plus 31 base + AI components to build the rest. You own the code. No lock-in.
 </p>
 
 <p align="center">
@@ -26,11 +26,11 @@
 
 ## About
 
-mcp-elements is a component library that works differently. Instead of installing a package you depend on forever, our CLI copies production-ready source code directly into your project. You own it. You modify it. No lock-in.
+mcp-elements is **the MCP-native UI kit**: the only library that ships copy-paste, framework-agnostic **MCP primitives** — tool-call cards, schema-driven tool-forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. If you're building an MCP host, inspector, agent console, or gateway UI, these are the trust-and-execution primitives every other stack makes you hand-assemble.
 
-The same component logic powers React, Angular, and Vue through a layered architecture — CSS and core behavior are shared, framework adapters are thin wrappers on top.
+It works differently from a normal dependency: the CLI copies production-ready source straight into your project — you own it, you modify it, no lock-in. The same component logic powers **React, Angular, and Vue** through a layered architecture (shared CSS + framework-free core state machines; thin framework adapters on top), so the MCP set works the same wherever you build.
 
-Beyond 24 base UI components and 7 AI primitives, mcp-elements ships **7 MCP-native primitives** — tool-call cards, schema-driven forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. That's the piece no other component library provides.
+Rounding it out: 24 base UI components and 7 AI primitives to build the rest of the surface — but the MCP set is the part no other component library provides.
 
 ---
 
@@ -43,7 +43,7 @@ npx mcp-elements init
 ```
 
 This will:
-- Detect your framework (React or Angular)
+- Detect your framework (React, Angular, or Vue)
 - Create `mcp-elements.json` configuration
 - Set up component and utils directories
 - Generate the `cn()` class utility
@@ -80,7 +80,7 @@ Add the base styles alongside Tailwind in your CSS:
 
 ## Components (38)
 
-**24 base UI** (14 CSS-only + 10 interactive) + **7 AI** + **7 MCP-native** primitives. Base and AI components ship for React and Angular (Vue covers 10 essential base components today); MCP primitives ship for React and Angular, with Vue [in progress](https://github.com/mcp-elements/ui/issues/4).
+**24 base UI** (14 CSS-only + 10 interactive) + **7 AI** + **7 MCP-native** primitives. Base and AI components ship for React and Angular (Vue covers 10 essential base components today); **MCP primitives ship for React, Angular, and Vue** — all 7, plus Vue composables.
 
 ### CSS-Only (14)
 
@@ -136,7 +136,7 @@ Purpose-built components for AI-powered applications and chat interfaces.
 
 ### MCP-Native (7)
 
-Protocol-aware primitives for apps that consume [Model Context Protocol](https://modelcontextprotocol.io) servers. Runtime-free — bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, etc.). State machines live in `@mcp-elements/core`; the framework components are thin shells. _Available for React and Angular; Vue [in progress](https://github.com/mcp-elements/ui/issues/4)._
+Protocol-aware primitives for apps that consume [Model Context Protocol](https://modelcontextprotocol.io) servers. Runtime-free — bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, etc.). State machines live in `@mcp-elements/core`; the framework components are thin shells. _Available for React, Angular, and Vue._
 
 | Component | Description |
 |-----------|-------------|
@@ -164,7 +164,7 @@ Headless hooks/composables per framework: `useMcpToolState`, `useMcpOAuth`, `use
 
 Initialize mcp-elements in your project.
 
-- Detects framework from `package.json` (React or Angular)
+- Detects framework from `package.json` (React, Angular, or Vue)
 - Creates `mcp-elements.json` with component paths, utils path, and CSS config
 - Generates `cn()` utility for class merging
 - Injects OKLCH design tokens and dark theme into your CSS file
@@ -210,9 +210,11 @@ All `@mcp-elements/core` imports are automatically rewritten to local paths. For
 // Before (source)
 import { cn, trapFocus, lockScroll } from '@mcp-elements/core'
 
-// After (in your project)
-import { cn } from './utils/cn'
-import { trapFocus, lockScroll } from './utils/dom'
+// After (in your project) — rewritten to a relative path between your
+// configured components dir and utils dir, so it resolves with no tsconfig
+// `paths` or bundler alias needed:
+import { cn } from '../../lib/utils/cn'
+import { trapFocus, lockScroll } from '../../lib/utils/dom'
 ```
 
 ### `npx mcp-elements theme <theme>`

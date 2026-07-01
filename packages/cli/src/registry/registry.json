@@ -11,7 +11,8 @@
       "files": {
         "css": "css/components/mcp-server-status.css",
         "react": "react/src/mcp/mcp-server-status.tsx",
-        "angular": "angular/src/mcp/mcp-server-status.component.ts"
+        "angular": "angular/src/mcp/mcp-server-status.component.ts",
+        "vue": "vue/src/mcp/mcp-server-status.ts"
       },
       "dependencies": { "internal": [], "npm": {} }
     },
@@ -23,7 +24,8 @@
         "css": "css/components/mcp-tool-call.css",
         "core": "core/src/mcp/tool-state.ts",
         "react": "react/src/mcp/mcp-tool-call.tsx",
-        "angular": "angular/src/mcp/mcp-tool-call.component.ts"
+        "angular": "angular/src/mcp/mcp-tool-call.component.ts",
+        "vue": "vue/src/mcp/mcp-tool-call.ts"
       },
       "coreDeps": ["core/src/mcp/types.ts"],
       "dependencies": { "internal": [], "npm": {} }
@@ -36,7 +38,8 @@
         "css": "css/components/mcp-tool-form.css",
         "core": "core/src/mcp/schema-form.ts",
         "react": "react/src/mcp/mcp-tool-form.tsx",
-        "angular": "angular/src/mcp/mcp-tool-form.component.ts"
+        "angular": "angular/src/mcp/mcp-tool-form.component.ts",
+        "vue": "vue/src/mcp/mcp-tool-form.ts"
       },
       "coreDeps": ["core/src/mcp/types.ts"],
       "dependencies": { "internal": [], "npm": {} }
@@ -49,7 +52,8 @@
         "css": "css/components/mcp-consent-dialog.css",
         "core": "core/src/mcp/scope.ts",
         "react": "react/src/mcp/mcp-consent-dialog.tsx",
-        "angular": "angular/src/mcp/mcp-consent-dialog.component.ts"
+        "angular": "angular/src/mcp/mcp-consent-dialog.component.ts",
+        "vue": "vue/src/mcp/mcp-consent-dialog.ts"
       },
       "coreDeps": ["core/src/mcp/types.ts"],
       "dependencies": { "internal": ["dialog", "button"], "npm": {} }
@@ -62,7 +66,8 @@
         "css": "css/components/mcp-scope-inspector.css",
         "core": "core/src/mcp/scope.ts",
         "react": "react/src/mcp/mcp-scope-inspector.tsx",
-        "angular": "angular/src/mcp/mcp-scope-inspector.component.ts"
+        "angular": "angular/src/mcp/mcp-scope-inspector.component.ts",
+        "vue": "vue/src/mcp/mcp-scope-inspector.ts"
       },
       "coreDeps": ["core/src/mcp/types.ts"],
       "dependencies": { "internal": [], "npm": {} }
@@ -74,7 +79,8 @@
       "files": {
         "css": "css/components/mcp-resource-browser.css",
         "react": "react/src/mcp/mcp-resource-browser.tsx",
-        "angular": "angular/src/mcp/mcp-resource-browser.component.ts"
+        "angular": "angular/src/mcp/mcp-resource-browser.component.ts",
+        "vue": "vue/src/mcp/mcp-resource-browser.ts"
       },
       "dependencies": { "internal": ["skeleton"], "npm": {} }
     },
@@ -86,7 +92,8 @@
         "css": "css/components/mcp-app-frame.css",
         "core": "core/src/mcp/app-bridge.ts",
         "react": "react/src/mcp/mcp-app-frame.tsx",
-        "angular": "angular/src/mcp/mcp-app-frame.component.ts"
+        "angular": "angular/src/mcp/mcp-app-frame.component.ts",
+        "vue": "vue/src/mcp/mcp-app-frame.ts"
       },
       "coreDeps": [],
       "dependencies": { "internal": [], "npm": {} }

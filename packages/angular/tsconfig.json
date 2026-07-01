@@ -4,7 +4,13 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
+    // Angular components use idiomatic stub patterns (e.g. ControlValueAccessor
+    // writeValue with an unused param). Relax these so the DTS build (real tsc)
+    // does not fail on them. Does not affect runtime output.
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "include": ["src"]
 }

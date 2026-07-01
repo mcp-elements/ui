@@ -2,6 +2,7 @@
   "name": "@mcp-elements/css",
   "version": "0.1.0",
   "exports": {
+    ".": "./base.css",
     "./base.css": "./base.css",
     "./base": "./base.css",
     "./components/*.css": "./components/*.css",
