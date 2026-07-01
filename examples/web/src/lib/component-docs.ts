@@ -682,8 +682,8 @@ export function Example() {
       <SourceCard
         index={2}
         title="mcp-elements docs"
-        domain="mcp-elements.dev"
-        href="https://mcp-elements.dev"
+        domain="mcp-elements.wearesnx.studio"
+        href="https://mcp-elements.wearesnx.studio"
       />
     </SourceCards>
   )

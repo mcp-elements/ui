@@ -84,7 +84,7 @@ export const initCommand = new Command('init')
 
     // Create config
     const config = {
-      $schema: 'https://mcp-elements.dev/schema.json',
+      $schema: 'https://mcp-elements.wearesnx.studio/schema.json',
       framework,
       typescript,
       tailwind: {

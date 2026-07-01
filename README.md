@@ -297,7 +297,7 @@ mcp-elements/
 │           └── utils/        # fetch, transform, detect, fs
 │
 └── examples/
-    ├── web/                  # Next.js documentation site (mcp-elements.dev)
+    ├── web/                  # Next.js documentation site (mcp-elements.wearesnx.studio)
     ├── docs/                 # Astro + Starlight docs
     ├── react-app/            # Vite + React example
     └── angular-app/          # Angular example

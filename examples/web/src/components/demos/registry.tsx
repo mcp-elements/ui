@@ -379,7 +379,7 @@ const SuggestionChipsDemo: DemoFn = () => (
 const SourceCardDemo: DemoFn = () => (
   <SourceCards className="w-full max-w-md">
     <SourceCard index={1} title="Model Context Protocol" domain="modelcontextprotocol.io" href="https://modelcontextprotocol.io" />
-    <SourceCard index={2} title="mcp-elements docs" domain="mcp-elements.dev" href="https://mcp-elements.dev" />
+    <SourceCard index={2} title="mcp-elements docs" domain="mcp-elements.wearesnx.studio" href="https://mcp-elements.wearesnx.studio" />
   </SourceCards>
 )
 const StreamingTextDemo: DemoFn = () => (
