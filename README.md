@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-  <a href="https://mcp-elements.dev/docs"><strong>Documentation</strong></a> ·
-  <a href="https://mcp-elements.dev/docs/components"><strong>Components</strong></a> ·
-  <a href="https://mcp-elements.dev/docs/themes"><strong>Themes</strong></a>
+  <a href="https://mcp-elements.wearesnx.studio/docs"><strong>Documentation</strong></a> ·
+  <a href="https://mcp-elements.wearesnx.studio/docs/components"><strong>Components</strong></a> ·
+  <a href="https://mcp-elements.wearesnx.studio/docs/themes"><strong>Themes</strong></a>
 </p>
 
 <p align="center">
