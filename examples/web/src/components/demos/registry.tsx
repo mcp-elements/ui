@@ -180,11 +180,11 @@ const SwitchDemo: DemoFn = () => {
   return (
     <div className="flex flex-col gap-3">
       <label className="flex items-center gap-3 text-sm">
-        <Switch checked={a} onCheckedChange={setA} />
+        <Switch checked={a} onCheckedChange={setA} aria-label="Auto-approve safe tool calls" />
         Auto-approve safe tool calls
       </label>
       <label className="flex items-center gap-3 text-sm">
-        <Switch checked={b} onCheckedChange={setB} />
+        <Switch checked={b} onCheckedChange={setB} aria-label="Stream partial results" />
         Stream partial results
       </label>
     </div>

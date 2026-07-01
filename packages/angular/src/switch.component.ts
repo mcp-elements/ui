@@ -1,4 +1,4 @@
-import { Component, input, output, signal, computed } from '@angular/core'
+import { Component, input, output, signal } from '@angular/core'
 
 @Component({
   selector: 'mcpe-switch',
@@ -8,6 +8,7 @@ import { Component, input, output, signal, computed } from '@angular/core'
       type="button"
       role="switch"
       [attr.aria-checked]="checked()"
+      [attr.aria-label]="ariaLabel()"
       [attr.aria-disabled]="disabled()"
       [disabled]="disabled()"
       [class]="'mcpe-switch'"
@@ -22,6 +23,7 @@ import { Component, input, output, signal, computed } from '@angular/core'
 export class SnxSwitchComponent {
   checked = signal(false)
   disabled = input(false)
+  ariaLabel = input<string>()
   checkedChange = output<boolean>()
 
   toggle() {

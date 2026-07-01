@@ -8,15 +8,19 @@ export interface SwitchProps {
   className?: string
   id?: string
   name?: string
+  'aria-label'?: string
+  'aria-labelledby'?: string
 }
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ checked = false, onCheckedChange, disabled, className, id, name }, ref) => (
+  ({ checked = false, onCheckedChange, disabled, className, id, name, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledby }, ref) => (
     <button
       ref={ref}
       type="button"
       role="switch"
       id={id}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
       aria-checked={checked}
       aria-disabled={disabled || undefined}
       disabled={disabled}

@@ -28,15 +28,25 @@ export function Dialog({ open: controlledOpen, onOpenChange, modal = true, child
   useEffect(() => {
     if (!isOpen || !contentRef.current) return
     const el = contentRef.current
+    // Move focus into the dialog on open so screen readers announce it and
+    // keyboard users are placed inside the modal (Escape + focus trap need this).
+    const previouslyFocused = document.activeElement as HTMLElement | null
+    el.focus()
+    // Listen on document so Escape/Tab work regardless of which element inside
+    // (or the container itself) currently holds focus.
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpen(false)
         return
       }
-      trapFocus(el, e)
+      if (e.key === 'Tab') trapFocus(el, e)
     }
-    el.addEventListener('keydown', handler)
-    return () => el.removeEventListener('keydown', handler)
+    document.addEventListener('keydown', handler)
+    return () => {
+      document.removeEventListener('keydown', handler)
+      // Restore focus to whatever was focused before the dialog opened.
+      previouslyFocused?.focus?.()
+    }
   }, [isOpen])
 
   if (!isOpen || typeof document === 'undefined') return null
@@ -48,6 +58,7 @@ export function Dialog({ open: controlledOpen, onOpenChange, modal = true, child
           ref={contentRef}
           className="mcpe-dialog-content"
           role="dialog"
+          tabIndex={-1}
           aria-modal={modal}
           aria-labelledby={`${dialogId}-title`}
           aria-describedby={`${dialogId}-description`}

@@ -28,6 +28,7 @@ export const McpeSwitch = defineComponent({
         type: 'button',
         role: 'switch',
         'aria-checked': props.modelValue,
+        'aria-label': props.label || undefined,
         'aria-disabled': props.disabled || undefined,
         disabled: props.disabled,
         class: cn(

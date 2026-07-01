@@ -1,5 +1,5 @@
-import { defineComponent, h, Teleport, onMounted, onUnmounted, watch } from 'vue'
-import { cn } from '@mcp-elements/core'
+import { defineComponent, h, ref, nextTick, Teleport, onMounted, onUnmounted, watch } from 'vue'
+import { cn, trapFocus } from '@mcp-elements/core'
 
 export const McpeDialog = defineComponent({
   name: 'McpeDialog',
@@ -13,6 +13,8 @@ export const McpeDialog = defineComponent({
     const close = () => emit('update:modelValue', false)
 
     let unlockScroll: (() => void) | null = null
+    const contentRef = ref<HTMLElement | null>(null)
+    let previouslyFocused: HTMLElement | null = null
 
     const lockScroll = () => {
       const body = document.body
@@ -34,11 +36,17 @@ export const McpeDialog = defineComponent({
     watch(
       () => props.modelValue,
       (isOpen) => {
-        if (isOpen && props.modal) {
-          unlockScroll = lockScroll()
-        } else if (!isOpen && unlockScroll) {
-          unlockScroll()
-          unlockScroll = null
+        if (isOpen) {
+          previouslyFocused = document.activeElement as HTMLElement | null
+          if (props.modal) unlockScroll = lockScroll()
+          nextTick(() => contentRef.value?.focus())
+        } else {
+          if (unlockScroll) {
+            unlockScroll()
+            unlockScroll = null
+          }
+          previouslyFocused?.focus?.()
+          previouslyFocused = null
         }
       },
       { immediate: true }
@@ -51,9 +59,12 @@ export const McpeDialog = defineComponent({
     })
 
     const handleKeydown = (e: KeyboardEvent) => {
+      if (!props.modelValue) return
       if (e.key === 'Escape') {
         close()
+        return
       }
+      if (e.key === 'Tab' && contentRef.value) trapFocus(contentRef.value, e)
     }
 
     onMounted(() => {
@@ -78,8 +89,10 @@ export const McpeDialog = defineComponent({
             h(
               'div',
               {
+                ref: contentRef,
                 class: cn('mcpe-dialog-content', props.class),
                 role: 'dialog',
+                tabindex: '-1',
                 'aria-modal': props.modal,
                 onClick: (e: MouseEvent) => e.stopPropagation(),
               },

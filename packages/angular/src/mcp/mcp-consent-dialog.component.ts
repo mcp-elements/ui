@@ -1,15 +1,16 @@
-import { Component, input, output, computed } from '@angular/core'
+import { Component, input, output, computed, effect, viewChild, ElementRef } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { parseScopes } from '@mcp-elements/core'
+import { parseScopes, trapFocus, lockScroll } from '@mcp-elements/core'
 
 @Component({
   selector: 'mcpe-mcp-consent-dialog',
   standalone: true,
   imports: [CommonModule],
+  host: { '(document:keydown)': 'onKeydown($event)' },
   template: `
     @if (open()) {
       <div class="mcpe-dialog-overlay" (click)="deny()">
-        <div class="mcpe-dialog-content" role="dialog" aria-modal="true" [attr.aria-label]="'Allow ' + serverName() + '?'" (click)="$event.stopPropagation()">
+        <div #content class="mcpe-dialog-content" role="dialog" tabindex="-1" aria-modal="true" [attr.aria-label]="'Allow ' + serverName() + '?'" (click)="$event.stopPropagation()">
           <div class="mcpe-mcp-consent-dialog">
             <div class="mcpe-dialog-header">
               <h2 class="mcpe-dialog-title">Permission Request</h2>
@@ -62,6 +63,39 @@ export class McpeMcpConsentDialogComponent {
   onDeny = output<void>()
 
   parsedScopes = computed(() => parseScopes(this.scopes().join(' ')))
+
+  private content = viewChild<ElementRef<HTMLElement>>('content')
+  private previouslyFocused: HTMLElement | null = null
+  private unlockScroll: (() => void) | null = null
+
+  constructor() {
+    effect(() => {
+      const isOpen = this.open()
+      if (isOpen) {
+        this.previouslyFocused = document.activeElement as HTMLElement | null
+        this.unlockScroll = lockScroll()
+        // Focus the dialog once the view has rendered it.
+        setTimeout(() => this.content()?.nativeElement.focus())
+      } else {
+        this.unlockScroll?.()
+        this.unlockScroll = null
+        this.previouslyFocused?.focus?.()
+        this.previouslyFocused = null
+      }
+    })
+  }
+
+  onKeydown(e: KeyboardEvent) {
+    if (!this.open()) return
+    if (e.key === 'Escape') {
+      this.deny()
+      return
+    }
+    if (e.key === 'Tab') {
+      const el = this.content()?.nativeElement
+      if (el) trapFocus(el, e)
+    }
+  }
 
   approve() { this.onApprove.emit() }
   deny() { this.onDeny.emit() }

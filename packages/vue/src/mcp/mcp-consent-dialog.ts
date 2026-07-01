@@ -2,6 +2,8 @@ import {
   defineComponent,
   h,
   computed,
+  ref,
+  nextTick,
   watch,
   onMounted,
   onUnmounted,
@@ -9,7 +11,7 @@ import {
   type PropType,
   type VNode,
 } from 'vue'
-import { parseScopes } from '@mcp-elements/core'
+import { parseScopes, trapFocus } from '@mcp-elements/core'
 
 export const McpeMcpConsentDialog = defineComponent({
   name: 'McpeMcpConsentDialog',
@@ -44,21 +46,37 @@ export const McpeMcpConsentDialog = defineComponent({
       }
     }
 
+    const contentRef = ref<HTMLElement | null>(null)
+    let previouslyFocused: HTMLElement | null = null
+
     watch(
       () => props.open,
       (isOpen) => {
         if (isOpen) {
+          previouslyFocused = document.activeElement as HTMLElement | null
           unlockScroll = lockScroll()
-        } else if (unlockScroll) {
-          unlockScroll()
-          unlockScroll = null
+          // Move focus into the dialog once it has rendered.
+          nextTick(() => contentRef.value?.focus())
+        } else {
+          if (unlockScroll) {
+            unlockScroll()
+            unlockScroll = null
+          }
+          // Restore focus to whatever was focused before opening.
+          previouslyFocused?.focus?.()
+          previouslyFocused = null
         }
       },
       { immediate: true }
     )
 
     const handleKeydown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && props.open) deny()
+      if (!props.open) return
+      if (e.key === 'Escape') {
+        deny()
+        return
+      }
+      if (e.key === 'Tab' && contentRef.value) trapFocus(contentRef.value, e)
     }
 
     onMounted(() => document.addEventListener('keydown', handleKeydown))
@@ -82,8 +100,10 @@ export const McpeMcpConsentDialog = defineComponent({
             h(
               'div',
               {
+                ref: contentRef,
                 class: 'mcpe-dialog-content',
                 role: 'dialog',
+                tabindex: '-1',
                 'aria-modal': 'true',
                 'aria-label': `Allow ${props.serverName}?`,
                 onClick: (e: MouseEvent) => e.stopPropagation(),

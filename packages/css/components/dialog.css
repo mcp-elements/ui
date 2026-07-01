@@ -20,6 +20,12 @@
     transform-origin: center;
   }
 
+  /* The dialog container receives programmatic focus on open (for screen-reader
+     announcement + keyboard entry); it needs no visible ring of its own. */
+  .mcpe-dialog-content:focus {
+    outline: none;
+  }
+
   .mcpe-dialog-header {
     @apply flex flex-col gap-1.5 pr-8 text-left;
   }

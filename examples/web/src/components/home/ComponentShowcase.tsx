@@ -112,7 +112,7 @@ const TILES: Tile[] = [
     slug: 'switch', name: 'Switch', centered: true,
     render: () => (
       <div className="flex items-center gap-3">
-        <Switch checked={true} onCheckedChange={() => {}} />
+        <Switch checked={true} onCheckedChange={() => {}} aria-label="Example toggle" />
         <span className="text-sm site-text-muted">Auto-approve</span>
       </div>
     ),
