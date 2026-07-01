@@ -1,6 +1,6 @@
 {
   "name": "@mcp-elements/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "mcp-elements Vue 3 components",
   "type": "module",
