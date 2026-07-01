@@ -46,7 +46,7 @@ export function HeroSection() {
             >
               The{' '}
               <span style={{ color: 'var(--site-accent)' }}>MCP-native</span>{' '}
-              UI kit
+              UI kit{' '}
               <br className="hidden sm:block" />
               <span className="site-text-muted">for any framework.</span>
             </h1>
