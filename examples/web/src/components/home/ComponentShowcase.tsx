@@ -153,18 +153,6 @@ const TILES: Tile[] = [
 export function ComponentShowcase() {
   return (
     <section className="site-section site-section-divider relative overflow-hidden">
-      {/* Ambient color */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[-15%] top-[20%] h-[500px] w-[700px] rounded-full blur-[140px]"
-        style={{ background: 'oklch(0.76 0.18 35 / 0.12)' }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[-10%] bottom-[10%] h-[400px] w-[600px] rounded-full blur-[120px]"
-        style={{ background: 'var(--site-accent-glow)' }}
-      />
-
       <div className="site-container relative">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>

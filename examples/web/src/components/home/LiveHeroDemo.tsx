@@ -48,13 +48,6 @@ export function LiveHeroDemo() {
 
   return (
     <div className="relative">
-      {/* Soft accent glow behind the cards */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-8 rounded-3xl blur-3xl opacity-60"
-        style={{ background: 'radial-gradient(circle at 50% 30%, var(--site-accent-glow), transparent 70%)' }}
-      />
-
       <div className="relative flex flex-col gap-3">
         {/* Connection status row */}
         <div className="flex items-center justify-between rounded-xl px-4 py-3"

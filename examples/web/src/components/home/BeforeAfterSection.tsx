@@ -62,13 +62,6 @@ export async function BeforeAfterSection() {
 
   return (
     <section className="site-section site-section-divider relative overflow-hidden">
-      {/* Subtle accent wash, biased to the "after" side */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[-10%] top-[10%] h-[500px] w-[700px] rounded-full blur-[140px]"
-        style={{ background: 'var(--site-accent-glow)', opacity: 0.7 }}
-      />
-
       <div className="site-container relative">
         <div className="mb-12 max-w-3xl">
           <p className="site-eyebrow mb-3">Before / after</p>
@@ -118,29 +111,16 @@ export async function BeforeAfterSection() {
             />
           </article>
 
-          {/* After — accent-bordered glow */}
+          {/* After — clean accent-edged card */}
           <article
             className="relative overflow-hidden rounded-[var(--radius-lg)]"
             style={{
               background: 'var(--site-bg-elevated)',
-              boxShadow: 'var(--shadow-glow)',
+              border: '1px solid oklch(0.71 0.22 5 / 0.30)',
+              boxShadow: 'var(--shadow-md)',
               isolation: 'isolate',
             }}
           >
-            {/* Gradient border via mask */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[inherit]"
-              style={{
-                padding: '1px',
-                background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2), transparent 70%)',
-                WebkitMask:
-                  'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-                WebkitMaskComposite: 'xor',
-                maskComposite: 'exclude' as any,
-                zIndex: 1,
-              }}
-            />
             <header className="site-codeblock-header relative z-[2]">
               <div className="flex items-center gap-2 min-w-0">
                 <span
@@ -188,13 +168,7 @@ export async function BeforeAfterSection() {
                 style={{
                   fontSize: 'clamp(2rem, 4vw, 2.75rem)',
                   letterSpacing: '-0.04em',
-                  background: item.accent
-                    ? 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))'
-                    : 'transparent',
-                  WebkitBackgroundClip: item.accent ? 'text' : undefined,
-                  WebkitTextFillColor: item.accent ? 'transparent' : undefined,
-                  backgroundClip: item.accent ? 'text' : undefined,
-                  color: item.accent ? undefined : 'var(--site-text)',
+                  color: item.accent ? 'var(--site-accent)' : 'var(--site-text)',
                 }}
               >
                 {item.stat}

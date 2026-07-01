@@ -9,13 +9,7 @@ export function HeroSection() {
       {/* Background grid */}
       <div
         aria-hidden
-        className="site-hero-grid pointer-events-none absolute inset-0 opacity-[0.18]"
-      />
-      {/* Accent radial behind the headline */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 left-0 h-[600px] w-[700px] rounded-full blur-[120px]"
-        style={{ background: 'var(--site-accent-glow)', opacity: 0.5 }}
+        className="site-hero-grid pointer-events-none absolute inset-0 opacity-[0.14]"
       />
 
       <div className="site-container relative z-10">
@@ -51,16 +45,7 @@ export function HeroSection() {
               }}
             >
               The{' '}
-              <span
-                style={{
-                  background: 'linear-gradient(135deg, var(--site-accent) 0%, var(--site-accent-2) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                MCP-native
-              </span>{' '}
+              <span style={{ color: 'var(--site-accent)' }}>MCP-native</span>{' '}
               UI kit
               <br className="hidden sm:block" />
               <span className="site-text-muted">for any framework.</span>

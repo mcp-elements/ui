@@ -202,9 +202,8 @@ function ComponentsPageInner() {
                             style={
                               isMcp
                                 ? {
-                                    background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                                    background: 'var(--site-accent)',
                                     color: 'oklch(1 0 0)',
-                                    boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
                                   }
                                 : {
                                     background: 'var(--site-bg-elevated)',

@@ -99,15 +99,6 @@ export function FlagshipScene() {
 
   return (
     <section className="site-section-tight relative overflow-hidden" style={{ background: 'var(--site-bg)' }}>
-      {/* Ambient glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[400px]"
-        style={{
-          background: 'radial-gradient(ellipse 70% 100% at 50% 0%, var(--site-accent-glow), transparent 70%)',
-        }}
-      />
-
       <div className="site-container relative">
         {/* Section header */}
         <div className="mb-10 max-w-2xl">
@@ -137,7 +128,7 @@ export function FlagshipScene() {
               <span
                 className="flex h-7 w-7 items-center justify-center rounded-lg text-[10px] font-bold"
                 style={{
-                  background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                  background: 'var(--site-accent)',
                   color: 'oklch(1 0 0)',
                   boxShadow: 'inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
                 }}
@@ -208,7 +199,7 @@ export function FlagshipScene() {
                                   border: '1px solid var(--site-border-strong)',
                                 }
                               : {
-                                  background: 'linear-gradient(135deg, var(--site-accent), var(--site-accent-2))',
+                                  background: 'var(--site-accent)',
                                   color: 'oklch(1 0 0)',
                                   boxShadow: '0 0 16px var(--site-accent-glow), inset 0 1px 0 0 oklch(1 0 0 / 0.25)',
                                 }
