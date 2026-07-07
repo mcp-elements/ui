@@ -266,7 +266,7 @@ mcp-elements/
 ├── packages/
 │   ├── css/                  # Layer 0 — Tailwind v4 styles
 │   │   ├── base.css          # Design tokens (OKLCH), dark theme
-│   │   ├── components/       # 31 component CSS files
+│   │   ├── components/       # 38 component CSS files
 │   │   └── themes/           # default, dark, glass
 │   │
 │   ├── core/                 # Layer 1 — Plain TypeScript logic

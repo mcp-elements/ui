@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { Star, Menu } from 'lucide-react'
+import { Star } from 'lucide-react'
 import { getGitHubStars } from '@/lib/github'
 import { ThemeToggle } from './ThemeToggle'
+import { MobileMenu } from './MobileMenu'
 import { ScrollObserver } from './ScrollObserver'
 import { Logo } from './Logo'
 
@@ -67,12 +68,7 @@ export async function SiteNav() {
 
           <ThemeToggle />
 
-          <button
-            className="md:hidden rounded-md p-2 site-link"
-            aria-label="Open menu"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
+          <MobileMenu links={NAV_LINKS} />
         </div>
       </div>
     </header>

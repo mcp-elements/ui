@@ -59,8 +59,10 @@ export function LiveHeroDemo() {
           <McpServerStatus status={connection} />
         </div>
 
-        {/* The real McpToolCall, driven by a real ToolStateApi */}
-        <McpToolCall state={state} />
+        {/* The real McpToolCall, driven by a real ToolStateApi. The fallback
+            toolName/args keep the first paint meaningful before the demo
+            lifecycle kicks in (otherwise the card renders "unknown"). */}
+        <McpToolCall state={state} toolName="search_files" args={{ path: '/src', pattern: '*.ts' }} />
 
         {/* Code preview overlay tag */}
         <div className="absolute -bottom-3 right-4 hidden items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-mono font-medium uppercase tracking-wider sm:flex"
