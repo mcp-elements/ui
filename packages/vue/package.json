@@ -1,8 +1,30 @@
 {
   "name": "@mcp-elements/vue",
-  "version": "0.1.3",
-  "private": false,
-  "description": "mcp-elements Vue 3 components",
+  "version": "0.1.4",
+  "description": "MCP-native Vue 3 components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ui",
+    "components",
+    "ai",
+    "copy-paste",
+    "vue",
+    "vue3",
+    "agent-ui",
+    "tool-calling"
+  ],
+  "license": "MIT",
+  "author": "Mayur Rawte",
+  "homepage": "https://mcp-elements.wearesnx.studio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-elements/ui.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/mcp-elements/ui/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

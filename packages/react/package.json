@@ -1,6 +1,30 @@
 {
   "name": "@mcp-elements/react",
-  "version": "0.1.3",
+  "version": "0.1.4",
+  "description": "MCP-native React components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame, plus 31 base + AI components",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ui",
+    "components",
+    "ai",
+    "copy-paste",
+    "react",
+    "react-components",
+    "agent-ui",
+    "tool-calling"
+  ],
+  "license": "MIT",
+  "author": "Mayur Rawte",
+  "homepage": "https://mcp-elements.wearesnx.studio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-elements/ui.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/mcp-elements/ui/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

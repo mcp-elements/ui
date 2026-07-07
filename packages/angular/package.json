@@ -1,8 +1,29 @@
 {
   "name": "@mcp-elements/angular",
-  "version": "0.1.3",
-  "private": false,
-  "description": "mcp-elements Angular 19 standalone components",
+  "version": "0.1.4",
+  "description": "MCP-native Angular standalone components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ui",
+    "components",
+    "ai",
+    "copy-paste",
+    "angular",
+    "agent-ui",
+    "tool-calling"
+  ],
+  "license": "MIT",
+  "author": "Mayur Rawte",
+  "homepage": "https://mcp-elements.wearesnx.studio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-elements/ui.git",
+    "directory": "packages/angular"
+  },
+  "bugs": {
+    "url": "https://github.com/mcp-elements/ui/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

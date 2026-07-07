@@ -1,6 +1,31 @@
 {
   "name": "mcp-elements",
-  "version": "0.1.2",
+  "version": "0.1.4",
+  "description": "CLI for mcp-elements \u2014 copy MCP-native UI components (React, Angular, Vue) straight into your project; you own the code",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ui",
+    "components",
+    "ai",
+    "copy-paste",
+    "cli",
+    "react",
+    "angular",
+    "vue",
+    "shadcn-style"
+  ],
+  "license": "MIT",
+  "author": "Mayur Rawte",
+  "homepage": "https://mcp-elements.wearesnx.studio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-elements/ui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/mcp-elements/ui/issues"
+  },
   "type": "module",
   "bin": {
     "mcp-elements": "./dist/index.js"
