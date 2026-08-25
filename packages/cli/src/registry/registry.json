@@ -95,7 +95,7 @@
         "angular": "angular/src/mcp/mcp-app-frame.component.ts",
         "vue": "vue/src/mcp/mcp-app-frame.ts"
       },
-      "coreDeps": [],
+      "coreDeps": ["core/src/mcp/types.ts"],
       "dependencies": { "internal": [], "npm": {} }
     },
     "button": {

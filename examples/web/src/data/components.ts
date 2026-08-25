@@ -56,7 +56,7 @@ export const COMPONENTS: ComponentEntry[] = [
   { name: 'McpScopeInspector', slug: 'mcp-scope-inspector', category: 'MCP', description: 'Expandable scope tree with human-readable descriptions.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
   { name: 'McpResourceBrowser', slug: 'mcp-resource-browser', category: 'MCP', description: 'Browse MCP resources with type icons and preview.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
   { name: 'McpServerStatus', slug: 'mcp-server-status', category: 'MCP', description: 'Connection badge: connected/disconnected/error/reconnecting.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
-  { name: 'McpAppFrame', slug: 'mcp-app-frame', category: 'MCP', description: 'Sandboxed iframe + postMessage bridge for MCP Apps spec.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
+  { name: 'McpAppFrame', slug: 'mcp-app-frame', category: 'MCP', description: 'MCP Apps (SEP-1865) host renderer: sandboxed iframe + JSON-RPC bridge.', frameworks: ['react', 'angular', 'vue'], isMcp: true, isNew: true },
 ]
 
 export const CATEGORIES: ComponentCategory[] = ['MCP', 'AI', 'Form', 'Display', 'Overlay', 'Navigation', 'Feedback']

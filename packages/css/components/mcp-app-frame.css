@@ -9,4 +9,11 @@
     @apply block w-full;
     border: none;
   }
+
+  /* Resource declared prefersBorder: false */
+  .mcpe-mcp-app-frame--borderless {
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+  }
 }
