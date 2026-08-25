@@ -9,24 +9,24 @@ import '@/styles/globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://mcp-elements.wearesnx.studio'),
   title: {
-    default: 'mcp-elements — MCP-native UI components',
+    default: 'mcp-elements — UI primitives for MCP hosts',
     template: '%s · mcp-elements',
   },
   description:
-    'The MCP-native UI kit. The only library shipping copy-paste, framework-agnostic MCP primitives — OAuth consent, scope inspector, tool-call cards, JSON-Schema tool-forms, sandboxed MCP-Apps frame. React, Angular & Vue.',
-  keywords: ['MCP', 'Model Context Protocol', 'MCP UI', 'MCP Apps', 'OAuth consent UI', 'tool calling UI', 'AI UI', 'agent UI', 'React components', 'Angular', 'Vue', 'shadcn', 'copy-paste components'],
+    'UI primitives for building MCP hosts — OAuth consent, tool-call cards, scope inspectors, resource browsers, and an MCP Apps (SEP-1865) renderer. Copy-paste source for React, Angular & Vue. You own the code.',
+  keywords: ['MCP', 'Model Context Protocol', 'MCP host', 'MCP client', 'MCP Apps', 'SEP-1865', 'MCP UI', 'OAuth consent UI', 'tool calling UI', 'AI UI', 'agent UI', 'React components', 'Angular', 'Vue', 'shadcn', 'copy-paste components'],
   openGraph: {
     type: 'website',
     url: 'https://mcp-elements.wearesnx.studio',
     siteName: 'mcp-elements',
-    title: 'mcp-elements — the MCP-native UI kit',
-    description: 'Copy-paste, framework-agnostic MCP UI primitives — consent, scopes, tool calls, tool-forms, MCP-Apps frame. React, Angular & Vue.',
+    title: 'mcp-elements — UI primitives for MCP hosts',
+    description: 'The screens every MCP host rebuilds — consent, scopes, tool calls, tool-forms — plus an MCP Apps (SEP-1865) renderer. Copy-paste for React, Angular & Vue.',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'mcp-elements — the MCP-native UI kit',
-    description: 'The only copy-paste, framework-agnostic MCP UI primitive kit. React, Angular & Vue.',
+    title: 'mcp-elements — UI primitives for MCP hosts',
+    description: 'Consent, tool calls, scopes, resources + an MCP Apps (SEP-1865) renderer. Copy-paste, you own the source.',
   },
 }
 

@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <strong>The MCP-native UI kit — for React, Angular & Vue.</strong><br/>
-  The only library shipping copy-paste, framework-agnostic MCP primitives — OAuth consent, scope inspector, tool-call cards, JSON-Schema tool-forms, and a sandboxed MCP-Apps frame. Plus 31 base + AI components to build the rest. You own the code. No lock-in.
+  <strong>UI primitives for building MCP hosts.</strong><br/>
+  The screens every MCP host, inspector, and agent console rebuilds — OAuth consent, tool-call cards, scope inspectors, resource browsers, JSON-Schema tool-forms — plus an <strong>MCP Apps (SEP-1865) renderer</strong> that displays apps the way Claude and ChatGPT do. Copy-paste source for React, Angular & Vue. You own the code. No lock-in.
 </p>
 
 <p align="center">
@@ -26,11 +26,37 @@
 
 ## About
 
-mcp-elements is **the MCP-native UI kit**: the only library that ships copy-paste, framework-agnostic **MCP primitives** — tool-call cards, schema-driven tool-forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers, and a sandboxed MCP-Apps frame. If you're building an MCP host, inspector, agent console, or gateway UI, these are the trust-and-execution primitives every other stack makes you hand-assemble.
+mcp-elements is a kit of **UI primitives for building MCP hosts**. If you're building an MCP host, inspector, agent console, or gateway UI, these are the trust-and-execution screens every other stack makes you hand-assemble: tool-call cards, schema-driven tool-forms, OAuth/PKCE consent dialogs, scope inspectors, resource browsers — and `McpAppFrame`, a host-side renderer for the official **[MCP Apps extension (SEP-1865)](https://modelcontextprotocol.io/docs/extensions/apps)** that handles the sandboxed iframe, spec CSP, the `ui/initialize` handshake, and JSON-RPC tool-call proxying.
 
-It works differently from a normal dependency: the CLI copies production-ready source straight into your project — you own it, you modify it, no lock-in. The same component logic powers **React, Angular, and Vue** through a layered architecture (shared CSS + framework-free core state machines; thin framework adapters on top), so the MCP set works the same wherever you build.
+**How it relates to the ecosystem:** [`@mcp-ui/client`](https://mcpui.dev/) and the official `ext-apps` SDK solve the *app/server* side and ship a React renderer as an npm dependency. mcp-elements is the *host-builder* kit: copy-paste source you own for the entire host surface (consent → scopes → tool calls → app rendering) — use it alongside them or standalone. It's runtime-free: bring your own MCP client (`@modelcontextprotocol/sdk`, `mcp-use`, ...).
+
+It works differently from a normal dependency: the CLI copies production-ready source straight into your project — you own it, you modify it, no lock-in. The same component logic powers **React, Angular, and Vue** through a layered architecture (shared CSS + framework-free core state machines; thin framework adapters on top). New protocol work lands **React-first**; the Angular and Vue adapters ship the full MCP set today and track React as the protocol surface stabilizes.
 
 Rounding it out: 24 base UI components and 7 AI primitives to build the rest of the surface — but the MCP set is the part no other component library provides.
+
+### Render MCP Apps in your own host
+
+```tsx
+import { McpAppFrame } from '@mcp-elements/react'
+
+// 1. Your MCP client reads the ui:// resource a tool declares in _meta.ui.resourceUri
+const { contents } = await client.readResource({ uri: tool._meta.ui.resourceUri })
+const resource = contents[0] // mimeType: text/html;profile=mcp-app
+
+// 2. Render it. The frame answers ui/initialize, injects the spec CSP,
+//    proxies tools/call back to your client, and streams tool input/results.
+<McpAppFrame
+  html={resource.text}
+  resourceMeta={resource._meta?.ui}
+  hostContext={{ theme: 'dark' }}
+  callTool={(name, args) => client.callTool({ name, arguments: args })}
+  toolInput={toolArgs}
+  toolResult={result}
+  openLink={(url) => window.open(url, '_blank', 'noopener')}
+/>
+```
+
+That's a working SEP-1865 host surface — the same protocol Claude, ChatGPT, Goose, and VS Code speak.
 
 ---
 
@@ -146,7 +172,7 @@ Protocol-aware primitives for apps that consume [Model Context Protocol](https:/
 | **McpScopeInspector** | Expandable scope tree with human-readable descriptions |
 | **McpResourceBrowser** | Browse MCP resources with type icons and a preview pane |
 | **McpServerStatus** | Connection badge: connected / disconnected / error / reconnecting (CSS-only) |
-| **McpAppFrame** _(preview)_ | Sandboxed iframe wrapper for the MCP-Apps spec with a bidirectional `postMessage` bridge |
+| **McpAppFrame** | MCP Apps (SEP-1865) host renderer: sandboxed iframe, spec CSP injection, `ui/initialize` handshake, JSON-RPC tool-call proxying, auto-resize |
 
 Install any of them with the CLI — the base components and `@mcp-elements/core` state machines they build on are resolved and copied automatically:
 
