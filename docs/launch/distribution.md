@@ -1,6 +1,7 @@
-# Distribution drafts (I10)
+# Distribution drafts (I10) — refreshed 2026-08-26 for the SEP-1865 host wedge
 
-X thread + per-subreddit variants. Post the thread right after the Show HN goes up.
+X thread + per-subreddit variants. Post the thread the same day as the dev.to
+"Render MCP Apps in your own host" post (blog-post-2-mcp-apps.md).
 Adapt freely — these are starting points, not scripts.
 
 ---
@@ -8,16 +9,27 @@ Adapt freely — these are starting points, not scripts.
 ## X/Twitter thread (7 tweets)
 
 **1/**
-MCP SDK downloads went from 2M to 97M a month in a year. Everyone is building MCP clients.
+MCP Apps (SEP-1865) is official — Claude, ChatGPT, Goose and VS Code all render interactive tool UIs now.
 
-And every one of them hand-rolls the same seven screens.
+Building your own MCP host? You get to implement the host side yourself.
 
-So I built the missing UI kit: mcp-elements. Copy-paste, MIT, React + Angular + Vue.
+Or copy-paste it: mcp-elements. MIT, React + Angular + Vue.
 
 https://mcp-elements.wearesnx.studio
 
 **2/**
-The seven screens every MCP client needs:
+McpAppFrame is the host side of SEP-1865 in one component:
+
+- sandboxed iframe + spec CSP injection
+- ui/initialize handshake (JSON-RPC over postMessage)
+- tool input/results streamed to the app
+- app's tools/call proxied to YOUR MCP client
+- auto-resize, teardown
+
+Runtime-free. Bring your own client.
+
+**2b/**
+And the rest of the screens every host rebuilds:
 
 - tool-call card (6 states + retry)
 - JSON Schema → form
@@ -25,7 +37,6 @@ The seven screens every MCP client needs:
 - scope inspector
 - resource browser
 - server status badge
-- sandboxed MCP-Apps frame
 
 Chat UI kits ship none of these.
 
@@ -61,6 +72,25 @@ Blog: <DEV.TO URL>
 Discussing on HN today: <HN THREAD URL>
 
 If you've built an MCP client — what's missing from the set?
+
+---
+
+## r/mcp (POST FIRST — this is the home crowd)
+
+**Title:** McpAppFrame — a copy-paste SEP-1865 host renderer (render MCP Apps in your own host)
+
+**Body:**
+
+MCP Apps is official and the big hosts all render them — but if you're building your own host (inspector, agent console, internal chat tool), the host side of the spec is on you: sandboxed iframe, CSP from the resource metadata, the ui/initialize handshake, proxying tools/call back to your client, size-changed resizing, teardown.
+
+I shipped that as a copy-paste component (shadcn model): `npx mcp-elements add mcp-app-frame` drops the source in your repo. It's runtime-free — you pass it `callTool`/`readResource` from whatever MCP client you already use (@modelcontextprotocol/sdk, mcp-use). The state machine is plain TypeScript in a core package if you'd rather wire it without React.
+
+It ships with the other screens every host rebuilds: tool-call card with a real 6-state machine, OAuth consent dialog, scope inspector, JSON-Schema→form, resource browser, server status badge. React, Angular and Vue, MIT.
+
+Live demo — a real app doing the JSON-RPC handshake inside the frame: https://mcp-elements.wearesnx.studio/components/mcp-app-frame
+GitHub: https://github.com/mcp-elements/ui
+
+Author here. If you've built a host: what screen did you have to hand-roll that isn't in this list?
 
 ---
 

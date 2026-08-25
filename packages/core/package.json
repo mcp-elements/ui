@@ -1,7 +1,7 @@
 {
   "name": "@mcp-elements/core",
-  "version": "0.1.4",
-  "description": "Framework-agnostic state machines and utilities powering mcp-elements UI components",
+  "version": "0.1.5",
+  "description": "Framework-agnostic state machines powering mcp-elements \u2014 tool state, OAuth/PKCE, JSON-Schema forms, and an MCP Apps (SEP-1865) host bridge",
   "keywords": [
     "mcp",
     "model-context-protocol",

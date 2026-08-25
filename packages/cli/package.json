@@ -1,7 +1,7 @@
 {
   "name": "mcp-elements",
-  "version": "0.1.4",
-  "description": "CLI for mcp-elements \u2014 copy MCP-native UI components (React, Angular, Vue) straight into your project; you own the code",
+  "version": "0.1.5",
+  "description": "CLI for mcp-elements \u2014 copy MCP host UI primitives (React, Angular, Vue) straight into your project; you own the code",
   "keywords": [
     "mcp",
     "model-context-protocol",

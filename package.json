@@ -2,7 +2,7 @@
   "name": "mcp-elements",
   "private": true,
   "version": "0.1.2",
-  "description": "38 copy-paste UI components. Multi-framework. MCP-native.",
+  "description": "UI primitives for building MCP hosts \u2014 React, Angular, Vue. Includes an MCP Apps (SEP-1865) renderer.",
   "author": "Mayur Rawte",
   "license": "MIT",
   "repository": {
