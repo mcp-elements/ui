@@ -548,26 +548,48 @@ function select(r: McpResource) {
   'mcp-app-frame': {
     slug: 'mcp-app-frame',
     props: [
-      { name: 'src', type: 'string', required: true, description: 'URL of the MCP App to load in the sandboxed iframe' },
-      { name: 'onMessage', type: '(envelope: AppMessageEnvelope) => void', description: 'Called with a decoded envelope when the embedded app sends a message' },
-      { name: 'height', type: 'number', default: '480', description: 'Height of the iframe in pixels' },
-      { name: 'sandbox', type: 'string', default: "'allow-scripts allow-same-origin'", description: 'iframe sandbox flags' },
+      { name: 'html', type: 'string', description: 'Raw HTML of the ui:// resource (from resources/read). Rendered via srcdoc with the spec CSP injected' },
+      { name: 'src', type: 'string', description: 'URL to load instead of raw HTML (dedicated-origin or dev setups)' },
+      { name: 'resourceMeta', type: 'UiResourceMeta', description: "The resource's _meta.ui — drives CSP injection, iframe permissions, and border preference" },
+      { name: 'callTool', type: '(name, args) => Promise<CallToolResult>', description: 'Proxies tools/call requests from the app to your MCP client' },
+      { name: 'readResource', type: '(uri: string) => Promise<unknown>', description: 'Proxies resources/read requests from the app to your MCP client' },
+      { name: 'openLink', type: '(url: string) => void | Promise<void>', description: 'Handles ui/open-link requests from the app' },
+      { name: 'toolInput', type: 'Record<string, unknown>', description: 'Complete tool arguments; delivered as ui/notifications/tool-input after the handshake' },
+      { name: 'toolResult', type: 'CallToolResult', description: 'Tool result; delivered as ui/notifications/tool-result after the handshake' },
+      { name: 'hostContext', type: 'HostContext', description: 'UI context shared during ui/initialize (theme, containerDimensions, locale...)' },
+      { name: 'onInitialized', type: '(appCapabilities?) => void', description: 'Called when the ui/initialize handshake completes' },
+      { name: 'autoResize', type: 'boolean', default: 'true', description: 'Grow the iframe to match ui/notifications/size-changed from the app' },
+      { name: 'height', type: 'number', default: '480', description: 'Initial/fallback height in pixels' },
+      { name: 'sandbox', type: 'string', default: "'allow-scripts allow-forms'", description: 'iframe sandbox flags (keep allow-same-origin out for srcdoc content)' },
       { name: 'className', type: 'string', description: 'Additional CSS classes' },
     ],
     usage: {
       react: `import { McpAppFrame } from '@mcp-elements/react'
-import type { AppMessageEnvelope } from '@mcp-elements/core'
+import { APP_RESOURCE_MIME_TYPE } from '@mcp-elements/core'
 
-export function Example() {
+// 1. Your MCP client reads the tool's declared ui:// resource
+const { contents } = await client.readResource({ uri: toolMeta.ui.resourceUri })
+const resource = contents[0] // mimeType === APP_RESOURCE_MIME_TYPE
+
+// 2. Render it — the frame answers ui/initialize, injects the spec CSP,
+//    proxies tools/call back to your client, and streams tool input/results
+export function Example({ toolArgs, result }) {
   return (
     <McpAppFrame
-      src="https://my-mcp-app.example.com"
-      height={600}
-      onMessage={(env: AppMessageEnvelope) => console.log('app message', env)}
+      html={resource.text}
+      resourceMeta={resource._meta?.ui}
+      hostContext={{ theme: 'dark' }}
+      callTool={(name, args) => client.callTool({ name, arguments: args })}
+      toolInput={toolArgs}
+      toolResult={result}
+      openLink={(url) => window.open(url, '_blank', 'noopener')}
     />
   )
 }`,
-      angular: `import { Component } from '@angular/core'
+      angular: `// Note: the Angular adapter currently ships the pre-SEP envelope bridge.
+// For full SEP-1865 hosting (JSON-RPC handshake, tool proxying, CSP), wire
+// createAppHost from @mcp-elements/core directly — the React adapter shows the shape.
+import { Component } from '@angular/core'
 import { McpeMcpAppFrameComponent } from '@mcp-elements/angular'
 import type { AppMessageEnvelope } from '@mcp-elements/core'
 
@@ -583,6 +605,9 @@ export class AppFrameExampleComponent {
   }
 }`,
       vue: `<script setup lang="ts">
+// Note: the Vue adapter currently ships the pre-SEP envelope bridge.
+// For full SEP-1865 hosting (JSON-RPC handshake, tool proxying, CSP), wire
+// createAppHost from @mcp-elements/core directly — the React adapter shows the shape.
 import { McpeMcpAppFrame } from '@mcp-elements/vue'
 import type { AppMessageEnvelope } from '@mcp-elements/core'
 

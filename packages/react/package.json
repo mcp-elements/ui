@@ -1,7 +1,7 @@
 {
   "name": "@mcp-elements/react",
-  "version": "0.1.4",
-  "description": "MCP-native React components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame, plus 31 base + AI components",
+  "version": "0.1.5",
+  "description": "React UI primitives for building MCP hosts \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, and an MCP Apps (SEP-1865) renderer, plus 31 base + AI components",
   "keywords": [
     "mcp",
     "model-context-protocol",

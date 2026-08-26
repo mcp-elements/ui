@@ -74,6 +74,7 @@ import {
   Tooltip,
 } from '@mcp-elements/react'
 import { createToolState } from '@mcp-elements/core'
+import type { CallToolResult } from '@mcp-elements/core'
 
 type DemoFn = () => React.ReactNode
 
@@ -328,24 +329,61 @@ const McpResourceBrowserDemo: DemoFn = () => {
   )
 }
 
-const McpAppFrameDemo: DemoFn = () => {
-  const html = `<!doctype html><html><head><meta charset="utf-8"><style>
-    body{margin:0;font:14px ui-sans-serif,system-ui,-apple-system;background:#0a0a0a;color:#e5e5e5;display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:8px}
-    .dot{width:8px;height:8px;border-radius:50%;background:#3b82f6;animation:p 1.4s infinite}
-    @keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
+// A minimal real MCP App: speaks the SEP-1865 JSON-RPC handshake with the
+// host frame, then renders the tool input + result it receives.
+const APP_FRAME_DEMO_HTML = `<!doctype html><html><head><meta charset="utf-8"><style>
+    body{margin:0;font:13px ui-sans-serif,system-ui,-apple-system;background:#0a0a0a;color:#e5e5e5;padding:16px;display:flex;flex-direction:column;gap:10px}
+    .row{display:flex;align-items:center;gap:8px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#525252}
+    .dot.ok{background:#22c55e}
     code{background:#1a1a1a;padding:2px 6px;border-radius:4px;font-size:11px;color:#a3a3a3}
+    .label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#737373}
   </style></head><body>
-    <div class="dot"></div>
-    <p>Sandboxed MCP App</p>
-    <code>postMessage bridge active</code>
+    <div class="row"><div class="dot" id="dot"></div><span id="status">connecting to host...</span></div>
+    <div><div class="label">tool input</div><code id="input">waiting</code></div>
+    <div><div class="label">tool result</div><code id="result">waiting</code></div>
+    <script>
+      var INIT_ID = 1
+      parent.postMessage({ jsonrpc: '2.0', id: INIT_ID, method: 'ui/initialize', params: {
+        protocolVersion: '2026-01-26',
+        appInfo: { name: 'docs-demo-app', version: '1.0.0' },
+        appCapabilities: { availableDisplayModes: ['inline'] }
+      }}, '*')
+      window.addEventListener('message', function (e) {
+        var m = e.data || {}
+        if (m.id === INIT_ID && m.result) {
+          parent.postMessage({ jsonrpc: '2.0', method: 'ui/notifications/initialized', params: {} }, '*')
+          document.getElementById('dot').className = 'dot ok'
+          document.getElementById('status').textContent = 'ui/initialize ok — host: ' + m.result.hostInfo.name
+        }
+        if (m.method === 'ui/notifications/tool-input') {
+          document.getElementById('input').textContent = JSON.stringify(m.params.arguments)
+        }
+        if (m.method === 'ui/notifications/tool-result') {
+          document.getElementById('result').textContent = m.params.content[0].text
+        }
+      })
+    </script>
   </body></html>`
-  const dataUrl = `data:text/html;charset=utf-8,${encodeURIComponent(html)}`
-  return (
-    <div className="w-full max-w-md">
-      <McpAppFrame src={dataUrl} height={200} />
-    </div>
-  )
+
+const APP_FRAME_DEMO_INPUT = { location: 'San Francisco' }
+const APP_FRAME_DEMO_RESULT: CallToolResult = {
+  content: [{ type: 'text', text: 'Sunny, 22°C — humidity 45%' }],
+  structuredContent: { tempC: 22, conditions: 'sunny' },
 }
+
+const McpAppFrameDemo: DemoFn = () => (
+  <div className="w-full max-w-md">
+    <McpAppFrame
+      html={APP_FRAME_DEMO_HTML}
+      height={170}
+      hostInfo={{ name: 'mcp-elements-docs', version: '1.0.0' }}
+      hostContext={{ theme: 'dark' }}
+      toolInput={APP_FRAME_DEMO_INPUT}
+      toolResult={APP_FRAME_DEMO_RESULT}
+    />
+  </div>
+)
 
 // ───────── AI components ─────────
 

@@ -1,6 +1,6 @@
 {
   "name": "@mcp-elements/css",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Tailwind v4 CSS layer for mcp-elements \u2014 OKLCH design tokens, themes, and 38 component stylesheets",
   "keywords": [
     "mcp",

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'mcp-elements — the MCP-native UI kit for any framework'
+export const alt = 'mcp-elements — UI primitives for building MCP hosts'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -78,22 +78,22 @@ export default function OpenGraphImage() {
               letterSpacing: -2,
             }}
           >
-            The&nbsp;<span style={{ color: ACCENT }}>MCP-native</span>&nbsp;UI kit
+            UI primitives for
           </div>
           <div
             style={{
               display: 'flex',
-              color: MUTED,
+              color: TEXT,
               fontSize: 76,
               fontWeight: 700,
               lineHeight: 1.1,
               letterSpacing: -2,
             }}
           >
-            for any framework.
+            building&nbsp;<span style={{ color: ACCENT }}>MCP hosts</span>.
           </div>
           <div style={{ display: 'flex', color: MUTED, fontSize: 28, marginTop: 8 }}>
-            Copy-paste MCP primitives — consent, scopes, tool calls, tool-forms, MCP-Apps frame.
+            Consent, tool calls, scopes, resources + an MCP Apps (SEP-1865) renderer. You own the source.
           </div>
         </div>
 

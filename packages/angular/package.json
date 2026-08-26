@@ -1,7 +1,7 @@
 {
   "name": "@mcp-elements/angular",
-  "version": "0.1.4",
-  "description": "MCP-native Angular standalone components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame",
+  "version": "0.1.5",
+  "description": "Angular standalone UI primitives for building MCP hosts \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP Apps frame",
   "keywords": [
     "mcp",
     "model-context-protocol",

@@ -10,7 +10,7 @@ export function GET() {
     `## ${title}\n\n` + COMPONENTS.filter((c) => cats.includes(c.category)).map(line).join('\n')
   const body =
     `# mcp-elements\n\n` +
-    `> The MCP-native UI kit. The only library shipping copy-paste, framework-agnostic MCP primitives — OAuth consent, scope inspector, tool-call cards, JSON-Schema tool-forms, resource browser, and a sandboxed MCP-Apps frame — for React, Angular, and Vue. Plus 24 base UI + 7 AI components. The CLI copies source into your project; you own the code, no lock-in. Best for building MCP hosts, inspectors, agent consoles, and gateway UIs.\n\n` +
+    `> UI primitives for building MCP hosts. Copy-paste, framework-agnostic screens every MCP host rebuilds — OAuth consent, tool-call cards, scope inspectors, resource browsers, JSON-Schema tool-forms — plus McpAppFrame, a host-side renderer for the official MCP Apps extension (SEP-1865): sandboxed iframe, spec CSP, ui/initialize handshake, JSON-RPC tool-call proxying. For React, Angular, and Vue. Plus 24 base UI + 7 AI components. The CLI copies source into your project; you own the code, no lock-in. Best for building MCP hosts, inspectors, agent consoles, and gateway UIs.\n\n` +
     `${section('MCP-native & AI components', FEATURED_CATEGORIES)}\n\n` +
     `${section('Base (Extras) components', EXTRA_CATEGORIES)}\n\n` +
     `## Links\n` +

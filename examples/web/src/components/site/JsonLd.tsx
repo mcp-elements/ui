@@ -3,7 +3,7 @@ export function JsonLd() {
     '@context': 'https://schema.org',
     '@type': 'SoftwareSourceCode',
     name: 'mcp-elements',
-    description: 'The MCP-native UI kit — copy-paste, framework-agnostic MCP primitives (consent, scopes, tool calls, tool-forms, MCP-Apps frame) for React, Angular & Vue.',
+    description: 'UI primitives for building MCP hosts — consent, scopes, tool calls, tool-forms, and an MCP Apps (SEP-1865) renderer. Copy-paste for React, Angular & Vue.',
     codeRepository: 'https://github.com/mcp-elements/ui',
     programmingLanguage: ['TypeScript', 'React', 'Angular', 'Vue'],
     license: 'https://opensource.org/licenses/MIT',

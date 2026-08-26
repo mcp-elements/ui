@@ -1,7 +1,7 @@
 {
   "name": "@mcp-elements/vue",
-  "version": "0.1.4",
-  "description": "MCP-native Vue 3 components \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP-Apps frame",
+  "version": "0.1.5",
+  "description": "Vue 3 UI primitives for building MCP hosts \u2014 tool-call cards, OAuth consent, scope inspector, JSON-Schema tool-forms, MCP Apps frame",
   "keywords": [
     "mcp",
     "model-context-protocol",

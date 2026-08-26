@@ -27,7 +27,7 @@ export function HeroSection() {
             >
               <span className="font-mono text-[10px] uppercase tracking-widest site-text-accent">v0.1</span>
               <span className="h-3 w-px" style={{ background: 'var(--site-border)' }} />
-              <span className="site-text-accent">MCP-native</span>
+              <span className="site-text-accent">MCP Apps · SEP-1865</span>
               <span style={{ color: 'var(--site-border)' }}>·</span>
               <span>React · Angular · Vue</span>
               <span style={{ color: 'var(--site-border)' }}>·</span>
@@ -44,19 +44,19 @@ export function HeroSection() {
                 color: 'var(--site-text)',
               }}
             >
-              The{' '}
-              <span style={{ color: 'var(--site-accent)' }}>MCP-native</span>{' '}
-              UI kit{' '}
+              UI primitives for{' '}
               <br className="hidden sm:block" />
-              <span className="site-text-muted">for any framework.</span>
+              building <span style={{ color: 'var(--site-accent)' }}>MCP hosts</span>
+              <span className="site-text-muted">.</span>
             </h1>
 
-            {/* Subhead — lead with the primitives nobody else ships */}
+            {/* Subhead — the host-builder wedge */}
             <p className="site-lede">
-              The only library shipping copy-paste, framework-agnostic{' '}
-              <strong className="site-text">MCP primitives</strong> — OAuth consent, scope inspector,
-              tool-call cards, JSON-Schema tool-forms, and a sandboxed MCP-Apps frame. Plus 31 base +
-              AI components to build the rest. React, Angular, Vue — you own the code.
+              Building an MCP host, inspector, or agent console? Ship the screens every client
+              rebuilds — <strong className="site-text">OAuth consent, tool-call cards, scope
+              inspectors, resource browsers</strong> — plus an{' '}
+              <strong className="site-text">MCP Apps (SEP-1865) renderer</strong> that displays
+              apps the way Claude and ChatGPT do. Copy-paste the source. You own it.
             </p>
 
             {/* Install command */}

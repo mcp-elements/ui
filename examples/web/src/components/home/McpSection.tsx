@@ -8,7 +8,7 @@ const MCP_COMPONENTS = [
   { name: 'McpScopeInspector', slug: 'mcp-scope-inspector', status: 'stable', description: 'Expandable scope tree with human-readable descriptions' },
   { name: 'McpResourceBrowser', slug: 'mcp-resource-browser', status: 'stable', description: 'Browse MCP resources with type icons and preview' },
   { name: 'McpServerStatus', slug: 'mcp-server-status', status: 'stable', description: 'Connection badge: connected/disconnected/error/reconnecting' },
-  { name: 'McpAppFrame', slug: 'mcp-app-frame', status: 'preview', description: 'Sandboxed iframe + postMessage bridge for MCP Apps spec' },
+  { name: 'McpAppFrame', slug: 'mcp-app-frame', status: 'stable', description: 'MCP Apps (SEP-1865) host renderer: sandboxed iframe + JSON-RPC bridge' },
 ]
 
 export function McpSection() {

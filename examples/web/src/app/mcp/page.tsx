@@ -40,7 +40,7 @@ const PROTOCOL_STEPS = [
     icon: MonitorPlay,
     title: 'Render',
     summary: 'Embed MCP Apps safely.',
-    description: 'McpAppFrame sandboxes the iframe and brokers postMessage according to the MCP Apps spec.',
+    description: 'McpAppFrame renders MCP Apps (SEP-1865): sandboxed iframe, spec CSP, the ui/initialize handshake, and tool-call proxying over JSON-RPC.',
     components: [{ name: 'McpAppFrame', slug: 'mcp-app-frame' }],
   },
 ]
